@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dexgux5nrbobt"
-path="res://.godot/imported/00_victory.png-df13df9883e2eb803a2e1c5abbbd6c63.ctex"
+uid="uid://3k646x03tmyf"
+path="res://.godot/imported/idle-operator-new-01-03.png-362ced612d7201133290daa757ae7768.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Cloud/images/spritesheets/victory/00_victory.png"
-dest_files=["res://.godot/imported/00_victory.png-df13df9883e2eb803a2e1c5abbbd6c63.ctex"]
+source_file="res://Cloud/images/spritesheets/idle_operator/idle-operator-new-01-03.png"
+dest_files=["res://.godot/imported/idle-operator-new-01-03.png-362ced612d7201133290daa757ae7768.ctex"]
 
 [params]
 
