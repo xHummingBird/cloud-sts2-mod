@@ -1,0 +1,67 @@
+﻿using BaseLib.Utils;
+using Cloud.CloudCode.Extensions;
+using Cloud.CloudCode.Powers;
+using Godot;
+using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.Nodes.Combat;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
+using MegaCrit.Sts2.Core.Nodes.Vfx;
+using MegaCrit.Sts2.Core.ValueProps;
+
+namespace Cloud.CloudCode.Cards.Basic;
+
+public class Braver() : CloudCard(2, CardType.Attack,
+    CardRarity.Basic, TargetType.AnyEnemy)
+{
+    protected override IEnumerable<DynamicVar> CanonicalVars => [
+        new DamageVar(14, ValueProp.Move),
+        new PowerVar<VulnerablePower>(1)
+    ];
+
+    protected override async Task OnPlay(
+        PlayerChoiceContext choiceContext,
+        CardPlay play)
+    {
+        var ownerCreature = Owner?.Creature;
+
+        if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
+        {
+            SfxCmd.Play("res://Cloud/sfx/energy_charge.wav");
+            SfxCmd.Play("res://Cloud/sounds/owaraseru.wav");
+            float duration = cloud.PlayAnimation(ownerCreature, "braver").total;
+            if (duration > 0f)
+                await Task.Delay((int)(1.767f * 1000f));
+            SfxCmd.Play("res://Cloud/sfx/sword_swing_heavy.wav");
+            SfxCmd.Play("res://Cloud/sounds/braver.wav");
+            
+        }
+        
+        NCreature nCreature = NCombatRoom.Instance?.GetCreatureNode(play.Target);
+        NBigSlashVfx nBigSlashVfx = NBigSlashVfx.Create(nCreature.GetBottomOfHitbox(), facingRight: true);
+        
+        await CommonActions.CardAttack(this, play.Target)
+            .WithHitFx(null, "event:/sfx/enemy/enemy_attacks/mechaknight/mechaknight_heavy_attack")
+            .BeforeDamage(async delegate
+                { NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(nBigSlashVfx);
+                    NBigSlashImpactVfx.Create(nCreature.GetBottomOfHitbox(), 180f, new Color("#80dbff"));}
+                )
+            .Execute(choiceContext);
+        if (!base.Owner.Creature.HasPower<PunisherModePower>())
+            await PowerCmd.Apply<VulnerablePower>(choiceContext, play.Target, base.DynamicVars.Vulnerable.BaseValue,
+                base.Owner.Creature, this);
+        else await base.Owner.Creature.ExitPunisher();
+    }
+    
+    protected override void OnUpgrade()
+    {
+        DynamicVars.Damage.UpgradeValueBy(6);
+        DynamicVars.Vulnerable.UpgradeValueBy(1);
+    }
+}

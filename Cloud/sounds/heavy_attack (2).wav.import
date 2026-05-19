@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bmhsodg3ebxco"
+path="res://.godot/imported/heavy_attack (2).wav-3f49971c1f2b570395169af68d517bdf.sample"
+
+[deps]
+
+source_file="res://Cloud/sounds/heavy_attack (2).wav"
+dest_files=["res://.godot/imported/heavy_attack (2).wav-3f49971c1f2b570395169af68d517bdf.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

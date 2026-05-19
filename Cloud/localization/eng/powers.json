@@ -1,0 +1,33 @@
+{
+  "CLOUD-PUNISHER_MODE_POWER.description": "Increase damage dealt and damage taken by 25%. Buff is removed when you take unblocked damage from an enemy.",
+  "CLOUD-PUNISHER_MODE_POWER.smartDescription": "Increase damage dealt and damage taken by 25%. Buff is removed when you take unblocked damage from an enemy.",
+  "CLOUD-PUNISHER_MODE_POWER.title": "Punisher Mode",
+
+  "CLOUD-COUNTER_STANCE_POWER.description": "Blocked damage is reflected to your attacker for 1 turn.",
+  "CLOUD-COUNTER_STANCE_POWER.smartDescription": "Blocked damage is reflected to your attacker for 1 turn.",
+  "CLOUD-COUNTER_STANCE_POWER.title": "Counterstance",
+
+  "CLOUD-SHOCK_POWER.description": "Shocked creatures lose HP at the start of their turn. Each turn, Shock is reduced by [blue]1[/blue].",
+  "CLOUD-SHOCK_POWER.smartDescription": "At the start of {OnPlayer:your turn, lose|its turn, loses} [blue]{Amount}[/blue] HP, then reduce [gold]Shock[/gold] by [blue]1[/blue].",
+  "CLOUD-SHOCK_POWER.title": "Shock",
+
+  "CLOUD-SCORCH_POWER.description": "Scorched creatures deal [blue]25%[/blue] less damage with Attacks.",
+  "CLOUD-SCORCH_POWER.smartDescription": "Attacks deal [blue]25%[/blue] less damage for [blue]{Amount}[/blue] {Amount:plural:turn|turns}.",
+  "CLOUD-SCORCH_POWER.title": "Scorch",
+
+  "CLOUD-FREEZE_POWER.description": "Frozen creatures take [blue]25%[/blue] more damage from Attacks.",
+  "CLOUD-FREEZE_POWER.smartDescription": "Receive [blue]{DamageIncrease:percentMore()}%[/blue] more damage from Attacks for [blue]{Amount}[/blue] {Amount:plural:turn|turns}.",
+  "CLOUD-FREEZE_POWER.title": "Freeze",
+
+  "CLOUD-LIMIT_BREAK_POWER.description": "Gain Limit Break when stack reaches [blue]100[/blue]. Gain [blue]5[/blue] stack each turn. Gain [blue]3[/blue] stack when you attack and when you take blocked damage. Gain stack equal to damage taken.",
+  "CLOUD-LIMIT_BREAK_POWER.smartDescription": "Gain Limit Break when stack reaches [blue]100[/blue]. Gain stack each turn, when you take attack, and when you take damage.",
+  "CLOUD-LIMIT_BREAK_POWER.title": "Limit",
+
+  "CLOUD-PASSING_THE_TORCH_POWER.description": "Gain 1 energy at the start of each turn.",
+  "CLOUD-PASSING_THE_TORCH_POWER.smartDescription": "Gain 1 energy at the start of each turn.",
+  "CLOUD-PASSING_THE_TORCH_POWER.title": "Passing The Torch",
+
+  "CLOUD-CROSS_SLASH_POWER.description": "Reduce damage dealt by [blue]80%[/blue].",
+  "CLOUD-CROSS_SLASH_POWER.smartDescription": "Reduce damage dealt by [blue]80%[/blue].",
+  "CLOUD-CROSS_SLASH_POWER.title": "Cross Slash"
+}
