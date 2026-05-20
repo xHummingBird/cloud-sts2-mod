@@ -14,7 +14,7 @@ public class Blizzara() : CloudCard(1, CardType.Attack,
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => 
     [
-        new DamageVar(7m, ValueProp.Move),
+        new DamageVar(8m, ValueProp.Move),
         new PowerVar<FreezePower>(2m),
     ];
 

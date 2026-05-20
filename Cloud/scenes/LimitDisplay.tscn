@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://chtjj3sskb6j0"]
+
+[ext_resource type="Texture2D" uid="uid://bfk8bc45ro4o8" path="res://Cloud/images/charui/LimitDisplay.png" id="1_d7c4i"]
+
+[node name="LimitDisplay" type="Control"]
+custom_minimum_size = Vector2(171, 88)
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -100.0
+offset_right = 171.0
+offset_bottom = -12.0
+grow_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_d7c4i")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="LimitLabel" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,5 +1,6 @@
 ﻿using BaseLib.Utils;
 using Cloud.CloudCode.Extensions;
+using Cloud.CloudCode.Mechanics;
 using Cloud.CloudCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -11,8 +12,9 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Cloud.CloudCode.Cards.Ancient;
 
 public class LimitBreak() : CloudCard(1, CardType.Skill,
-    CardRarity.Ancient, TargetType.Self)
+    CardRarity.Ancient, TargetType.Self), IATBCard
 {
+    public int ATBCost => 3;
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DamageVar(18, ValueProp.Move),
         new PowerVar<VulnerablePower>(2)

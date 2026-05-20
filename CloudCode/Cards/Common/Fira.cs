@@ -18,7 +18,7 @@ public class Fira() : CloudCard(1, CardType.Attack,
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => 
     [
-        new DamageVar(9m, ValueProp.Move),
+        new DamageVar(10m, ValueProp.Move),
         new PowerVar<ScorchPower>(1m),
     ];
 

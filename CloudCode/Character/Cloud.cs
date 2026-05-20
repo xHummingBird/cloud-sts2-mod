@@ -102,10 +102,22 @@ public class Cloud : PlaceholderCharacterModel
             return icon;
         }
     }
+
+    public override CustomEnergyCounter? CustomEnergyCounter =>
+        new CustomEnergyCounter(EnergyCounterPaths, new Color(0.2f, 0.2f, 0.2f), new Color(1f, 1f, 1f));
     
+    
+    private string EnergyCounterPaths(int i)
+    {
+        return i switch
+        {
+            1 => "charui/big_energy.png".ImagePath(),
+            _ => "charui/blank.png".ImagePath()
+        };
+    }
     private const string CustomVisualScenePath = "res://Cloud/scenes/cloud.tscn";
-    public override string CustomIconTexturePath => "character_icon_char_name.png".CharacterUiPath();
-    public override string CustomCharacterSelectIconPath => "char_select_char_name.png".CharacterUiPath();
+    public override string CustomIconTexturePath => "character_icon_cloud.png".CharacterUiPath();
+    public override string CustomCharacterSelectIconPath => "char_select_cloud.png".CharacterUiPath();
     public override string CustomCharacterSelectLockedIconPath => "char_select_char_name_locked.png".CharacterUiPath();
     public override string CustomMapMarkerPath => "map_marker_char_name.png".CharacterUiPath();
 
@@ -176,7 +188,7 @@ public class Cloud : PlaceholderCharacterModel
         animPlayer.Play(godotTrigger);
         
         
-        if (godotTrigger != "die")
+        if (godotTrigger is not ("die" or "dead"))
         {
             string nextIdle = GetIdleAnimation(creature);
             animPlayer.Queue(nextIdle);
@@ -327,5 +339,6 @@ public class Cloud : PlaceholderCharacterModel
             }
         }
     }
+    
 
 }

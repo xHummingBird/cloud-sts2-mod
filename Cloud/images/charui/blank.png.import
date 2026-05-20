@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqaarul1dkikk"
-path="res://.godot/imported/big_energy.png-54023e2570d2daac70a65586193f70fd.ctex"
+uid="uid://duk244djcwomi"
+path="res://.godot/imported/blank.png-020c8dd6c825797db5c1d30169ed748d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Cloud/images/charui/big_energy.png"
-dest_files=["res://.godot/imported/big_energy.png-54023e2570d2daac70a65586193f70fd.ctex"]
+source_file="res://Cloud/images/charui/blank.png"
+dest_files=["res://.godot/imported/blank.png-020c8dd6c825797db5c1d30169ed748d.ctex"]
 
 [params]
 

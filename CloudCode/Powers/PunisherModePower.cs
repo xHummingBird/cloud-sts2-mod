@@ -64,7 +64,7 @@ public class PunisherModePower : CloudPower
         
         if (dealer == null || !dealer.IsEnemy)
             return;
-        
+
         await PowerCmd.Decrement(this);
     }
 }

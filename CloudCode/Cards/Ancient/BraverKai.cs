@@ -1,5 +1,6 @@
 ﻿using BaseLib.Utils;
 using Cloud.CloudCode.Extensions;
+using Cloud.CloudCode.Mechanics;
 using Cloud.CloudCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -11,8 +12,9 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Cloud.CloudCode.Cards.Ancient;
 
 public class BraverKai() : CloudCard(1, CardType.Attack,
-    CardRarity.Ancient, TargetType.AnyEnemy)
+    CardRarity.Ancient, TargetType.AnyEnemy), IATBCard
 {
+    public int ATBCost => 1;
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DamageVar(18, ValueProp.Move),
         new PowerVar<VulnerablePower>(2)

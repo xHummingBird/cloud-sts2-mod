@@ -83,6 +83,9 @@
   "CLOUD-CROSS_SLASH.description": "Deal {Damage:diff()} damage {Repeat:diff()} times. \nReduce damage dealt by [blue]80%[/blue] for 1 turn.",
   "CLOUD-CROSS_SLASH.title": "Cross Slash",
 
-  "CLOUD-AERIAL_DRIVE.description": "Deal {Damage:diff()} damage {Repeat:diff()} times. \nGain {LimitPower:diff()} [gold]Limit[/gold].",
-  "CLOUD-AERIAL_DRIVE.title": "Aerial Drive"
+  "CLOUD-AERIAL_DRIVE.description": "Deal {Damage:diff()} damage {Repeat:diff()} times. \nGain {LimitBreakPower:diff()} [gold]Limit[/gold].",
+  "CLOUD-AERIAL_DRIVE.title": "Aerial Drive",
+
+  "CLOUD-CROSS_SLASH_KAI.description": "",
+  "CLOUD-CROSS_SLASH_KAI.title": "Cross Slash Kai"
 }

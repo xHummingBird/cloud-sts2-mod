@@ -1,4 +1,5 @@
 ﻿using Cloud.CloudCode.Extensions;
+using Cloud.CloudCode.Mechanics;
 using Cloud.CloudCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -10,8 +11,9 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace Cloud.CloudCode.Cards.Uncommon;
 
 public class ChangeTheTempo()  : CloudCard(1, CardType.Skill,
-    CardRarity.Uncommon, TargetType.AnyEnemy)
+    CardRarity.Uncommon, TargetType.AnyEnemy), IATBCard
 {
+    public int ATBCost => 1;
     protected override IEnumerable<DynamicVar> CanonicalVars => 
     [
         new PowerVar<PunisherModePower>(1m),
@@ -36,6 +38,7 @@ public class ChangeTheTempo()  : CloudCard(1, CardType.Skill,
                 float duration = cloud.PlayAnimation(ownerCreature, "mode_shift").total;
                 if (duration > 0f)
                     await Task.Delay((int)(duration * 0.9f * 1000f));
+                cloud.PlayAnimation(ownerCreature, "idle_punisher");
             }
             await PowerCmd.Apply<VulnerablePower>(choiceContext, cardPlay.Target, base.DynamicVars.Vulnerable.BaseValue, base.Owner.Creature, this);
         }

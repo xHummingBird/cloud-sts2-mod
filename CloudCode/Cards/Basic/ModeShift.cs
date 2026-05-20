@@ -1,4 +1,5 @@
 ﻿using Cloud.CloudCode.Cards;
+using Cloud.CloudCode.Mechanics;
 using Cloud.CloudCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -9,8 +10,9 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 namespace Cloud.CloudCode.Cards.Basic;
 
 public class ModeShift() : CloudCard(0, CardType.Skill,
-    CardRarity.Basic, TargetType.Self)
+    CardRarity.Basic, TargetType.Self), IATBCard
 {
+    public int ATBCost => 1;
     protected override IEnumerable<DynamicVar> CanonicalVars => 
         [
             new PowerVar<PunisherModePower>(1m),
@@ -26,14 +28,15 @@ public class ModeShift() : CloudCard(0, CardType.Skill,
         var ownerCreature = Owner?.Creature;
         if (!base.Owner.Creature.HasPower<PunisherModePower>())
         {
-            await PowerCmd.Apply<PunisherModePower>(choiceContext, base.Owner.Creature, base.DynamicVars["PunisherModePower"].BaseValue, base.Owner.Creature, this);
             if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
             {
                 SfxCmd.Play("res://Cloud/sounds/zenryokudeiku.wav");
                 float duration = cloud.PlayAnimation(ownerCreature, "mode_shift").total;
                 if (duration > 0f)
                     await Task.Delay((int)(duration * 0.9f * 1000f));
+                cloud.PlayAnimation(ownerCreature, "idle_punisher");
             }
+            PowerCmd.Apply<PunisherModePower>(choiceContext, base.Owner.Creature, base.DynamicVars["PunisherModePower"].BaseValue, base.Owner.Creature, this);
         }
         else
         {

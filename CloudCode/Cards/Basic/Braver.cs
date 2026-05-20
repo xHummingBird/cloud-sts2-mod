@@ -1,5 +1,6 @@
 ﻿using BaseLib.Utils;
 using Cloud.CloudCode.Extensions;
+using Cloud.CloudCode.Mechanics;
 using Cloud.CloudCode.Powers;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
@@ -17,11 +18,12 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Cloud.CloudCode.Cards.Basic;
 
-public class Braver() : CloudCard(2, CardType.Attack,
-    CardRarity.Basic, TargetType.AnyEnemy)
+public class Braver() : CloudCard(1, CardType.Attack,
+    CardRarity.Basic, TargetType.AnyEnemy), IATBCard
 {
+    public int ATBCost => 2;
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(14, ValueProp.Move),
+        new DamageVar(12, ValueProp.Move),
         new PowerVar<VulnerablePower>(1)
     ];
 
