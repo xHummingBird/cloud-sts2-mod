@@ -1,7 +1,9 @@
 ﻿using Cloud.CloudCode.Cards.Ancient;
+using Cloud.CloudCode.Mechanics.ATB;
 using Cloud.CloudCode.Powers;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -18,12 +20,24 @@ public class BusterSword() : CloudRelic
         HoverTipFactory.FromCard<LimitBreak>()
     ];
     
+    public override Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    {
+        var card = cardPlay.Card;
 
+        if (card.Owner != Owner) return Task.CompletedTask;
+        if (card.Type != CardType.Attack) return Task.CompletedTask;
+        if (card is IATBCard) return Task.CompletedTask;
+
+        ATBManager.GainATBFromAttack(Owner, 1);
+        return Task.CompletedTask;
+    }
+    
     public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
     {
         
         if (side != base.Owner.Creature.Side)
             return;
+        ATBManager.ResetGainThisTurn(Owner);
 
         var creature = base.Owner.Creature;
 

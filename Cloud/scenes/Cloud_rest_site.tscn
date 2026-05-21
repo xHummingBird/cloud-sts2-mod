@@ -1,0 +1,98 @@
+[gd_scene load_steps=9 format=3 uid="uid://bq476jsjbtg4h"]
+
+[ext_resource type="Script" uid="uid://dygyq14sft2fh" path="res://CloudCode/Nodes/CloudNRestSiteCharacter.cs" id="1_nsbi6"]
+[ext_resource type="Texture2D" uid="uid://bcjnalu0yshi1" path="res://Cloud/images/spritesheets/rest_merchant/rest_merchant-01.png" id="1_pxt6h"]
+[ext_resource type="Texture2D" uid="uid://c06xfxcg867m5" path="res://Cloud/images/spritesheets/rest_merchant/rest_merchant-02.png" id="2_nsbi6"]
+[ext_resource type="Texture2D" uid="uid://bvryn2hl7iulv" path="res://Cloud/images/spritesheets/rest_merchant/rest_merchant-03.png" id="3_t27ad"]
+[ext_resource type="PackedScene" uid="uid://5fkryglj1k0e" path="res://Cloud/scenes/selection_reticle.tscn" id="5_t27ad"]
+
+[sub_resource type="Animation" id="Animation_ebjc6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_pxt6h")]
+}
+
+[sub_resource type="Animation" id="Animation_xu5ug"]
+resource_name = "rest_site"
+length = 0.9
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_pxt6h"), ExtResource("2_nsbi6"), ExtResource("3_t27ad")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qe8jq"]
+_data = {
+&"RESET": SubResource("Animation_ebjc6"),
+&"rest_site": SubResource("Animation_xu5ug")
+}
+
+[node name="CloudRestSite" type="Node2D"]
+scale = Vector2(1.75, 1.75)
+script = ExtResource("1_nsbi6")
+
+[node name="Visuals" type="Sprite2D" parent="."]
+position = Vector2(100, 0)
+texture = ExtResource("1_pxt6h")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Visuals")
+libraries = {
+&"": SubResource("AnimationLibrary_qe8jq")
+}
+autoplay = "rest_site"
+
+[node name="ControlRoot" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SelectionReticle" parent="ControlRoot" instance=ExtResource("5_t27ad")]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 64.0
+offset_top = -154.0
+offset_right = 221.0
+offset_bottom = 158.0
+
+[node name="Hitbox" type="Control" parent="ControlRoot"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = 70.0
+offset_top = -158.0
+offset_right = 228.0
+offset_bottom = 163.0
+
+[node name="ThoughtBubbleRight" type="Control" parent="ControlRoot"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = 195.0
+offset_top = -93.0
+offset_right = 195.0
+offset_bottom = -93.0
+
+[node name="ThoughtBubbleLeft" type="Control" parent="ControlRoot"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = 82.0
+offset_top = -93.0
+offset_right = 82.0
+offset_bottom = -93.0

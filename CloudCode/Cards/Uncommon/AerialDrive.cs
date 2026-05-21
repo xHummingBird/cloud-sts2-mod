@@ -13,7 +13,7 @@ public class AerialDrive() : CloudCard(2, CardType.Attack,
     CardRarity.Uncommon, TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(8, ValueProp.Move),
+        new DamageVar(7, ValueProp.Move),
         new RepeatVar(2),
         new PowerVar<LimitBreakPower>(10)
     ];
@@ -39,11 +39,18 @@ public class AerialDrive() : CloudCard(2, CardType.Attack,
                 SfxCmd.Play("res://Cloud/sfx/sword_swing.wav");
                 await CommonActions.CardAttack(this, play.Target).WithHitFx("vfx/vfx_attack_slash")
                     .Execute(choiceContext);
+                await Task.Delay((int)(0.81f * 1000f));
             }
         }
         else await CommonActions.CardAttack(this, play.Target).WithHitCount(base.DynamicVars.Repeat.IntValue)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
+        
+        var power = base.Owner.Creature.GetPower<LimitBreakPower>();
+        if (power != null)
+        {
+            await power.AddLimitExternal((int)DynamicVars["LimitBreakPower"].BaseValue, choiceContext);
+        }
     }
 
     protected override void OnUpgrade()

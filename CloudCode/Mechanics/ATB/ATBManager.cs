@@ -1,6 +1,10 @@
-﻿using MegaCrit.Sts2.Core.Entities.Players;
+﻿using HarmonyLib;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
-namespace Cloud.CloudCode.Mechanics;
+namespace Cloud.CloudCode.Mechanics.ATB;
 
 public class ATBManager
 
@@ -8,6 +12,7 @@ public class ATBManager
     public class ATBData
     {
         public int Value;
+        public int GainThisTurn;
         public Action<int>? OnATBChanged;
     }
 
@@ -25,6 +30,14 @@ public class ATBManager
         }
         return data;
     }
+    
+    public static void ResetGainThisTurn(Player player)
+    {
+        var data = GetData(player);
+        data.GainThisTurn = 0;
+    }
+
+
 
     public static int GetATB(Player player)
     {
@@ -43,17 +56,38 @@ public class ATBManager
         data.Value = value;
         data.OnATBChanged?.Invoke(value);
     }
-
-    public static void GainATB(Player player, int amount)
+    
+    
+    public static void GainATBFromAttack(Player player, int amount)
     {
-        var current = GetATB(player);
+        var data = GetData(player);
 
-        // ✅ soft cap (your design)
-        if (current >= 3)
+        int max = 3; // your soft cap
+        int current = data.Value;
+
+        // ✅ limit: max gain per turn from attacks = max ATB
+        int remainingThisTurn = max - data.GainThisTurn;
+        if (remainingThisTurn <= 0)
             return;
 
-        int final = Math.Min(current + amount, 3);
+        int allowed = Math.Min(amount, remainingThisTurn);
+
+        // ✅ also don't exceed soft cap from this source
+        int final = Math.Min(current + allowed, max);
+
+        int actualGain = final - current;
+        if (actualGain <= 0)
+            return;
+
+        data.GainThisTurn += actualGain;
+
         SetATB(player, final);
+    }
+    
+    public static void GainATBDirect(Player player, int amount)
+    {
+        int current = GetATB(player);
+        SetATB(player, current + amount);
     }
 
     public static void SpendATB(Player player, int amount)

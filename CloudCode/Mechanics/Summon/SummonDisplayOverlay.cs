@@ -4,19 +4,19 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 
-namespace Cloud.CloudCode.Mechanics.Limit;
+namespace Cloud.CloudCode.Mechanics.Summon;
 
-public partial class LimitDisplayOverlay : Control
+public partial class SummonDisplayOverlay : Control
 {
-    public static LimitDisplayOverlay? Instance { get; private set; }
+    public static SummonDisplayOverlay? Instance { get; private set; }
 
-    private Control? _limitDisplay;
+    private Control? _summonDisplay;
     private RichTextLabel _label;
 
     public override void _Ready()
     {
         Instance = this;
-        Name = "LimitDisplayOverlay";
+        Name = "SummonDisplayOverlay";
 
         MouseFilter = MouseFilterEnum.Ignore;
 
@@ -26,19 +26,19 @@ public partial class LimitDisplayOverlay : Control
 
     private void Setup()
     {
-        var scene = GD.Load<PackedScene>("res://Cloud/scenes/LimitDisplay.tscn");
+        var scene = GD.Load<PackedScene>("res://Cloud/scenes/SummonDisplay.tscn");
         if (scene == null)
             return;
 
-        _limitDisplay = scene.Instantiate<Control>();
-        AddChild(_limitDisplay);
+        _summonDisplay = scene.Instantiate<Control>();
+        AddChild(_summonDisplay);
 
-        _limitDisplay.MouseFilter = MouseFilterEnum.Ignore;
-        _limitDisplay.SetAnchorsPreset(LayoutPreset.BottomLeft);
-        _limitDisplay.Position = new Vector2(70, 80);
-        _limitDisplay.Visible = true;
+        _summonDisplay.MouseFilter = MouseFilterEnum.Ignore;
+        _summonDisplay.SetAnchorsPreset(LayoutPreset.BottomLeft);
+        _summonDisplay.Position = new Vector2(100, 0);
+        _summonDisplay.Visible = true;
         
-        _label = _limitDisplay.GetNode<RichTextLabel>("%LimitLabel");
+        _label = _summonDisplay.GetNode<RichTextLabel>("%SummonLabel");
         
         var font = GD.Load<Font>("res://themes/kreon_bold_shared.tres");
         _label.AddThemeFontOverride("font", font);
@@ -59,20 +59,20 @@ public partial class LimitDisplayOverlay : Control
 
         if (player != null)
         {
-            LimitManager.GetDataForUI(player).OnLimitChanged += OnLimitChanged;
+            SummonManager.GetDataForUI(player).OnSummonChanged += OnSummonChanged;
 
-            UpdateDisplay(LimitManager.GetLimit(player));
+            UpdateDisplay(SummonManager.GetSummon(player));
         }
     }
 
-    private void OnLimitChanged(int value)
+    private void OnSummonChanged(int value)
     {
         UpdateDisplay(value);
     }
 
     private void UpdateDisplay(int value)
     {
-        int max = 100;
+        int max = 500;
         
         if (_label != null)
         {
@@ -91,13 +91,13 @@ public partial class LimitDisplayOverlay : Control
 }
 
 [HarmonyPatch(typeof(NEnergyCounter), nameof(NEnergyCounter._Ready))]
-public static class LimitDisplayOverlayPatch
+public static class SummonDisplayOverlayPatch
 {
     public static void Postfix(NEnergyCounter __instance)
     {
-        if (__instance.GetNodeOrNull("LimitDisplayOverlay") != null)
+        if (__instance.GetNodeOrNull("SummonDisplayOverlay") != null)
             return;
-        
+
         var state = CombatManager.Instance?.DebugOnlyGetState();
         if (state == null) return;
         
@@ -107,10 +107,10 @@ public static class LimitDisplayOverlayPatch
         
         if (!(player.Character is Character.Cloud character))
             return;
-
-        var overlay = new LimitDisplayOverlay
+        
+        var overlay = new SummonDisplayOverlay
         {
-            Name = "LimitDisplayOverlay"
+            Name = "SummonDisplayOverlay"
         };
 
         __instance.AddChild(overlay);

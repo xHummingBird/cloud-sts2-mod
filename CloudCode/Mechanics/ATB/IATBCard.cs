@@ -1,4 +1,4 @@
-﻿namespace Cloud.CloudCode.Mechanics;
+﻿namespace Cloud.CloudCode.Mechanics.ATB;
 
 
 public interface IATBCard

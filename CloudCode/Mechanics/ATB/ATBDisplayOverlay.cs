@@ -5,10 +5,7 @@ using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 
-namespace Cloud.CloudCode.Mechanics;
-
-
-
+namespace Cloud.CloudCode.Mechanics.ATB;
 
 public partial class ATBDisplayOverlay : Control
 {
@@ -31,6 +28,9 @@ public partial class ATBDisplayOverlay : Control
     private Player _player;
     private void Setup()
     {
+        if (!IsInsideTree())
+            return;
+        
         var scene = GD.Load<PackedScene>("res://Cloud/scenes/ATBDisplay.tscn");
         if (scene == null)
             return;
@@ -85,6 +85,9 @@ public partial class ATBDisplayOverlay : Control
     {
         int max = 3;
         
+        if (_label == null || !GodotObject.IsInstanceValid(_label))
+            return;
+
         
         if (_label != null)
         {
@@ -96,16 +99,42 @@ public partial class ATBDisplayOverlay : Control
 
     public override void _ExitTree()
     {
+        
+        if (_player != null)
+        {
+            var data = ATBManager.GetDataForUI(_player);
+            data.OnATBChanged -= OnATBChanged;
+        }
+
+        // Clear references (defensive)
+        _label = null;
+        _atbDisplay = null;
+        _player = null;
+
         if (Instance == this)
             Instance = null;
+
     }
 }
+
 
 [HarmonyPatch(typeof(NEnergyCounter), nameof(NEnergyCounter._Ready))]
 public static class ATBDisplayOverlayPatch
 {
     public static void Postfix(NEnergyCounter __instance)
     {
+        var state = CombatManager.Instance?.DebugOnlyGetState();
+        if (state == null) return;
+
+        var player = state.Players.FirstOrDefault(p => LocalContext.IsMe(p));
+        if (player == null) return;
+
+        // ✅ CHARACTER CHECK (THIS IS WHAT YOU WANT)
+        if (!(player.Character is Character.Cloud character))
+            return;
+
+        // ✅ only Cloud reaches here
+
         if (__instance.GetNodeOrNull("ATBDisplayOverlay") != null)
             return;
 
@@ -113,10 +142,10 @@ public static class ATBDisplayOverlayPatch
         {
             Name = "ATBDisplayOverlay"
         };
-
         __instance.AddChild(overlay);
     }
 }
+
 
 
 

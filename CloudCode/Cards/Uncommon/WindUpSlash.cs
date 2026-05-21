@@ -36,6 +36,7 @@ public class WindUpSlash() : CloudCard(2, CardType.Attack,
             }
             await CommonActions.CardAttack(this, play.Target).WithHitFx("vfx/vfx_attack_slash")
                 .Execute(choiceContext);
+            await Task.Delay((int)(0.233f * 1000f));
         }
 
         decimal bonusVigor = DynamicVars["VigorPower"].BaseValue + 2;

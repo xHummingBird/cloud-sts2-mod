@@ -101,6 +101,7 @@ public class Omnislash() : CloudCard(0, CardType.Attack,
                     await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue*3).FromCard(this).Targeting(play.Target)
                         .WithHitFx("vfx/vfx_attack_slash") // swap for bigger VFX later
                         .Execute(choiceContext);
+                    await Task.Delay((int)(0.9f * 1000f));
                 }
 
             }

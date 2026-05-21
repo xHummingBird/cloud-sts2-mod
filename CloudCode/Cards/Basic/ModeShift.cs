@@ -1,5 +1,6 @@
 ﻿using Cloud.CloudCode.Cards;
 using Cloud.CloudCode.Mechanics;
+using Cloud.CloudCode.Mechanics.ATB;
 using Cloud.CloudCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -10,9 +11,8 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 namespace Cloud.CloudCode.Cards.Basic;
 
 public class ModeShift() : CloudCard(0, CardType.Skill,
-    CardRarity.Basic, TargetType.Self), IATBCard
+    CardRarity.Basic, TargetType.Self)
 {
-    public int ATBCost => 1;
     protected override IEnumerable<DynamicVar> CanonicalVars => 
         [
             new PowerVar<PunisherModePower>(1m),

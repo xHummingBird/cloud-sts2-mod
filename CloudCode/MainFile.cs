@@ -1,3 +1,4 @@
+using System.Reflection;
 using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Modding;
@@ -16,7 +17,8 @@ public partial class MainFile : Node
     public static void Initialize()
     {
         Harmony harmony = new(ModId);
-
+        var assembly = Assembly.GetExecutingAssembly();
+        Godot.Bridge.ScriptManagerBridge.LookupScriptsInAssembly(assembly);
         harmony.PatchAll();
     }
 }

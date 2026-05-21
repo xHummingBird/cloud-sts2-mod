@@ -1,5 +1,7 @@
 ﻿using BaseLib.Utils;
 using Cloud.CloudCode.Extensions;
+using Cloud.CloudCode.Mechanics;
+using Cloud.CloudCode.Mechanics.ATB;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -9,12 +11,12 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Cloud.CloudCode.Cards.Uncommon;
 
-public class QuickHit()  : CloudCard(1, CardType.Attack,
-    CardRarity.Uncommon, TargetType.AnyEnemy)
+public class QuickHit()  : CloudCard(0, CardType.Attack,
+    CardRarity.Uncommon, TargetType.AnyEnemy), IATBCard
 {
+    public int ATBCost => 1;
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DamageVar(5m, ValueProp.Move),
-        new EnergyVar(1)
     ];
 
     protected override async Task OnPlay(
@@ -39,6 +41,7 @@ public class QuickHit()  : CloudCard(1, CardType.Attack,
         {
             await PlayerCmd.GainEnergy(base.DynamicVars.Energy.IntValue, base.Owner);
         }
+        await Task.Delay((int)(0.367f * 1000f));
     }
     
     protected override void OnUpgrade()

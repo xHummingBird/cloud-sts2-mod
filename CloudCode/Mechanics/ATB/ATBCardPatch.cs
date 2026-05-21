@@ -1,9 +1,9 @@
 ﻿using Godot;
 using HarmonyLib;
-using MegaCrit.Sts2.addons.mega_text;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 
-namespace Cloud.CloudCode.Mechanics;
+namespace Cloud.CloudCode.Mechanics.ATB;
 
 
 public static class ATBCardUi
@@ -67,35 +67,21 @@ public static class ATBCardUi
             
             body.AddChild(container);
             
-// ✅ Place it just above base visuals (same layer as glow effects)
             body.MoveChild(container, body.GetChildCount() - 1);
-
-// ✅ No need for ZIndex hacks anymore
             container.ZIndex = 0;
-
-
         }
 
         container.Visible = true;
-
-        // Position: anchor it relative to the EnergyIcon node, but safely in correct coordinate space
+        container.Position = new Vector2(-145f, -205f);
         
-            // Fallback if EnergyIcon path changes
-            container.Position = new Vector2(-145f, -205f);
-        
-        
-
-        // Update label text
         var label = container.GetNodeOrNull<RichTextLabel>(LabelNodeName);
         var font = GD.Load<Font>("res://themes/kreon_bold_shared.tres");
         label.AddThemeFontOverride("font", font);
         label.AddThemeColorOverride("default_color", Colors.White);
-        
         label.AddThemeFontOverride(
             "normal_font",
             GD.Load<Font>("res://themes/kreon_bold_shared.tres")
         );
-
         label.AddThemeColorOverride("font_outline_color", new Color(0.2f, 0.2f, 0.2f));
         label.AddThemeConstantOverride("outline_size", 12);
         label.AddThemeFontSizeOverride("normal_font_size", 24);
@@ -104,6 +90,12 @@ public static class ATBCardUi
         {
             // Ensure BBCode is on (in case you forgot in the scene)
             label.BbcodeEnabled = true;
+            
+            bool hasEnoughATB = !model.IsMutable 
+                                || ATBManager.GetATB(model.Owner) >= atbCard.ATBCost;
+
+            var color = hasEnoughATB ? Colors.White : Colors.Red;
+            label.AddThemeColorOverride("default_color", color);
 
             // Cost only (you can change this to "x/3" if you want)
             label.Text = $"[center]{atbCard.ATBCost}[/center]";
@@ -112,7 +104,6 @@ public static class ATBCardUi
 
     private static void HideIfExists(NCard cardNode)
     {
-        
         var body = cardNode.Body;
         if (false)
             return;
@@ -155,6 +146,27 @@ public static class ATBCardPatch_UpdateVisuals
         ATBCardUi.EnsureAndRefresh(__instance);
     }
 }
+
+
+[HarmonyPatch(typeof(CardModel), nameof(CardModel.SpendResources))]
+public static class CardModel_SpendResources_ATB
+{
+    public static void Postfix(CardModel __instance)
+    {
+        if (__instance is not IATBCard atbCard)
+            return;
+
+        if (!__instance.IsMutable)
+            return;
+
+        int cost = atbCard.ATBCost;
+        if (cost <= 0)
+            return;
+
+        ATBManager.SpendATB(__instance.Owner, cost);
+    }
+}
+
 
 
 

@@ -13,7 +13,7 @@ public class AssaultCharge()  : CloudCard(2, CardType.Attack,
     CardRarity.Uncommon, TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(14m, ValueProp.Move),
+        new DamageVar(10m, ValueProp.Move),
         new EnergyVar(1)
     ];
 
@@ -40,6 +40,7 @@ public class AssaultCharge()  : CloudCard(2, CardType.Attack,
             await PowerCmd.Apply<FreeAttackPower>(choiceContext, base.Owner.Creature, 1m, base.Owner.Creature, this);
         }
         else await base.Owner.Creature.EnterPunisher(1, base.Owner.Creature, this);
+        await Task.Delay((int)(0.367f * 1000f));
             
     }
     

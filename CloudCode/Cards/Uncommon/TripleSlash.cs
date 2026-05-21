@@ -49,6 +49,7 @@ public class TripleSlash() : CloudCard(2, CardType.Attack,
                 SfxCmd.Play("res://Cloud/sounds/heavy_attack (2).wav");
                 await CommonActions.CardAttack(this, play.Target).WithHitFx("vfx/vfx_attack_slash")
                     .Execute(choiceContext);
+                await Task.Delay((int)(0.4f * 1000f));
             }
         }
         else

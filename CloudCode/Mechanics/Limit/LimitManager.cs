@@ -1,6 +1,6 @@
 ﻿using MegaCrit.Sts2.Core.Entities.Players;
 
-namespace Cloud.CloudCode.Mechanics;
+namespace Cloud.CloudCode.Mechanics.Limit;
 
 
 public static class LimitManager

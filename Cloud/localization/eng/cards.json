@@ -56,7 +56,7 @@
   "CLOUD-QUICK_HIT.description": "Deal {Damage:diff()} damage. \n[gold]Operator[/gold]: Gain {Energy:energyIcons()}.",
   "CLOUD-QUICK_HIT.title": "Quick Hit",
 
-  "CLOUD-WIND_UP_SLASH.description": "Deal {Damage:diff()} damage. \n[gold]Operator[/gold]: Gain {VigorPower:diff()} [gold]Vigor[/gold]. \n[gold]Punisher[/gold]: Gain 2 additional [gold]Vigor[/gold].",
+  "CLOUD-WIND_UP_SLASH.description": "Deal {Damage:diff()} damage. \nGain {VigorPower:diff()} [gold]Vigor[/gold]. \n[gold]Punisher[/gold]: Gain 2 additional [gold]Vigor[/gold].",
   "CLOUD-WIND_UP_SLASH.title": "Wind-Up Slash",
 
   "CLOUD-SPINNING_SLASH.description": "Deal {Damage:diff()} damage to ALL enemies.",
@@ -68,7 +68,7 @@
   "CLOUD-PASSING_THE_TORCH.description": "Gain {Energy:energyIcons()} at the start of every turn.",
   "CLOUD-PASSING_THE_TORCH.title": "Passing The Torch",
 
-  "CLOUD-GOT_YOUR_BACK.description": "Gain {Block:diff()} [gold]Block[/gold]. Gain {LimitPower:diff()} [gold]Limit[/gold].",
+  "CLOUD-GOT_YOUR_BACK.description": "Gain {Block:diff()} [gold]Block[/gold]. Gain {LimitBreakPower:diff()} [gold]Limit[/gold].",
   "CLOUD-GOT_YOUR_BACK.title": "I Got Your Back!",
   
   "CLOUD-LIMIT_BREAK.description": "Test",

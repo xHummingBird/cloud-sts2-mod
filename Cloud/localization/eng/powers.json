@@ -29,5 +29,9 @@
 
   "CLOUD-CROSS_SLASH_POWER.description": "Reduce damage dealt by [blue]80%[/blue].",
   "CLOUD-CROSS_SLASH_POWER.smartDescription": "Reduce damage dealt by [blue]80%[/blue].",
-  "CLOUD-CROSS_SLASH_POWER.title": "Cross Slash"
+  "CLOUD-CROSS_SLASH_POWER.title": "Cross Slash",
+
+  "CLOUD-PRIME_MODE_POWER.description": "",
+  "CLOUD-PRIME_MODE_POWER.smartDescription": "",
+  "CLOUD-PRIME_MODE_POWER.title": "Prime Mode"
 }

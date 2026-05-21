@@ -24,6 +24,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Relics;
+using MegaCrit.Sts2.Core.Nodes.Events.Custom;
 using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.Runs;
 using Thunder = Cloud.CloudCode.Cards.Basic.Thunder;
@@ -116,6 +117,8 @@ public class Cloud : PlaceholderCharacterModel
         };
     }
     private const string CustomVisualScenePath = "res://Cloud/scenes/cloud.tscn";
+    public override string CustomRestSiteAnimPath => "res://Cloud/scenes/Cloud_rest_site.tscn";
+    public override string CustomMerchantAnimPath => "res://Cloud/scenes/Cloud_merchant.tscn";
     public override string CustomIconTexturePath => "character_icon_cloud.png".CharacterUiPath();
     public override string CustomCharacterSelectIconPath => "char_select_cloud.png".CharacterUiPath();
     public override string CustomCharacterSelectLockedIconPath => "char_select_char_name_locked.png".CharacterUiPath();
@@ -300,6 +303,29 @@ public class Cloud : PlaceholderCharacterModel
         }
     }
     
+    [HarmonyPatch(typeof(NFakeMerchant), "AfterRoomIsLoaded")]
+    public static class FakeMerchantLayeringPatch
+    {
+        [HarmonyPostfix]
+        public static void Postfix(NFakeMerchant __instance)
+        {
+            var container = AccessTools.Field(typeof(NFakeMerchant), "_characterContainer")
+                .GetValue(__instance) as Control;
+        
+            if (container != null)
+            {
+                container.ZIndex = -1; 
+            
+                var inventory = AccessTools.Field(typeof(NFakeMerchant), "_inventory")
+                    .GetValue(__instance) as Control;
+                if (inventory != null)
+                {
+                    inventory.ZIndex = 10;
+                }
+            }
+        }
+    }
+    
    [HarmonyPatch(typeof(Hook), nameof(Hook.AfterDamageReceived))]
     public static class CloudDamageAnimationPatch
     {
@@ -335,7 +361,11 @@ public class Cloud : PlaceholderCharacterModel
                 {
                     AudioHelper.PlayRandomDamaged();
                 }
-                else AudioHelper.PlayRandomDamagedHigh();// maps to "hurt" in your PlayAnimation mapping
+                else
+                {
+                    AudioHelper.PlayRandomDamagedHigh(); // maps to "hurt" in your PlayAnimation mapping
+                }
+                character.PlayAnimation(target, "idle_operator");
             }
         }
     }
