@@ -24,7 +24,7 @@ public class Braver() : CloudCard(1, CardType.Attack,
 {
     public int ATBCost => 2;
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(12, ValueProp.Move),
+        new DamageVar(10, ValueProp.Move),
         new PowerVar<VulnerablePower>(1)
     ];
 
@@ -33,14 +33,15 @@ public class Braver() : CloudCard(1, CardType.Attack,
         CardPlay play)
     {
         var ownerCreature = Owner?.Creature;
-
-        if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
+        var cloud = Owner?.Character as Character.Cloud;
+        
+        if (ownerCreature != null && cloud != null)
         {
-            SfxCmd.Play("res://Cloud/sfx/energy_charge.wav");
             SfxCmd.Play("res://Cloud/sounds/owaraseru.wav");
-            float duration = cloud.PlayAnimation(ownerCreature, "braver").total;
+            await cloud.DashTo(ownerCreature, play.Target, distance: 300f);
+            float duration = cloud.PlayAnimation(ownerCreature, "braver_kai").total;
             if (duration > 0f)
-                await Task.Delay((int)(1.767f * 1000f));
+                await Task.Delay((int)(0.467f * 1000f));
             SfxCmd.Play("res://Cloud/sfx/sword_swing_heavy.wav");
             SfxCmd.Play("res://Cloud/sounds/braver.wav");
             
@@ -56,6 +57,11 @@ public class Braver() : CloudCard(1, CardType.Attack,
                     NBigSlashImpactVfx.Create(nCreature.GetBottomOfHitbox(), 180f, new Color("#80dbff"));}
                 )
             .Execute(choiceContext);
+        await Task.Delay((int)(0.63f * 1000f));
+        if (ownerCreature != null && cloud != null)
+        {
+            await cloud.Retreat(ownerCreature);
+        }
         if (!base.Owner.Creature.HasPower<PunisherModePower>())
             await PowerCmd.Apply<VulnerablePower>(choiceContext, play.Target, base.DynamicVars.Vulnerable.BaseValue,
                 base.Owner.Creature, this);
@@ -64,7 +70,7 @@ public class Braver() : CloudCard(1, CardType.Attack,
     
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(6);
+        DynamicVars.Damage.UpgradeValueBy(4);
         DynamicVars.Vulnerable.UpgradeValueBy(1);
     }
 }

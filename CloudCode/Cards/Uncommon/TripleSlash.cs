@@ -12,7 +12,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Cloud.CloudCode.Cards.Uncommon;
 
 public class TripleSlash() : CloudCard(2, CardType.Attack,
-    CardRarity.Uncommon, TargetType.AnyEnemy)
+    CardRarity.Uncommon, TargetType.RandomEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new CalculationBaseVar(4m),
@@ -38,16 +38,16 @@ public class TripleSlash() : CloudCard(2, CardType.Attack,
             {
                 await Task.Delay((int)(0.133f * 1000f));
                 SfxCmd.Play("res://Cloud/sfx/sword_swing.wav");
-                CommonActions.CardAttack(this, play.Target).WithHitFx("vfx/vfx_attack_slash")
+                DamageCmd.Attack(base.DynamicVars.CalculatedDamage).FromCard(this).TargetingRandomOpponents(base.CombatState).WithHitFx("vfx/vfx_attack_slash")
                     .Execute(choiceContext);
                 await Task.Delay((int)(0.333f * 1000f));
                 SfxCmd.Play("res://Cloud/sfx/sword_swing.wav");
-                CommonActions.CardAttack(this, play.Target).WithHitFx("vfx/vfx_attack_slash")
+                DamageCmd.Attack(base.DynamicVars.CalculatedDamage).FromCard(this).TargetingRandomOpponents(base.CombatState).WithHitFx("vfx/vfx_attack_slash")
                     .Execute(choiceContext);
                 await Task.Delay((int)(0.6f * 1000f));
                 SfxCmd.Play("res://Cloud/sfx/sword_swing.wav");
                 SfxCmd.Play("res://Cloud/sounds/heavy_attack (2).wav");
-                await CommonActions.CardAttack(this, play.Target).WithHitFx("vfx/vfx_attack_slash")
+                await DamageCmd.Attack(base.DynamicVars.CalculatedDamage).FromCard(this).TargetingRandomOpponents(base.CombatState).WithHitFx("vfx/vfx_attack_slash")
                     .Execute(choiceContext);
                 await Task.Delay((int)(0.4f * 1000f));
             }

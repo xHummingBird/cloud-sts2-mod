@@ -1,24 +1,28 @@
-﻿using BaseLib.Utils;
+﻿using BaseLib.Extensions;
+using BaseLib.Utils;
 using Cloud.CloudCode.Extensions;
 using Cloud.CloudCode.Mechanics;
 using Cloud.CloudCode.Mechanics.ATB;
+using Cloud.CloudCode.Mechanics.Limit;
 using Cloud.CloudCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Cloud.CloudCode.Cards.Ancient;
 
 public class LimitBreak() : CloudCard(1, CardType.Skill,
-    CardRarity.Ancient, TargetType.Self), IATBCard
+    CardRarity.Ancient, TargetType.AnyEnemy), IATBCard, ILimitCard
 {
+    protected override bool ShouldGlowGoldInternal => IsPlayable;
+    protected override bool IsPlayable => base.Owner.HasPower<LimitBreakPower>();
     public int ATBCost => 3;
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(18, ValueProp.Move),
-        new PowerVar<VulnerablePower>(2)
     ];
     
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
@@ -26,36 +30,75 @@ public class LimitBreak() : CloudCard(1, CardType.Skill,
         CardKeyword.Retain,
         CardKeyword.Exhaust
     ];
+    
+    
+    protected override IEnumerable<IHoverTip> ExtraHoverTips
+    {
+        get
+        {
+            if (IsUpgraded)
+            {
+                return new IHoverTip[]
+                {
+                    HoverTipFactory.FromCard<CrossSlashKai>(true),
+                    HoverTipFactory.FromCard<Meteorain>(true),
+                    HoverTipFactory.FromCard<Omnislash>()
+                };
+            }
+
+            return new IHoverTip[]
+            {
+                HoverTipFactory.FromCard<CrossSlashKai>(),
+                HoverTipFactory.FromCard<Meteorain>(),
+                HoverTipFactory.FromCard<Ascension>()
+            };
+        }
+    }
+
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        var ownerCreature = Owner?.Creature;
-
-        if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
+        var cross = CombatState.CreateCard<CrossSlashKai>(base.Owner);
+        var meteor = CombatState.CreateCard<Meteorain>(base.Owner);
+        
+        List<CardModel> cards;
+        
+        if (base.IsUpgraded)
         {
-            SfxCmd.Play("res://Cloud/sfx/energy_charge.wav");
-            SfxCmd.Play("res://Cloud/sounds/limit_break.wav");
-            float duration = cloud.PlayAnimation(ownerCreature, "braver").total;
-            if (duration > 0f)
-                await Task.Delay((int)(1.9f * 1000f));
-            SfxCmd.Play("res://Cloud/sfx/sword_swing_heavy.wav");
-            SfxCmd.Play("res://Cloud/sounds/braver.wav");
-            
+            CardCmd.Upgrade(cross);
+            CardCmd.Upgrade(meteor);
+
+            cards = new()
+            {
+                cross,
+                meteor,
+                CombatState.CreateCard<Omnislash>(base.Owner)
+            };
         }
-        await CommonActions.CardAttack(this, play.Target)
-            .WithHitFx("vfx/vfx_attack_slash")
-            .Execute(choiceContext);
-        if (!base.Owner.Creature.HasPower<PunisherModePower>())
-            await PowerCmd.Apply<VulnerablePower>(choiceContext, play.Target, base.DynamicVars.Vulnerable.BaseValue,
-                base.Owner.Creature, this);
-        else await base.Owner.Creature.ExitPunisher();
+
+        else
+        {
+            cards = new()
+            {
+                cross,
+                meteor,
+                CombatState.CreateCard<Ascension>(base.Owner)
+            };
+        }
+        CardModel cardModel = await CardSelectCmd.FromChooseACardScreen(choiceContext, cards.ToList(), base.Owner, canSkip: false);
+        if (cardModel is Meteorain meteorain)
+            await CardCmd.AutoPlay(choiceContext, cardModel, null);
+        
+        else await CardCmd.AutoPlay(choiceContext, cardModel, play.Target);
     }
-    
+
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(7);
-        DynamicVars.Vulnerable.UpgradeValueBy(1);
+        
     }
 }
+
+    
+    

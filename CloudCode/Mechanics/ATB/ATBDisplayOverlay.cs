@@ -24,8 +24,15 @@ public partial class ATBDisplayOverlay : Control
         CallDeferred(nameof(Setup));
     }
     
+    
+    private int _lastValue = -1;
+    private Tween? _popTween;
+    private bool _exiting;
+    private static readonly Color AtbGainGreen = new Color(0.4f, 1f, 0.4f);
+    
     private RichTextLabel _label;
     private Player _player;
+    
     private void Setup()
     {
         if (!IsInsideTree())
@@ -45,6 +52,13 @@ public partial class ATBDisplayOverlay : Control
         _atbDisplay.Visible = true;
         
         _label = _atbDisplay.GetNode<RichTextLabel>("%ATBLabel");
+        
+        _label.TreeExiting += () =>
+        {
+            _popTween?.Kill();
+            _popTween = null;
+            _label = null;
+        };
         
         var font = GD.Load<Font>("res://themes/kreon_bold_shared.tres");
         _label.AddThemeFontOverride("font", font);
@@ -69,12 +83,49 @@ public partial class ATBDisplayOverlay : Control
             var data = ATBManager.GetDataForUI(_player);
 
             data.OnATBChanged += OnATBChanged;
+            data.OnMaxATBChanged += OnMaxATBChanged;
 
             // ✅ initial sync
             UpdateDisplay(ATBManager.GetATB(_player));
         }
 
     }
+    
+    
+    private void PlayGainPop()
+    {
+        if (_exiting) return;
+        
+        var label = _label;
+        
+        if (label == null) return;
+
+        if (!GodotObject.IsInstanceValid(label) || label.IsQueuedForDeletion())
+            return;
+
+        if (_popTween != null && GodotObject.IsInstanceValid(_popTween))
+            _popTween.Kill();
+
+        label.Scale = Vector2.One;
+        label.Modulate = AtbGainGreen;
+
+        // Bind tween lifetime to the LABEL (the thing we're animating)
+        _popTween = label.CreateTween();
+
+        _popTween.TweenProperty(label, "scale", new Vector2(1.25f, 1.25f), 0.10f)
+            .SetTrans(Tween.TransitionType.Quad)
+            .SetEase(Tween.EaseType.Out);
+
+        _popTween.TweenProperty(label, "scale", Vector2.One, 0.40f)
+            .SetTrans(Tween.TransitionType.Quad)
+            .SetEase(Tween.EaseType.Out);
+
+        _popTween.Parallel().TweenProperty(label, "modulate", Colors.White, 0.40f)
+            .SetTrans(Tween.TransitionType.Quad)
+            .SetEase(Tween.EaseType.Out);
+
+    }
+
 
     private void OnATBChanged(int value)
     {
@@ -83,27 +134,59 @@ public partial class ATBDisplayOverlay : Control
 
     private void UpdateDisplay(int value)
     {
-        int max = 3;
+        if (_exiting) return;
         
-        if (_label == null || !GodotObject.IsInstanceValid(_label))
+        
+        var player = _player;
+        var label = _label;
+
+        if (player == null) return;
+        if (label == null) return;
+
+        // IMPORTANT: also avoid "about to be deleted"
+        if (!GodotObject.IsInstanceValid(label) || label.IsQueuedForDeletion())
             return;
 
-        
-        if (_label != null)
+        int max = ATBManager.GetMaxATB(player);
+
+        // Setting Text is where your crash happens, so guard hard
+        try
         {
-            _label.Text = $"[center]{value}/{max}[/center]";
+            label.Text = $"[center]{value}/{max}[/center]";
+        }
+        catch (ObjectDisposedException)
+        {
+            // Godot freed it between our checks (can happen around scene teardown)
+            return;
         }
 
-        // ✅ replace this later with label update
+        if (_lastValue >= 0 && value > _lastValue)
+            PlayGainPop();
+
+        _lastValue = value;
+
     }
 
+    
+    private void OnMaxATBChanged(int _)
+    {
+        if (_player == null) return;
+        UpdateDisplay(ATBManager.GetATB(_player));
+    }
+    
     public override void _ExitTree()
     {
+        _exiting = true;
+        
+        if (_popTween != null && GodotObject.IsInstanceValid(_popTween))
+            _popTween.Kill();
+        _popTween = null;
         
         if (_player != null)
         {
             var data = ATBManager.GetDataForUI(_player);
             data.OnATBChanged -= OnATBChanged;
+            data.OnMaxATBChanged -= OnMaxATBChanged;
         }
 
         // Clear references (defensive)

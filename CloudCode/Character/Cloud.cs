@@ -6,6 +6,9 @@ using Cloud.CloudCode.Cards.Common;
 using Cloud.CloudCode.Cards.Rare;
 using Cloud.CloudCode.Cards.Uncommon;
 using Cloud.CloudCode.Extensions;
+using Cloud.CloudCode.Mechanics.ATB;
+using Cloud.CloudCode.Mechanics.Limit;
+using Cloud.CloudCode.Mechanics.Summon;
 using Cloud.CloudCode.Powers;
 using Cloud.CloudCode.Relics;
 using Godot;
@@ -36,49 +39,41 @@ public class Cloud : PlaceholderCharacterModel
     public const string CharacterId = "Cloud";
 
     public static readonly Color Color = new("ffffff");
-
+    private Vector2? _originalPosition;
     public override Color NameColor => Color;
     public override CharacterGender Gender => CharacterGender.Masculine;
     public override int StartingHp => 80;
     
-    private enum CloudMode
-    {
-        Operator,
-        Punisher
-    }
-    
-    
-    private CloudMode GetMode(Creature creature)
-    {
-        if (creature == null)
-            return CloudMode.Operator;
-
-        // TODO: replace with your actual buff check
-        if (creature.HasPower<PunisherModePower>())
-            return CloudMode.Punisher;
-
-        return CloudMode.Operator;
-    }
-    
     public override IEnumerable<CardModel> StartingDeck =>
     [
-        ModelDb.Card<StrikeCloud>(),
-        ModelDb.Card<StrikeCloud>(),
+        // ModelDb.Card<StrikeCloud>(),
+        // ModelDb.Card<StrikeCloud>(),
         // ModelDb.Card<Braver>(),
-        ModelDb.Card<StrikeCloud>(),
-        ModelDb.Card<StrikeCloud>(),
+        // ModelDb.Card<StrikeCloud>(),
+        // ModelDb.Card<StrikeCloud>(),
         // ModelDb.Card<Fire>(),
         // ModelDb.Card<Blizzard>(),
         // ModelDb.Card<Thunder>(),
-        ModelDb.Card<DefendCloud>(),
-        ModelDb.Card<DefendCloud>(),
-        ModelDb.Card<DefendCloud>(),
-        ModelDb.Card<DefendCloud>(),
-        ModelDb.Card<ModeShift>(),
+        // ModelDb.Card<DefendCloud>(),
+        // ModelDb.Card<DefendCloud>(),
+        // ModelDb.Card<DefendCloud>(),
+        // ModelDb.Card<DefendCloud>(),
+        // ModelDb.Card<ModeShift>(),
         
         // for testing
-        ModelDb.Card<AerialDrive>(),
-        ModelDb.Card<CrossSlash>()
+        ModelDb.Card<StrikeCloud>(),
+        ModelDb.Card<Firaga>(),
+        ModelDb.Card<BladeBeam>(),
+        ModelDb.Card<Fire>(),
+        ModelDb.Card<Blizzard>(),
+        ModelDb.Card<Thunder>(),
+        ModelDb.Card<ModeShift>(),
+        ModelDb.Card<DefendCloud>(),
+        ModelDb.Card<DefendCloud>(),
+        ModelDb.Card<Disorder>(),
+        ModelDb.Card<TestLimitBreak>(),
+        ModelDb.Card<Blizzaga>(),
+        ModelDb.Card<Thundaga>()
     ];
 
     public override IReadOnlyList<RelicModel> StartingRelics =>
@@ -142,12 +137,15 @@ public class Cloud : PlaceholderCharacterModel
     // =========================================================
    
     
+    
     private string GetIdleAnimation(Creature creature)
     {
-        return GetMode(creature) == CloudMode.Punisher
-            ? "idle_punisher"
-            : "idle_operator";
+        var mode = creature.IsPunisher() ? "punisher" : "operator";
+        var prime = creature.IsPrime() ? "prime_" : "";
+
+        return $"idle_{prime}{mode}";
     }
+
 
     
     public (float total, float[] impacts) PlayAnimation(Creature creature, string trigger)
@@ -163,21 +161,25 @@ public class Cloud : PlaceholderCharacterModel
         var animPlayer = node.Visuals.GetNodeOrNull<AnimationPlayer>("AnimationPlayer");
         if (animPlayer == null)
             return (0f, Array.Empty<float>());
-        var mode = GetMode(creature);
         
-        string godotTrigger = (trigger.ToLowerInvariant(), mode) switch
+        var t = trigger.ToLowerInvariant();
+        var mode = creature.IsPunisher() ? "punisher" : "operator";
+        var prime =  creature.IsPrime() ? "_prime" : "";
+        
+        string godotTrigger = t switch
         {
             
-            ("attack", CloudMode.Punisher) => "attack_punisher",
-            ("attack", _) => "attack_operator",
+            "attack" => $"attack_{mode}",
             
-            ("idle", _) or ("idle_loop", _) => GetIdleAnimation(creature),
+            "block" => $"block{prime}",
             
-            ("dead", _) => "dead",
-            ("die", _) => "dead",
+            "dash" => $"dash_{mode}",
             
-            ("cast", CloudMode.Punisher) => "cast_punisher",
-            ("cast", _) => "cast_operator",
+            ("idle") or ("idle_loop") => GetIdleAnimation(creature),
+            
+            "dead" or "die" => "dead",
+            
+            "cast" => $"cast_{mode}",
 
             _ => trigger
         };
@@ -215,6 +217,104 @@ public class Cloud : PlaceholderCharacterModel
             animPlayer.Play(idle);
     }
     
+    private string ResolveDashAnimation(Creature creature)
+    {
+        return creature.IsPunisher() ? "dash_punisher" : "dash_operator";
+    }
+
+
+    public async Task DashTo(
+        Creature player,
+        Creature target,
+        float durationSeconds = 0.3f,
+        float distance = 200f,
+        bool dashBehind = false,
+        string? overrideAnim = null)
+    {
+
+        var node = NCombatRoom.Instance?.GetCreatureNode(player);
+        var targetNode = NCombatRoom.Instance?.GetCreatureNode(target);
+        if (node == null || targetNode == null) return;
+
+        if (!_originalPosition.HasValue)
+            _originalPosition = node.GlobalPosition;
+
+        string anim = overrideAnim ?? ResolveDashAnimation(player);
+        PlayAnimation(player, anim);
+
+        Vector2 dir = (player.Side == CombatSide.Player) ? Vector2.Left : Vector2.Right;
+        if (dashBehind) dir = -dir;
+
+        Vector2 targetPos = targetNode.GlobalPosition + dir * distance;
+
+        var tween = node.CreateTween();
+        tween.TweenProperty(node, "global_position", targetPos, durationSeconds)
+            .SetTrans(Tween.TransitionType.Quad)
+            .SetEase(Tween.EaseType.Out);
+
+        await node.ToSignal(tween, Tween.SignalName.Finished);
+    }
+    
+    
+    public async Task DashPast(
+        Creature player,
+        Creature target,
+        string attackAnim,
+        float durationSeconds = 0.3f,
+        float behindDistance = 200f,
+        float overshoot = 0f)
+    {
+        var node = NCombatRoom.Instance?.GetCreatureNode(player);
+        var targetNode = NCombatRoom.Instance?.GetCreatureNode(target);
+        if (node == null || targetNode == null) return;
+
+        if (!_originalPosition.HasValue)
+            _originalPosition = node.GlobalPosition;
+
+        Vector2 frontDir = (player.Side == CombatSide.Player) ? Vector2.Left : Vector2.Right;
+        Vector2 behindDir = -frontDir;
+
+        Vector2 endPos = targetNode.GlobalPosition + behindDir * (behindDistance + overshoot);
+
+        PlayAnimation(player, attackAnim);
+
+        var tween = node.CreateTween();
+        tween.TweenProperty(node, "global_position", endPos, durationSeconds)
+            .SetTrans(Tween.TransitionType.Quad)
+            .SetEase(Tween.EaseType.Out);
+
+        await node.ToSignal(tween, Tween.SignalName.Finished);
+    }
+    
+    
+    public async Task Retreat(Creature player)
+    {
+        var node = NCombatRoom.Instance?.GetCreatureNode(player);
+        if (node == null || !_originalPosition.HasValue) return;
+
+        PlayAnimation(player, "retreat");
+
+        var tween = node.CreateTween();
+        tween.TweenProperty(node, "global_position", _originalPosition.Value, 0.3f)
+            .SetTrans(Tween.TransitionType.Quad)
+            .SetEase(Tween.EaseType.InOut);
+
+        await node.ToSignal(tween, Tween.SignalName.Finished);
+
+        _originalPosition = null;
+
+        var visuals = node.Visuals.GetNodeOrNull<Node2D>("Visuals");
+        if (visuals != null)
+            visuals.Position = Vector2.Zero;
+        
+        PlayAnimation(player, "idle");
+    }
+
+
+
+
+
+
     // =========================================================
     //  HARMONY PATCHES: minimal trigger routing & death duration
     // =========================================================
@@ -259,7 +359,7 @@ public class Cloud : PlaceholderCharacterModel
         public static void Postfix(CombatState combatState, PowerModel power, decimal amount, Creature? applier, CardModel? cardSource)
         {
             var target = power.Owner;
-            if (target?.Player?.Character is Cloud character)
+            if (target?.Player?.Character is Cloud character && power is PunisherModePower)
             {
                 character.RefreshIdle(target);
             }
@@ -272,6 +372,7 @@ public class Cloud : PlaceholderCharacterModel
         [HarmonyPostfix]
         public static void Postfix(IRunState runState, CombatState? combatState)
         {
+            
             var creature = combatState?.Creatures?.FirstOrDefault(c => c.IsPlayer);
             
             if (creature?.Player?.Character is not Cloud)
@@ -279,6 +380,10 @@ public class Cloud : PlaceholderCharacterModel
             var node = NCombatRoom.Instance?.GetCreatureNode(creature);
             var animPlayer = node?.Visuals?.GetNodeOrNull<AnimationPlayer>("AnimationPlayer");
 
+            ATBManager.SetATB(creature.Player, 0);
+            ATBManager.Reset(creature.Player);
+            LimitManager.SetLimit(creature.Player, 0);
+            SummonManager.SetSummon(creature.Player, 0);
             
             if (animPlayer == null)
                 return;
@@ -365,7 +470,8 @@ public class Cloud : PlaceholderCharacterModel
                 {
                     AudioHelper.PlayRandomDamagedHigh(); // maps to "hurt" in your PlayAnimation mapping
                 }
-                character.PlayAnimation(target, "idle_operator");
+                if (!target.HasPower<PrimeModePower>())
+                    character.PlayAnimation(target, "idle_operator");
             }
         }
     }

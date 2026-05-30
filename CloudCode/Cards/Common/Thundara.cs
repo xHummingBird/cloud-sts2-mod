@@ -1,6 +1,8 @@
 ﻿using BaseLib.Utils;
 using Cloud.CloudCode.Cards;
 using Cloud.CloudCode.Extensions;
+using Cloud.CloudCode.Mechanics.ATB;
+using Cloud.CloudCode.Mechanics.Summon;
 using Cloud.CloudCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -11,12 +13,13 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Cloud.CloudCode.Cards.Common;
 
 public class Thundara() : CloudCard(1, CardType.Attack,
-    CardRarity.Common, TargetType.AnyEnemy)
+    CardRarity.Common, TargetType.RandomEnemy), IATBCard, IMagicCard
 {
+    public int ATBCost => 1;
     protected override IEnumerable<DynamicVar> CanonicalVars => 
     [
-        new DamageVar(8m, ValueProp.Move),
-        new PowerVar<ShockPower>(4m),
+        new DamageVar(6m, ValueProp.Move),
+        new RepeatVar(2)
     ];
 
     protected override async Task OnPlay(
@@ -35,20 +38,14 @@ public class Thundara() : CloudCard(1, CardType.Attack,
                 await Task.Delay((int)(duration * 0.2f * 1000f));
         }
         
-        await CommonActions.CardAttack(this, play.Target)
-            .BeforeDamage(async delegate
-            {
-                VfxCmd.PlayOnCreature(play.Target, "vfx/vfx_attack_lightning");
-                SfxCmd.Play("event:/sfx/characters/defect/defect_lightning_evoke");
-            })
+        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).WithHitCount(base.DynamicVars.Repeat.IntValue).FromCard(this)
+            .TargetingRandomOpponents(base.CombatState)
+            .WithHitFx("vfx/vfx_attack_lightning", "event:/sfx/characters/defect/defect_lightning_passive")
             .Execute(choiceContext);
-        
-        await PowerCmd.Apply<ShockPower>(choiceContext, play.Target, base.DynamicVars["ShockPower"].BaseValue, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
         DynamicVars.Damage.UpgradeValueBy(3m);
-        base.DynamicVars["ShockPower"].UpgradeValueBy(2m);
     }
 }

@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Cloud.CloudCode.Cards.Uncommon;
 
-public class ChangeTheTempo()  : CloudCard(1, CardType.Skill,
+public class ChangeTheTempo() : CloudCard(1, CardType.Skill,
     CardRarity.Uncommon, TargetType.AnyEnemy), IATBCard
 {
     public int ATBCost => 1;
@@ -32,7 +32,6 @@ public class ChangeTheTempo()  : CloudCard(1, CardType.Skill,
         var ownerCreature = Owner?.Creature;
         if (!base.Owner.Creature.HasPower<PunisherModePower>())
         {
-            await PowerCmd.Apply<PunisherModePower>(choiceContext, base.Owner.Creature, base.DynamicVars["PunisherModePower"].BaseValue, base.Owner.Creature, this);
             if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
             {
                 SfxCmd.Play("res://Cloud/sounds/zenryokudeiku.wav");
@@ -41,6 +40,7 @@ public class ChangeTheTempo()  : CloudCard(1, CardType.Skill,
                     await Task.Delay((int)(duration * 0.9f * 1000f));
                 cloud.PlayAnimation(ownerCreature, "idle_punisher");
             }
+            await PowerCmd.Apply<PunisherModePower>(choiceContext, base.Owner.Creature, base.DynamicVars["PunisherModePower"].BaseValue, base.Owner.Creature, this);
             await PowerCmd.Apply<VulnerablePower>(choiceContext, cardPlay.Target, base.DynamicVars.Vulnerable.BaseValue, base.Owner.Creature, this);
         }
         else

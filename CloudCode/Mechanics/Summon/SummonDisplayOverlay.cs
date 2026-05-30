@@ -2,6 +2,7 @@
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Context;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 
 namespace Cloud.CloudCode.Mechanics.Summon;
@@ -12,6 +13,7 @@ public partial class SummonDisplayOverlay : Control
 
     private Control? _summonDisplay;
     private RichTextLabel _label;
+    private Player _player;
 
     public override void _Ready()
     {
@@ -26,6 +28,9 @@ public partial class SummonDisplayOverlay : Control
 
     private void Setup()
     {
+        if (!IsInsideTree())
+            return;
+        
         var scene = GD.Load<PackedScene>("res://Cloud/scenes/SummonDisplay.tscn");
         if (scene == null)
             return;
@@ -72,11 +77,11 @@ public partial class SummonDisplayOverlay : Control
 
     private void UpdateDisplay(int value)
     {
-        int max = 500;
+        int max = 100;
         
         if (_label != null)
         {
-            _label.Text = $"[center]{"100"}[/center]";
+            _label.Text = $"[center]{value}[/center]";
             //change to value after testing
         }
 
@@ -85,8 +90,21 @@ public partial class SummonDisplayOverlay : Control
 
     public override void _ExitTree()
     {
+        
+        if (_player != null)
+        {
+            var data = SummonManager.GetDataForUI(_player);
+            data.OnSummonChanged -= OnSummonChanged;
+        }
+
+        // Clear references (defensive)
+        _label = null;
+        _summonDisplay = null;
+        _player = null;
+
         if (Instance == this)
             Instance = null;
+
     }
 }
 

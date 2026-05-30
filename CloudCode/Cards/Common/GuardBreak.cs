@@ -22,7 +22,8 @@ public class GuardBreak() : CloudCard(1, CardType.Attack,
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromPower<PunisherModePower>()
+        HoverTipFactory.FromPower<PunisherModePower>(),
+        HoverTipFactory.FromPower<VulnerablePower>()
     ];
 
     protected override async Task OnPlay(

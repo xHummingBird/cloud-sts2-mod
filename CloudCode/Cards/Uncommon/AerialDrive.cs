@@ -1,5 +1,6 @@
 ﻿using BaseLib.Utils;
 using Cloud.CloudCode.Extensions;
+using Cloud.CloudCode.Mechanics.Limit;
 using Cloud.CloudCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -15,7 +16,7 @@ public class AerialDrive() : CloudCard(2, CardType.Attack,
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DamageVar(7, ValueProp.Move),
         new RepeatVar(2),
-        new PowerVar<LimitBreakPower>(10)
+        new PowerVar<LimitBreakPower>(5)
     ];
 
     protected override async Task OnPlay(
@@ -46,15 +47,16 @@ public class AerialDrive() : CloudCard(2, CardType.Attack,
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
         
-        var power = base.Owner.Creature.GetPower<LimitBreakPower>();
-        if (power != null)
-        {
-            await power.AddLimitExternal((int)DynamicVars["LimitBreakPower"].BaseValue, choiceContext);
-        }
+        LimitManager.GainLimit(Owner, DynamicVars["LimitBreakPower"].IntValue);
+        await Owner.Creature.CheckLimitReady(
+            choiceContext,
+            Owner.Creature,
+            null
+        );
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars["LimitBreakPower"].UpgradeValueBy(5);
+        DynamicVars["LimitBreakPower"].UpgradeValueBy(2);
     }
 }

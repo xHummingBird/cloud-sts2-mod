@@ -1,23 +1,30 @@
-﻿using BaseLib.Utils;
+﻿using System.Drawing;
+using BaseLib.Utils;
 using Cloud.CloudCode.Extensions;
 using Cloud.CloudCode.Mechanics;
 using Cloud.CloudCode.Mechanics.ATB;
+using Cloud.CloudCode.Mechanics.Limit;
 using Cloud.CloudCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.Nodes.Combat;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
+using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.ValueProps;
+using Color = Godot.Color;
 
 namespace Cloud.CloudCode.Cards.Ancient;
 
 public class BraverKai() : CloudCard(1, CardType.Attack,
-    CardRarity.Ancient, TargetType.AnyEnemy), IATBCard
+    CardRarity.Ancient, TargetType.AnyEnemy), IATBCard, ILimitCard
 {
     public int ATBCost => 1;
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(18, ValueProp.Move),
+        new DamageVar(15, ValueProp.Move),
         new PowerVar<VulnerablePower>(2)
     ];
 
@@ -26,21 +33,40 @@ public class BraverKai() : CloudCard(1, CardType.Attack,
         CardPlay play)
     {
         var ownerCreature = Owner?.Creature;
-
-        if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
+        var cloud = Owner?.Character as Character.Cloud;
+        
+        if (ownerCreature != null && cloud != null)
         {
             SfxCmd.Play("res://Cloud/sfx/energy_charge.wav");
-            SfxCmd.Play("res://Cloud/sounds/limit_break.wav");
-            float duration = cloud.PlayAnimation(ownerCreature, "braver").total;
+            SfxCmd.Play("res://Cloud/sounds/owaraseru.wav");
+            SfxCmd.Play("res://Cloud/sfx/limit_break_thunder.wav");
+            float duration1 = cloud.PlayAnimation(ownerCreature, "limit_break_1").total;
+            if (duration1 > 0f)
+                await Task.Delay((int)(duration1 * 1000f));
+            await cloud.DashTo(ownerCreature, play.Target, distance: 300f);
+            float duration = cloud.PlayAnimation(ownerCreature, "braver_kai").total;
             if (duration > 0f)
-                await Task.Delay((int)(1.9f * 1000f));
+                await Task.Delay((int)(0.467f * 1000f));
             SfxCmd.Play("res://Cloud/sfx/sword_swing_heavy.wav");
             SfxCmd.Play("res://Cloud/sounds/braver.wav");
             
         }
+        
+        NCreature nCreature = NCombatRoom.Instance?.GetCreatureNode(play.Target);
+        NBigSlashVfx nBigSlashVfx = NBigSlashVfx.Create(nCreature.GetBottomOfHitbox(), facingRight: true);
+        
         await CommonActions.CardAttack(this, play.Target)
-            .WithHitFx("vfx/vfx_attack_slash")
+            .WithHitFx(null, "event:/sfx/enemy/enemy_attacks/mechaknight/mechaknight_heavy_attack")
+            .BeforeDamage(async delegate
+                { NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(nBigSlashVfx);
+                    NBigSlashImpactVfx.Create(nCreature.GetBottomOfHitbox(), 180f, new Color("#80dbff"));}
+            )
             .Execute(choiceContext);
+        await Task.Delay((int)(0.63f * 1000f));
+        if (ownerCreature != null && cloud != null)
+        {
+            await cloud.Retreat(ownerCreature);
+        }
         if (!base.Owner.Creature.HasPower<PunisherModePower>())
             await PowerCmd.Apply<VulnerablePower>(choiceContext, play.Target, base.DynamicVars.Vulnerable.BaseValue,
                 base.Owner.Creature, this);
@@ -49,7 +75,7 @@ public class BraverKai() : CloudCard(1, CardType.Attack,
     
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(7);
+        DynamicVars.Damage.UpgradeValueBy(5);
         DynamicVars.Vulnerable.UpgradeValueBy(1);
     }
 }

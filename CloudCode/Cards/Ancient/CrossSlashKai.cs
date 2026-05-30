@@ -1,5 +1,7 @@
 ﻿using BaseLib.Utils;
 using Cloud.CloudCode.Mechanics;
+using Cloud.CloudCode.Mechanics.ATB;
+using Cloud.CloudCode.Mechanics.Limit;
 using Cloud.CloudCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -10,12 +12,17 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Cloud.CloudCode.Cards.Ancient;
 
 public class CrossSlashKai() : CloudCard(0, CardType.Attack,
-    CardRarity.Ancient, TargetType.AnyEnemy)
+    CardRarity.Ancient, TargetType.AnyEnemy), ILimitCard
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(7, ValueProp.Move),
-        new PowerVar<CrossSlashPower>(1),
+        new DamageVar(10, ValueProp.Move),
+        new PowerVar<CrossSlashPower>(80),
         new RepeatVar(3)
+    ];
+    
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+    [
+        CardKeyword.Exhaust
     ];
 
     protected override async Task OnPlay(
@@ -28,10 +35,17 @@ public class CrossSlashKai() : CloudCard(0, CardType.Attack,
         {
             SfxCmd.Play("res://Cloud/sfx/energy_charge.wav");
             SfxCmd.Play("res://Cloud/sounds/limit_break.wav");
-            float duration = cloud.PlayAnimation(ownerCreature, "cross_slash").total;
+            SfxCmd.Play("res://Cloud/sfx/limit_break_thunder.wav");
+            
+            float duration = cloud.PlayAnimation(ownerCreature, "limit_break_1").total;
             if (duration > 0f)
             {
-                await Task.Delay((int)(1.85f * 1000f));
+                await Task.Delay((int)(duration * 1000f));
+                
+                await cloud.DashTo(ownerCreature, play.Target, distance: 550f);
+                
+                float duration2 = cloud.PlayAnimation(ownerCreature, "cross_slash").total;
+                await Task.Delay((int)(0.85f * 1000f));
                 SfxCmd.Play("res://Cloud/sfx/sword_swing_heavy.wav");
                 CommonActions.CardAttack(this, play.Target)
                     .WithHitFx("vfx/vfx_attack_slash")
@@ -46,7 +60,7 @@ public class CrossSlashKai() : CloudCard(0, CardType.Attack,
                 
                 await Task.Delay((int)(0.80f * 1000f));
                 SfxCmd.Play("res://Cloud/sfx/sword_swing_heavy.wav");
-                SfxCmd.Play("res://Cloud/sfx/ungawarukatana.wav");
+                SfxCmd.Play("res://Cloud/sounds/ungawarukatana.wav");
                 CommonActions.CardAttack(this, play.Target)
                     .WithHitFx("vfx/vfx_attack_slash",
                         "event:/sfx/enemy/enemy_attacks/mechaknight/mechaknight_heavy_attack")
@@ -61,6 +75,7 @@ public class CrossSlashKai() : CloudCard(0, CardType.Attack,
                 }
 
                 await Task.Delay((int)(0.60f * 1000f));
+                await cloud.Retreat(ownerCreature);
             }
         }
         else
@@ -76,6 +91,7 @@ public class CrossSlashKai() : CloudCard(0, CardType.Attack,
     
     protected override void OnUpgrade()
     {
-        base.EnergyCost.UpgradeBy(-1);
+        DynamicVars["CrossSlashPower"].UpgradeValueBy(20);
+        DynamicVars.Damage.UpgradeValueBy(2);
     }
 }

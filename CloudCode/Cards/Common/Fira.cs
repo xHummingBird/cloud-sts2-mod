@@ -1,6 +1,8 @@
 ﻿using BaseLib.Utils;
 using Cloud.CloudCode.Cards;
 using Cloud.CloudCode.Extensions;
+using Cloud.CloudCode.Mechanics.ATB;
+using Cloud.CloudCode.Mechanics.Summon;
 using Cloud.CloudCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -14,12 +16,12 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Cloud.CloudCode.Cards.Common;
 
 public class Fira() : CloudCard(1, CardType.Attack,
-    CardRarity.Common, TargetType.AnyEnemy)
+    CardRarity.Common, TargetType.AnyEnemy), IATBCard, IMagicCard
 {
+    public int ATBCost => 1;
     protected override IEnumerable<DynamicVar> CanonicalVars => 
     [
         new DamageVar(10m, ValueProp.Move),
-        new PowerVar<ScorchPower>(1m),
     ];
 
     protected override async Task OnPlay(
@@ -45,13 +47,9 @@ public class Fira() : CloudCard(1, CardType.Attack,
                 SfxCmd.Play("event:/sfx/characters/attack_fire");
             })
             .Execute(choiceContext);
-        
-        await PowerCmd.Apply<ScorchPower>(choiceContext, play.Target, base.DynamicVars["ScorchPower"].BaseValue, base.Owner.Creature, this);
     }
-
     protected override void OnUpgrade()
     {
         DynamicVars.Damage.UpgradeValueBy(4m);
-        base.DynamicVars["ScorchPower"].UpgradeValueBy(1m);
     }
 }

@@ -11,29 +11,32 @@
   "CLOUD-COUNTERSTANCE.description": "[gold]Switch to Operator Mode[/gold] \nGain {Block:diff()} [gold]Block[/gold]. Blocked damage is reflected back to the attacker for 1 turn.",
   "CLOUD-COUNTERSTANCE.title": "Counterstance",
 
-  "CLOUD-BLIZZARA.description": "Deal {Damage:diff()} damage. \nApply {FreezePower:diff()} [gold]Freeze[/gold].",
+  "CLOUD-BLIZZARA.description": "[gold]Magic[/gold]\nDeal {Damage:diff()} damage. \nGain {Block:diff()} [gold]Block[/gold].",
   "CLOUD-BLIZZARA.title": "Blizzara",
 
-  "CLOUD-FIRA.description": "Deal {Damage:diff()} damage. \nApply {ScorchPower:diff()} [gold]Scorch[/gold].",
+  "CLOUD-FIRA.description": "[gold]Magic[/gold]\nDeal {Damage:diff()} damage.",
   "CLOUD-FIRA.title": "Fira",
 
-  "CLOUD-THUNDARA.description": "Deal {Damage:diff()} damage. \nApply {ShockPower:diff()} [gold]Shock[/gold].",
+  "CLOUD-THUNDARA.description": "[gold]Magic[/gold]\nDeal {Damage:diff()} damage to random enemies [gold]{Repeat:diff()}[/gold] times.",
   "CLOUD-THUNDARA.title": "Thundara",
 
-  "CLOUD-FIRE.description": "Deal {Damage:diff()} damage. \nApply {ScorchPower:diff()} [gold]Scorch[/gold].",
+  "CLOUD-FIRE.description": "[gold]Magic[/gold]\nDeal {Damage:diff()} damage.",
   "CLOUD-FIRE.title": "Fire",
 
-  "CLOUD-BLIZZARD.description": "Deal {Damage:diff()} damage. \nApply {FreezePower:diff()} [gold]Freeze[/gold].",
+  "CLOUD-BLIZZARD.description": "[gold]Magic[/gold]\nDeal {Damage:diff()} damage.",
   "CLOUD-BLIZZARD.title": "Blizzard",
 
-  "CLOUD-THUNDER.description": "Deal {Damage:diff()} damage. \nApply {ShockPower:diff()} [gold]Shock[/gold].",
+  "CLOUD-THUNDER.description": "[gold]Magic[/gold]\nDeal {Damage:diff()} damage.",
   "CLOUD-THUNDER.title": "Thunder",
 
   "CLOUD-BRAVER.description": "Deal {Damage:diff()} damage. \n[gold]Operator[/gold]: Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold]. \n[gold]Punisher[/gold]: [gold]Switch Stance[/gold].",
   "CLOUD-BRAVER.title": "Braver",
 
   "CLOUD-GUARD_BREAK.description": "Deal {Damage:diff()} damage. \n[gold]Operator[/gold]: [gold]Switch Stance[/gold]. \n[gold]Punisher[/gold]: Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold].",
-  "CLOUD-GUARD_BREAK.title": "Armor Break",
+  "CLOUD-GUARD_BREAK.title": "Guard Break",
+
+  "CLOUD-POWER_BREAK.description": "Deal {Damage:diff()} damage. \n[gold]Operator[/gold]: Apply {WeakPower:diff()} [gold]Weak[/gold]. \n[gold]Punisher[/gold]: [gold]Switch Stance[/gold].",
+  "CLOUD-POWER_BREAK.title": "Power Break",
 
   "CLOUD-GUARD_STANCE.description": "Gain {Block:diff()} [gold]Block[/gold]. \n[gold]Switch Stance[/gold] to [gold]Operator Mode[/gold].",
   "CLOUD-GUARD_STANCE.title": "Guard Stance",
@@ -41,51 +44,144 @@
   "CLOUD-LARGE_SWORD_MASTERY.description": "[gold]Operator[/gold]: Gain {DexterityPower:diff()} [gold]Dexterity[/gold]. \n[gold]Punisher[/gold]: Gain {StrengthPower:diff()} [gold]Strength[/gold].",
   "CLOUD-LARGE_SWORD_MASTERY.title": "Large Sword Mastery",
 
-  "CLOUD-MAKO_MIGHT.description": "[gold]Switch Stance[/gold] to [gold]Punisher Mode[/gold]. \nGain {VigorPower:diff()} [gold]Vigor[/gold].",
+  "CLOUD-MAKO_MIGHT.description": "[gold]Operator:[/gold] Gain {VigorPower:diff()} [gold]Vigor[/gold]. \n[gold]Punisher[/gold]: gain {Block:diff()} [gold]Block[/gold]. \n[gold]Switch Stance[/gold]",
   "CLOUD-MAKO_MIGHT.title": "Mako Might",
 
-  "CLOUD-TRIPLE_SLASH.description": "Deal {CalculatedDamage:diff()} damage {Repeat:diff()} times. \n[gold]Operator[/gold]: Deal {ExtraDamage:diff()} additional damage. \n[gold]Punisher[/gold]: Draw {Cards:diff()} {Cards:plural:card|cards}.",
+  "CLOUD-TRIPLE_SLASH.description": "Deal {CalculatedDamage:diff()} damage {Repeat:diff()} times to random enemies. \n[gold]Operator[/gold]: Deal {ExtraDamage:diff()} additional damage. \n[gold]Punisher[/gold]: Draw {Cards:diff()} {Cards:plural:card|cards}.",
   "CLOUD-TRIPLE_SLASH.title": "Triple Slash",
 
   "CLOUD-BRAVER_KAI.description": "Deal {Damage:diff()} damage. \n[gold]Operator[/gold]: Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold]. \n[gold]Punisher[/gold]: [gold]Switch Stance[/gold].",
-  "CLOUD-BRAVER_KAI.title": "Braver Kai",
+  "CLOUD-BRAVER_KAI.title": "Braver EX",
 
-  "CLOUD-ASSAULT_CHARGE.description": "Deal {Damage:diff()} damage. \n[gold]Operator[/gold]: [gold]Switch Stance[/gold]. \n[gold]Punisher[/gold]: The next Attack you play costs 0 {Energy:energyIcons()}.",
+  "CLOUD-ASSAULT_CHARGE.description": "Deal {Damage:diff()} damage. \n[gold]Operator[/gold]: [gold]Switch Stance[/gold]. \n[gold]Punisher[/gold]: Gain {Energy:energyIcons()}.",
   "CLOUD-ASSAULT_CHARGE.title": "Assault Charge",
 
-  "CLOUD-QUICK_HIT.description": "Deal {Damage:diff()} damage. \n[gold]Operator[/gold]: Gain {Energy:energyIcons()}.",
+  "CLOUD-QUICK_HIT.description": "Deal {Damage:diff()} damage. \n[gold]Operator[/gold]: Gain 1 ATB.",
   "CLOUD-QUICK_HIT.title": "Quick Hit",
 
-  "CLOUD-WIND_UP_SLASH.description": "Deal {Damage:diff()} damage. \nGain {VigorPower:diff()} [gold]Vigor[/gold]. \n[gold]Punisher[/gold]: Gain 2 additional [gold]Vigor[/gold].",
+  "CLOUD-WIND_UP_SLASH.description": "Deal {Damage:diff()} damage. \nGain {VigorPower:diff()} [gold]Vigor[/gold]. Switch stance. \n[gold]Punisher[/gold]: Gain 2 additional [gold]Vigor[/gold].",
   "CLOUD-WIND_UP_SLASH.title": "Wind-Up Slash",
 
   "CLOUD-SPINNING_SLASH.description": "Deal {Damage:diff()} damage to ALL enemies.",
   "CLOUD-SPINNING_SLASH.title": "Spinning Slash",
 
-  "CLOUD-CHANGE_THE_TEMPO.description": "[gold]Switch Stance[/gold]. \n[gold]Operator[/gold]: Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold]. \n[gold]Punisher[/gold]: Apply {WeakPower:diff()} [gold]Weak[/gold].",
+  "CLOUD-CHANGE_THE_TEMPO.description": "[gold]Operator[/gold]: Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold]. \n[gold]Punisher[/gold]: Apply {WeakPower:diff()} [gold]Weak[/gold]. \n[gold]Switch Stance[/gold]",
   "CLOUD-CHANGE_THE_TEMPO.title": "Change The Tempo",
 
   "CLOUD-PASSING_THE_TORCH.description": "Gain {Energy:energyIcons()} at the start of every turn.",
   "CLOUD-PASSING_THE_TORCH.title": "Passing The Torch",
 
-  "CLOUD-GOT_YOUR_BACK.description": "Gain {Block:diff()} [gold]Block[/gold]. Gain {LimitBreakPower:diff()} [gold]Limit[/gold].",
+  "CLOUD-GOT_YOUR_BACK.description": "Gain {Block:diff()} [gold]Block[/gold]. \nGain {LimitBreakPower:diff()} [gold]Limit[/gold].",
   "CLOUD-GOT_YOUR_BACK.title": "I Got Your Back!",
   
-  "CLOUD-LIMIT_BREAK.description": "Test",
+  "CLOUD-LIMIT_BREAK.description": "Perform [gold]Limit Break[/gold].",
   "CLOUD-LIMIT_BREAK.title": "Limit Break",
 
-  "CLOUD-TEST_LIMIT_BREAK.description": "Test {LimitBreakPower:diff()}.",
+  "CLOUD-TEST_LIMIT_BREAK.description": "Max Your Limit Break.",
   "CLOUD-TEST_LIMIT_BREAK.title": "TestLimitBreak",
 
-  "CLOUD-OMNISLASH.description": "Deal {Damage:diff()} damage 15 times. \nLast hit deals [blue]3[/blue] times the damage.",
+  "CLOUD-OMNISLASH.description": "Deal {Damage:diff()} damage 15 times. \nLast hit deals [blue]double[/blue] damage.",
   "CLOUD-OMNISLASH.title": "Omnislash",
 
-  "CLOUD-CROSS_SLASH.description": "Deal {Damage:diff()} damage {Repeat:diff()} times. \nReduce damage dealt by [blue]80%[/blue] for 1 turn.",
+  "CLOUD-CROSS_SLASH.description": "Deal {Damage:diff()} damage {Repeat:diff()} times. \nThe enemy deals [blue]{CrossSlashPower:diff()}%[/blue] less damage for 1 turn.",
   "CLOUD-CROSS_SLASH.title": "Cross Slash",
 
   "CLOUD-AERIAL_DRIVE.description": "Deal {Damage:diff()} damage {Repeat:diff()} times. \nGain {LimitBreakPower:diff()} [gold]Limit[/gold].",
   "CLOUD-AERIAL_DRIVE.title": "Aerial Drive",
 
-  "CLOUD-CROSS_SLASH_KAI.description": "",
-  "CLOUD-CROSS_SLASH_KAI.title": "Cross Slash Kai"
+  "CLOUD-CROSS_SLASH_KAI.description": "Deal {Damage:diff()} damage {Repeat:diff()} times. \nThe enemy deals [blue]{CrossSlashPower:diff()}%[/blue] less damage for 1 turn.",
+  "CLOUD-CROSS_SLASH_KAI.title": "Cross Slash EX",
+
+  "CLOUD-PRIME_MODE.description": "Gain [gold]Prime Mode[/gold]. \nBoost [gold]Punisher[/gold] and [gold]Operator[/gold] mode.",
+  "CLOUD-PRIME_MODE.title": "Prime Mode",
+
+  "CLOUD-PROTECT.description": "[gold]Magic[/gold]\nGain {Block:diff()} [gold]Block[/gold]. Next turn, gain {Block:diff()} [gold]Block[/gold].",
+  "CLOUD-PROTECT.title": "Protect",
+
+  "CLOUD-HASTE.description": "[gold]Magic[/gold]\nGain 1 ATB at the start of your turn for the next {HastePower:diff()} turns.",
+  "CLOUD-HASTE.title": "Haste",
+
+  "CLOUD-FINAL_STAND.description": "Gain [gold]Reprieve[/gold].",
+  "CLOUD-FINAL_STAND.title": "Final Stand",
+
+  "CLOUD-SONIC_IMPACT.description": "Deal {Damage:diff()} damage to ALL enemies. \nIf fatal, gain {Energy:energyIcons()}.",
+  "CLOUD-SONIC_IMPACT.title": "Sonic Impact",
+
+  "CLOUD-ELEMENTAL_BOOST.description": "Increases damage dealt by magic by [gold]{MagicDamageUpPower:diff()}%[/gold].",
+  "CLOUD-ELEMENTAL_BOOST.title": "Elemental Boost",
+
+  "CLOUD-RUIN.description": "[gold]Magic[/gold]\nDeal {Damage:diff()} damage. \n[gold]Operator[/gold]: Apply {WeakPower:diff()} [gold]Weak[/gold]. \n[gold]Punisher[/gold]: Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold].",
+  "CLOUD-RUIN.title": "Ruin",
+
+  "CLOUD-RUINRA.description": "[gold]Magic[/gold]\nDeal {Damage:diff()} damage to ALL enemies. \n[gold]Operator[/gold]: Apply {WeakPower:diff()} [gold]Weak[/gold]. \n[gold]Punisher[/gold]: Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold].",
+  "CLOUD-RUINRA.title": "Ruinra",
+
+  "CLOUD-RUINGA.description": "[gold]Magic[/gold]\nDeal {Damage:diff()} damage to ALL enemies. \n[gold]Operator[/gold]: Apply {WeakPower:diff()} [gold]Weak[/gold]. \n[gold]Punisher[/gold]: Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold].",
+  "CLOUD-RUINGA.title": "Ruinga",
+
+  "CLOUD-MANAWARD.description": "Gain {Block:diff()} [gold]Block[/gold].",
+  "CLOUD-MANAWARD.title": "Manaward",
+
+  "CLOUD-MANAWALL.description": "[gold]Magic[/gold]\nGain {Block:diff()} [gold]Block[/gold]. Next turn, gain {Block:diff()} [gold]Block[/gold].",
+  "CLOUD-MANAWALL.title": "Manawall",
+
+  "CLOUD-BARRIER.description": "Gain {Block:diff()} [gold]Block[/gold].",
+  "CLOUD-BARRIER.title": "Barrier",
+
+  "CLOUD-QUICKDRAW.description": "Draw {Cards:diff()} {Cards:plural:card|cards}. \n[gold]Operator[/gold]: If it is a skill or a magic card, gain {Block:diff()} [gold]Block[/gold]. \n[gold]Punisher[/gold]: If it is an attack or power card, gain {VigorPower:diff()} [gold]Vigor[/gold].",
+  "CLOUD-QUICKDRAW.title": "Quickdraw",
+
+  "CLOUD-SOLDIERS_PRIDE.description": "At the start of your turn, if you did not take any damage from the enemy last turn: \n[gold]Operator[/gold]: Gain {SoldiersPridePower:diff()} [gold]Block[/gold]. \n[gold]Punisher[/gold]: Gain {SoldiersPridePower:diff()} [gold]Vigor[/gold].",
+  "CLOUD-SOLDIERS_PRIDE.title": "SOLDIER's Pride",
+
+  "CLOUD-SONIC_THRUST.description": "Deal {Damage:diff()} damage. \n[gold]Punisher[/gold]: Gain {Energy:energyIcons()}.",
+  "CLOUD-SONIC_THRUST.title": "Sonic Thrust",
+
+  "CLOUD-RELENTLESS_STRIKE.description": "Deal {Damage:diff()} damage. \n[gold]Operator[/gold]: Draw {Cards:diff()} {Cards:plural:card|cards}. [gold]Switch Stance[/gold].",
+  "CLOUD-RELENTLESS_STRIKE.title": "Relentless Strike",
+
+  "CLOUD-CLIMHAZZARD.description": "Deal {Damage:diff()} damage {Repeat:diff()} times. \nThe next attack against that enemy deals [gold]{ArmorBreakPower:diff()}%[/gold] more damage",
+  "CLOUD-CLIMHAZZARD.title": "Climhazzard",
+
+  "CLOUD-COMBAT_MOMENTUM.description": "The first time you switch to [blue]Punisher Mode[/blue] on your turn, draw {CombatMomentumPower:diff()} {Cards:plural:card|cards}.",
+  "CLOUD-COMBAT_MOMENTUM.title": "Combat Momentum",
+
+  "CLOUD-OVERCLOCK.description": "Gain 1 [gold]ATB[/gold]. Increase max [gold]ATB[/gold] by 1.",
+  "CLOUD-OVERCLOCK.title": "Overclock",
+  
+  "CLOUD-STEADFAST_BLOCK.description": "Gain {Block:diff()} [gold]Block[/gold]. \nNext turn, gain {Energy:diff()} [gold]ATB[/gold].",
+  "CLOUD-STEADFAST_BLOCK.title": "Steadfast Block",
+
+  "CLOUD-TACTICAL_RETREAT.description": "Gain {Block:diff()} [gold]Block[/gold]. \n[gold]Punisher[/gold]: [gold]Switch Stance[/gold]. Draw {Cards:diff()} {Cards:plural:card|cards}.",
+  "CLOUD-TACTICAL_RETREAT.title": "Tactical Retreat",
+
+  "CLOUD-METEORAIN.description": "Deal {Damage:diff()} damage to ALL enemies. \nApply {VulnerablePower:diff()} [gold]Vulnerable[/gold] and [gold]Weak[/gold].",
+  "CLOUD-METEORAIN.title": "Meteorain",
+
+  "CLOUD-OMNISLASH_VER_FIVE.description": "Deal {CalculatedDamage:diff()} damage. \nIf you have 50 or more [gold]Limit[/gold], consume 50 [gold]Limit[/gold] and deal 2 additional damage.",
+  "CLOUD-OMNISLASH_VER_FIVE.title": "Omnislash V5",
+
+  "CLOUD-DISORDER.description": "Deal {Damage:diff()} damage. \n[gold]Operator[/gold]: Next attack cost 0 {Energy:energyIcons()}. \n[gold]Punisher[/gold]: Hits twice. If fatal, gain {Block:diff()} [gold]Block[/gold]. \n[gold]Switch Stance[/gold].",
+  "CLOUD-DISORDER.title": "Disorder",
+
+  "CLOUD-ASCENSION.description": "Deal {Damage:diff()} damage 7 times. \nLast hit deals [blue]double[/blue] damage.",
+  "CLOUD-ASCENSION.title": "Ascension",
+
+  "CLOUD-FOCUSED_THRUST.description": "Deal {Damage:diff()} damage 2 times and apply {VulnerablePower:diff()} [gold]Vulnerable[/gold] to ALL enemies. \nLast hit deals damage equal to [blue]{percentHPDamage:diff()}%[/blue] of the target's current HP.",
+  "CLOUD-FOCUSED_THRUST.title": "Focused Thrust",
+
+  "CLOUD-BLADE_BEAM.description": "Deal {Damage:diff()} damage to ALL enemies. \nApply {VulnerablePower:diff()} [gold]Vulnerable[/gold] and [gold]Weak[/gold].",
+  "CLOUD-BLADE_BEAM.title": "Blade Beam",
+
+  "CLOUD-FIRAGA.description": "[gold]Magic[/gold]\nDeal {Damage:diff()} damage to 1 enemy. \nDeal {Damage:diff()} damage to ALL enemies.",
+  "CLOUD-FIRAGA.title": "Firaga",
+
+  "CLOUD-THUNDAGA.description": "[gold]Magic[/gold]\nDeal {Damage:diff()} damage to random enemies [gold]{Repeat:diff()}[/gold] times.",
+  "CLOUD-THUNDAGA.title": "Thundaga",
+
+  "CLOUD-BLIZZAGA.description": "[gold]Magic[/gold]\nDeal {Damage:diff()} damage to ALL enemies. \nGain {Block:diff()} [gold]Block[/gold].",
+  "CLOUD-BLIZZAGA.title": "Blizzaga",
+
+  "CLOUD-BUSTER_BRACE.description": "Gain {Block:diff()} [gold]Block[/gold]. \n[gold]Switch Stance[/gold].",
+  "CLOUD-BUSTER_BRACE.title": "Buster Brace"
 }

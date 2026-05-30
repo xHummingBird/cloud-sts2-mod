@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Combat;
+﻿using Cloud.CloudCode.Mechanics.Summon;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -17,27 +18,33 @@ public class PunisherModePower : CloudPower
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DynamicVar("DamageIncrease", 1.25m)
+        new DynamicVar("DamageIncrease", 1.2m),
+        new DynamicVar("PrimeDamageIncrease", 1.4m)
     ];
 
     public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props,
         Creature? dealer, CardModel? cardSource)
     {
         if (!props.IsPoweredAttack())
-        {
             return 1m;
-        }
+
+        if (cardSource is IMagicCard)
+            return 1m;
 
         decimal num = base.DynamicVars["DamageIncrease"].BaseValue;
-
+        decimal num2 = base.DynamicVars["PrimeDamageIncrease"].BaseValue;
         if (dealer == base.Owner)
         {
-            return num;
+            if (dealer.HasPower<PrimeModePower>())
+                return num2;
+            else return num;
         }
 
         if (target == Owner)
         {
-            return num;
+            if (target.HasPower<FuryPower>())
+                return num2;
+            else return num;
         }
 
         return 1m;
@@ -59,12 +66,15 @@ public class PunisherModePower : CloudPower
         if (target != base.Owner)
             return;
 
+        if (target.HasPower<PrimeModePower>())
+            return;
+
         if (result.UnblockedDamage <= 0)
             return;
         
         if (dealer == null || !dealer.IsEnemy)
             return;
 
-        await PowerCmd.Decrement(this);
+        await PowerCmd.Remove(this);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using BaseLib.Utils;
 using Cloud.CloudCode.Cards;
 using Cloud.CloudCode.Extensions;
+using Cloud.CloudCode.Mechanics.Summon;
 using Cloud.CloudCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -14,13 +15,12 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Cloud.CloudCode.Cards.Basic;
 
 public class Thunder() : CloudCard(1, CardType.Attack,
-    CardRarity.Basic, TargetType.AnyEnemy)
+    CardRarity.Basic, TargetType.AnyEnemy), IMagicCard
 {
     protected override HashSet<CardTag> CanonicalTags => [CardTag.Strike];
     protected override IEnumerable<DynamicVar> CanonicalVars => 
     [
-        new DamageVar(5m, ValueProp.Move),
-        new PowerVar<ShockPower>(3m),
+        new DamageVar(6m, ValueProp.Move),
     ];
 
     protected override async Task OnPlay(
@@ -43,16 +43,14 @@ public class Thunder() : CloudCard(1, CardType.Attack,
             .BeforeDamage(async delegate
             {
                 VfxCmd.PlayOnCreature(play.Target, "vfx/vfx_attack_lightning");
-                SfxCmd.Play("event:/sfx/characters/defect/defect_lightning_evoke");
+                SfxCmd.Play("event:/sfx/characters/defect/defect_lightning_passive");
             })
             .Execute(choiceContext);
         
-        await PowerCmd.Apply<ShockPower>(choiceContext, play.Target, base.DynamicVars["ShockPower"].BaseValue, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(2m);
-        base.DynamicVars["ShockPower"].UpgradeValueBy(2m);
+        DynamicVars.Damage.UpgradeValueBy(3m);
     }
 }

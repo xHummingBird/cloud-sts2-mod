@@ -1,5 +1,9 @@
 {
-  "CLOUD-BUSTER_SWORD.description": "Gain 5 Limit at the start of your turn. Gain [gold]Limit Break[/gold] once [gold]Limit[/gold] reaches [blue]100[/blue].",
+  "CLOUD-BUSTER_SWORD.description": "At the start of combat, gain 1 ATB. Gain 3 Limit at the start of your turn.",
   "CLOUD-BUSTER_SWORD.flavor": "Embrace your dreams...",
-  "CLOUD-BUSTER_SWORD.title": "Buster Sword"
+  "CLOUD-BUSTER_SWORD.title": "Buster Sword",
+
+  "CLOUD-ULTIMA_WEAPON.description": "At the start of combat, gain 1 ATB. Gain 5 Limit at the start of your turn. Upgrade Limit Break.",
+  "CLOUD-ULTIMA_WEAPON.flavor": "",
+  "CLOUD-ULTIMA_WEAPON.title": "Ultima Weapon"
 }

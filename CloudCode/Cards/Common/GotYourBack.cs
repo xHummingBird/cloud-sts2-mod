@@ -1,5 +1,6 @@
 ﻿using BaseLib.Utils;
 using Cloud.CloudCode.Extensions;
+using Cloud.CloudCode.Mechanics.Limit;
 using Cloud.CloudCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -14,24 +15,25 @@ public class GotYourBack() : CloudCard(2, CardType.Skill,
     protected override HashSet<CardTag> CanonicalTags => [CardTag.Defend];
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new BlockVar(12, ValueProp.Move),
-        new PowerVar<LimitBreakPower>(10)
+        new PowerVar<LimitBreakPower>(5)
     ];
-
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
     {
         var power = base.Owner.Creature.GetPower<LimitBreakPower>();
         
-        if (power != null)
-        {
-            await power.AddLimitExternal((int)DynamicVars["LimitBreakPower"].BaseValue, choiceContext);
-        }
+        LimitManager.GainLimit(Owner, DynamicVars["LimitBreakPower"].IntValue);
+        await Owner.Creature.CheckLimitReady(
+            choiceContext,
+            Owner.Creature,
+            null
+        );
 
         AudioHelper.PlayRandomDefend();
         await CommonActions.CardBlock(this, play);
+        
     }
-
     protected override void OnUpgrade()
     {
-        DynamicVars["Block"].UpgradeValueBy(5m);
+        DynamicVars["Block"].UpgradeValueBy(4m);
     }
 }

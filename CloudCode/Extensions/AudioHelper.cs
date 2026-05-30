@@ -58,7 +58,7 @@ public static class AudioHelper
     
     private static readonly string[] blizzardSfx =
     {
-        "res://Cloud/sounds/blizzard_1.wav",
+        "res://Cloud/sounds/blizzard.wav",
         "res://Cloud/sounds/blizzard_2.wav",
         "res://Cloud/sounds/blizzard_3.wav",
     };

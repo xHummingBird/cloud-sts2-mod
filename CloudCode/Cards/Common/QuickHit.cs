@@ -39,7 +39,7 @@ public class QuickHit()  : CloudCard(0, CardType.Attack,
             .Execute(choiceContext);
         if (!base.Owner.Creature.IsPunisher())
         {
-            await PlayerCmd.GainEnergy(base.DynamicVars.Energy.IntValue, base.Owner);
+            ATBManager.GainATBDirect(base.Owner, 1);
         }
         await Task.Delay((int)(0.367f * 1000f));
     }

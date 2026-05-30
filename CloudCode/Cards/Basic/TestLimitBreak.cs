@@ -1,5 +1,6 @@
 ﻿using BaseLib.Utils;
 using Cloud.CloudCode.Extensions;
+using Cloud.CloudCode.Mechanics.Limit;
 using Cloud.CloudCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -13,25 +14,18 @@ public class TestLimitBreak() : CloudCard(0, CardType.Skill,
 {
     protected override HashSet<CardTag> CanonicalTags => [CardTag.Defend];
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new BlockVar(12, ValueProp.Move),
-        new PowerVar<LimitBreakPower>(100)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
     {
-        var power = base.Owner.Creature.GetPower<LimitBreakPower>();
-        
-        if (power != null)
-        {
-            await power.AddLimitExternal((int)DynamicVars["LimitBreakPower"].BaseValue, choiceContext);
-        }
-
-        AudioHelper.PlayRandomDefend();
-        await CommonActions.CardBlock(this, play);
+        LimitManager.GainLimit(Owner, 100);
+        await Owner.Creature.CheckLimitReady(
+            choiceContext,
+            Owner.Creature,
+            null);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars["Block"].UpgradeValueBy(5m);
     }
 }

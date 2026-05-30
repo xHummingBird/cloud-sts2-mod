@@ -2,6 +2,7 @@
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Context;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 
 namespace Cloud.CloudCode.Mechanics.Limit;
@@ -12,6 +13,7 @@ public partial class LimitDisplayOverlay : Control
 
     private Control? _limitDisplay;
     private RichTextLabel _label;
+    private Player _player;
 
     public override void _Ready()
     {
@@ -26,6 +28,9 @@ public partial class LimitDisplayOverlay : Control
 
     private void Setup()
     {
+        if (!IsInsideTree())
+            return;
+        
         var scene = GD.Load<PackedScene>("res://Cloud/scenes/LimitDisplay.tscn");
         if (scene == null)
             return;
@@ -76,7 +81,7 @@ public partial class LimitDisplayOverlay : Control
         
         if (_label != null)
         {
-            _label.Text = $"[center]{"100"}[/center]";
+            _label.Text = $"[center]{value}[/center]";
             //change to value after testing
         }
 
@@ -85,8 +90,21 @@ public partial class LimitDisplayOverlay : Control
 
     public override void _ExitTree()
     {
+        
+        if (_player != null)
+        {
+            var data = LimitManager.GetDataForUI(_player);
+            data.OnLimitChanged -= OnLimitChanged;
+        }
+
+        // Clear references (defensive)
+        _label = null;
+        _limitDisplay = null;
+        _player = null;
+
         if (Instance == this)
             Instance = null;
+
     }
 }
 

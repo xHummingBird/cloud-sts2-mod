@@ -1,69 +1,115 @@
-﻿using Cloud.CloudCode.Cards.Ancient;
+﻿using BaseLib.Extensions;
+using Cloud.CloudCode.Cards.Ancient;
+using Cloud.CloudCode.Extensions;
 using Cloud.CloudCode.Mechanics.ATB;
+using Cloud.CloudCode.Mechanics.Limit;
+using Cloud.CloudCode.Mechanics.Summon;
 using Cloud.CloudCode.Powers;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Cloud.CloudCode.Relics;
 
 public class BusterSword() : CloudRelic
 {
     public override RelicRarity Rarity => RelicRarity.Starter;
-
+    
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<LimitBreakPower>(),
-        HoverTipFactory.FromCard<LimitBreak>()
     ];
     
-    public override Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        
         var card = cardPlay.Card;
 
-        if (card.Owner != Owner) return Task.CompletedTask;
-        if (card.Type != CardType.Attack) return Task.CompletedTask;
-        if (card is IATBCard) return Task.CompletedTask;
+        if (card.Owner != Owner) return;
 
-        ATBManager.GainATBFromAttack(Owner, 1);
-        return Task.CompletedTask;
+        var player = Owner;
+        
+        bool isLimit  = card is ILimitCard;
+        bool isATB    = card is IATBCard;
+        bool isMagic  = card is IMagicCard;
+        bool isSummon = card is ISummonCard;
+
+        if (isLimit || isSummon) return;
+        if (card.Type == CardType.Attack && !isATB)
+            ATBManager.GainATBFromAttack(player, 1);
+        if (card.Type == CardType.Attack)
+        {
+            if (card.Owner.HasPower<FuryPower>())
+                LimitManager.GainLimit(player, 6);
+            else LimitManager.GainLimit(player, 3);
+        }
+
+        if (card.Type == CardType.Attack || isMagic)
+        {
+            SummonManager.GainSummon(player, isMagic ? 4 : 1);
+        }
+        
+        await Owner.Creature.CheckLimitReady(
+            choiceContext,
+            Owner.Creature,
+            cardPlay.Card
+        );
+
+        return;
     }
     
-    public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
+    public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
-        
         if (side != base.Owner.Creature.Side)
             return;
+        if (combatState.RoundNumber <= 1)
+        {
+            ATBManager.Reset(Owner.Creature.Player);
+            Flash();
+            ATBManager.GainATBDirect(Owner.Creature.Player, 1);
+        }
         ATBManager.ResetGainThisTurn(Owner);
-
-        var creature = base.Owner.Creature;
-
-        if (creature.GetPowerAmount<LimitBreakPower>() >= 100)
+        SfxCmd.Play("event:/sfx/ui/relic_activate_general");
+        LimitManager.GainLimit(Owner, 3);
+        await Owner.Creature.CheckLimitReady(
+            null,
+            Owner.Creature,
+            null
+        );
+    }
+    public override async Task AfterDamageReceived(PlayerChoiceContext choiceContext, Creature target, DamageResult result, ValueProp props, Creature? dealer, CardModel? cardSource)
+    {
+        if (target != base.Owner.Creature)
             return;
 
-        Flash();
-        var power = creature.GetPower<LimitBreakPower>();
-        
-        if (power != null)
+        if (dealer == base.Owner.Creature)
+            return;
+    
+        if (!props.IsPoweredAttack())
+            return;
+    
+        int gain = 0;
+    
+        if (result.BlockedDamage > 0 && result.UnblockedDamage == 0)
         {
-            await power.AddLimitExternal(5, new ThrowingPlayerChoiceContext());
+            gain += 3;
         }
-        
-        else
+        if (result.UnblockedDamage > 0)
         {
-            // ✅ First-time creation path
-            await PowerCmd.Apply<LimitBreakPower>(
-                new ThrowingPlayerChoiceContext(),
-                creature,
-                5,
-                creature,
-                null
-            );
+            gain += result.UnblockedDamage;
         }
-
-
+        LimitManager.GainLimit(Owner, gain);
+        await Owner.Creature.CheckLimitReady(
+            choiceContext,
+            Owner.Creature,
+            null
+        );
     }
 }

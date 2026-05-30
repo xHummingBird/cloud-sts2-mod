@@ -38,6 +38,7 @@ public static class LimitManager
     public static void SetLimit(Player player, int value)
     {
         var data = GetData(player);
+        int oldValue = data.Value;
 
         // ✅ Clamp between 0 and 100
         value = Math.Max(0, Math.Min(value, MaxLimit));
@@ -50,6 +51,7 @@ public static class LimitManager
         // ✅ Notify UI
         data.OnLimitChanged?.Invoke(value);
     }
+
 
     public static void GainLimit(Player player, int amount)
     {

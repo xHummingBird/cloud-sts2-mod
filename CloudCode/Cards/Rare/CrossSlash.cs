@@ -13,10 +13,10 @@ namespace Cloud.CloudCode.Cards.Rare;
 public class CrossSlash() : CloudCard(2, CardType.Attack,
     CardRarity.Rare, TargetType.AnyEnemy), IATBCard
 {
-    public int ATBCost => 3;
+    public int ATBCost => 2;
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(7, ValueProp.Move),
-        new PowerVar<CrossSlashPower>(1),
+        new DamageVar(6, ValueProp.Move),
+        new PowerVar<CrossSlashPower>(50),
         new RepeatVar(3)
     ];
 
@@ -28,7 +28,7 @@ public class CrossSlash() : CloudCard(2, CardType.Attack,
 
         if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
         {
-
+            await cloud.DashTo(ownerCreature, play.Target, distance: 550f);
             float duration = cloud.PlayAnimation(ownerCreature, "cross_slash").total;
             if (duration > 0f)
             {
@@ -62,6 +62,7 @@ public class CrossSlash() : CloudCard(2, CardType.Attack,
                 }
 
                 await Task.Delay((int)(0.60f * 1000f));
+                await cloud.Retreat(ownerCreature);
             }
         }
         else

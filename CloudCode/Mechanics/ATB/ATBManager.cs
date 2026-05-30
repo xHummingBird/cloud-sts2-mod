@@ -13,7 +13,12 @@ public class ATBManager
     {
         public int Value;
         public int GainThisTurn;
+        
+        public int BaseMaxATB = 3;
+        public int BonusMaxATB = 0;
+
         public Action<int>? OnATBChanged;
+        public Action<int>? OnMaxATBChanged;
     }
 
     private static readonly Dictionary<Player, ATBData> _data = new();
@@ -37,6 +42,12 @@ public class ATBManager
         data.GainThisTurn = 0;
     }
 
+    
+    public static int GetMaxATB(Player player)
+    {
+        var data = GetData(player);
+        return Math.Max(0, data.BaseMaxATB + data.BonusMaxATB);
+    }
 
 
     public static int GetATB(Player player)
@@ -58,11 +69,27 @@ public class ATBManager
     }
     
     
+    public static void AddMaxATB(Player player, int amount)
+    {
+        if (amount == 0) return;
+
+        var data = GetData(player);
+        int oldMax = GetMaxATB(player);
+
+        data.BonusMaxATB += amount;
+
+        int newMax = GetMaxATB(player);
+        if (newMax != oldMax)
+            data.OnMaxATBChanged?.Invoke(newMax);
+    }
+
+    
+    
     public static void GainATBFromAttack(Player player, int amount)
     {
         var data = GetData(player);
 
-        int max = 3; // your soft cap
+        int max = GetMaxATB(player);; // your soft cap
         int current = data.Value;
 
         // ✅ limit: max gain per turn from attacks = max ATB
@@ -84,7 +111,7 @@ public class ATBManager
         SetATB(player, final);
     }
     
-    public static void GainATBDirect(Player player, int amount)
+    public static void GainATBDirect(Player? player, int amount)
     {
         int current = GetATB(player);
         SetATB(player, current + amount);
@@ -101,8 +128,21 @@ public class ATBManager
         return GetData(player);
     }
 
-    public static void Reset(Player player)
+    public static void Reset(Player? player)
     {
         SetATB(player, 0);
+        
+        var data = GetData(player);
+// Reset core values
+        data.Value = 0;
+        data.GainThisTurn = 0;
+
+        // ✅ Reset max ATB (important)
+        data.BaseMaxATB = 3;
+        data.BonusMaxATB = 0;
+
+        data.OnATBChanged?.Invoke(0);
+        data.OnMaxATBChanged?.Invoke(GetMaxATB(player));
+
     }
 }
