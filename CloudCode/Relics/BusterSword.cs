@@ -48,6 +48,8 @@ public class BusterSword() : CloudRelic
         {
             if (card.Owner.HasPower<FuryPower>())
                 LimitManager.GainLimit(player, 6);
+            else if (card.Owner.HasPower<SedatePower>())
+                LimitManager.GainLimit(player, 1);
             else LimitManager.GainLimit(player, 3);
         }
 
@@ -72,12 +74,16 @@ public class BusterSword() : CloudRelic
         if (combatState.RoundNumber <= 1)
         {
             ATBManager.Reset(Owner.Creature.Player);
-            Flash();
-            ATBManager.GainATBDirect(Owner.Creature.Player, 1);
         }
+        Flash();
+        ATBManager.GainATBDirect(Owner.Creature.Player, 1);
         ATBManager.ResetGainThisTurn(Owner);
         SfxCmd.Play("event:/sfx/ui/relic_activate_general");
-        LimitManager.GainLimit(Owner, 3);
+        if (base.Owner.HasPower<SedatePower>())
+            LimitManager.GainLimit(Owner, 1);
+        else if (base.Owner.HasPower<FuryPower>())
+            LimitManager.GainLimit(Owner, 6);
+        else LimitManager.GainLimit(Owner, 3);
         await Owner.Creature.CheckLimitReady(
             null,
             Owner.Creature,

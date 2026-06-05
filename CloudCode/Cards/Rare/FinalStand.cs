@@ -4,6 +4,7 @@ using Cloud.CloudCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 
@@ -16,7 +17,12 @@ public class FinalStand() : CloudCard(2, CardType.Attack,
         [
             new PowerVar<ReprievePower>(1m),
         ];
-    public int ATBCost => (int)(4 - DynamicVars["ReprievePower"].BaseValue);
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
+        HoverTipFactory.FromPower<ReprievePower>()
+    ];
+
+    public int ATBCost => 3;
     
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
     {
@@ -26,6 +32,6 @@ public class FinalStand() : CloudCard(2, CardType.Attack,
 
     protected override void OnUpgrade()
     {
-        DynamicVars["ReprievePower"].UpgradeValueBy(1m);
+        base.EnergyCost.UpgradeBy(-1);
     }
 }

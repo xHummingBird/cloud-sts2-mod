@@ -78,6 +78,7 @@ public class CrossSlash() : CloudCard(2, CardType.Attack,
     
     protected override void OnUpgrade()
     {
-        base.EnergyCost.UpgradeBy(-1);
+        DynamicVars.Damage.UpgradeValueBy(1m);
+        base.DynamicVars["CrossSlashPower"].UpgradeValueBy(20);
     }
 }

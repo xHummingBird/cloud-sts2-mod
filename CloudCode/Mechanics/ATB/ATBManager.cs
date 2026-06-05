@@ -93,14 +93,15 @@ public class ATBManager
         int current = data.Value;
 
         // ✅ limit: max gain per turn from attacks = max ATB
-        int remainingThisTurn = max - data.GainThisTurn;
-        if (remainingThisTurn <= 0)
-            return;
+        //int remainingThisTurn = max - data.GainThisTurn;
+        // if (remainingThisTurn <= 0)
+            // return;
 
-        int allowed = Math.Min(amount, remainingThisTurn);
+        // int allowed = Math.Min(amount, remainingThisTurn);
 
         // ✅ also don't exceed soft cap from this source
-        int final = Math.Min(current + allowed, max);
+        // int final = Math.Min(current + allowed, max);
+        int final = Math.Min(current + amount, max);
 
         int actualGain = final - current;
         if (actualGain <= 0)

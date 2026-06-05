@@ -54,11 +54,12 @@ public class Disorder() : CloudCard(2, CardType.Attack,
             }
             await ownerCreature.ExitPunisher();
         }
-        else CommonActions.CardAttack(this, play.Target).WithHitFx("vfx/vfx_attack_slash")
-            .Execute(choiceContext);
-        if (!base.Owner.Creature.IsPunisher())
+        else if (!base.Owner.Creature.IsPunisher())
         {
-            await PowerCmd.Apply<FreeAttackPower>(choiceContext, base.Owner.Creature, 1m, base.Owner.Creature, this);
+            CommonActions.CardAttack(this, play.Target).WithHitFx("vfx/vfx_attack_slash")
+                .Execute(choiceContext);
+            await PowerCmd.Apply<FreeAttackPower>(choiceContext, base.Owner.Creature, 1m, base.Owner.Creature,
+                    this);
             await base.Owner.Creature.EnterPunisher(1, base.Owner.Creature, this);
         }
         await Task.Delay((int)(0.567f * 1000f));

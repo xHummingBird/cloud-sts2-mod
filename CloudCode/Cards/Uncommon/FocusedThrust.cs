@@ -15,7 +15,7 @@ public class FocusedThrust() : CloudCard(1, CardType.Attack,
 {
     public int ATBCost => 1;
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(3m, ValueProp.Move),
+        new DamageVar(4m, ValueProp.Move),
         new RepeatVar(2),
         new PowerVar<VulnerablePower>(1),
         new("percentHPDamage", 5)

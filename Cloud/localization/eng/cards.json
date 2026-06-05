@@ -8,7 +8,7 @@
   "CLOUD-DEFEND_CLOUD.description": "Gain {Block:diff()} [gold]Block[/gold].",
   "CLOUD-DEFEND_CLOUD.title": "Defend",
 
-  "CLOUD-COUNTERSTANCE.description": "[gold]Switch to Operator Mode[/gold] \nGain {Block:diff()} [gold]Block[/gold]. Blocked damage is reflected back to the attacker for 1 turn.",
+  "CLOUD-COUNTERSTANCE.description": "[gold]Switch Stance[/gold] to [gold]Punisher Mode[/gold]. \nGain {Block:diff()} [gold]Block[/gold]. Blocked damage is reflected back to the attacker for 1 turn.",
   "CLOUD-COUNTERSTANCE.title": "Counterstance",
 
   "CLOUD-BLIZZARA.description": "[gold]Magic[/gold]\nDeal {Damage:diff()} damage. \nGain {Block:diff()} [gold]Block[/gold].",
@@ -44,7 +44,7 @@
   "CLOUD-LARGE_SWORD_MASTERY.description": "[gold]Operator[/gold]: Gain {DexterityPower:diff()} [gold]Dexterity[/gold]. \n[gold]Punisher[/gold]: Gain {StrengthPower:diff()} [gold]Strength[/gold].",
   "CLOUD-LARGE_SWORD_MASTERY.title": "Large Sword Mastery",
 
-  "CLOUD-MAKO_MIGHT.description": "[gold]Operator:[/gold] Gain {VigorPower:diff()} [gold]Vigor[/gold]. \n[gold]Punisher[/gold]: gain {Block:diff()} [gold]Block[/gold]. \n[gold]Switch Stance[/gold]",
+  "CLOUD-MAKO_MIGHT.description": "[gold]Operator:[/gold] Gain {VigorPower:diff()} [gold]Vigor[/gold]. \n[gold]Punisher[/gold]: [gold]Switch Stance[/gold]. \nGain {Block:diff()} [gold]Block[/gold].",
   "CLOUD-MAKO_MIGHT.title": "Mako Might",
 
   "CLOUD-TRIPLE_SLASH.description": "Deal {CalculatedDamage:diff()} damage {Repeat:diff()} times to random enemies. \n[gold]Operator[/gold]: Deal {ExtraDamage:diff()} additional damage. \n[gold]Punisher[/gold]: Draw {Cards:diff()} {Cards:plural:card|cards}.",
@@ -167,7 +167,7 @@
   "CLOUD-ASCENSION.description": "Deal {Damage:diff()} damage 7 times. \nLast hit deals [blue]double[/blue] damage.",
   "CLOUD-ASCENSION.title": "Ascension",
 
-  "CLOUD-FOCUSED_THRUST.description": "Deal {Damage:diff()} damage 2 times and apply {VulnerablePower:diff()} [gold]Vulnerable[/gold] to ALL enemies. \nLast hit deals damage equal to [blue]{percentHPDamage:diff()}%[/blue] of the target's current HP.",
+  "CLOUD-FOCUSED_THRUST.description": "Deal {Damage:diff()} damage 2 times and apply {VulnerablePower:diff()} [gold]Vulnerable[/gold] to ALL enemies. \nLast hit deals additional damage equal to [blue]{percentHPDamage:diff()}%[/blue] of the target's current HP.",
   "CLOUD-FOCUSED_THRUST.title": "Focused Thrust",
 
   "CLOUD-BLADE_BEAM.description": "Deal {Damage:diff()} damage to ALL enemies. \nApply {VulnerablePower:diff()} [gold]Vulnerable[/gold] and [gold]Weak[/gold].",
@@ -183,5 +183,29 @@
   "CLOUD-BLIZZAGA.title": "Blizzaga",
 
   "CLOUD-BUSTER_BRACE.description": "Gain {Block:diff()} [gold]Block[/gold]. \n[gold]Switch Stance[/gold].",
-  "CLOUD-BUSTER_BRACE.title": "Buster Brace"
+  "CLOUD-BUSTER_BRACE.title": "Buster Brace",
+
+  "CLOUD-DEFLECT.description": "Gain {Block:diff()} [gold]Block[/gold]. \nApply {WeakPower:diff()} [gold]Weak[/gold] to an enemy.",
+  "CLOUD-DEFLECT.title": "Deflect",
+
+  "CLOUD-NOT_INTERESTED.description": "Gain {Block:diff()} [gold]Block[/gold]. \n[gold]Operator[/gold]: Apply {WeakPower:diff()} [gold]Weak[/gold] to an enemy. \n[gold]Punisher[/gold]: Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold] to an enemy.",
+  "CLOUD-NOT_INTERESTED.title": "Not Interested",
+
+  "CLOUD-AGGRESSION.description": "Gain {VigorPower:diff()} [gold]Vigor[/gold]. \nGain [gold]{LimitBreakPower:diff()}[/gold] Limit.",
+  "CLOUD-AGGRESSION.title": "Aggression",
+
+  "CLOUD-JENOVA_CELLS.description": "Gain [gold]Fury[/gold].",
+  "CLOUD-JENOVA_CELLS.title": "Jenova Cells",
+
+  "CLOUD-ADRENALINE_SURGE.description": "Gain 30 [gold]Limit[/gold]. \nGain additional 20 [gold]Limit[/gold] if you have [gold]Fury[/gold].",
+  "CLOUD-ADRENALINE_SURGE.title": "Adrenaline Surge",
+
+  "CLOUD-BACKSTEP.description": "Gain {Block:diff()} [gold]Block[/gold]. \n[gold]Punisher[/gold]: [gold]Switch Stance[/gold]. Gain 1 ATB.",
+  "CLOUD-BACKSTEP.title": "Backstep",
+
+  "CLOUD-BUSTER_END.description": "Deal {Damage:diff()} damage. \nCosts 1 less {Energy:energyIcons()} for each Attack played this turn.",
+  "CLOUD-BUSTER_END.title": "Infinity's End",
+
+  "CLOUD-FIRAGA_BURST.description": "Deal {Damage:diff()} damage. \nIf [gold]Fatal[/gold], deal half damage to ALL enemies.",
+  "CLOUD-FIRAGA_BURST.title": "Firaga Burst"
 }

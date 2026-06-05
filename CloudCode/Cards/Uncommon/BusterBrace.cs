@@ -8,7 +8,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Cloud.CloudCode.Cards.Uncommon;
 
 public class BusterBrace() : CloudCard(1, CardType.Skill,
-    CardRarity.Basic, TargetType.Self)
+    CardRarity.Uncommon, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(7, ValueProp.Move)];
 

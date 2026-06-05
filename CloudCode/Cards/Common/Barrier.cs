@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Cloud.CloudCode.Cards.Common;
 
 public class Barrier() : CloudCard(1, CardType.Skill,
-    CardRarity.Uncommon, TargetType.Self), IMagicCard
+    CardRarity.Common, TargetType.Self), IMagicCard
     {
         protected override IEnumerable<DynamicVar> CanonicalVars => [
             new BlockVar(8m, ValueProp.Move),

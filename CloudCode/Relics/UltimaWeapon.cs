@@ -48,6 +48,8 @@ public class UltimaWeapon() : CloudRelic
         {
             if (card.Owner.HasPower<FuryPower>())
                 LimitManager.GainLimit(player, 6);
+            else if (card.Owner.HasPower<SedatePower>())
+                LimitManager.GainLimit(player, 1);
             else LimitManager.GainLimit(player, 3);
         }
 
@@ -78,7 +80,11 @@ public class UltimaWeapon() : CloudRelic
         }
         ATBManager.ResetGainThisTurn(Owner);
         SfxCmd.Play("event:/sfx/ui/relic_activate_general");
-        LimitManager.GainLimit(Owner, 5);
+        if (base.Owner.HasPower<SedatePower>())
+            LimitManager.GainLimit(Owner, 3);
+        else if (base.Owner.HasPower<FuryPower>())
+            LimitManager.GainLimit(Owner, 8);
+        else LimitManager.GainLimit(Owner, 5);
         await Owner.Creature.CheckLimitReady(
             null,
             Owner.Creature,

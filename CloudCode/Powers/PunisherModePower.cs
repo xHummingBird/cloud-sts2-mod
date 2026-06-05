@@ -40,13 +40,6 @@ public class PunisherModePower : CloudPower
             else return num;
         }
 
-        if (target == Owner)
-        {
-            if (target.HasPower<FuryPower>())
-                return num2;
-            else return num;
-        }
-
         return 1m;
         
     }

@@ -19,7 +19,6 @@ public class GotYourBack() : CloudCard(2, CardType.Skill,
     ];
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
     {
-        var power = base.Owner.Creature.GetPower<LimitBreakPower>();
         
         LimitManager.GainLimit(Owner, DynamicVars["LimitBreakPower"].IntValue);
         await Owner.Creature.CheckLimitReady(

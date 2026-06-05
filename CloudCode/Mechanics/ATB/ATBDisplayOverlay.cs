@@ -12,7 +12,14 @@ public partial class ATBDisplayOverlay : Control
     public static ATBDisplayOverlay? Instance { get; private set; }
 
     private Control? _atbDisplay;
-
+    private int _lastValue = -1;
+    private Tween? _popTween;
+    private bool _exiting;
+    private static readonly Color AtbGainGreen = new Color(0.4f, 1f, 0.4f);
+    
+    private RichTextLabel _label;
+    private Player _player;
+    
     public override void _Ready()
     {
         Instance = this;
@@ -23,15 +30,6 @@ public partial class ATBDisplayOverlay : Control
         // ✅ Defer setup (important for stability)
         CallDeferred(nameof(Setup));
     }
-    
-    
-    private int _lastValue = -1;
-    private Tween? _popTween;
-    private bool _exiting;
-    private static readonly Color AtbGainGreen = new Color(0.4f, 1f, 0.4f);
-    
-    private RichTextLabel _label;
-    private Player _player;
     
     private void Setup()
     {

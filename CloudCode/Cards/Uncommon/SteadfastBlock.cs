@@ -22,9 +22,7 @@ protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay
 
     if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
     {
-        // attack animation
         AudioHelper.PlayRandomDefend();
-        // Optional: delay to sync hit roughly mid animation
     }
     decimal amount = await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, cardPlay);
     await PowerCmd.Apply<AtbNextTurnPower>(choiceContext, base.Owner.Creature, DynamicVars.Energy.BaseValue, base.Owner.Creature, this);

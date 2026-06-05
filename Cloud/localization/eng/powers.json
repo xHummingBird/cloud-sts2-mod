@@ -1,6 +1,6 @@
 {
-  "CLOUD-PUNISHER_MODE_POWER.description": "Increase damage dealt and damage taken by 20%. Buff is removed when you take unblocked damage from an enemy.",
-  "CLOUD-PUNISHER_MODE_POWER.smartDescription": "Increase damage dealt and damage taken by 20%. Buff is removed when you take unblocked damage from an enemy.",
+  "CLOUD-PUNISHER_MODE_POWER.description": "Increase physical damage dealt and all damage taken by 20%. Switch stance when you take unblocked damage from an enemy.",
+  "CLOUD-PUNISHER_MODE_POWER.smartDescription": "Increase physical damage dealt and damage taken by 20%. Switch stance when you take unblocked damage from an enemy.",
   "CLOUD-PUNISHER_MODE_POWER.title": "Punisher Mode",
 
   "CLOUD-COUNTER_STANCE_POWER.description": "Blocked damage is reflected to your attacker for 1 turn.",
@@ -19,8 +19,8 @@
   "CLOUD-CROSS_SLASH_POWER.smartDescription": "Reduce damage dealt by [blue]80%[/blue].",
   "CLOUD-CROSS_SLASH_POWER.title": "Cross Slash",
 
-  "CLOUD-PRIME_MODE_POWER.description": "Increase damage dealt while in Punisher Mode. Taking damage no longer changes stance. In Operator Mode, gain 1 ATB at the start of your turn.",
-  "CLOUD-PRIME_MODE_POWER.smartDescription": "[gold]Operator[/gold]: Gain 1 ATB at the start of your turn. \n[gold]Punisher[/gold]: Increase damage and no longer removed when damaged.",
+  "CLOUD-PRIME_MODE_POWER.description": "Increase damage dealt by 20% while in Punisher Mode. Taking damage no longer changes stance. In Operator Mode, gain 1 ATB at the start of your turn.",
+  "CLOUD-PRIME_MODE_POWER.smartDescription": "[gold]Operator[/gold]: Gain 1 ATB at the start of your turn. \n[gold]Punisher[/gold]: Increase damage boost and no longer removed when damaged.",
   "CLOUD-PRIME_MODE_POWER.title": "Prime Mode",
 
   "CLOUD-HASTE_POWER.description": "Gain 1 ATB at the start of your turn.",
@@ -39,9 +39,13 @@
   "CLOUD-SOLDIERS_PRIDE_POWER.smartDescription": "At the start of your turn, if you did not take any damage last turn, gain vigor or block based on your stance.",
   "CLOUD-SOLDIERS_PRIDE_POWER.title": "SOLDIER's Pride",
 
-  "CLOUD-FURY_POWER.description": "Increase damage taken in [blue]Punisher Mode[/blue] to [blue]40%[/blue]. Double Limit gained from using attacks.",
-  "CLOUD-FURY_POWER.smartDescription": "Increase damage taken in [blue]Punisher Mode[/blue] to [blue]40%[/blue]. Double Limit gained from using attacks.",
+  "CLOUD-FURY_POWER.description": "Increase damage taken by [blue]20%[/blue]. Gain 3 additional limit per turn and from using attacks. Removes [gold]Sedate[/gold].",
+  "CLOUD-FURY_POWER.smartDescription": "Increase damage taken. Gain 3 additional limit per turn and from using attacks.",
   "CLOUD-FURY_POWER.title": "Fury",
+
+  "CLOUD-SEDATE_POWER.description": "Decrease damage taken by [blue]10%[/blue]. Reduce limit gain per turn and from attacks by 2. Removes [gold]Fury[/gold]",
+  "CLOUD-SEDATE_POWER.smartDescription": "Decrease damage taken by [blue]10%[/blue]. Reduce limit gain per turn and from attacks by 2.",
+  "CLOUD-SEDATE_POWER.title": "Sedate",
 
   "CLOUD-ARMOR_BREAK_POWER.description": "Amplify damage taken.",
   "CLOUD-ARMOR_BREAK_POWER.smartDescription": "Amplify damage taken",
