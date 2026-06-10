@@ -58,6 +58,6 @@ public class ModeShift() : CloudCard(0, CardType.Skill,
 
     protected override void OnUpgrade()
     {
-        AddKeyword(CardKeyword.Innate);
+        AddKeyword(CardKeyword.Retain);
     }
 }

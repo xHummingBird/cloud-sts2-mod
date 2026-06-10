@@ -1,9 +1,12 @@
-﻿using Godot;
+﻿using Cloud.CloudCode.Extensions;
+using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Nodes.Combat;
+using MegaCrit.Sts2.Core.Nodes.HoverTips;
 
 namespace Cloud.CloudCode.Mechanics.Summon;
 
@@ -21,6 +24,8 @@ public partial class SummonDisplayOverlay : Control
 
     private const int SummonMax = 100;
     private static readonly Color SummonGainGreen = new Color(0.4f, 1f, 0.4f);
+    
+    private IHoverTip _hoverTip;
 
 
     public override void _Ready()
@@ -28,7 +33,7 @@ public partial class SummonDisplayOverlay : Control
         Instance = this;
         Name = "SummonDisplayOverlay";
 
-        MouseFilter = MouseFilterEnum.Ignore;
+        MouseFilter = MouseFilterEnum.Pass;
 
         // ✅ Defer setup (important for stability)
         CallDeferred(nameof(Setup));
@@ -72,6 +77,17 @@ public partial class SummonDisplayOverlay : Control
         _label.AddThemeColorOverride("font_outline_color", new Color(0.2f, 0.2f, 0.2f));
         _label.AddThemeConstantOverride("outline_size", 12);
         _label.AddThemeFontSizeOverride("normal_font_size", 32);
+        
+        _hoverTip = CloudStaticHoverTip.Summon;
+        
+        _label.MouseFilter = MouseFilterEnum.Pass;
+
+        _label.Connect(SignalName.MouseEntered, Callable.From(OnHovered));
+        _label.Connect(SignalName.MouseExited, Callable.From(OnUnhovered));
+
+        MouseFilter = MouseFilterEnum.Pass;
+        Connect(SignalName.MouseEntered, Callable.From(OnHovered));
+        Connect(SignalName.MouseExited, Callable.From(OnUnhovered));
         
         // ✅ Hook player
         var state = CombatManager.Instance.DebugOnlyGetState();
@@ -121,6 +137,22 @@ public partial class SummonDisplayOverlay : Control
             .SetTrans(Tween.TransitionType.Quad)
             .SetEase(Tween.EaseType.Out);
     }
+    
+    
+    private void OnHovered()
+    {
+        NHoverTipSet.Clear();
+        
+        var tip = NHoverTipSet.CreateAndShow(this, _hoverTip);
+        tip.GlobalPosition = GlobalPosition + new Vector2(-75f, -550f);
+        tip.MouseFilter = MouseFilterEnum.Ignore;
+    }
+
+    private void OnUnhovered()
+    {
+        NHoverTipSet.Remove(this);
+    }
+
 
 
     private void OnSummonChanged(int value)

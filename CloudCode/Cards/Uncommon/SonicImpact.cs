@@ -26,8 +26,10 @@ public class SonicImpact() : CloudCard(2, CardType.Attack,
         var ownerCreature = Owner?.Creature;
         
         var enemies = CombatState.Enemies;
-        bool shouldTriggerFatal = enemies.All(enemy =>
-            enemy.Powers.All(p => p.ShouldOwnerDeathTriggerFatal()));
+        bool shouldTriggerFatal = enemies
+            .Where(e => !e.IsDead)
+            .All(enemy =>
+                enemy.Powers.All(p => p.ShouldOwnerDeathTriggerFatal()));
 
         if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
         {

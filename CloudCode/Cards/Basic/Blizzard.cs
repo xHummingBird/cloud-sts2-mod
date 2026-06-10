@@ -17,7 +17,6 @@ namespace Cloud.CloudCode.Cards.Basic;
 public class Blizzard() : CloudCard(1, CardType.Attack,
     CardRarity.Basic, TargetType.AnyEnemy), IMagicCard
 {
-    protected override HashSet<CardTag> CanonicalTags => [CardTag.Strike];
     protected override IEnumerable<DynamicVar> CanonicalVars => 
         [
             new DamageVar(6m, ValueProp.Move),

@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.Vfx.Utilities;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Cloud.CloudCode.Cards.Ancient;
@@ -107,7 +108,7 @@ public class Omnislash() : CloudCard(0, CardType.Attack,
                      // or dedicated final voice
                     // ✅ Final hit SFX
                     SfxCmd.Play("res://Cloud/sfx/omnislash_finalhit.wav");
-
+                    cloud.DoScreenShake(ShakeStrength.Strong, ShakeDuration.Normal);
                     DamageCmd.Attack(base.DynamicVars.Damage.BaseValue*2).FromCard(this).Targeting(play.Target)
                         .WithHitFx("vfx/vfx_attack_slash") // swap for bigger VFX later
                         .Execute(choiceContext);

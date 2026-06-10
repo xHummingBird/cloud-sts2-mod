@@ -31,29 +31,8 @@ public class MakoMight() : CloudCard(1, CardType.Skill,
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var ownerCreature = Owner?.Creature;
-        if (!base.Owner.Creature.HasPower<PunisherModePower>())
-        {
-            if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
-            {
-                SfxCmd.Play("res://Cloud/sounds/zenryokudeiku.wav");
-                
-                bool isPrime = ownerCreature.IsPrime();
-                
-                string shiftAnim = isPrime ? "mode_shift_2" : "mode_shift";
-                string idleAnim  = isPrime ? "idle_prime_punisher" : "idle_punisher";
-                
-                float duration = cloud.PlayAnimation(ownerCreature, shiftAnim).total;
-                
-                if (duration > 0f)
-                    await Task.Delay((int)(duration * 1000f));
-                cloud.PlayAnimation(ownerCreature, idleAnim);
-            }
-        }
-
         if (!ownerCreature.IsPunisher())
         {
-            PowerCmd.Apply<PunisherModePower>(choiceContext, base.Owner.Creature,
-                base.DynamicVars["PunisherModePower"].BaseValue, base.Owner.Creature, this);
             await PowerCmd.Apply<VigorPower>(choiceContext, base.Owner.Creature,
                 base.DynamicVars["VigorPower"].BaseValue, base.Owner.Creature, this);
         }
@@ -61,7 +40,6 @@ public class MakoMight() : CloudCard(1, CardType.Skill,
         {
             AudioHelper.PlayRandomDefend();
             await CommonActions.CardBlock(this, cardPlay);
-            await PowerCmd.Remove<PunisherModePower>(ownerCreature);
         }
     }
 

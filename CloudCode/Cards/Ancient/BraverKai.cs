@@ -20,7 +20,7 @@ using Color = Godot.Color;
 namespace Cloud.CloudCode.Cards.Ancient;
 
 public class BraverKai() : CloudCard(1, CardType.Attack,
-    CardRarity.Ancient, TargetType.AnyEnemy), IATBCard, ILimitCard
+    CardRarity.Ancient, TargetType.AnyEnemy), IATBCard
 {
     public int ATBCost => 1;
     protected override IEnumerable<DynamicVar> CanonicalVars => [
@@ -71,6 +71,7 @@ public class BraverKai() : CloudCard(1, CardType.Attack,
             await PowerCmd.Apply<VulnerablePower>(choiceContext, play.Target, base.DynamicVars.Vulnerable.BaseValue,
                 base.Owner.Creature, this);
         else await base.Owner.Creature.ExitPunisher();
+        cloud?.RefreshIdle(ownerCreature);
     }
     
     protected override void OnUpgrade()

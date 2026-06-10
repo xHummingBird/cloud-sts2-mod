@@ -10,8 +10,8 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Cloud.CloudCode.Cards.Rare;
 
-public class FinalStand() : CloudCard(2, CardType.Attack,
-    CardRarity.Rare, TargetType.AnyEnemy), IATBCard
+public class FinalStand() : CloudCard(2, CardType.Power,
+    CardRarity.Rare, TargetType.Self), IATBCard
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => 
         [

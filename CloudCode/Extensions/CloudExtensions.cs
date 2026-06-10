@@ -1,4 +1,5 @@
 ﻿using Cloud.CloudCode.Mechanics.Limit;
+using Cloud.CloudCode.Mechanics.Summon;
 using Cloud.CloudCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -77,6 +78,28 @@ public static class CloudExtensions
             );
         }
     }
+    
+    public static async Task CheckSummonReady(
+        this Creature creature,
+        PlayerChoiceContext context,
+        Creature source,
+        CardModel? card)
+    {
+        var player = creature.Player;
+        if (player == null)
+            return;
 
+        if (SummonManager.IsFull(player) &&
+            !creature.HasPower<SummonPower>())
+        {
+            await PowerCmd.Apply<SummonPower>(
+                context,
+                creature,
+                1,
+                creature,
+                null
+            );
+        }
+    }
 
 }

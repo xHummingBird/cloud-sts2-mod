@@ -30,7 +30,10 @@ public class PunisherModePower : CloudPower
 
         if (cardSource is IMagicCard)
             return 1m;
-
+        
+        if (cardSource is ISummonCard)
+            return 1m;
+        
         decimal num = base.DynamicVars["DamageIncrease"].BaseValue;
         decimal num2 = base.DynamicVars["PrimeDamageIncrease"].BaseValue;
         if (dealer == base.Owner)
@@ -40,8 +43,10 @@ public class PunisherModePower : CloudPower
             else return num;
         }
 
+        if (target == base.Owner)
+            return num;
+
         return 1m;
-        
     }
 
     public override async Task AfterDamageReceived(

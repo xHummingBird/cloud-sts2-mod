@@ -1,9 +1,12 @@
 ﻿using BaseLib.Utils;
 using Cloud.CloudCode.Mechanics.ATB;
+using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Cloud.CloudCode.Cards.Uncommon;
@@ -31,7 +34,7 @@ public class BusterEnd() : CloudCard(3, CardType.Attack,
             {
                 await Task.Delay((int)(0.2f * 1000f));
                 SfxCmd.Play("res://Cloud/sfx/sword_swing.wav");
-                await Task.Delay((int)(0.7f * 1000f));
+                await Task.Delay((int)(0.45f * 1000f));
             }
         }
         CommonActions.CardAttack(this, play.Target).WithHitFx("vfx/vfx_attack_slash")
@@ -42,5 +45,39 @@ public class BusterEnd() : CloudCard(3, CardType.Attack,
     protected override void OnUpgrade()
     {
         DynamicVars.Damage.UpgradeValueBy(4);
+    }
+    
+    public override Task AfterCardEnteredCombat(CardModel card)
+    {
+        if (card != this)
+        {
+            return Task.CompletedTask;
+        }
+        if (base.IsClone)
+        {
+            return Task.CompletedTask;
+        }
+        int amount = CombatManager.Instance.History.CardPlaysFinished.Count((CardPlayFinishedEntry e) => e.CardPlay.Card.Type == CardType.Attack && e.CardPlay.Card.Owner == base.Owner && e.HappenedThisTurn(base.CombatState));
+        ReduceCostBy(amount);
+        return Task.CompletedTask;
+    }
+
+    public override Task BeforeCardPlayed(CardPlay cardPlay)
+    {
+        if (cardPlay.Card.Owner != base.Owner)
+        {
+            return Task.CompletedTask;
+        }
+        if (cardPlay.Card.Type != CardType.Attack)
+        {
+            return Task.CompletedTask;
+        }
+        ReduceCostBy(1);
+        return Task.CompletedTask;
+    }
+
+    private void ReduceCostBy(int amount)
+    {
+        base.EnergyCost.AddThisTurn(-amount);
     }
 }

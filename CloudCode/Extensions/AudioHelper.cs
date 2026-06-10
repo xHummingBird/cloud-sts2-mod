@@ -23,12 +23,30 @@ public static class AudioHelper
         "res://Cloud/sounds/generic_attack_6.wav"
     };
     
+    private static readonly string[] magicSfx =
+    {
+        "res://Cloud/sounds/kurae",
+        "res://Cloud/sounds/murata.wav",
+        "res://Cloud/sounds/generic_magic_1.wav",
+        "res://Cloud/sounds/generic_magic_2.wav",
+        "res://Cloud/sounds/akiramero.wav"
+    };
+    
     private static readonly string[] damagedSfx =
     {
         "res://Cloud/sounds/damaged_1.wav",
         "res://Cloud/sounds/damaged_2.wav",
         "res://Cloud/sounds/damaged_3.wav",
         "res://Cloud/sounds/damaged_4.wav"
+    };
+    
+    private static readonly string[] buffSfx =
+    {
+        "res://Cloud/sounds/kurae.wav",
+        "res://Cloud/sounds/murata.wav",
+        "res://Cloud/sounds/generic_magic_1.wav",
+        "res://Cloud/sounds/generic_magic_2.wav",
+        "res://Cloud/sounds/akiramero.wav"
     };
     
     private static readonly string[] highDamagedSfx =
@@ -72,9 +90,11 @@ public static class AudioHelper
 
     private static readonly string[] victorySfx =
     {
-        "res://Cloud/sounds/victory_1.wav",
+        "res://Cloud/sounds/not_interested.wav",
         "res://Cloud/sounds/victory_2.wav",
-        "res://Cloud/sounds/victory_3.wav"
+        "res://Cloud/sounds/victory_3.wav",
+        "res://Cloud/sounds/victory_4.wav",
+        "res://Cloud/sounds/victory_5.wav"
     };
     
     private static readonly string[] defendSfx =
@@ -102,6 +122,11 @@ public static class AudioHelper
     public static void PlayRandomAttack()
     {
         PlayRandom(attackSfx);
+    }
+    
+    public static void PlayRandomMagic()
+    {
+        PlayRandom(magicSfx);
     }
     
     public static void PlayRandomGameover()

@@ -66,6 +66,7 @@ public class Braver() : CloudCard(1, CardType.Attack,
             await PowerCmd.Apply<VulnerablePower>(choiceContext, play.Target, base.DynamicVars.Vulnerable.BaseValue,
                 base.Owner.Creature, this);
         else await base.Owner.Creature.ExitPunisher();
+        cloud?.RefreshIdle(ownerCreature);
     }
     
     protected override void OnUpgrade()

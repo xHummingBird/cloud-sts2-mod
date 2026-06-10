@@ -1,9 +1,12 @@
-﻿using Godot;
+﻿using Cloud.CloudCode.Extensions;
+using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Nodes.Combat;
+using MegaCrit.Sts2.Core.Nodes.HoverTips;
 
 namespace Cloud.CloudCode.Mechanics.Limit;
 
@@ -18,6 +21,8 @@ public partial class LimitDisplayOverlay : Control
     private int _lastValue = -1;
     private Tween? _popTween;
     private bool _exiting;
+    
+    private IHoverTip _hoverTip;
 
     private const int LimitMax = 100;
     private static readonly Color LimitGainGreen = new Color(0.4f, 1f, 0.4f);
@@ -28,7 +33,7 @@ public partial class LimitDisplayOverlay : Control
         Instance = this;
         Name = "LimitDisplayOverlay";
 
-        MouseFilter = MouseFilterEnum.Ignore;
+        MouseFilter = MouseFilterEnum.Pass;
 
         // ✅ Defer setup (important for stability)
         CallDeferred(nameof(Setup));
@@ -72,9 +77,21 @@ public partial class LimitDisplayOverlay : Control
         _label.AddThemeConstantOverride("outline_size", 12);
         _label.AddThemeFontSizeOverride("normal_font_size", 32);
         
+        _hoverTip = CloudStaticHoverTip.Limit;
+
+        _label.MouseFilter = MouseFilterEnum.Pass;
+
+        _label.Connect(SignalName.MouseEntered, Callable.From(OnHovered));
+        _label.Connect(SignalName.MouseExited, Callable.From(OnUnhovered));
+        
+        MouseFilter = MouseFilterEnum.Pass;
+        Connect(SignalName.MouseEntered, Callable.From(OnHovered));
+        Connect(SignalName.MouseExited, Callable.From(OnUnhovered));
+
+        
         // ✅ Hook player
         var state = CombatManager.Instance.DebugOnlyGetState();
-        var player = state?.Players.FirstOrDefault(p => LocalContext.IsMe(p));
+        _player = state?.Players.FirstOrDefault(p => LocalContext.IsMe(p));
         
         if (_player != null)
         {
@@ -121,6 +138,22 @@ public partial class LimitDisplayOverlay : Control
             .SetTrans(Tween.TransitionType.Quad)
             .SetEase(Tween.EaseType.Out);
     }
+    
+    
+    private void OnHovered()
+    {
+        NHoverTipSet.Clear();
+        
+        var tip = NHoverTipSet.CreateAndShow(this, _hoverTip);
+        tip.GlobalPosition = GlobalPosition + new Vector2(-75f, -550f);
+        tip.MouseFilter = MouseFilterEnum.Ignore;
+    }
+
+    private void OnUnhovered()
+    {
+        NHoverTipSet.Remove(this);
+    }
+
 
 
     private void OnLimitChanged(int value)

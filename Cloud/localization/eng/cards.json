@@ -42,10 +42,10 @@
   "CLOUD-GUARD_STANCE.title": "Guard Stance",
 
   "CLOUD-LARGE_SWORD_MASTERY.description": "[gold]Operator[/gold]: Gain {DexterityPower:diff()} [gold]Dexterity[/gold]. \n[gold]Punisher[/gold]: Gain {StrengthPower:diff()} [gold]Strength[/gold].",
-  "CLOUD-LARGE_SWORD_MASTERY.title": "Large Sword Mastery",
+  "CLOUD-LARGE_SWORD_MASTERY.title": "Greatsword Mastery",
 
-  "CLOUD-MAKO_MIGHT.description": "[gold]Operator:[/gold] Gain {VigorPower:diff()} [gold]Vigor[/gold]. \n[gold]Punisher[/gold]: [gold]Switch Stance[/gold]. \nGain {Block:diff()} [gold]Block[/gold].",
-  "CLOUD-MAKO_MIGHT.title": "Mako Might",
+  "CLOUD-MAKO_MIGHT.description": "[gold]Operator:[/gold] Gain {VigorPower:diff()} [gold]Vigor[/gold]. \n[gold]Punisher[/gold]: Gain {Block:diff()} [gold]Block[/gold].",
+  "CLOUD-MAKO_MIGHT.title": "Mako Exposure",
 
   "CLOUD-TRIPLE_SLASH.description": "Deal {CalculatedDamage:diff()} damage {Repeat:diff()} times to random enemies. \n[gold]Operator[/gold]: Deal {ExtraDamage:diff()} additional damage. \n[gold]Punisher[/gold]: Draw {Cards:diff()} {Cards:plural:card|cards}.",
   "CLOUD-TRIPLE_SLASH.title": "Triple Slash",
@@ -57,12 +57,12 @@
   "CLOUD-ASSAULT_CHARGE.title": "Assault Charge",
 
   "CLOUD-QUICK_HIT.description": "Deal {Damage:diff()} damage. \n[gold]Operator[/gold]: Gain 1 ATB.",
-  "CLOUD-QUICK_HIT.title": "Quick Hit",
+  "CLOUD-QUICK_HIT.title": "Swift Slash",
 
   "CLOUD-WIND_UP_SLASH.description": "Deal {Damage:diff()} damage. \nGain {VigorPower:diff()} [gold]Vigor[/gold]. Switch stance. \n[gold]Punisher[/gold]: Gain 2 additional [gold]Vigor[/gold].",
   "CLOUD-WIND_UP_SLASH.title": "Wind-Up Slash",
 
-  "CLOUD-SPINNING_SLASH.description": "Deal {Damage:diff()} damage to ALL enemies.",
+  "CLOUD-SPINNING_SLASH.description": "Deal {Damage:diff()} damage to ALL enemies. \nGain {Block:diff()} [gold]Block[/gold].",
   "CLOUD-SPINNING_SLASH.title": "Spinning Slash",
 
   "CLOUD-CHANGE_THE_TEMPO.description": "[gold]Operator[/gold]: Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold]. \n[gold]Punisher[/gold]: Apply {WeakPower:diff()} [gold]Weak[/gold]. \n[gold]Switch Stance[/gold]",
@@ -98,7 +98,7 @@
   "CLOUD-PROTECT.description": "[gold]Magic[/gold]\nGain {Block:diff()} [gold]Block[/gold]. Next turn, gain {Block:diff()} [gold]Block[/gold].",
   "CLOUD-PROTECT.title": "Protect",
 
-  "CLOUD-HASTE.description": "[gold]Magic[/gold]\nGain 1 ATB at the start of your turn for the next {HastePower:diff()} turns.",
+  "CLOUD-HASTE.description": "[gold]Magic[/gold]\nGain 1 ATB and draw 1 additional card at the start of your turn for the next {HastePower:diff()} turns.",
   "CLOUD-HASTE.title": "Haste",
 
   "CLOUD-FINAL_STAND.description": "Gain [gold]Reprieve[/gold].",
@@ -146,7 +146,7 @@
   "CLOUD-COMBAT_MOMENTUM.description": "The first time you switch to [blue]Punisher Mode[/blue] on your turn, draw {CombatMomentumPower:diff()} {Cards:plural:card|cards}.",
   "CLOUD-COMBAT_MOMENTUM.title": "Combat Momentum",
 
-  "CLOUD-OVERCLOCK.description": "Gain 1 [gold]ATB[/gold]. Increase max [gold]ATB[/gold] by 1.",
+  "CLOUD-OVERCLOCK.description": "Gain {Energy:energyIcons()}.",
   "CLOUD-OVERCLOCK.title": "Overclock",
   
   "CLOUD-STEADFAST_BLOCK.description": "Gain {Block:diff()} [gold]Block[/gold]. \nNext turn, gain {Energy:diff()} [gold]ATB[/gold].",
@@ -188,7 +188,7 @@
   "CLOUD-DEFLECT.description": "Gain {Block:diff()} [gold]Block[/gold]. \nApply {WeakPower:diff()} [gold]Weak[/gold] to an enemy.",
   "CLOUD-DEFLECT.title": "Deflect",
 
-  "CLOUD-NOT_INTERESTED.description": "Gain {Block:diff()} [gold]Block[/gold]. \n[gold]Operator[/gold]: Apply {WeakPower:diff()} [gold]Weak[/gold] to an enemy. \n[gold]Punisher[/gold]: Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold] to an enemy.",
+  "CLOUD-NOT_INTERESTED.description": "Gain {Block:diff()} [gold]Block[/gold]. \n[gold]Operator[/gold]: Apply {WeakPower:diff()} [gold]Weak[/gold]. \n[gold]Punisher[/gold]: Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold].",
   "CLOUD-NOT_INTERESTED.title": "Not Interested",
 
   "CLOUD-AGGRESSION.description": "Gain {VigorPower:diff()} [gold]Vigor[/gold]. \nGain [gold]{LimitBreakPower:diff()}[/gold] Limit.",
@@ -206,6 +206,66 @@
   "CLOUD-BUSTER_END.description": "Deal {Damage:diff()} damage. \nCosts 1 less {Energy:energyIcons()} for each Attack played this turn.",
   "CLOUD-BUSTER_END.title": "Infinity's End",
 
-  "CLOUD-FIRAGA_BURST.description": "Deal {Damage:diff()} damage. \nIf [gold]Fatal[/gold], deal half damage to ALL enemies.",
-  "CLOUD-FIRAGA_BURST.title": "Firaga Burst"
+  "CLOUD-FIRAGA_BURST.description": "[gold]Magic[/gold]\nDeal {Damage:diff()} damage. \nIf [gold]Fatal[/gold], deal half damage to ALL enemies.",
+  "CLOUD-FIRAGA_BURST.title": "Firaga Burst",
+
+  "CLOUD-MAGIC_SHIELD.description": "Whenever you play [gold]Magic[/gold] this turn, gain {MagicShieldPower:diff()} Block.",
+  "CLOUD-MAGIC_SHIELD.title": "Magic Shield",
+
+  "CLOUD-MATERIA_THEFT.description": "Deal {Damage:diff()} damage. \nDraw {Cards:diff()} {Cards:plural:card|cards}. Discard all [gold]non-magic[/gold] cards drawn this way.",
+  "CLOUD-MATERIA_THEFT.title": "Materia Theft",
+
+  "CLOUD-ULTIMA.description": "[gold]Magic[/gold]\nDeal {Damage:diff()} damage to ALL enemies.",
+  "CLOUD-ULTIMA.title": "Ultima",
+
+  "CLOUD-W_MAGIC.description": "The first magic card you play each turn is played an extra time.",
+  "CLOUD-W_MAGIC.title": "W Magic",
+
+  "CLOUD-THUNDAGA_BURST.description": "[gold]Magic[/gold]\nDeal {Damage:diff()} damage to random enemies [gold]{Repeat:diff()}[/gold] times. \nIf [gold]Fatal[/gold], hit 2 additional times.",
+  "CLOUD-THUNDAGA_BURST.title": "Thundaga Burst",
+
+  "CLOUD-BLIZZAGA_BURST.description": "[gold]Magic[/gold]\nDeal {Damage:diff()} damage to ALL enemies. \nGain {Block:diff()} [gold]Block[/gold]. \nIf [gold]Fatal[/gold], double block gained.",
+  "CLOUD-BLIZZAGA_BURST.title": "Blizzaga Burst",
+
+  "CLOUD-IFRIT.description": "Deal {Damage:diff()} [gold]Magic[/gold] damage. \nThe enemy takes [blue]50%[/gold] more [/gold]Magic[/gold] damage for 3 turns.",
+  "CLOUD-IFRIT.title": "Ifrit",
+
+  "CLOUD-BAHAMUT.description": "Gain {Block:diff()} [gold]Block[/gold]. \nAfter 3 turns, deal 60 [gold]Magic[/gold] damage to ALL enemies.",
+  "CLOUD-BAHAMUT.title": "Bahamut",
+
+  "CLOUD-ODIN.description": "Deal {Damage:diff()} damage. \nKill the enemy if it has [gold]{hpPercent:diff()}%[/gold] HP or less.",
+  "CLOUD-ODIN.title": "Odin",
+
+  "CLOUD-SHIVA.description": "",
+  "CLOUD-SHIVA.title": "Shiva",
+
+  "CLOUD-ZANTETSUKEN.description": "Deal {Damage:diff()} damage. \nKill the enemy if it has [gold]{hpPercent:diff()}%[/gold] HP or less.",
+  "CLOUD-ZANTETSUKEN.title": "Zantetsuken",
+
+  "CLOUD-RAMUH.description": "",
+  "CLOUD-RAMUH.title": "Ramuh",
+
+  "CLOUD-OMNIBREAK.description": "Deal {Damage:diff()} damage. \nApply {VulnerablePower:diff()} [gold]Vulnerable[/gold] and [gold]Weak[/gold].",
+  "CLOUD-OMNIBREAK.title": "Omnibreak",
+
+  "CLOUD-SIPHON.description": "[gold]Exhaust[/gold] 1 card. \nGain {Block:diff()} [gold]Block[/gold] and [gold]Summon[/gold].",
+  "CLOUD-SIPHON.title": "Siphon",
+
+  "CLOUD-INVOKE.description": "Gain {SummonPower:diff()} [gold]Summon[/gold]. \nDouble [gold]Summon[/gold] gained from attacks and [gold]Magic[/gold].",
+  "CLOUD-INVOKE.title": "Invoke",
+
+  "CLOUD-HEROS_LAST_WISH.description": "Gain {Energy:energyIcons()}. \nGain 1 [gold]ATB[/gold]. \nGain {SummonPower:diff()} [gold]Summon[/gold] and [gold]Limit[/gold].",
+  "CLOUD-HEROS_LAST_WISH.title": "Hero's Last Wish",
+
+  "CLOUD-FORGOTTEN_IDENTITY.description": "Gain [gold]Sedate[/gold].",
+  "CLOUD-FORGOTTEN_IDENTITY.title": "Forgotten Identity",
+
+  "CLOUD-FALSE_SOLDIER.description": "Gain {Block:diff()} [gold]Block[/gold]. \nIf you have 50 or more [gold]Limit[/gold], double [gold]Block[/gold] gained. [gold]Consumes ALL Limit[/gold].",
+  "CLOUD-FALSE_SOLDIER.title": "False Soldier",
+
+  "CLOUD-LAST_RESORT.description": "[gold]Exhaust your Hand. \nGain full [gold]Limit[/gold] and 3 [gold]ATB[/gold]. \nYou cannot gain [gold]Block[/gold] from cards for 2 turns.",
+  "CLOUD-LAST_RESORT.title": "Last Resort",
+
+  "CLOUD-MATERIA_BOMB.description": "Exhaust 1 [gold]Magic[/gold] card. \nDeal {Damage:diff()} damage.",
+  "CLOUD-MATERIA_BOMB.title": "Materia Bomb"
 }

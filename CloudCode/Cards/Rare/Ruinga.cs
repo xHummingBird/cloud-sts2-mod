@@ -41,7 +41,7 @@ public class Ruinga() : CloudCard(2, CardType.Attack,
         {
             // attack animation
             float duration = cloud.PlayAnimation(ownerCreature, "cast").total;
-            AudioHelper.PlayRandomFire();
+            AudioHelper.PlayRandomMagic();
             // Optional: delay to sync hit roughly mid animation
             if (duration > 0f)
                 await Task.Delay((int)(duration * 0.2f * 1000f));

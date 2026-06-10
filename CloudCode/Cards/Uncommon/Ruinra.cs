@@ -15,7 +15,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Cloud.CloudCode.Cards.Uncommon;
 
 public class Ruinra() : CloudCard(1, CardType.Attack,
-    CardRarity.Uncommon, TargetType.AnyEnemy), IATBCard, IMagicCard
+    CardRarity.Uncommon, TargetType.AllEnemies), IATBCard, IMagicCard
 {
     public int ATBCost => 1;
     protected override IEnumerable<DynamicVar> CanonicalVars => 
@@ -41,7 +41,7 @@ public class Ruinra() : CloudCard(1, CardType.Attack,
         {
             // attack animation
             float duration = cloud.PlayAnimation(ownerCreature, "cast").total;
-            AudioHelper.PlayRandomFire();
+            AudioHelper.PlayRandomMagic();
             // Optional: delay to sync hit roughly mid animation
             if (duration > 0f)
                 await Task.Delay((int)(duration * 0.2f * 1000f));

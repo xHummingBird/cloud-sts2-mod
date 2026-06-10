@@ -1,3 +1,10 @@
 {
-  
+  "CLOUD_ATB.title": "ATB",
+  "CLOUD_ATB.description": "Represents combat momentum.\n\nGain ATB from attacks and effects. \nAttack-based gain is limited by your Max ATB, but other effects may exceed this limit.\nSpend ATB to use powerful cards.\n\nYou gain 1 ATB at the start of your turn if you have 0 ATB.",
+
+  "CLOUD_LIMIT.title": "Limit",
+  "CLOUD_LIMIT.description": "Builds as you fight. \n\nGain 3 Limit when attacking or blocking attacks.\nGain 3 Limit at the start of your turn.\nGain Limit equal to damage taken. \n\nAt full Limit, powerful [gold]Limit Break[/gold] attacks become available. \n\nLimit is consumed when Limit Break is used.",
+
+  "CLOUD_SUMMON.title": "Summon",
+  "CLOUD_SUMMON.description": "Builds as you fight. \n\nGain 1 Summon when attacking.\nGain 4 Summon when using Magic cards.\n\nAt full Summon, choose a [gold]Summon[/gold] to call forth.\n\nSummons deal high damage grant powerful bonuses for 3 turns.\n\nSummon is consumed after use."
 }

@@ -55,7 +55,7 @@ public class UltimaWeapon() : CloudRelic
 
         if (card.Type == CardType.Attack || isMagic)
         {
-            SummonManager.GainSummon(player, isMagic ? 4 : 1);
+            SummonManager.GainSummon(player, isMagic ? 5 : 1);
         }
         
         await Owner.Creature.CheckLimitReady(
@@ -75,10 +75,10 @@ public class UltimaWeapon() : CloudRelic
         if (combatState.RoundNumber <= 1)
         {
             ATBManager.Reset(Owner.Creature.Player);
-            Flash();
-            ATBManager.GainATBDirect(Owner.Creature.Player, 1);
         }
-        ATBManager.ResetGainThisTurn(Owner);
+        if (ATBManager.GetATB(Owner.Creature.Player) == 0)
+            ATBManager.GainATBDirect(Owner.Creature.Player, 1);
+        // ATBManager.ResetGainThisTurn(Owner);
         SfxCmd.Play("event:/sfx/ui/relic_activate_general");
         if (base.Owner.HasPower<SedatePower>())
             LimitManager.GainLimit(Owner, 3);

@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Cloud.CloudCode.Cards.Uncommon;
 
 public class ElementalBoost() : CloudCard(1, CardType.Power,
-    CardRarity.Uncommon, TargetType.AnyEnemy), IATBCard
+    CardRarity.Uncommon, TargetType.Self), IATBCard
 {
     public int ATBCost => 2;
     protected override IEnumerable<DynamicVar> CanonicalVars => 
@@ -38,5 +38,9 @@ public class ElementalBoost() : CloudCard(1, CardType.Power,
                 await Task.Delay((int)(duration * 0.2f * 1000f));
         }
         await PowerCmd.Apply<MagicDamageUpPower>(choiceContext, base.Owner.Creature, DynamicVars["MagicDamageUpPower"].BaseValue, base.Owner.Creature, this);
+    }
+    protected override void OnUpgrade()
+    {
+        DynamicVars["MagicDamageUpPower"].UpgradeValueBy(10m);
     }
 }

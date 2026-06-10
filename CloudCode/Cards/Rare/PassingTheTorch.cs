@@ -19,9 +19,9 @@ public class PassingTheTorch() : CloudCard(3, CardType.Power,
     {
         var ownerCreature = Owner?.Creature;
         if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
-            {
-                SfxCmd.Play("res://Cloud/sounds/victory_2.wav");
-            }
+        {
+            SfxCmd.Play("res://Cloud/sounds/victory_2.wav");
+        }
         await PowerCmd.Apply<PassingTheTorchPower>(choiceContext, base.Owner.Creature, base.DynamicVars["PassingTheTorchPower"].BaseValue, base.Owner.Creature, this);
     }
 

@@ -8,11 +8,11 @@ namespace Cloud.CloudCode.Powers;
 
 public class AtbNextTurnPower : CloudPower
 {
-    public override PowerType Type => PowerType.Debuff;
+    public override PowerType Type => PowerType.Buff;
 
     public override PowerStackType StackType => PowerStackType.Counter;
     
-    public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants,
+    public override async Task AfterSideTurnStartLate(CombatSide side, IReadOnlyList<Creature> participants,
         ICombatState combatState)
     {
         if (side != base.Owner.Side)

@@ -5,5 +5,21 @@
 
   "CLOUD-ULTIMA_WEAPON.description": "At the start of your turn, gain 7 Limit and 1 ATB. Upgrade Limit Break.",
   "CLOUD-ULTIMA_WEAPON.flavor": "",
-  "CLOUD-ULTIMA_WEAPON.title": "Ultima Weapon"
+  "CLOUD-ULTIMA_WEAPON.title": "Ultima Weapon",
+
+  "CLOUD-FUSION_SWORD.description": "Obtain [gold]Omnislash V5[/gold]. Start combat with 3 [gold]ATB[/gold].",
+  "CLOUD-FUSION_SWORD.flavor": "",
+  "CLOUD-FUSION_SWORD.title": "Fusion Sword",
+
+  "CLOUD-ODIN_MATERIA.description": "Obtain [gold]Zantetsuken[/gold]. You can now summon [gold]Odin[/gold]. Start combat with [gold]Punisher Mode[/gold].",
+  "CLOUD-ODIN_MATERIA.flavor": "",
+  "CLOUD-ODIN_MATERIA.title": "Odin Materia",
+
+  "CLOUD-RUNE_BLADE.description": "Increase [gold]Magic[/gold] damage by [blue]20%[/gold] while in [gold]Operator Mode[/gold].",
+  "CLOUD-RUNE_BLADE.flavor": "",
+  "CLOUD-RUNE_BLADE.title": "Rune Blade",
+
+  "CLOUD-BAHAMUT_MATERIA.description": "You can now summon [gold]Bahamut[/gold]. Gain 20 [gold]Summon[/gold] at the start of combat.",
+  "CLOUD-BAHAMUT_MATERIA.flavor": "",
+  "CLOUD-BAHAMUT_MATERIA.title": "Bahamut Materia"
 }

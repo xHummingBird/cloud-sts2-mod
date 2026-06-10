@@ -37,7 +37,7 @@ public class Disorder() : CloudCard(2, CardType.Attack,
             {
                 await Task.Delay((int)(0.2f * 1000f));
                 SfxCmd.Play("res://Cloud/sfx/sword_swing.wav");
-                await Task.Delay((int)(0.7f * 1000f));
+                await Task.Delay((int)(0.45f * 1000f));
             }
         }
         bool shouldTriggerFatal = play.Target.Powers.All((PowerModel p) => p.ShouldOwnerDeathTriggerFatal());

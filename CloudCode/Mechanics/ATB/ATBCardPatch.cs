@@ -1,5 +1,6 @@
 ﻿using Godot;
 using HarmonyLib;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 
@@ -91,9 +92,12 @@ public static class ATBCardUi
             // Ensure BBCode is on (in case you forgot in the scene)
             label.BbcodeEnabled = true;
             
+            bool inCombat = CombatManager.Instance?.IsInProgress ?? false;
+            
             bool hasEnoughATB = !model.IsMutable 
+                                || !inCombat
                                 || ATBManager.GetATB(model.Owner) >= atbCard.ATBCost;
-
+            
             var color = hasEnoughATB ? Colors.White : Colors.Red;
             label.AddThemeColorOverride("default_color", color);
 

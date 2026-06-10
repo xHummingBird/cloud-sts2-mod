@@ -36,11 +36,11 @@ public class ATBManager
         return data;
     }
     
-    public static void ResetGainThisTurn(Player player)
-    {
-        var data = GetData(player);
-        data.GainThisTurn = 0;
-    }
+    // public static void ResetGainThisTurn(Player player)
+    // {
+    //     var data = GetData(player);
+    //     data.GainThisTurn = 0;
+    // }
 
     
     public static int GetMaxATB(Player player)
@@ -106,13 +106,11 @@ public class ATBManager
         int actualGain = final - current;
         if (actualGain <= 0)
             return;
-
-        data.GainThisTurn += actualGain;
-
+        
         SetATB(player, final);
     }
     
-    public static void GainATBDirect(Player? player, int amount)
+    public static void GainATBDirect(Player player, int amount)
     {
         int current = GetATB(player);
         SetATB(player, current + amount);

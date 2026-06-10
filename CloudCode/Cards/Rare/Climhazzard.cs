@@ -46,7 +46,7 @@ public class Climhazzard() : CloudCard(2, CardType.Attack,
                 
                 await Task.Delay((int)(0.65f * 1000f));
                 SfxCmd.Play("res://Cloud/sfx/sword_swing_heavy.wav");
-                SfxCmd.Play("res://Cloud/sounds/owarida.wav");
+                SfxCmd.Play("res://Cloud/sounds/kochida.wav");
                 CommonActions.CardAttack(this, play.Target)
                     .WithHitFx("vfx/vfx_attack_slash",
                         "res://Cloud/sfx/omnislash_finalhit.wav")

@@ -42,7 +42,6 @@ public class Counterstance() : CloudCard(2,
             }
             await PowerCmd.Apply<PunisherModePower>(choiceContext, base.Owner.Creature, base.DynamicVars["PunisherModePower"].BaseValue, base.Owner.Creature, this);
         }
-        AudioHelper.PlayRandomDefend();
         await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, cardPlay);
         await PowerCmd.Apply<CounterStancePower>(choiceContext, base.Owner.Creature, 1m, base.Owner.Creature, this);
     }

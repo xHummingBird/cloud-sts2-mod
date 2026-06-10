@@ -11,7 +11,11 @@ namespace Cloud.CloudCode.Cards.Common;
 public class SpinningSlash() : CloudCard(1, CardType.Attack,
     CardRarity.Common, TargetType.AllEnemies)
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(8, ValueProp.Move)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => 
+        [
+            new DamageVar(6, ValueProp.Move),
+            new BlockVar(6, ValueProp.Move)
+        ];
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
@@ -37,6 +41,7 @@ public class SpinningSlash() : CloudCard(1, CardType.Attack,
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(3);
+        DynamicVars.Damage.UpgradeValueBy(2);
+        DynamicVars.Block.UpgradeValueBy(2);
     }
 }

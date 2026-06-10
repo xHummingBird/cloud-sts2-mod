@@ -1,5 +1,6 @@
 ﻿using Cloud.CloudCode.Extensions;
 using Cloud.CloudCode.Mechanics.ATB;
+using Cloud.CloudCode.Mechanics.Summon;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -9,7 +10,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Cloud.CloudCode.Cards.Uncommon;
 
 public class Manaward() : CloudCard(1, CardType.Skill,
-    CardRarity.Uncommon, TargetType.Self), IATBCard
+    CardRarity.Uncommon, TargetType.Self), IATBCard, IMagicCard
 {
     public int ATBCost => 1;
     

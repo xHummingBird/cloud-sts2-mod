@@ -9,12 +9,17 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace Cloud.CloudCode.Cards.Rare;
 
-public class AdrenalineSurge() : CloudCard(2, CardType.Power,
+public class AdrenalineSurge() : CloudCard(2, CardType.Skill,
     CardRarity.Rare, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => 
     [
         new PowerVar<LimitBreakPower>(30m)
+    ];
+    
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+    [
+        CardKeyword.Exhaust
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>

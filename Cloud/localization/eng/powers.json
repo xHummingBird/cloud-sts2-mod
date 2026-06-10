@@ -57,5 +57,25 @@
 
   "CLOUD-ATB_NEXT_TURN_POWER.description": "Gain ATB at the start of next turn.",
   "CLOUD-ATB_NEXT_TURN_POWER.smartDescription": "Gain ATB at the start of next turn.",
-  "CLOUD-ATB_NEXT_TURN_POWER.title": "ATB Next Turn"
+  "CLOUD-ATB_NEXT_TURN_POWER.title": "ATB Next Turn",
+
+  "CLOUD-MAGIC_SHIELD_POWER.description": "Gain Block whenever you play [gold]Magic[/gold] this turn.",
+  "CLOUD-MAGIC_SHIELD_POWER.smartDescription": "Gain Block whenever you play [gold]Magic[/gold] this turn.",
+  "CLOUD-MAGIC_SHIELD_POWER.title": "Magic Shield",
+
+  "CLOUD-W_MAGIC_POWER.description": "The first magic card you play each turn is played an extra time.",
+  "CLOUD-W_MAGIC_POWER.smartDescription": "The first {Amount:plural:card you play each turn is|[blue]{}[/blue] cards you play each turn are} played an extra time.",
+  "CLOUD-W_MAGIC_POWER.title": "Dualcast",
+
+  "CLOUD-SUMMON_UP_POWER.description": "Double [gold]Summon[/gold] gained from attacks and [gold]Magic[/gold] cards.",
+  "CLOUD-SUMMON_UP_POWER.smartDescription": "Double [gold]Summon[/gold] gained from attacks and [gold]Magic[/gold] cards.",
+  "CLOUD-SUMMON_UP_POWER.title": "Summon Up",
+
+  "CLOUD-SUMMON_POWER.description": "Summon powerful creatures to assist you in combat.",
+  "CLOUD-SUMMON_POWER.smartDescription": "Summon powerful creatures to assist you in combat.",
+  "CLOUD-SUMMON_POWER.title": "Summon",
+
+  "CLOUD-MAGIC_RESIST_DOWN_POWER.description": "Take [gold]50%[/gold] more [gold]Magic[/gold] damage.",
+  "CLOUD-MAGIC_RESIST_DOWN_POWER.smartDescription": "Take [gold]50%[/gold] more [gold]Magic[/gold] damage.",
+  "CLOUD-MAGIC_RESIST_DOWN_POWER.title": "Magic Resist Down"
 }

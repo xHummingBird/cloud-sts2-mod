@@ -1,9 +1,12 @@
-﻿using Godot;
+﻿using Cloud.CloudCode.Extensions;
+using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Nodes.Combat;
+using MegaCrit.Sts2.Core.Nodes.HoverTips;
 
 namespace Cloud.CloudCode.Mechanics.ATB;
 
@@ -19,13 +22,14 @@ public partial class ATBDisplayOverlay : Control
     
     private RichTextLabel _label;
     private Player _player;
+    private IHoverTip _hoverTip;
     
     public override void _Ready()
     {
         Instance = this;
         Name = "ATBDisplayOverlay";
 
-        MouseFilter = MouseFilterEnum.Ignore;
+        MouseFilter = MouseFilterEnum.Pass;
 
         // ✅ Defer setup (important for stability)
         CallDeferred(nameof(Setup));
@@ -44,7 +48,7 @@ public partial class ATBDisplayOverlay : Control
         
         AddChild(_atbDisplay);
 
-        _atbDisplay.MouseFilter = MouseFilterEnum.Stop;
+        _atbDisplay.MouseFilter = MouseFilterEnum.Ignore;
         _atbDisplay.SetAnchorsPreset(LayoutPreset.BottomLeft);
         _atbDisplay.Position = new Vector2(-50, -40);
         _atbDisplay.Visible = true;
@@ -69,7 +73,20 @@ public partial class ATBDisplayOverlay : Control
 
         _label.AddThemeColorOverride("font_outline_color", new Color(0.2f, 0.2f, 0.2f));
         _label.AddThemeConstantOverride("outline_size", 14);
-        _label.AddThemeFontSizeOverride("normal_font_size", 28);    
+        _label.AddThemeFontSizeOverride("normal_font_size", 28);
+        
+        _hoverTip = CloudStaticHoverTip.ATB;
+        
+        
+        _label.MouseFilter = MouseFilterEnum.Pass;
+
+        _label.Connect(SignalName.MouseEntered, Callable.From(OnHovered));
+        _label.Connect(SignalName.MouseExited, Callable.From(OnUnhovered));
+
+
+        MouseFilter = MouseFilterEnum.Pass;
+        Connect(SignalName.MouseEntered, Callable.From(OnHovered));
+        Connect(SignalName.MouseExited, Callable.From(OnUnhovered));
         
         // ✅ Hook player
         var state = CombatManager.Instance.DebugOnlyGetState();
@@ -123,6 +140,22 @@ public partial class ATBDisplayOverlay : Control
             .SetEase(Tween.EaseType.Out);
 
     }
+    
+    
+    private void OnHovered()
+    {
+        NHoverTipSet.Clear();
+        
+        var tip = NHoverTipSet.CreateAndShow(this, _hoverTip);
+        tip.GlobalPosition = GlobalPosition + new Vector2(-75f, -475f);
+        tip.MouseFilter = MouseFilterEnum.Ignore;
+    }
+
+    private void OnUnhovered()
+    {
+        NHoverTipSet.Remove(this);
+    }
+
 
 
     private void OnATBChanged(int value)

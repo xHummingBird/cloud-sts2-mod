@@ -18,8 +18,8 @@ public class Thundaga() : CloudCard(2, CardType.Attack,
     public int ATBCost => 1;
     protected override IEnumerable<DynamicVar> CanonicalVars => 
     [
-        new DamageVar(7m, ValueProp.Move),
-        new RepeatVar(3)
+        new DamageVar(5m, ValueProp.Move),
+        new RepeatVar(4)
     ];
 
     protected override async Task OnPlay(
@@ -35,7 +35,7 @@ public class Thundaga() : CloudCard(2, CardType.Attack,
             AudioHelper.PlayRandomThunder();
             // Optional: delay to sync hit roughly mid animation
             if (duration > 0f)
-                await Task.Delay((int)(duration * 0.2f * 1000f));
+                await Task.Delay((int)(0.2f * 1000f));
         }
         
         await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).WithHitCount(base.DynamicVars.Repeat.IntValue).FromCard(this)
@@ -46,6 +46,6 @@ public class Thundaga() : CloudCard(2, CardType.Attack,
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(2m);
+        DynamicVars.Damage.UpgradeValueBy(1m);
     }
 }

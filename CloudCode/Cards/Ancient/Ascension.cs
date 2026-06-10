@@ -97,7 +97,6 @@ public class Ascension() : CloudCard(0, CardType.Attack,
                     DamageCmd.Attack(base.DynamicVars.Damage.BaseValue*2).FromCard(this).Targeting(play.Target)
                         .WithHitFx("vfx/vfx_attack_slash") // swap for bigger VFX later
                         .Execute(choiceContext);
-                    SfxCmd.Play("res://Cloud/sounds/warukuomouna.wav");
                     await Task.Delay((int)(1.5f * 1000f));
                     await cloud.Retreat(ownerCreature);
                 }

@@ -16,7 +16,7 @@ public class QuickHit()  : CloudCard(0, CardType.Attack,
 {
     public int ATBCost => 1;
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(5m, ValueProp.Move),
+        new DamageVar(7m, ValueProp.Move),
     ];
 
     protected override async Task OnPlay(

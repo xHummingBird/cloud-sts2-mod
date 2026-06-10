@@ -8,6 +8,8 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes;
+using MegaCrit.Sts2.Core.Nodes.Vfx.Utilities;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Cloud.CloudCode.Cards.Ancient;
@@ -57,12 +59,27 @@ public class OmnislashVerFive() : CloudCard(2, CardType.Attack,
 
         if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
         {
-            SfxCmd.Play("res://Cloud/sounds/limit_break.wav");
+            var combat = CombatState ?? Owner.Creature.CombatState;
+
+            bool noOtherEnemies =
+                !combat.Enemies.Any(e => e != play.Target && !e.IsDead);
+
+            decimal totalDamage = DynamicVars.CalculatedDamage.PreviewValue * 6;
+            decimal damage = DynamicVars.CalculatedDamage.PreviewValue;
+
+            bool specialAnimation =
+                noOtherEnemies && totalDamage >= play.Target.CurrentHp;
+
+            if (specialAnimation)
+            {
+                SfxCmd.Play("res://Cloud/sounds/omnislashver5_start.wav");
+                damage = 0;
+            }
+            else SfxCmd.Play("res://Cloud/sounds/omnislashver5_1.wav");
             SfxCmd.Play("res://Cloud/sfx/limit_break_thunder.wav");
             cloud.PlayAnimation(ownerCreature, "limit_break_1");
             await Task.Delay((int)(1.2f * 1000f));
             await cloud.DashTo(ownerCreature, play.Target, distance: 550f);
-            SfxCmd.Play("res://Cloud/sounds/asobihaowarida.wav");
             float duration = cloud.PlayAnimation(ownerCreature, "omnislash_ver_5").total;
             if (duration > 0f)
             {
@@ -91,7 +108,7 @@ public class OmnislashVerFive() : CloudCard(2, CardType.Attack,
 
                     // ✅ Sword SFX
                     
-                    DamageCmd.Attack(base.DynamicVars.CalculatedDamage).FromCard(this).Targeting(play.Target)
+                    DamageCmd.Attack(damage).FromCard(this).Targeting(play.Target)
                         .WithHitFx("vfx/vfx_attack_slash") // swap for bigger VFX later
                         .Execute(choiceContext);
                 }
@@ -120,14 +137,26 @@ public class OmnislashVerFive() : CloudCard(2, CardType.Attack,
                      // or dedicated final voice
                     // ✅ Final hit SFX
                     SfxCmd.Play("res://Cloud/sfx/omnislash_finalhit.wav");
-
-                    DamageCmd.Attack(base.DynamicVars.CalculatedDamage).FromCard(this).Targeting(play.Target)
-                        .WithHitFx("vfx/vfx_attack_slash") // swap for bigger VFX later
-                        .Execute(choiceContext);
-                    await Task.Delay((int)(0.2f * 1000f));
-                    SfxCmd.Play("res://Cloud/sounds/warukuomouna.wav");
-                    await Task.Delay((int)(1.03f * 1000f));
-                    await cloud.Retreat(ownerCreature);
+                    cloud.DoScreenShake(ShakeStrength.Strong, ShakeDuration.Normal);
+                    if (specialAnimation)
+                    {
+                        await Task.Delay((int)(0.2f * 1000f));
+                        SfxCmd.Play("res://Cloud/sounds/omnislashver5_end.wav");
+                        await Task.Delay((int)(1.03f * 1000f));
+                        await DamageCmd.Attack(totalDamage).FromCard(this).Targeting(play.Target)
+                            .WithHitFx("vfx/vfx_attack_slash") // swap for bigger VFX later
+                            .Execute(choiceContext);
+                    }
+                    else
+                    {
+                        DamageCmd.Attack(base.DynamicVars.CalculatedDamage).FromCard(this).Targeting(play.Target)
+                            .WithHitFx("vfx/vfx_attack_slash") // swap for bigger VFX later
+                            .Execute(choiceContext);
+                        await Task.Delay((int)(0.2f * 1000f));
+                        SfxCmd.Play("res://Cloud/sounds/warukuomouna.wav");
+                        await Task.Delay((int)(1.03f * 1000f));
+                        await cloud.Retreat(ownerCreature);
+                    }
                 }
 
             }

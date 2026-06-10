@@ -12,7 +12,6 @@ namespace Cloud.CloudCode.Cards.Common;
 public class GotYourBack() : CloudCard(2, CardType.Skill,
     CardRarity.Common, TargetType.Self)
 {
-    protected override HashSet<CardTag> CanonicalTags => [CardTag.Defend];
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new BlockVar(12, ValueProp.Move),
         new PowerVar<LimitBreakPower>(5)
@@ -33,6 +32,7 @@ public class GotYourBack() : CloudCard(2, CardType.Skill,
     }
     protected override void OnUpgrade()
     {
-        DynamicVars["Block"].UpgradeValueBy(4m);
+        DynamicVars["Block"].UpgradeValueBy(3m);
+        DynamicVars["LimitBreakPower"].UpgradeValueBy(3m);
     }
 }
