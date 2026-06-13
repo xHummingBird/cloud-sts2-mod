@@ -13,8 +13,8 @@ public class SpinningSlash() : CloudCard(1, CardType.Attack,
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => 
         [
-            new DamageVar(6, ValueProp.Move),
-            new BlockVar(6, ValueProp.Move)
+            new DamageVar(4, ValueProp.Move),
+            new BlockVar(4, ValueProp.Move)
         ];
 
     protected override async Task OnPlay(
@@ -37,6 +37,7 @@ public class SpinningSlash() : CloudCard(1, CardType.Attack,
         await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).TargetingAllOpponents(base.CombatState)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
+        await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, play);
     }
 
     protected override void OnUpgrade()

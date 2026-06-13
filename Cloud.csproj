@@ -45,6 +45,7 @@
         <Compile Remove="materials/**"/>
         <Compile Remove="shaders/**"/>
         <Compile Remove="images/**"/>
+        <Compile Include="Cloud\images\charui\CharacterBackground.cs" />
         <EmbeddedResource Remove="Cloud/**"/>
         <EmbeddedResource Remove="materials/**"/>
         <EmbeddedResource Remove="shaders/**"/>

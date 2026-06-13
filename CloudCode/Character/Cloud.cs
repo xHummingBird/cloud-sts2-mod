@@ -21,6 +21,7 @@ using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.ValueProps;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -29,6 +30,7 @@ using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Relics;
 using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Events.Custom;
+using MegaCrit.Sts2.Core.Nodes.Screens.CharacterSelect;
 using MegaCrit.Sts2.Core.Nodes.Vfx.Utilities;
 using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.Runs;
@@ -64,7 +66,11 @@ public class Cloud : PlaceholderCharacterModel
 		ModelDb.Card<ModeShift>(),
 		
 		// for testing
-		ModelDb.Card<Zantetsuken>(),
+		ModelDb.Card<Blizzara>(),
+		ModelDb.Card<BlizzagaBurst>(),
+		ModelDb.Card<Blizzaga>(),
+		ModelDb.Card<Ascension>(),
+		ModelDb.Card<CrossSlashKai>()
 	];
 
 	public override IReadOnlyList<RelicModel> StartingRelics =>
@@ -104,12 +110,17 @@ public class Cloud : PlaceholderCharacterModel
 	}
 	private const string CustomVisualScenePath = "res://Cloud/scenes/cloud.tscn";
 	public override string CustomRestSiteAnimPath => "res://Cloud/scenes/Cloud_rest_site.tscn";
+	public override string CustomCharacterSelectBg => "char_selection_bg_cloud.tscn".CharacterUiPath();
 	public override string CustomMerchantAnimPath => "res://Cloud/scenes/Cloud_merchant.tscn";
 	public override string CustomIconTexturePath => "character_icon_cloud.png".CharacterUiPath();
 	public override string CustomCharacterSelectIconPath => "char_select_cloud.png".CharacterUiPath();
 	public override string CustomCharacterSelectLockedIconPath => "char_select_char_name_locked.png".CharacterUiPath();
-	public override string CustomMapMarkerPath => "map_marker_char_name.png".CharacterUiPath();
+	public override string CustomMapMarkerPath => "map_marker_cloud.png".CharacterUiPath();
+	public override string CharacterSelectSfx => "res://Cloud/sfx/limit_max.wav";
+	public override string CharacterTransitionSfx => "res://Cloud/sounds/not_interested.wav";
 
+	public override string CustomCharacterSelectTransitionPath => "res://Cloud/images/transition/cloud_transition_mat.tres";
+	
 // =========================================================
 	//  VISUALS: Load your sprite-based .tscn (Visuals + AnimationPlayer + Bounds)
 	// =========================================================
@@ -322,16 +333,11 @@ public class Cloud : PlaceholderCharacterModel
 		
 		PlayAnimation(player, "idle");
 	}
-
-
-
-
-
-
+	
 	// =========================================================
 	//  HARMONY PATCHES: minimal trigger routing & death duration
 	// =========================================================
-
+	
 	[HarmonyPatch(typeof(NCreature), nameof(NCreature.SetAnimationTrigger))]
 	public static class NCreatureSetTriggerPatch
 	{
@@ -405,7 +411,12 @@ public class Cloud : PlaceholderCharacterModel
 			
 			if (animPlayer.HasAnimation("victory_before"))
 			{
-				AudioHelper.PlayRandomVictory();
+				
+				if (animPlayer.CurrentAnimation == "omnislash_ver_5")
+				{
+					SfxCmd.Play("res://Cloud/sounds/omnislashver5_end.wav"); // your custom sound
+				}
+				else AudioHelper.PlayRandomVictory();
 				animPlayer.Play("victory_before");
 
 				// Then loop victory

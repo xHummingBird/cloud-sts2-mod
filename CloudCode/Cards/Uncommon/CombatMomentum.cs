@@ -28,6 +28,7 @@ public class CombatMomentum() : CloudCard(2, CardType.Power,
     protected override void OnUpgrade()
     {
         DynamicVars["CombatMomentumPower"].UpgradeValueBy(1);
+        DynamicVars.Cards.UpgradeValueBy(1);
     }
 }
     

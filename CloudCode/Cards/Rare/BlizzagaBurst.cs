@@ -36,28 +36,21 @@ public class BlizzagaBurst() : CloudCard(2, CardType.Attack,
 
         if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
         {
-            // attack animation
             float duration = cloud.PlayAnimation(ownerCreature, "cast").total;
             AudioHelper.PlayRandomBlizzard();
-            // Optional: delay to sync hit roughly mid animation
+            var targets = base.CombatState.HittableEnemies;
             if (duration > 0f)
-                await Task.Delay((int)(duration * 0.2f * 1000f));
-        }
-        
-        AttackCommand attackCommand = await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).TargetingAllOpponents(base.CombatState)
-            .BeforeDamage(async delegate
-            {
-                var targets = base.CombatState.HittableEnemies;
                 foreach (var target in targets)
                 {
-                    var vfx = NGroundFireVfx.Create(target, VfxColor.Blue);
-                    if (vfx != null)
-                    {
-                        NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(vfx);
-                        SfxCmd.Play("res://Cloud/sfx/ice.wav");
-                    }
+                    cloud.PlayVfxOnTarget(
+                        target,
+                        "res://Cloud/scenes/ice_vfx.tscn",
+                        "ice_1"
+                    );
                 }
-            })
+            await Task.Delay((int)(0.4f * 1000f));
+        }
+        AttackCommand attackCommand = await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).TargetingAllOpponents(base.CombatState)
             .Execute(choiceContext);
         await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, play);
         if (shouldTriggerFatal && attackCommand.Results.SelectMany((List<DamageResult> r) => r)

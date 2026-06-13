@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using Cloud.CloudCode.Extensions;
 using Cloud.CloudCode.Mechanics.ATB;
 using Godot;
 using MegaCrit.Sts2.Core.Commands;
@@ -11,6 +12,7 @@ using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.Nodes.Vfx.Utilities;
+using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Cloud.CloudCode.Cards.Ancient;
@@ -35,6 +37,7 @@ public class Zantetsuken() : CloudCard(2, CardType.Attack,
         
         if (ownerCreature != null && cloud != null)
         {
+            CinematicAttack.Start(RunManager.Instance.NetService.NetId);
             SfxCmd.Play("res://Cloud/sounds/zantetsuken.wav");
             await cloud.DashTo(ownerCreature, play.Target, distance: 300f);
             cloud.PlayVfxOnTarget(
@@ -47,18 +50,21 @@ public class Zantetsuken() : CloudCard(2, CardType.Attack,
             {
                 await Task.Delay((int)(0.8f * 1000f));
                 cloud.DashPast(ownerCreature, play.Target, null, 0.01f, 300f);
-                NGame.Instance.ScreenShake(ShakeStrength.Medium, ShakeDuration.Short);
+                NGame.Instance.ScreenShake(ShakeStrength.TooMuch, ShakeDuration.Short);
                 DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).Targeting(play.Target)
                     .Execute(choiceContext);
                 await Task.Delay((int)(0.6 * 1000f));
-                if (play.Target.CurrentHp * 100 <= play.Target.MaxHp * threshold)
-                    await CreatureCmd.Kill(play.Target);
+                if (play.Target != null) {
+                    if (play.Target.CurrentHp * 100 <= play.Target.MaxHp * threshold)
+                        await CreatureCmd.Kill(play.Target);
+                }
                 await cloud.Retreat(ownerCreature);
             }
+            CinematicAttack.End(RunManager.Instance.NetService.NetId);
         }
         else
         {
-            DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).Targeting(play.Target)
+            await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).Targeting(play.Target)
                 .Execute(choiceContext);
             if (play.Target.CurrentHp * 100 <= play.Target.MaxHp * threshold)
                 DamageCmd.Attack(play.Target.CurrentHp).FromCard(this).Targeting(play.Target)

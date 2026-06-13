@@ -1,4 +1,4 @@
-[gd_scene load_steps=494 format=3 uid="uid://dtmgw8fio5qx3"]
+[gd_scene load_steps=507 format=3 uid="uid://dtmgw8fio5qx3"]
 
 [ext_resource type="Texture2D" uid="uid://whyn86ifhd86" path="res://Cloud/images/spritesheets/idle_punisher/idle_punisher_00.png" id="2_6dhgq"]
 [ext_resource type="Texture2D" uid="uid://blo8udqjcd7bg" path="res://Cloud/images/spritesheets/idle_operator/idle-operator-01.png" id="3_0x8ff"]
@@ -445,6 +445,19 @@
 [ext_resource type="Texture2D" uid="uid://5erg5yjrhf6p" path="res://Cloud/images/spritesheets/ifrit/ifrit (8).png" id="443_jggtn"]
 [ext_resource type="Texture2D" uid="uid://dq0gh1tmqv1i0" path="res://Cloud/images/spritesheets/ifrit/ifrit (9).png" id="444_trf1g"]
 [ext_resource type="Texture2D" uid="uid://cjquonaaha0cs" path="res://Cloud/images/spritesheets/ifrit/ifrit (10).png" id="445_8brth"]
+[ext_resource type="Texture2D" uid="uid://bj1qkv53rafh5" path="res://Cloud/images/spritesheets/shiva/08_shiva_spawn.png" id="446_663hw"]
+[ext_resource type="Texture2D" uid="uid://doyqyyo3wne08" path="res://Cloud/images/spritesheets/shiva/07_shiva_spawn.png" id="447_ocdpn"]
+[ext_resource type="Texture2D" uid="uid://cikvlrjdkpyfy" path="res://Cloud/images/spritesheets/shiva/06_shiva_spawn.png" id="448_jggtn"]
+[ext_resource type="Texture2D" uid="uid://c61xwy4k5nlll" path="res://Cloud/images/spritesheets/shiva/05_shiva_spawn.png" id="449_trf1g"]
+[ext_resource type="Texture2D" uid="uid://njq864m187wm" path="res://Cloud/images/spritesheets/shiva/04_shiva_spawn.png" id="450_8brth"]
+[ext_resource type="Texture2D" uid="uid://bhev1pa3qhbbq" path="res://Cloud/images/spritesheets/shiva/03_shiva_spawn.png" id="451_8y5xc"]
+[ext_resource type="Texture2D" uid="uid://dx0r03rf5hsmg" path="res://Cloud/images/spritesheets/shiva/02_shiva_spawn.png" id="452_670nx"]
+[ext_resource type="Texture2D" uid="uid://xywfo5qi25r6" path="res://Cloud/images/spritesheets/shiva/01_shiva_spawn.png" id="453_8qqhc"]
+[ext_resource type="Texture2D" uid="uid://b1nksh4bsvb2d" path="res://Cloud/images/spritesheets/shiva/00_shiva_spawn.png" id="454_skbr3"]
+[ext_resource type="Texture2D" uid="uid://cqh4ryuohughk" path="res://Cloud/images/spritesheets/shiva/cast1/00_shiva_cast1.png" id="455_8brth"]
+[ext_resource type="Texture2D" uid="uid://b00kvrhu5ogx4" path="res://Cloud/images/spritesheets/shiva/cast1/01_shiva_cast1.png" id="456_8y5xc"]
+[ext_resource type="Texture2D" uid="uid://tg5o7ih26d5i" path="res://Cloud/images/spritesheets/shiva/cast1/02_shiva_cast1.png" id="457_670nx"]
+[ext_resource type="Texture2D" uid="uid://cp3aixucsnvtl" path="res://Cloud/images/spritesheets/shiva/cast1/03_shiva_cast1.png" id="458_8qqhc"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_g2fe4"]
 
@@ -10947,9 +10960,6 @@ tracks/22/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_w7k7v"]
-resource_name = "shiva"
-
 [sub_resource type="Animation" id="Animation_ksbr7"]
 resource_name = "sonic_impact"
 length = 0.6333
@@ -12443,6 +12453,30 @@ tracks/21/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("Visuals/summons:visible")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("Visuals/omnislashv5:visible")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_37v2k"]
 resource_name = "wind_up_slash"
@@ -13004,6 +13038,310 @@ tracks/23/keys = {
 "values": [Vector2(-27, -173)]
 }
 
+[sub_resource type="Animation" id="Animation_l7fmc"]
+resource_name = "shiva"
+length = 3.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/cast_operator:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.26666668, 0.4, 0.53333336, 0.6666667, 0.8000001, 0.9333334, 1.0666667, 1.2, 1.3333334, 1.4666667, 1.6, 1.7333333, 1.8666667, 2, 2.1333334, 2.2666667, 2.4, 2.5333335, 2.6666665, 2.7999997, 2.9333332, 3.0666666),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("77_7tt6a"), ExtResource("78_ggofc"), ExtResource("79_lwm57"), ExtResource("80_suqp0"), ExtResource("77_7tt6a"), ExtResource("78_ggofc"), ExtResource("79_lwm57"), ExtResource("80_suqp0"), ExtResource("77_7tt6a"), ExtResource("78_ggofc"), ExtResource("79_lwm57"), ExtResource("80_suqp0"), ExtResource("77_7tt6a"), ExtResource("78_ggofc"), ExtResource("79_lwm57"), ExtResource("80_suqp0"), ExtResource("77_7tt6a"), ExtResource("78_ggofc"), ExtResource("79_lwm57"), ExtResource("80_suqp0"), ExtResource("77_7tt6a"), ExtResource("78_ggofc"), ExtResource("79_lwm57"), ExtResource("80_suqp0")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/cast_operator:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/summons:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.19999999, 0.26666668, 0.4, 0.53333336, 0.6666667, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8000001, 1.9000001, 2.0000002, 2.1, 2.2333333, 2.3666668, 2.5, 2.6333334, 2.7, 2.7666667, 2.8333333, 2.9, 2.9666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("446_663hw"), ExtResource("447_ocdpn"), ExtResource("448_jggtn"), ExtResource("449_trf1g"), ExtResource("450_8brth"), ExtResource("451_8y5xc"), ExtResource("452_670nx"), ExtResource("453_8qqhc"), ExtResource("454_skbr3"), ExtResource("455_8brth"), ExtResource("456_8y5xc"), ExtResource("457_670nx"), ExtResource("458_8qqhc"), ExtResource("455_8brth"), ExtResource("456_8y5xc"), ExtResource("457_670nx"), ExtResource("458_8qqhc"), ExtResource("455_8brth"), ExtResource("456_8y5xc"), ExtResource("457_670nx"), ExtResource("458_8qqhc"), ExtResource("455_8brth"), ExtResource("454_skbr3"), ExtResource("453_8qqhc"), ExtResource("452_670nx"), ExtResource("451_8y5xc"), ExtResource("450_8brth"), ExtResource("449_trf1g"), ExtResource("448_jggtn"), ExtResource("447_ocdpn"), ExtResource("446_663hw")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visuals/summons:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.9, 2.2333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(23, -142), Vector2(-81, -224), Vector2(23, -142)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Visuals/summons:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 3.0333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Visuals/idle_operator:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Visuals/idle_punisher:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Visuals/attack_operator:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Visuals/attack_punisher:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Visuals/spinning_slash:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Visuals/mode_change:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Visuals/block:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Visuals/cast_punisher:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Visuals/limit_operator:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Visuals/limit_punisher:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Visuals/dead:visible")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Visuals/victory_before:visible")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("Visuals/victory:visible")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("Visuals/braver:visible")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("Visuals/sonic_impact:visible")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("Visuals/triple_slash:visible")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("Visuals/climhazzard:visible")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("Visuals/vfx:visible")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("Visuals/dash:visible")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("Visuals/omnislashv5:visible")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x38n4"]
 _data = {
 &"RESET": SubResource("Animation_o8hpj"),
@@ -13041,7 +13379,7 @@ _data = {
 &"quick_hit": SubResource("Animation_psuix"),
 &"ramuh": SubResource("Animation_dpq1n"),
 &"retreat": SubResource("Animation_vk6lk"),
-&"shiva": SubResource("Animation_w7k7v"),
+&"shiva": SubResource("Animation_l7fmc"),
 &"sonic_impact": SubResource("Animation_ksbr7"),
 &"sonic_thrust": SubResource("Animation_qtyjm"),
 &"spinning_slash": SubResource("Animation_5jgu3"),

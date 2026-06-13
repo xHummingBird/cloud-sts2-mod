@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Vfx.Utilities;
+using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Cloud.CloudCode.Cards.Ancient;
@@ -30,6 +31,8 @@ public class Omnislash() : CloudCard(0, CardType.Attack,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
+        decimal clampDamage = DynamicVars.Damage.PreviewValue * 3;
+        bool clamp = clampDamage >= (play.Target.CurrentHp + play.Target.Block);
         var ownerCreature = Owner?.Creature;
 
         if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
@@ -38,7 +41,8 @@ public class Omnislash() : CloudCard(0, CardType.Attack,
             SfxCmd.Play("res://Cloud/sfx/limit_break_thunder.wav");
             cloud.PlayAnimation(ownerCreature, "limit_break_2");
             await Task.Delay((int)(1.0667f * 1000f));
-            await cloud.DashTo(ownerCreature, play.Target, distance: 550f);
+            CinematicAttack.Start(RunManager.Instance.NetService.NetId);
+            await cloud.DashTo(ownerCreature, play.Target, distance: 500f);
             float duration = cloud.PlayAnimation(ownerCreature, "omnislash").total;
             if (duration > 0f)
             {
@@ -77,7 +81,8 @@ public class Omnislash() : CloudCard(0, CardType.Attack,
                     {
                         SfxCmd.Play("res://Cloud/sfx/sword_swing.wav");
                     }
-
+                    if (clamp) 
+                        play.Target.SetCurrentHpInternal(clampDamage + 1);
                     CommonActions.CardAttack(this, play.Target)
                         .WithHitFx("vfx/vfx_attack_slash")
                         .Execute(choiceContext);
@@ -90,7 +95,6 @@ public class Omnislash() : CloudCard(0, CardType.Attack,
 
                     if (delay > 0f)
                         await Task.Delay((int)(delay * 1000f));
-
                     SfxCmd.Play("res://Cloud/sounds/koredeowarida.wav");
                     SfxCmd.Play("res://Cloud/sfx/energy_2.wav");
                     // your planned voice line fits perfectly here
@@ -114,6 +118,7 @@ public class Omnislash() : CloudCard(0, CardType.Attack,
                         .Execute(choiceContext);
                     await Task.Delay((int)(0.8f * 1000f));
                     await cloud.Retreat(ownerCreature);
+                    CinematicAttack.End(RunManager.Instance.NetService.NetId);
                 }
 
             }

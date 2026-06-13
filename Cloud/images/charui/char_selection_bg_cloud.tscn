@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://cam83kagajc4e"]
+
+[ext_resource type="AudioStream" uid="uid://pa1jj7gnae7x" path="res://Cloud/sounds/not_interested.wav" id="2_wyohy"]
+[ext_resource type="VideoStream" uid="uid://b2yud0b1pndu1" path="res://Cloud/images/charui/output_1440p.ogv" id="3_wyohy"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -305.0
+offset_right = 1984.0
+offset_bottom = 895.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(1280, 600)
+metadata/_edit_vertical_guides_ = [3000.0]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 204.0
+offset_right = 2498.0
+offset_bottom = 1212.0
+expand_mode = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_wyohy")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+layout_mode = 0
+offset_left = -583.0
+offset_top = -170.0
+offset_right = 1815.2224
+offset_bottom = 1179.0
+stream = ExtResource("3_wyohy")
+volume_db = -80.0
+autoplay = true
+expand = true
+loop = true
+buffering_msec = 1000

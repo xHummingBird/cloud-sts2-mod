@@ -48,10 +48,8 @@ public class MateriaBomb() : CloudCard(0, CardType.Attack,
         var ownerCreature = Owner?.Creature;
         if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
         {
-            // attack animation
             float duration = cloud.PlayAnimation(ownerCreature, "cast").total;
             AudioHelper.PlayRandomFire();
-            // Optional: delay to sync hit roughly mid animation
             if (duration > 0f)
                 await Task.Delay((int)(duration * 0.2f * 1000f));
         }

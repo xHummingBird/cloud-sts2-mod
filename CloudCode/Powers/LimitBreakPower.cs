@@ -28,6 +28,7 @@ public class LimitBreakPower : CloudPower
             CardCmd.Upgrade(card);
         }
         await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, base.Owner.Player);
+        Flash();
     }
     public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants,
         ICombatState combatState)

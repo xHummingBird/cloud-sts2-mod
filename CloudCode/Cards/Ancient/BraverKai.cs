@@ -14,6 +14,8 @@ using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
+using MegaCrit.Sts2.Core.Nodes.Vfx.Utilities;
+using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
 using Color = Godot.Color;
 
@@ -34,7 +36,7 @@ public class BraverKai() : CloudCard(1, CardType.Attack,
     {
         var ownerCreature = Owner?.Creature;
         var cloud = Owner?.Character as Character.Cloud;
-        
+        CinematicAttack.Start(RunManager.Instance.NetService.NetId);
         if (ownerCreature != null && cloud != null)
         {
             SfxCmd.Play("res://Cloud/sfx/energy_charge.wav");
@@ -49,12 +51,11 @@ public class BraverKai() : CloudCard(1, CardType.Attack,
                 await Task.Delay((int)(0.467f * 1000f));
             SfxCmd.Play("res://Cloud/sfx/sword_swing_heavy.wav");
             SfxCmd.Play("res://Cloud/sounds/braver.wav");
-            
         }
         
         NCreature nCreature = NCombatRoom.Instance?.GetCreatureNode(play.Target);
         NBigSlashVfx nBigSlashVfx = NBigSlashVfx.Create(nCreature.GetBottomOfHitbox(), facingRight: true);
-        
+        cloud.DoScreenShake(ShakeStrength.Strong, ShakeDuration.Normal);
         await CommonActions.CardAttack(this, play.Target)
             .WithHitFx(null, "event:/sfx/enemy/enemy_attacks/mechaknight/mechaknight_heavy_attack")
             .BeforeDamage(async delegate
@@ -72,6 +73,7 @@ public class BraverKai() : CloudCard(1, CardType.Attack,
                 base.Owner.Creature, this);
         else await base.Owner.Creature.ExitPunisher();
         cloud?.RefreshIdle(ownerCreature);
+        CinematicAttack.End(RunManager.Instance.NetService.NetId);
     }
     
     protected override void OnUpgrade()

@@ -33,15 +33,14 @@ public class Blizzard() : CloudCard(1, CardType.Attack,
             AudioHelper.PlayRandomBlizzard();
             // Optional: delay to sync hit roughly mid animation
             if (duration > 0f)
-                await Task.Delay((int)(duration * 0.2f * 1000f));
+                cloud.PlayVfxOnTarget(
+                    cardPlay.Target,
+                    "res://Cloud/scenes/ice_vfx.tscn",
+                    "ice_1"
+                );
+                await Task.Delay((int)(0.4f * 1000f));
         }
-        
         await CommonActions.CardAttack(this, cardPlay.Target)
-            .BeforeDamage(async delegate
-            {
-                NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NGroundFireVfx.Create(cardPlay.Target, VfxColor.Blue));
-                SfxCmd.Play("res://Cloud/sfx/ice.wav");
-            })
             .Execute(choiceContext);
     }
 

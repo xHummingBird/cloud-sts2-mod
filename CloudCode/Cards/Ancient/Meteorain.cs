@@ -11,6 +11,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.Nodes.Vfx.Utilities;
+using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Cloud.CloudCode.Cards.Ancient;
@@ -36,7 +37,7 @@ public class Meteorain() : CloudCard(0, CardType.Attack,
     {
 
         var ownerCreature = Owner?.Creature;
-
+        CinematicAttack.Start(RunManager.Instance.NetService.NetId);
         if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
         {
             // attack animation
@@ -88,6 +89,7 @@ public class Meteorain() : CloudCard(0, CardType.Attack,
             .Execute(choiceContext);
         await PowerCmd.Apply<WeakPower>(choiceContext, base.CombatState.HittableEnemies, base.DynamicVars.Weak.BaseValue, base.Owner.Creature, this);
         await PowerCmd.Apply<VulnerablePower>(choiceContext, base.CombatState.HittableEnemies, base.DynamicVars.Vulnerable.BaseValue, base.Owner.Creature, this);
+        CinematicAttack.End(RunManager.Instance.NetService.NetId);
     }
     protected override void OnUpgrade()
     {

@@ -22,7 +22,7 @@ public class Blizzaga() : CloudCard(2, CardType.Attack,
     protected override IEnumerable<DynamicVar> CanonicalVars => 
     [
         new DamageVar(12m, ValueProp.Move),
-        new BlockVar(10, ValueProp.Move)
+        new BlockVar(8, ValueProp.Move)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
@@ -35,24 +35,19 @@ public class Blizzaga() : CloudCard(2, CardType.Attack,
             float duration = cloud.PlayAnimation(ownerCreature, "cast").total;
             AudioHelper.PlayRandomBlizzard();
             // Optional: delay to sync hit roughly mid animation
+            var targets = base.CombatState.HittableEnemies;
             if (duration > 0f)
-                await Task.Delay((int)(duration * 0.2f * 1000f));
-        }
-        
-        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).TargetingAllOpponents(base.CombatState)
-            .BeforeDamage(async delegate
+            foreach (var target in targets)
             {
-                var targets = base.CombatState.HittableEnemies;
-                foreach (var target in targets)
-                {
-                    var vfx = NGroundFireVfx.Create(target, VfxColor.Blue);
-                    if (vfx != null)
-                    {
-                        NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(vfx);
-                        SfxCmd.Play("res://Cloud/sfx/ice.wav");
-                    }
-                }
-            })
+                cloud.PlayVfxOnTarget(
+                    target,
+                    "res://Cloud/scenes/ice_vfx.tscn",
+                    "ice_1"
+                    );
+            }
+            await Task.Delay((int)(0.4f * 1000f));
+        }
+        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).TargetingAllOpponents(base.CombatState)
             .Execute(choiceContext);
         await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, play);
     }
@@ -60,6 +55,6 @@ public class Blizzaga() : CloudCard(2, CardType.Attack,
     protected override void OnUpgrade()
     {
         DynamicVars.Damage.UpgradeValueBy(3m);
-        DynamicVars.Block.UpgradeValueBy(4m);
+        DynamicVars.Block.UpgradeValueBy(3m);
     }
 }

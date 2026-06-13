@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Cloud.CloudCode.Cards.Ancient;
@@ -27,14 +28,15 @@ public class Ascension() : CloudCard(0, CardType.Attack,
         CardPlay play)
     {
         var ownerCreature = Owner?.Creature;
-
+        decimal clampDamage = DynamicVars.Damage.PreviewValue;
         if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
         {
             SfxCmd.Play("res://Cloud/sounds/limit_break.wav");
             SfxCmd.Play("res://Cloud/sfx/limit_break_thunder.wav");
             cloud.PlayAnimation(ownerCreature, "limit_break_2");
             await Task.Delay((int)(1.0667f * 1000f));
-            await cloud.DashTo(ownerCreature, play.Target, distance: 550f);
+            CinematicAttack.Start(RunManager.Instance.NetService.NetId);
+            await cloud.DashTo(ownerCreature, play.Target, distance: 500f);
             float duration = cloud.PlayAnimation(ownerCreature, "ascension").total;
             if (duration > 0f)
             {
@@ -64,6 +66,9 @@ public class Ascension() : CloudCard(0, CardType.Attack,
                     // ✅ Sword SFX
                     
                     SfxCmd.Play("res://Cloud/sfx/sword_swing.wav");
+                    bool clamp = clampDamage >= (play.Target.CurrentHp + play.Target.Block);
+                    if (clamp) 
+                        play.Target.SetCurrentHpInternal(clampDamage + 1);
                     CommonActions.CardAttack(this, play.Target)
                         .WithHitFx("vfx/vfx_attack_slash")
                         .Execute(choiceContext);
@@ -99,6 +104,7 @@ public class Ascension() : CloudCard(0, CardType.Attack,
                         .Execute(choiceContext);
                     await Task.Delay((int)(1.5f * 1000f));
                     await cloud.Retreat(ownerCreature);
+                    CinematicAttack.End(RunManager.Instance.NetService.NetId);
                 }
 
             }

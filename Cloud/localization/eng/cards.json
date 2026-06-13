@@ -56,7 +56,7 @@
   "CLOUD-ASSAULT_CHARGE.description": "Deal {Damage:diff()} damage. \n[gold]Operator[/gold]: [gold]Switch Stance[/gold]. \n[gold]Punisher[/gold]: Gain {Energy:energyIcons()}.",
   "CLOUD-ASSAULT_CHARGE.title": "Assault Charge",
 
-  "CLOUD-QUICK_HIT.description": "Deal {Damage:diff()} damage. \n[gold]Operator[/gold]: Gain 1 ATB.",
+  "CLOUD-QUICK_HIT.description": "Deal {Damage:diff()} damage. \n[gold]Operator[/gold]: Gain 1 [gold]ATB[/gold].",
   "CLOUD-QUICK_HIT.title": "Swift Slash",
 
   "CLOUD-WIND_UP_SLASH.description": "Deal {Damage:diff()} damage. \nGain {VigorPower:diff()} [gold]Vigor[/gold]. Switch stance. \n[gold]Punisher[/gold]: Gain 2 additional [gold]Vigor[/gold].",
@@ -98,7 +98,7 @@
   "CLOUD-PROTECT.description": "[gold]Magic[/gold]\nGain {Block:diff()} [gold]Block[/gold]. Next turn, gain {Block:diff()} [gold]Block[/gold].",
   "CLOUD-PROTECT.title": "Protect",
 
-  "CLOUD-HASTE.description": "[gold]Magic[/gold]\nGain 1 ATB and draw 1 additional card at the start of your turn for the next {HastePower:diff()} turns.",
+  "CLOUD-HASTE.description": "[gold]Magic[/gold]\nGain 1 [gold]ATB[/gold] and draw 1 additional card at the start of your turn for the next {HastePower:diff()} turns.",
   "CLOUD-HASTE.title": "Haste",
 
   "CLOUD-FINAL_STAND.description": "Gain [gold]Reprieve[/gold].",
@@ -158,7 +158,7 @@
   "CLOUD-METEORAIN.description": "Deal {Damage:diff()} damage to ALL enemies. \nApply {VulnerablePower:diff()} [gold]Vulnerable[/gold] and [gold]Weak[/gold].",
   "CLOUD-METEORAIN.title": "Meteorain",
 
-  "CLOUD-OMNISLASH_VER_FIVE.description": "Deal {CalculatedDamage:diff()} damage. \nIf you have 50 or more [gold]Limit[/gold], consume 50 [gold]Limit[/gold] and deal 2 additional damage.",
+  "CLOUD-OMNISLASH_VER_FIVE.description": "Deal {CalculatedDamage:diff()} damage 6 times. \nIf you have 50 or more [gold]Limit[/gold], consume 50 [gold]Limit[/gold] and deal 2 additional damage.",
   "CLOUD-OMNISLASH_VER_FIVE.title": "Omnislash V5",
 
   "CLOUD-DISORDER.description": "Deal {Damage:diff()} damage. \n[gold]Operator[/gold]: Next attack cost 0 {Energy:energyIcons()}. \n[gold]Punisher[/gold]: Hits twice. If fatal, gain {Block:diff()} [gold]Block[/gold]. \n[gold]Switch Stance[/gold].",
@@ -167,7 +167,7 @@
   "CLOUD-ASCENSION.description": "Deal {Damage:diff()} damage 7 times. \nLast hit deals [blue]double[/blue] damage.",
   "CLOUD-ASCENSION.title": "Ascension",
 
-  "CLOUD-FOCUSED_THRUST.description": "Deal {Damage:diff()} damage 2 times and apply {VulnerablePower:diff()} [gold]Vulnerable[/gold] to ALL enemies. \nLast hit deals additional damage equal to [blue]{percentHPDamage:diff()}%[/blue] of the target's current HP.",
+  "CLOUD-FOCUSED_THRUST.description": "Deal {Damage:diff()} damage 2 times and apply {VulnerablePower:diff()} [gold]Vulnerable[/gold]. \nLast hit deals additional damage equal to [blue]{percentHPDamage:diff()}%[/blue] of the target's current HP.",
   "CLOUD-FOCUSED_THRUST.title": "Focused Thrust",
 
   "CLOUD-BLADE_BEAM.description": "Deal {Damage:diff()} damage to ALL enemies. \nApply {VulnerablePower:diff()} [gold]Vulnerable[/gold] and [gold]Weak[/gold].",
@@ -200,7 +200,7 @@
   "CLOUD-ADRENALINE_SURGE.description": "Gain 30 [gold]Limit[/gold]. \nGain additional 20 [gold]Limit[/gold] if you have [gold]Fury[/gold].",
   "CLOUD-ADRENALINE_SURGE.title": "Adrenaline Surge",
 
-  "CLOUD-BACKSTEP.description": "Gain {Block:diff()} [gold]Block[/gold]. \n[gold]Punisher[/gold]: [gold]Switch Stance[/gold]. Gain 1 ATB.",
+  "CLOUD-BACKSTEP.description": "Gain {Block:diff()} [gold]Block[/gold]. \n[gold]Punisher[/gold]: [gold]Switch Stance[/gold]. Gain 1 [gold]ATB[/gold].",
   "CLOUD-BACKSTEP.title": "Backstep",
 
   "CLOUD-BUSTER_END.description": "Deal {Damage:diff()} damage. \nCosts 1 less {Energy:energyIcons()} for each Attack played this turn.",

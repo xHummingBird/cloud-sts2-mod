@@ -45,7 +45,7 @@ public class SummonPower : CloudPower
 
     public override async Task AfterApplied(Creature? applier, CardModel? cardSource)
     {
-        SfxCmd.Play("res://Cloud/sounds/limit_break_2.wav");
+        SfxCmd.Play("res://Cloud/sounds/summon_choose.wav");
         
         List<CardModel> cards = new();
 

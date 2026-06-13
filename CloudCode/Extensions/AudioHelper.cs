@@ -9,8 +9,10 @@ public static class AudioHelper
 
     private static readonly string[] battleStartSfx =
     {
-        "res://Cloud/sounds/battle_start_1.wav",
-        "res://Cloud/sounds/battle_start_2.wav",
+        "res://Cloud/sounds/battle_start_3.wav",
+        "res://Cloud/sounds/not_interested.wav",
+        "res://Cloud/sounds/battle_start_4.wav",
+        "res://Cloud/sounds/battle_start_2.wav"
     };
     
     private static readonly string[] attackSfx =

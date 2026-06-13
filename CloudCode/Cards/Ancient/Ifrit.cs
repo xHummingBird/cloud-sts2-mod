@@ -1,4 +1,5 @@
 ﻿using BaseLib.Extensions;
+using Cloud.CloudCode.Extensions;
 using Cloud.CloudCode.Mechanics.Summon;
 using Cloud.CloudCode.Powers;
 using Godot;
@@ -12,6 +13,7 @@ using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.Nodes.Vfx.Utilities;
+using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Cloud.CloudCode.Cards.Ancient;
@@ -20,7 +22,7 @@ public class Ifrit() : CloudCard(0, CardType.Attack,
     CardRarity.Ancient, TargetType.AnyEnemy), ISummonCard
 {
     protected override bool ShouldGlowGoldInternal => IsPlayable;
-    // protected override bool IsPlayable => base.Owner.HasPower<SummonPower>();
+    protected override bool IsPlayable => base.Owner.HasPower<SummonPower>();
     protected override IEnumerable<DynamicVar> CanonicalVars => 
     [
         new DamageVar(30m, ValueProp.Move),
@@ -35,18 +37,15 @@ public class Ifrit() : CloudCard(0, CardType.Attack,
     
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        CinematicAttack.Start(RunManager.Instance.NetService.NetId);
         var ownerCreature = Owner?.Creature;
-
         if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
         {
-            // attack animation
             float duration = cloud.PlayAnimation(ownerCreature, "ifrit").total;
             SfxCmd.Play("res://Cloud/sounds/summon_ifrit.wav");
-            // Optional: delay to sync hit roughly mid animation
             if (duration > 0f)
                 await Task.Delay((int)(1.2f * 1000f));
         }
-        
         ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
         NCreature nCreature = NCombatRoom.Instance?.GetCreatureNode(cardPlay.Target);
         if (nCreature != null)
@@ -66,6 +65,7 @@ public class Ifrit() : CloudCard(0, CardType.Attack,
             .Execute(choiceContext);
         PowerCmd.Apply<MagicResistDownPower>(choiceContext, cardPlay.Target, base.DynamicVars["MagicResistDownPower"].BaseValue, base.Owner.Creature, this);
         await Task.Delay((int)(1.9f * 1000f));
+        CinematicAttack.End(RunManager.Instance.NetService.NetId);
     }
     protected override void OnUpgrade()
     {
