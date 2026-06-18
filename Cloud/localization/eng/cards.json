@@ -158,7 +158,7 @@
   "CLOUD-METEORAIN.description": "Deal {Damage:diff()} damage to ALL enemies. \nApply {VulnerablePower:diff()} [gold]Vulnerable[/gold] and [gold]Weak[/gold].",
   "CLOUD-METEORAIN.title": "Meteorain",
 
-  "CLOUD-OMNISLASH_VER_FIVE.description": "Deal {CalculatedDamage:diff()} damage. \nIf you have 50 or more [gold]Limit[/gold], consume 50 [gold]Limit[/gold] and deal 2 additional damage.",
+  "CLOUD-OMNISLASH_VER_FIVE.description": "Deal {CalculatedDamage:diff()} damage. \nIf you have 50 or more [gold]Limit[/gold], consume 50 [gold]Limit[/gold] and deal 13 additional damage.",
   "CLOUD-OMNISLASH_VER_FIVE.title": "Omnislash V5",
 
   "CLOUD-DISORDER.description": "Deal {Damage:diff()} damage. \n[gold]Operator[/gold]: Next attack cost 0 {Energy:energyIcons()}. \n[gold]Punisher[/gold]: Hits twice. If fatal, gain {Block:diff()} [gold]Block[/gold]. \n[gold]Switch Stance[/gold].",
@@ -267,5 +267,8 @@
   "CLOUD-LAST_RESORT.title": "Last Resort",
 
   "CLOUD-MATERIA_BOMB.description": "Exhaust 1 [gold]Magic[/gold] card. \nDeal {Damage:diff()} damage.",
-  "CLOUD-MATERIA_BOMB.title": "Materia Bomb"
+  "CLOUD-MATERIA_BOMB.title": "Materia Bomb",
+
+  "CLOUD-FATED_SHOWDOWN.description": "[gold]Operator[/gold]: Gain {PlatingPower:diff()} [gold]Plating[/gold]. \n[gold]Punisher[/gold]: Gain {StrengthPower:diff()} [gold]Strength[/gold]. \nConsume 50 [gold]Limit[/gold] and double buff gain.",
+  "CLOUD-FATED_SHOWDOWN.title": "Fated Showdown"
 }
