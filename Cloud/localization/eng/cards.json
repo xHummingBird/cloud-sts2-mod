@@ -8,7 +8,7 @@
   "CLOUD-DEFEND_CLOUD.description": "Gain {Block:diff()} [gold]Block[/gold].",
   "CLOUD-DEFEND_CLOUD.title": "Defend",
 
-  "CLOUD-COUNTERSTANCE.description": "[gold]Switch Stance[/gold] to [gold]Punisher Mode[/gold]. \nGain {Block:diff()} [gold]Block[/gold]. Blocked damage is reflected back to the attacker for 1 turn.",
+  "CLOUD-COUNTERSTANCE.description": "Gain {Block:diff()} [gold]Block[/gold]. Blocked damage is reflected back to the attacker for 1 turn. \n[gold]Operator[/gold]: [gold]Switch Stance[/gold].",
   "CLOUD-COUNTERSTANCE.title": "Counterstance",
 
   "CLOUD-BLIZZARA.description": "[gold]Magic[/gold]\nDeal {Damage:diff()} damage. \nGain {Block:diff()} [gold]Block[/gold].",
@@ -65,7 +65,7 @@
   "CLOUD-SPINNING_SLASH.description": "Deal {Damage:diff()} damage to ALL enemies. \nGain {Block:diff()} [gold]Block[/gold].",
   "CLOUD-SPINNING_SLASH.title": "Spinning Slash",
 
-  "CLOUD-CHANGE_THE_TEMPO.description": "[gold]Operator[/gold]: Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold]. \n[gold]Punisher[/gold]: Apply {WeakPower:diff()} [gold]Weak[/gold]. \n[gold]Switch Stance[/gold]",
+  "CLOUD-CHANGE_THE_TEMPO.description": "[gold]Switch Stance[/gold]. [gold]Operator[/gold]: Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold]. \n[gold]Punisher[/gold]: Apply {WeakPower:diff()} [gold]Weak[/gold].",
   "CLOUD-CHANGE_THE_TEMPO.title": "Change The Tempo",
 
   "CLOUD-PASSING_THE_TORCH.description": "Gain {Energy:energyIcons()} at the start of every turn.",
@@ -76,11 +76,8 @@
   
   "CLOUD-LIMIT_BREAK.description": "Perform [gold]Limit Break[/gold].",
   "CLOUD-LIMIT_BREAK.title": "Limit Break",
-
-  "CLOUD-TEST_LIMIT_BREAK.description": "Max Your Limit Break.",
-  "CLOUD-TEST_LIMIT_BREAK.title": "TestLimitBreak",
-
-  "CLOUD-OMNISLASH.description": "Deal {Damage:diff()} damage. \nLast hit deals [blue]double[/blue] damage.",
+  
+  "CLOUD-OMNISLASH.description": "Deal {Damage:diff()} damage.",
   "CLOUD-OMNISLASH.title": "Omnislash",
 
   "CLOUD-CROSS_SLASH.description": "Deal {Damage:diff()} damage. \nThe enemy deals [blue]{CrossSlashPower:diff()}%[/blue] less damage for 1 turn.",
@@ -137,7 +134,7 @@
   "CLOUD-SONIC_THRUST.description": "Deal {Damage:diff()} damage. \n[gold]Punisher[/gold]: Gain {Energy:energyIcons()}.",
   "CLOUD-SONIC_THRUST.title": "Sonic Thrust",
 
-  "CLOUD-RELENTLESS_STRIKE.description": "Deal {Damage:diff()} damage. \n[gold]Operator[/gold]: Draw {Cards:diff()} {Cards:plural:card|cards}. [gold]Switch Stance[/gold].",
+  "CLOUD-RELENTLESS_STRIKE.description": "Deal {Damage:diff()} damage. \n[gold]Operator[/gold]: [gold]Switch Stance[/gold]. Draw {Cards:diff()} {Cards:plural:card|cards}.",
   "CLOUD-RELENTLESS_STRIKE.title": "Relentless Strike",
 
   "CLOUD-CLIMHAZZARD.description": "Deal {Damage:diff()} damage. \nThe next attack against that enemy deals [gold]{ArmorBreakPower:diff()}%[/gold] more damage",

@@ -36,6 +36,7 @@ public class BraverKai() : CloudCard(1, CardType.Attack,
     {
         var ownerCreature = Owner?.Creature;
         var cloud = Owner?.Character as Character.Cloud;
+        
         CinematicAttack.Start(RunManager.Instance.NetService.NetId);
         if (ownerCreature != null && cloud != null)
         {
@@ -66,6 +67,7 @@ public class BraverKai() : CloudCard(1, CardType.Attack,
         await Task.Delay((int)(0.63f * 1000f));
         if (ownerCreature != null && cloud != null)
         {
+            // cam?.EndCinematic();
             await cloud.Retreat(ownerCreature);
         }
         if (!base.Owner.Creature.HasPower<PunisherModePower>())

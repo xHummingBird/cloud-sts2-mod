@@ -62,13 +62,6 @@ public class Cloud : PlaceholderCharacterModel
 		ModelDb.Card<DefendCloud>(),
 		ModelDb.Card<DefendCloud>(),
 		ModelDb.Card<ModeShift>(),
-		
-		//testing
-		ModelDb.Card<Omnislash>(),
-		ModelDb.Card<Ascension>(),
-		ModelDb.Card<Climhazzard>(),
-		ModelDb.Card<CrossSlash>(),
-		ModelDb.Card<OmnislashVerFive>(),
 	];
 
 	public override IReadOnlyList<RelicModel> StartingRelics =>

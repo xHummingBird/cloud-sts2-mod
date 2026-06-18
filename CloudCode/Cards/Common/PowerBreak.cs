@@ -48,6 +48,7 @@ public class PowerBreak() : CloudCard(1, CardType.Attack,
                 base.Owner.Creature, this);
         }
         else await base.Owner.Creature.ExitPunisher();
+        
     }
     
     protected override void OnUpgrade()

@@ -10,6 +10,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx.Utilities;
 using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -67,6 +68,8 @@ public class OmnislashVerFive() : CloudCard(2, CardType.Attack,
             
             bool specialAnimation =
                 DynamicVars.CalculatedDamage.PreviewValue >= (play.Target.CurrentHp + play.Target.Block);
+
+            // cam?.StartCinematic(-300f);
             CinematicAttack.Start(RunManager.Instance.NetService.NetId);
             if (specialAnimation)
             {
@@ -132,6 +135,7 @@ public class OmnislashVerFive() : CloudCard(2, CardType.Attack,
                         if (!noOtherEnemies)
                         {
                             await Task.Delay((int)(0.6f * 1000f));
+                            // cam?.EndCinematic();
                             await cloud.Retreat(ownerCreature);
                         }
                     }
@@ -144,8 +148,9 @@ public class OmnislashVerFive() : CloudCard(2, CardType.Attack,
                         await Task.Delay((int)(0.2f * 1000f));
                         SfxCmd.Play("res://Cloud/sounds/warukuomouna.wav");
                         await Task.Delay((int)(1.03f * 1000f));
-                        CinematicAttack.End(RunManager.Instance.NetService.NetId);
+                        // cam?.EndCinematic();
                         await cloud.Retreat(ownerCreature);
+                        CinematicAttack.End(RunManager.Instance.NetService.NetId);
                     }
                 }
 

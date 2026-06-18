@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx.Utilities;
 using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -43,6 +44,7 @@ public class CrossSlashKai() : CloudCard(0, CardType.Attack,
             {
                 await Task.Delay((int)(duration * 1000f));
                 CinematicAttack.Start(RunManager.Instance.NetService.NetId);
+                
                 await cloud.DashTo(ownerCreature, play.Target, distance: 550f);
                 
                 cloud.PlayAnimation(ownerCreature, "cross_slash");
@@ -72,6 +74,7 @@ public class CrossSlashKai() : CloudCard(0, CardType.Attack,
                 }
 
                 await Task.Delay((int)(0.30f * 1000f));
+                // cam?.EndCinematic();
                 CinematicAttack.End(RunManager.Instance.NetService.NetId);
                 await cloud.Retreat(ownerCreature);
             }

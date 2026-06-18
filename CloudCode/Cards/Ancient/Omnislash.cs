@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx.Utilities;
 using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -38,6 +39,8 @@ public class Omnislash() : CloudCard(0, CardType.Attack,
             SfxCmd.Play("res://Cloud/sfx/limit_break_thunder.wav");
             cloud.PlayAnimation(ownerCreature, "limit_break_2");
             await Task.Delay((int)(1.0667f * 1000f));
+            
+            // cam?.StartCinematic(300f);
             CinematicAttack.Start(RunManager.Instance.NetService.NetId);
             await cloud.DashTo(ownerCreature, play.Target, distance: 500f);
             float duration = cloud.PlayAnimation(ownerCreature, "omnislash").total;
@@ -98,6 +101,7 @@ public class Omnislash() : CloudCard(0, CardType.Attack,
                         .WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav") // swap for bigger VFX later
                         .Execute(choiceContext);
                     await Task.Delay((int)(0.8f * 1000f));
+                    // cam?.EndCinematic();
                     CinematicAttack.End(RunManager.Instance.NetService.NetId);
                     await cloud.Retreat(ownerCreature);
                 }

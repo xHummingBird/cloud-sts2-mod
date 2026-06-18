@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx.Utilities;
 using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -35,6 +36,7 @@ public class Ascension() : CloudCard(0, CardType.Attack,
             cloud.PlayAnimation(ownerCreature, "limit_break_2");
             await Task.Delay((int)(1.0667f * 1000f));
             CinematicAttack.Start(RunManager.Instance.NetService.NetId);
+            // cam?.StartCinematic(300f);
             await cloud.DashTo(ownerCreature, play.Target, distance: 500f);
             float duration = cloud.PlayAnimation(ownerCreature, "ascension").total;
             if (duration > 0f)
@@ -86,6 +88,7 @@ public class Ascension() : CloudCard(0, CardType.Attack,
                         .Execute(choiceContext);
                     cloud.DoScreenShake(ShakeStrength.Strong, ShakeDuration.Normal);
                     await Task.Delay((int)(1.5f * 1000f));
+                    // cam?.EndCinematic();
                     CinematicAttack.End(RunManager.Instance.NetService.NetId);
                     await cloud.Retreat(ownerCreature);
                 }

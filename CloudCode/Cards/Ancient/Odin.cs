@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx.Utilities;
 using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -39,6 +40,7 @@ public class Odin() : CloudCard(0, CardType.Attack,
         var ownerCreature = Owner?.Creature;
         var cloud = Owner?.Character as Character.Cloud;
         decimal threshold = DynamicVars["hpPercent"].BaseValue;
+        
         CinematicAttack.Start(RunManager.Instance.NetService.NetId);
         PowerCmd.Remove<SummonPower>(base.Owner.Creature);
         if (ownerCreature != null && cloud != null)
@@ -52,9 +54,10 @@ public class Odin() : CloudCard(0, CardType.Attack,
             );
                 await Task.Delay((int)(1.25f * 1000f));
                 NGame.Instance.ScreenShake(ShakeStrength.Medium, ShakeDuration.Normal);
-                DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).Targeting(play.Target)
+                await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).Targeting(play.Target)
                     .Execute(choiceContext);
                 await Task.Delay((int)(1.55 * 1000f));
+                // cam?.EndCinematic();
                 CinematicAttack.End(RunManager.Instance.NetService.NetId);
         }
         else
@@ -62,15 +65,13 @@ public class Odin() : CloudCard(0, CardType.Attack,
             await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).Targeting(play.Target)
                 .Execute(choiceContext);
         }
-        if (play.Target != null)
+        
+        if (play.Target.CurrentHp * 100 <= play.Target.MaxHp * threshold && play.Target.CurrentHp > 0)
         {
-            if (play.Target.CurrentHp * 100 <= play.Target.MaxHp * threshold)
-            {
-                await DoomPower.DoomKill(new List<Creature> { play.Target });
-                return;
-            }
-            await PowerCmd.Apply<VulnerablePower>(choiceContext, play.Target, base.DynamicVars.Vulnerable.BaseValue, base.Owner.Creature, this);  
+            await DoomPower.DoomKill(new List<Creature> { play.Target });
+            return;
         }
+        await PowerCmd.Apply<VulnerablePower>(choiceContext, play.Target, base.DynamicVars.Vulnerable.BaseValue, base.Owner.Creature, this);  
     }
     
     protected override void OnUpgrade()
