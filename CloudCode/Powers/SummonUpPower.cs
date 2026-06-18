@@ -21,7 +21,7 @@ public class SummonUpPower : CloudPower
 
         if (card.Type == CardType.Attack || isMagic)
         {
-            SummonManager.GainSummon(player.Player, isMagic ? 4 : 2);
+            SummonManager.GainSummon(player.Player, isMagic ? 6 : 2);
         }
     }
 }

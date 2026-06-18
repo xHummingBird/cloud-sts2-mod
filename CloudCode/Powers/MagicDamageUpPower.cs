@@ -1,4 +1,5 @@
-﻿using Cloud.CloudCode.Mechanics.Summon;
+﻿using Cloud.CloudCode.Cards.Ancient;
+using Cloud.CloudCode.Mechanics.Summon;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Models;
@@ -19,10 +20,20 @@ public class MagicDamageUpPower : CloudPower
         {
             return 1m;
         }
+        
+        if (cardSource is Odin)
+        {
+            return 1m;
+        }
 
         decimal num = 1m + (Amount / 100m);
         
-        if (dealer == base.Owner && cardSource is IMagicCard card)
+        if (dealer == base.Owner && cardSource is IMagicCard magicCard)
+        {
+            return num;
+        }
+        
+        if (dealer == base.Owner && cardSource is ISummonCard summonCard)
         {
             return num;
         }

@@ -32,7 +32,6 @@ public class SonicThrust() : CloudCard(1, CardType.Attack,
 
         if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
         {
-            
             AudioHelper.PlayRandomAttack();
             float duration = cloud.PlayAnimation(ownerCreature, "sonic_thrust").total;
             if (duration > 0f)
@@ -41,7 +40,7 @@ public class SonicThrust() : CloudCard(1, CardType.Attack,
             await Task.Delay((int)(0.07f * 1000f));
         }
         await CommonActions.CardAttack(this, play.Target)
-            .WithHitFx("vfx/vfx_attack_slash")
+            .WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav")
             .Execute(choiceContext);
         if (base.Owner.Creature.IsPunisher())
         {

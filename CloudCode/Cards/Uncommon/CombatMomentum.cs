@@ -13,7 +13,6 @@ public class CombatMomentum() : CloudCard(2, CardType.Power,
     protected override IEnumerable<DynamicVar> CanonicalVars => 
     [
         new PowerVar<CombatMomentumPower>(1m),
-        new CardsVar(1)
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -27,8 +26,7 @@ public class CombatMomentum() : CloudCard(2, CardType.Power,
         }
     protected override void OnUpgrade()
     {
-        DynamicVars["CombatMomentumPower"].UpgradeValueBy(1);
-        DynamicVars.Cards.UpgradeValueBy(1);
+        base.EnergyCost.UpgradeBy(-1);
     }
 }
     

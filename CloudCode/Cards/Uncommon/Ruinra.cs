@@ -61,15 +61,13 @@ public class Ruinra() : CloudCard(1, CardType.Attack,
                 }
             })
             .Execute(choiceContext);
-        if (play.Target != null)
-        {
             if (Owner.Creature.IsPunisher())
             {
                 await PowerCmd.Apply<VulnerablePower>(choiceContext, base.CombatState.HittableEnemies, base.DynamicVars.Vulnerable.BaseValue,
                     base.Owner.Creature, this);
             }
             else await PowerCmd.Apply<WeakPower>(choiceContext, base.CombatState.HittableEnemies, base.DynamicVars.Weak.BaseValue, base.Owner.Creature, this);
-        }
+        
     }
     protected override void OnUpgrade()
     {

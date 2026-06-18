@@ -33,12 +33,12 @@ public class AerialDrive() : CloudCard(2, CardType.Attack,
             {
                 await Task.Delay((int)(0.2f * 1000f));
                 SfxCmd.Play("res://Cloud/sfx/sword_swing.wav");
-                CommonActions.CardAttack(this, play.Target).WithHitFx("vfx/vfx_attack_slash")
+                CommonActions.CardAttack(this, play.Target).WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav")
                     .Execute(choiceContext);
                 
                 await Task.Delay((int)(0.49f * 1000f));
                 SfxCmd.Play("res://Cloud/sfx/sword_swing.wav");
-                await CommonActions.CardAttack(this, play.Target).WithHitFx("vfx/vfx_attack_slash")
+                await CommonActions.CardAttack(this, play.Target).WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav")
                     .Execute(choiceContext);
                 await Task.Delay((int)(0.81f * 1000f));
             }

@@ -17,7 +17,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Cloud.CloudCode.Cards.Ancient;
 
 public class OmnislashVerFive() : CloudCard(2, CardType.Attack,
-    CardRarity.Ancient, TargetType.AnyEnemy), ILimitCard, IATBCard
+    CardRarity.Ancient, TargetType.AnyEnemy), IATBCard
 {
     
     protected override bool ShouldGlowGoldInternal =>
@@ -31,9 +31,8 @@ public class OmnislashVerFive() : CloudCard(2, CardType.Attack,
     
     public int ATBCost => 2;
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new CalculationBaseVar(4m),
-        new ExtraDamageVar(2m),
-        new RepeatVar(6),
+        new CalculationBaseVar(25m),
+        new ExtraDamageVar(13m),
         new CalculatedDamageVar(ValueProp.Move)
             .WithMultiplier((card, _) =>
                 LimitManager.GetLimit(card.Owner) >= 50 ? 1 : 0)
@@ -65,12 +64,9 @@ public class OmnislashVerFive() : CloudCard(2, CardType.Attack,
 
             bool noOtherEnemies =
                 !combat.Enemies.Any(e => e != play.Target && !e.IsDead);
-
-            decimal totalDamage = DynamicVars.CalculatedDamage.PreviewValue * 6;
-            decimal damage = DynamicVars.CalculatedDamage.PreviewValue;
-
+            
             bool specialAnimation =
-                totalDamage >= (play.Target.CurrentHp + play.Target.Block);
+                DynamicVars.CalculatedDamage.PreviewValue >= (play.Target.CurrentHp + play.Target.Block);
             CinematicAttack.Start(RunManager.Instance.NetService.NetId);
             if (specialAnimation)
             {
@@ -86,7 +82,7 @@ public class OmnislashVerFive() : CloudCard(2, CardType.Attack,
             {
                 float[] hitTimings = new float[]
                 {
-                    0.100f, 0.370f, 0.570f, 0.670f, 0.97f // 14th hit
+                    0.100f, 0.370f, 0.570f, 0.670f, 0.97f
                 };
 
                 float chargeTime = 1.20f;
@@ -103,16 +99,8 @@ public class OmnislashVerFive() : CloudCard(2, CardType.Attack,
 
                     if (delay > 0f)
                         await Task.Delay((int)(delay * 1000f));
-
-                    // ✅ Cloud voice (random)
                     
-
-                    // ✅ Sword SFX
-                    SfxCmd.Play("res://Cloud/sfx/sword_swing_heavy.wav");
-                    if (specialAnimation) play.Target.SetCurrentHpInternal(damage + 1);
-                    DamageCmd.Attack(DynamicVars.CalculatedDamage).FromCard(this).Targeting(play.Target)
-                        .WithHitFx("vfx/vfx_attack_slash") // swap for bigger VFX later
-                        .Execute(choiceContext);
+                    CloudExtensions.CombatHelpers.FakeHit(play.Target);
                 }
 
                 // ✅ Charge phase
@@ -124,58 +112,54 @@ public class OmnislashVerFive() : CloudCard(2, CardType.Attack,
                         await Task.Delay((int)(delay * 1000f));
                     
                     SfxCmd.Play("res://Cloud/sfx/energy_2.wav");
-                    // your planned voice line fits perfectly here
-                    // SfxCmd.Play("res://Cloud/voice/omnislash_charge.wav");
                 }
-
-                // ✅ Final hit
+                
                 {
                     float delay = finalHitTime - previousTime;
 
                     if (delay > 0f)
                         await Task.Delay((int)(delay * 1000f));
-
-                    // ✅ Final hit voice (optional but feels good)
-                     // or dedicated final voice
-                    // ✅ Final hit SFX
+                    
                     SfxCmd.Play("res://Cloud/sfx/omnislash_finalhit.wav");
-                    cloud.DoScreenShake(ShakeStrength.Strong, ShakeDuration.Normal);
                     if (specialAnimation)
                     {
-                        await DamageCmd.Attack(DynamicVars.CalculatedDamage).FromCard(this).Targeting(play.Target)
-                            .WithHitFx("vfx/vfx_attack_slash") // swap for bigger VFX later
+                        DamageCmd.Attack(DynamicVars.CalculatedDamage).FromCard(this).Targeting(play.Target)
+                            .WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav") // swap for bigger VFX later
                             .Execute(choiceContext);
+                        cloud.DoScreenShake(ShakeStrength.Strong, ShakeDuration.Normal);
+                        await Task.Delay((int)(0.6f * 1000f));
                         CinematicAttack.End(RunManager.Instance.NetService.NetId);
-                        await Task.Delay((int)(1.2f * 1000f));
                         if (!noOtherEnemies)
                         {
+                            await Task.Delay((int)(0.6f * 1000f));
                             await cloud.Retreat(ownerCreature);
                         }
                     }
                     else
                     {
                         DamageCmd.Attack(base.DynamicVars.CalculatedDamage).FromCard(this).Targeting(play.Target)
-                            .WithHitFx("vfx/vfx_attack_slash") // swap for bigger VFX later
+                            .WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav") // swap for bigger VFX later
                             .Execute(choiceContext);
+                        cloud.DoScreenShake(ShakeStrength.Strong, ShakeDuration.Normal);
                         await Task.Delay((int)(0.2f * 1000f));
                         SfxCmd.Play("res://Cloud/sounds/warukuomouna.wav");
                         await Task.Delay((int)(1.03f * 1000f));
-                        await cloud.Retreat(ownerCreature);
                         CinematicAttack.End(RunManager.Instance.NetService.NetId);
+                        await cloud.Retreat(ownerCreature);
                     }
                 }
 
             }
             else
             {
-                await DamageCmd.Attack(base.DynamicVars.CalculatedDamage).FromCard(this).Targeting(play.Target).WithHitCount(base.DynamicVars.Repeat.IntValue)
+                await DamageCmd.Attack(base.DynamicVars.CalculatedDamage).FromCard(this).Targeting(play.Target)
                     .WithHitFx("vfx/vfx_attack_slash")
                     .Execute(choiceContext);
             }
         }
         else
         {
-            await DamageCmd.Attack(base.DynamicVars.CalculatedDamage).FromCard(this).Targeting(play.Target).WithHitCount(base.DynamicVars.Repeat.IntValue)
+            await DamageCmd.Attack(base.DynamicVars.CalculatedDamage).FromCard(this).Targeting(play.Target)
                 .WithHitFx("vfx/vfx_attack_slash")
                 .Execute(choiceContext);
         }

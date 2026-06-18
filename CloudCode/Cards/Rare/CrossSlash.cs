@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using Cloud.CloudCode.Extensions;
 using Cloud.CloudCode.Mechanics;
 using Cloud.CloudCode.Mechanics.ATB;
 using Cloud.CloudCode.Powers;
@@ -6,6 +7,8 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Nodes;
+using MegaCrit.Sts2.Core.Nodes.Vfx.Utilities;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Cloud.CloudCode.Cards.Rare;
@@ -15,9 +18,8 @@ public class CrossSlash() : CloudCard(2, CardType.Attack,
 {
     public int ATBCost => 2;
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(6, ValueProp.Move),
+        new DamageVar(18, ValueProp.Move),
         new PowerVar<CrossSlashPower>(50),
-        new RepeatVar(3)
     ];
 
     protected override async Task OnPlay(
@@ -34,24 +36,19 @@ public class CrossSlash() : CloudCard(2, CardType.Attack,
             {
                 SfxCmd.Play("res://Cloud/sounds/heavy_attack (3).wav");
                 await Task.Delay((int)(0.85f * 1000f));
-                SfxCmd.Play("res://Cloud/sfx/sword_swing_heavy.wav");
-                CommonActions.CardAttack(this, play.Target)
-                    .WithHitFx("vfx/vfx_attack_slash")
-                    .Execute(choiceContext);
+                CloudExtensions.CombatHelpers.FakeHit(play.Target);
                 
                 await Task.Delay((int)(0.60f * 1000f));
-                SfxCmd.Play("res://Cloud/sfx/sword_swing_heavy.wav");
-                CommonActions.CardAttack(this, play.Target)
-                    .WithHitFx("vfx/vfx_attack_slash")
-                    .Execute(choiceContext);
+                CloudExtensions.CombatHelpers.FakeHit(play.Target);
                 
                 await Task.Delay((int)(0.80f * 1000f));
                 SfxCmd.Play("res://Cloud/sfx/sword_swing_heavy.wav");
                 SfxCmd.Play("res://Cloud/sounds/ungawarukatana.wav");
                 CommonActions.CardAttack(this, play.Target)
                     .WithHitFx("vfx/vfx_attack_slash",
-                        "event:/sfx/enemy/enemy_attacks/mechaknight/mechaknight_heavy_attack")
+                        "res://Cloud/sfx/cloud_hit.wav")
                     .Execute(choiceContext);
+                NGame.Instance.ScreenShake(ShakeStrength.Medium, ShakeDuration.Normal);
                 
                 await Task.Delay((int)(0.20f * 1000f));
                 if (play.Target != null)
@@ -67,7 +64,7 @@ public class CrossSlash() : CloudCard(2, CardType.Attack,
         }
         else
         {
-            await CommonActions.CardAttack(this, play.Target).WithHitCount(base.DynamicVars.Repeat.IntValue)
+            await CommonActions.CardAttack(this, play.Target)
                 .WithHitFx("vfx/vfx_attack_slash")
                 .Execute(choiceContext);
             await PowerCmd.Apply<CrossSlashPower>(choiceContext, play.Target,

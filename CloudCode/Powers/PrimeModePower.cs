@@ -13,7 +13,7 @@ public class PrimeModePower : CloudPower
 
     public override PowerStackType StackType => PowerStackType.Single;
 
-    public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants,
+    public override async Task AfterSideTurnStartLate(CombatSide side, IReadOnlyList<Creature> participants,
         ICombatState combatState)
     {
         if (side != base.Owner.Side)

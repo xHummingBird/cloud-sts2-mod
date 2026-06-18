@@ -6,5 +6,5 @@
   "CLOUD_LIMIT.description": "Builds as you fight. \n\nGain 3 Limit when attacking or blocking attacks.\nGain 3 Limit at the start of your turn.\nGain Limit equal to damage taken. \n\nAt full Limit, powerful [gold]Limit Break[/gold] attacks become available. \n\nLimit is consumed when Limit Break is used.",
 
   "CLOUD_SUMMON.title": "Summon",
-  "CLOUD_SUMMON.description": "Builds as you fight. \n\nGain 1 Summon when attacking.\nGain 4 Summon when using Magic cards.\n\nAt full Summon, choose a [gold]Summon[/gold] to call forth.\n\nSummons deal high damage grant powerful bonuses for 3 turns.\n\nSummon is consumed after use."
+  "CLOUD_SUMMON.description": "Builds as you fight. \n\nGain 2 Summon when attacking.\nGain 6 Summon when using [gold]Magic[/gold] cards.\n\nAt full Summon, choose a [gold]Summon[/gold] to call forth.\n\nSummons deal high damage grant powerful bonuses for 3 turns.\n\nSummon is consumed after use."
 }

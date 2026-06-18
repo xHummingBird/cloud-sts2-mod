@@ -33,9 +33,9 @@ public class WindUpSlash() : CloudCard(2, CardType.Attack,
             if (duration > 0f)
             {
                 await Task.Delay((int)(0.433f * 1000f));
-                SfxCmd.Play("res://Cloud/sfx/sword_swing.wav");
+                SfxCmd.Play("res://Cloud/sfx/sword_swing_heavy.wav");
             }
-            await CommonActions.CardAttack(this, play.Target).WithHitFx("vfx/vfx_attack_slash")
+            await CommonActions.CardAttack(this, play.Target).WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav")
                 .Execute(choiceContext);
             await Task.Delay((int)(0.233f * 1000f));
         }

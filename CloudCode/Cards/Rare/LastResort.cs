@@ -18,7 +18,6 @@ public class LastResort() : CloudCard (2, CardType.Skill, CardRarity.Rare, Targe
     ];
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
         List<CardModel> list = PileType.Hand.GetPile(base.Owner).Cards.ToList();
         foreach (CardModel item in list)
         {

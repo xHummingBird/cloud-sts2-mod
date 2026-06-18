@@ -15,8 +15,7 @@ public class FocusedThrust() : CloudCard(1, CardType.Attack,
 {
     public int ATBCost => 1;
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(4m, ValueProp.Move),
-        new RepeatVar(2),
+        new DamageVar(8m, ValueProp.Move),
         new PowerVar<VulnerablePower>(1),
         new("percentHPDamage", 5)
     ];
@@ -38,13 +37,13 @@ public class FocusedThrust() : CloudCard(1, CardType.Attack,
                 await Task.Delay((int)(0.1f * 1000f));
                 SfxCmd.Play("res://Cloud/sfx/sword_swing.wav");
                 await Task.Delay((int)(0.1f * 1000f));
-                DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).Targeting(play.Target).WithHitFx("vfx/vfx_attack_slash")
+                DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).Targeting(play.Target).WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav")
                     .Execute(choiceContext);
                 await Task.Delay((int)(0.45f * 1000f));
                 SfxCmd.Play("res://Cloud/sounds/heavy_attack (2).wav");
                 SfxCmd.Play("res://Cloud/sfx/sword_swing.wav");
                 await Task.Delay((int)(0.12f * 1000f));
-                DamageCmd.Attack(base.DynamicVars.Damage.BaseValue + bonusDamage).FromCard(this).Targeting(play.Target).WithHitFx("vfx/vfx_attack_slash")
+                DamageCmd.Attack(bonusDamage).FromCard(this).Targeting(play.Target).WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav")
                     .Execute(choiceContext);
                 await Task.Delay((int)(0.4f * 1000f));
                 await cloud.Retreat(ownerCreature);
@@ -52,9 +51,9 @@ public class FocusedThrust() : CloudCard(1, CardType.Attack,
         }
         else
         {
-            DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).WithHitFx("vfx/vfx_attack_slash")
+            await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this)
                 .Execute(choiceContext);
-            await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue + bonusDamage).FromCard(this).Targeting(play.Target).WithHitFx("vfx/vfx_attack_slash")
+            await DamageCmd.Attack(bonusDamage).FromCard(this).Targeting(play.Target).WithHitFx("vfx/vfx_attack_slash")
                 .Execute(choiceContext);
         }
         if (play.Target !=null)
@@ -63,7 +62,7 @@ public class FocusedThrust() : CloudCard(1, CardType.Attack,
     
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(1);
-        DynamicVars["percentHPDamage"].UpgradeValueBy(2);
+        DynamicVars.Damage.UpgradeValueBy(3);
+        DynamicVars["percentHPDamage"].UpgradeValueBy(3);
     }
 }

@@ -38,9 +38,14 @@ public class Blizzard() : CloudCard(1, CardType.Attack,
                     "res://Cloud/scenes/ice_vfx.tscn",
                     "ice_1"
                 );
-                await Task.Delay((int)(0.4f * 1000f));
+            await Task.Delay((int)(0.20f * 1000f));
         }
         await CommonActions.CardAttack(this, cardPlay.Target)
+            .WithHitFx(null, "res://Cloud/sfx/ice.wav")
+            .BeforeDamage(async delegate
+            {
+                NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NGroundFireVfx.Create(cardPlay.Target, VfxColor.Blue));
+            })
             .Execute(choiceContext);
     }
 

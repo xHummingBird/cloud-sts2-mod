@@ -35,7 +35,7 @@ public class QuickHit()  : CloudCard(0, CardType.Attack,
                 SfxCmd.Play("res://Cloud/sfx/sword_swing.wav");
             }
         }
-        await CommonActions.CardAttack(this, play.Target).WithHitFx("vfx/vfx_attack_slash")
+        await CommonActions.CardAttack(this, play.Target).WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav")
             .Execute(choiceContext);
         if (!base.Owner.Creature.IsPunisher())
         {

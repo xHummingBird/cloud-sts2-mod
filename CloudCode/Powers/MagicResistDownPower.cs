@@ -1,4 +1,5 @@
-﻿using Cloud.CloudCode.Mechanics.Summon;
+﻿using Cloud.CloudCode.Cards.Ancient;
+using Cloud.CloudCode.Mechanics.Summon;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -27,6 +28,11 @@ public class MagicResistDownPower : CloudPower
         Creature? dealer, CardModel? cardSource)
     {
         if (target != base.Owner)
+        {
+            return 1m;
+        }
+
+        if (cardSource is Odin)
         {
             return 1m;
         }

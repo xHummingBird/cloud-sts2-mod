@@ -8,8 +8,10 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
+using MegaCrit.Sts2.Core.Nodes.Vfx.Utilities;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Cloud.CloudCode.Cards.Rare;
@@ -48,9 +50,23 @@ public class BlizzagaBurst() : CloudCard(2, CardType.Attack,
                         "ice_1"
                     );
                 }
-            await Task.Delay((int)(0.4f * 1000f));
+            await Task.Delay((int)(0.20f * 1000f));
         }
         AttackCommand attackCommand = await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).TargetingAllOpponents(base.CombatState)
+            .WithHitFx(null, "res://Cloud/sfx/ice.wav")
+            .BeforeDamage(async delegate
+            {
+                var targets = base.CombatState.HittableEnemies;
+                NGame.Instance.ScreenShake(ShakeStrength.Medium, ShakeDuration.Normal);
+                foreach (var target in targets)
+                {
+                    var vfx = NGroundFireVfx.Create(target, VfxColor.Blue);
+                    if (vfx != null)
+                    {
+                        NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(vfx);
+                    }
+                }
+            })
             .Execute(choiceContext);
         await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, play);
         if (shouldTriggerFatal && attackCommand.Results.SelectMany((List<DamageResult> r) => r)

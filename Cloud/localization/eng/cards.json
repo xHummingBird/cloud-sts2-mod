@@ -59,7 +59,7 @@
   "CLOUD-QUICK_HIT.description": "Deal {Damage:diff()} damage. \n[gold]Operator[/gold]: Gain 1 [gold]ATB[/gold].",
   "CLOUD-QUICK_HIT.title": "Swift Slash",
 
-  "CLOUD-WIND_UP_SLASH.description": "Deal {Damage:diff()} damage. \nGain {VigorPower:diff()} [gold]Vigor[/gold]. Switch stance. \n[gold]Punisher[/gold]: Gain 2 additional [gold]Vigor[/gold].",
+  "CLOUD-WIND_UP_SLASH.description": "Deal {Damage:diff()} damage. \nGain {VigorPower:diff()} [gold]Vigor[/gold]. \n[gold]Operator[/gold]: [gold]Switch Stance[/gold]. \n[gold]Punisher[/gold]: Gain 2 additional [gold]Vigor[/gold].",
   "CLOUD-WIND_UP_SLASH.title": "Wind-Up Slash",
 
   "CLOUD-SPINNING_SLASH.description": "Deal {Damage:diff()} damage to ALL enemies. \nGain {Block:diff()} [gold]Block[/gold].",
@@ -69,7 +69,7 @@
   "CLOUD-CHANGE_THE_TEMPO.title": "Change The Tempo",
 
   "CLOUD-PASSING_THE_TORCH.description": "Gain {Energy:energyIcons()} at the start of every turn.",
-  "CLOUD-PASSING_THE_TORCH.title": "Passing The Torch",
+  "CLOUD-PASSING_THE_TORCH.title": "Embrace Your Dreams",
 
   "CLOUD-GOT_YOUR_BACK.description": "Gain {Block:diff()} [gold]Block[/gold]. \nGain {LimitBreakPower:diff()} [gold]Limit[/gold].",
   "CLOUD-GOT_YOUR_BACK.title": "I Got Your Back!",
@@ -80,16 +80,16 @@
   "CLOUD-TEST_LIMIT_BREAK.description": "Max Your Limit Break.",
   "CLOUD-TEST_LIMIT_BREAK.title": "TestLimitBreak",
 
-  "CLOUD-OMNISLASH.description": "Deal {Damage:diff()} damage 15 times. \nLast hit deals [blue]double[/blue] damage.",
+  "CLOUD-OMNISLASH.description": "Deal {Damage:diff()} damage. \nLast hit deals [blue]double[/blue] damage.",
   "CLOUD-OMNISLASH.title": "Omnislash",
 
-  "CLOUD-CROSS_SLASH.description": "Deal {Damage:diff()} damage {Repeat:diff()} times. \nThe enemy deals [blue]{CrossSlashPower:diff()}%[/blue] less damage for 1 turn.",
+  "CLOUD-CROSS_SLASH.description": "Deal {Damage:diff()} damage. \nThe enemy deals [blue]{CrossSlashPower:diff()}%[/blue] less damage for 1 turn.",
   "CLOUD-CROSS_SLASH.title": "Cross Slash",
 
   "CLOUD-AERIAL_DRIVE.description": "Deal {Damage:diff()} damage {Repeat:diff()} times. \nGain {LimitBreakPower:diff()} [gold]Limit[/gold].",
   "CLOUD-AERIAL_DRIVE.title": "Aerial Drive",
 
-  "CLOUD-CROSS_SLASH_KAI.description": "Deal {Damage:diff()} damage {Repeat:diff()} times. \nThe enemy deals [blue]{CrossSlashPower:diff()}%[/blue] less damage for 1 turn.",
+  "CLOUD-CROSS_SLASH_KAI.description": "Deal {Damage:diff()} damage. \nThe enemy deals [blue]{CrossSlashPower:diff()}%[/blue] less damage for 1 turn.",
   "CLOUD-CROSS_SLASH_KAI.title": "Cross Slash EX",
 
   "CLOUD-PRIME_MODE.description": "Gain [gold]Prime Mode[/gold]. \nBoost [gold]Punisher[/gold] and [gold]Operator[/gold] mode.",
@@ -140,10 +140,10 @@
   "CLOUD-RELENTLESS_STRIKE.description": "Deal {Damage:diff()} damage. \n[gold]Operator[/gold]: Draw {Cards:diff()} {Cards:plural:card|cards}. [gold]Switch Stance[/gold].",
   "CLOUD-RELENTLESS_STRIKE.title": "Relentless Strike",
 
-  "CLOUD-CLIMHAZZARD.description": "Deal {Damage:diff()} damage {Repeat:diff()} times. \nThe next attack against that enemy deals [gold]{ArmorBreakPower:diff()}%[/gold] more damage",
+  "CLOUD-CLIMHAZZARD.description": "Deal {Damage:diff()} damage. \nThe next attack against that enemy deals [gold]{ArmorBreakPower:diff()}%[/gold] more damage",
   "CLOUD-CLIMHAZZARD.title": "Climhazzard",
 
-  "CLOUD-COMBAT_MOMENTUM.description": "The first time you switch to [blue]Punisher Mode[/blue] on your turn, draw {CombatMomentumPower:diff()} {Cards:plural:card|cards}.",
+  "CLOUD-COMBAT_MOMENTUM.description": "The first time you switch to [blue]Punisher Mode[/blue] on your turn, gain 1 [gold]Strength[/gold].",
   "CLOUD-COMBAT_MOMENTUM.title": "Combat Momentum",
 
   "CLOUD-OVERCLOCK.description": "Gain {Energy:energyIcons()}.",
@@ -158,16 +158,16 @@
   "CLOUD-METEORAIN.description": "Deal {Damage:diff()} damage to ALL enemies. \nApply {VulnerablePower:diff()} [gold]Vulnerable[/gold] and [gold]Weak[/gold].",
   "CLOUD-METEORAIN.title": "Meteorain",
 
-  "CLOUD-OMNISLASH_VER_FIVE.description": "Deal {CalculatedDamage:diff()} damage 6 times. \nIf you have 50 or more [gold]Limit[/gold], consume 50 [gold]Limit[/gold] and deal 2 additional damage.",
+  "CLOUD-OMNISLASH_VER_FIVE.description": "Deal {CalculatedDamage:diff()} damage. \nIf you have 50 or more [gold]Limit[/gold], consume 50 [gold]Limit[/gold] and deal 2 additional damage.",
   "CLOUD-OMNISLASH_VER_FIVE.title": "Omnislash V5",
 
   "CLOUD-DISORDER.description": "Deal {Damage:diff()} damage. \n[gold]Operator[/gold]: Next attack cost 0 {Energy:energyIcons()}. \n[gold]Punisher[/gold]: Hits twice. If fatal, gain {Block:diff()} [gold]Block[/gold]. \n[gold]Switch Stance[/gold].",
   "CLOUD-DISORDER.title": "Disorder",
 
-  "CLOUD-ASCENSION.description": "Deal {Damage:diff()} damage 7 times. \nLast hit deals [blue]double[/blue] damage.",
+  "CLOUD-ASCENSION.description": "Deal {Damage:diff()} damage.",
   "CLOUD-ASCENSION.title": "Ascension",
 
-  "CLOUD-FOCUSED_THRUST.description": "Deal {Damage:diff()} damage 2 times and apply {VulnerablePower:diff()} [gold]Vulnerable[/gold]. \nLast hit deals additional damage equal to [blue]{percentHPDamage:diff()}%[/blue] of the target's current HP.",
+  "CLOUD-FOCUSED_THRUST.description": "Deal {Damage:diff()} damage and apply {VulnerablePower:diff()} [gold]Vulnerable[/gold]. \nDeal additional damage equal to [blue]{percentHPDamage:diff()}%[/blue] of the target's current HP.",
   "CLOUD-FOCUSED_THRUST.title": "Focused Thrust",
 
   "CLOUD-BLADE_BEAM.description": "Deal {Damage:diff()} damage to ALL enemies. \nApply {VulnerablePower:diff()} [gold]Vulnerable[/gold] and [gold]Weak[/gold].",
@@ -191,7 +191,7 @@
   "CLOUD-NOT_INTERESTED.description": "Gain {Block:diff()} [gold]Block[/gold]. \n[gold]Operator[/gold]: Apply {WeakPower:diff()} [gold]Weak[/gold]. \n[gold]Punisher[/gold]: Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold].",
   "CLOUD-NOT_INTERESTED.title": "Not Interested",
 
-  "CLOUD-AGGRESSION.description": "Gain {VigorPower:diff()} [gold]Vigor[/gold]. \nGain [gold]{LimitBreakPower:diff()}[/gold] Limit.",
+  "CLOUD-AGGRESSION.description": "Gain {VigorPower:diff()} [gold]Vigor[/gold]. \nGain {LimitBreakPower:diff()} [gold]Limit[/gold].",
   "CLOUD-AGGRESSION.title": "Aggression",
 
   "CLOUD-JENOVA_CELLS.description": "Gain [gold]Fury[/gold].",
@@ -218,7 +218,7 @@
   "CLOUD-ULTIMA.description": "[gold]Magic[/gold]\nDeal {Damage:diff()} damage to ALL enemies.",
   "CLOUD-ULTIMA.title": "Ultima",
 
-  "CLOUD-W_MAGIC.description": "The first magic card you play each turn is played an extra time.",
+  "CLOUD-W_MAGIC.description": "The first [gold]Magic[/gold] card you play each turn is played an extra time.",
   "CLOUD-W_MAGIC.title": "W Magic",
 
   "CLOUD-THUNDAGA_BURST.description": "[gold]Magic[/gold]\nDeal {Damage:diff()} damage to random enemies [gold]{Repeat:diff()}[/gold] times. \nIf [gold]Fatal[/gold], hit 2 additional times.",
@@ -230,19 +230,19 @@
   "CLOUD-IFRIT.description": "Deal {Damage:diff()} [gold]Magic[/gold] damage. \nThe enemy takes [blue]50%[/gold] more [/gold]Magic[/gold] damage for 3 turns.",
   "CLOUD-IFRIT.title": "Ifrit",
 
-  "CLOUD-BAHAMUT.description": "Gain {Block:diff()} [gold]Block[/gold]. \nAfter 3 turns, deal 60 [gold]Magic[/gold] damage to ALL enemies.",
+  "CLOUD-BAHAMUT.description": "After 3 turns, deal 60 damage to ALL enemies.",
   "CLOUD-BAHAMUT.title": "Bahamut",
 
   "CLOUD-ODIN.description": "Deal {Damage:diff()} damage. \nKill the enemy if it has [gold]{hpPercent:diff()}%[/gold] HP or less.",
   "CLOUD-ODIN.title": "Odin",
 
-  "CLOUD-SHIVA.description": "",
+  "CLOUD-SHIVA.description": "Deal {Damage:diff()} damage to ALL enemies. \nGain 10 [gold]Block[/gold] at the start of your turn for the next 3 turns.",
   "CLOUD-SHIVA.title": "Shiva",
 
   "CLOUD-ZANTETSUKEN.description": "Deal {Damage:diff()} damage. \nKill the enemy if it has [gold]{hpPercent:diff()}%[/gold] HP or less.",
   "CLOUD-ZANTETSUKEN.title": "Zantetsuken",
 
-  "CLOUD-RAMUH.description": "",
+  "CLOUD-RAMUH.description": "Deal {Damage:diff()} damage to ALL enemies. \nDeal 7 damage to a random enemy at the start of your turn for the next 3 turns.",
   "CLOUD-RAMUH.title": "Ramuh",
 
   "CLOUD-OMNIBREAK.description": "Deal {Damage:diff()} damage. \nApply {VulnerablePower:diff()} [gold]Vulnerable[/gold] and [gold]Weak[/gold].",
@@ -263,7 +263,7 @@
   "CLOUD-FALSE_SOLDIER.description": "Gain {Block:diff()} [gold]Block[/gold]. \nIf you have 50 or more [gold]Limit[/gold], double [gold]Block[/gold] gained. [gold]Consumes ALL Limit[/gold].",
   "CLOUD-FALSE_SOLDIER.title": "False Soldier",
 
-  "CLOUD-LAST_RESORT.description": "[gold]Exhaust your Hand. \nGain full [gold]Limit[/gold] and 3 [gold]ATB[/gold]. \nYou cannot gain [gold]Block[/gold] from cards for 2 turns.",
+  "CLOUD-LAST_RESORT.description": "[gold]Exhaust your Hand[/gold]. \nGain full [gold]Limit[/gold] and 3 [gold]ATB[/gold]. \nYou cannot gain [gold]Block[/gold] from cards for 2 turns.",
   "CLOUD-LAST_RESORT.title": "Last Resort",
 
   "CLOUD-MATERIA_BOMB.description": "Exhaust 1 [gold]Magic[/gold] card. \nDeal {Damage:diff()} damage.",

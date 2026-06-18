@@ -21,7 +21,7 @@ internal static class CloudTouchOfOrobasPatch
 
 
 [HarmonyPatch(typeof(ArchaicTooth), "TranscendenceUpgrades", MethodType.Getter)]
-internal static class LaharlArchaicToothTranscendencePatch
+internal static class CloudArchaicToothTranscendencePatch
 {
     [HarmonyPostfix]
     private static void Postfix(ref Dictionary<ModelId, CardModel> __result)

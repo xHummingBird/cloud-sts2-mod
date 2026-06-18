@@ -39,11 +39,7 @@ public class Thunder() : CloudCard(1, CardType.Attack,
         }
         
         await CommonActions.CardAttack(this, play.Target)
-            .BeforeDamage(async delegate
-            {
-                VfxCmd.PlayOnCreature(play.Target, "vfx/vfx_attack_lightning");
-                SfxCmd.Play("event:/sfx/characters/defect/defect_lightning_passive");
-            })
+            .WithHitFx("vfx/vfx_attack_lightning", "event:/sfx/characters/defect/defect_lightning_passive")
             .Execute(choiceContext);
         
     }

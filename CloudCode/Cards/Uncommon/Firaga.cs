@@ -7,8 +7,10 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
+using MegaCrit.Sts2.Core.Nodes.Vfx.Utilities;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Cloud.CloudCode.Cards.Uncommon;
@@ -38,11 +40,12 @@ public class Firaga() : CloudCard(2, CardType.Attack,
                 await Task.Delay((int)(duration * 0.2f * 1000f));
         }
         
-        CommonActions.CardAttack(this, play.Target)
+        await CommonActions.CardAttack(this, play.Target)
             .BeforeDamage(async delegate
             {
                 NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NGroundFireVfx.Create(play.Target));
                 SfxCmd.Play("event:/sfx/characters/attack_fire");
+                NGame.Instance.ScreenShake(ShakeStrength.Medium, ShakeDuration.Normal);
             })
             .Execute(choiceContext);
         await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).TargetingAllOpponents(base.CombatState)

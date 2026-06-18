@@ -32,7 +32,7 @@ public class RelentlessStrike() : CloudCard(1, CardType.Attack,
             await Task.Delay((int)(0.14f * 1000f));
         }
         await CommonActions.CardAttack(this, play.Target)
-            .WithHitFx("vfx/vfx_attack_slash")
+            .WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav")
             .Execute(choiceContext);
         if (ownerCreature != null && !ownerCreature.IsPunisher())
         {

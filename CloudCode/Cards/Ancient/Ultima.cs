@@ -8,8 +8,10 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
+using MegaCrit.Sts2.Core.Nodes.Vfx.Utilities;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Cloud.CloudCode.Cards.Ancient;
@@ -68,7 +70,7 @@ public class Ultima() : CloudCard(2, CardType.Attack,
             .BeforeDamage(async delegate
             {
                 var targets = base.CombatState.HittableEnemies;
-
+                NGame.Instance.ScreenShake(ShakeStrength.Strong, ShakeDuration.Normal);
                 foreach (var target in targets)
                 {
                     var vfx = NGroundFireVfx.Create(target, VfxColor.Blue);

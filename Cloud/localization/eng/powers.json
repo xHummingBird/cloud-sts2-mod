@@ -19,12 +19,12 @@
   "CLOUD-CROSS_SLASH_POWER.smartDescription": "Reduce damage dealt by [blue]80%[/blue].",
   "CLOUD-CROSS_SLASH_POWER.title": "Cross Slash",
 
-  "CLOUD-PRIME_MODE_POWER.description": "Increase damage dealt by 20% while in Punisher Mode. Taking damage no longer changes stance. In Operator Mode, gain 1 ATB at the start of your turn.",
+  "CLOUD-PRIME_MODE_POWER.description": "Increase physical damage dealt by [gold]20%[/gold] while in Punisher Mode. Taking damage no longer changes stance. In Operator Mode, gain 1 ATB at the start of your turn.",
   "CLOUD-PRIME_MODE_POWER.smartDescription": "[gold]Operator[/gold]: Gain 1 ATB at the start of your turn. \n[gold]Punisher[/gold]: Increase damage boost and no longer removed when damaged.",
   "CLOUD-PRIME_MODE_POWER.title": "Prime Mode",
 
-  "CLOUD-HASTE_POWER.description": "Gain 1 ATB at the start of your turn.",
-  "CLOUD-HASTE_POWER.smartDescription": "Gain 1 ATB at the start of your turn.",
+  "CLOUD-HASTE_POWER.description": "Gain 1 ATB and draw 1 additional card at the start of your turn.",
+  "CLOUD-HASTE_POWER.smartDescription": "Gain 1 ATB and draw 1 additional card at the start of your turn.",
   "CLOUD-HASTE_POWER.title": "Haste",
 
   "CLOUD-REPRIEVE_POWER.description": "When you would die, heal to 30% of your max HP instead (works once).",
@@ -81,5 +81,13 @@
 
   "CLOUD-FROZEN_SHIELD_POWER.description": "Gain 10 [gold]Block[/gold] per turn.",
   "CLOUD-FROZEN_SHIELD_POWER.smartDescription": "Gain 10 [gold]Block[/gold] per turn.",
-  "CLOUD-FROZEN_SHIELD_POWER.title": "Frozen Shield"
+  "CLOUD-FROZEN_SHIELD_POWER.title": "Frozen Shield",
+
+  "CLOUD-MEGAFLARE_POWER.description": "After charging for [blue]3[/blue] turns, deal [gold]60[/gold] damage to ALL enemies.",
+  "CLOUD-MEGAFLARE_POWER.smartDescription": "After charging for [blue]3[/blue] turns, deal [gold]60[/gold] damage to ALL enemies.",
+  "CLOUD-MEGAFLARE_POWER.title": "Megaflare",
+
+  "CLOUD-JUDGMENT_BOLT_POWER.description": "Deal 7 damage to a random enemy at the start of your turn.",
+  "CLOUD-JUDGMENT_BOLT_POWER.smartDescription": "Deal 7 damage to a random enemy at the start of your turn.",
+  "CLOUD-JUDGMENT_BOLT_POWER.title": "Judgment Bolt"
 }

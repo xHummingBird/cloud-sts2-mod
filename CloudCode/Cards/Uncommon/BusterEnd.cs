@@ -7,6 +7,8 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes;
+using MegaCrit.Sts2.Core.Nodes.Vfx.Utilities;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Cloud.CloudCode.Cards.Uncommon;
@@ -33,12 +35,13 @@ public class BusterEnd() : CloudCard(3, CardType.Attack,
             if (duration > 0f)
             {
                 await Task.Delay((int)(0.2f * 1000f));
-                SfxCmd.Play("res://Cloud/sfx/sword_swing.wav");
+                SfxCmd.Play("res://Cloud/sfx/sword_swing_heavy.wav");
                 await Task.Delay((int)(0.45f * 1000f));
             }
         }
-        CommonActions.CardAttack(this, play.Target).WithHitFx("vfx/vfx_attack_slash")
+        CommonActions.CardAttack(this, play.Target).WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav")
             .Execute(choiceContext);
+        NGame.Instance.ScreenShake(ShakeStrength.Medium, ShakeDuration.Normal);
         await Task.Delay((int)(0.567f * 1000f));
     }
     

@@ -52,17 +52,17 @@ public class BraverKai() : CloudCard(1, CardType.Attack,
             SfxCmd.Play("res://Cloud/sfx/sword_swing_heavy.wav");
             SfxCmd.Play("res://Cloud/sounds/braver.wav");
         }
-        
         NCreature nCreature = NCombatRoom.Instance?.GetCreatureNode(play.Target);
         NBigSlashVfx nBigSlashVfx = NBigSlashVfx.Create(nCreature.GetBottomOfHitbox(), facingRight: true);
-        cloud.DoScreenShake(ShakeStrength.Strong, ShakeDuration.Normal);
-        await CommonActions.CardAttack(this, play.Target)
-            .WithHitFx(null, "event:/sfx/enemy/enemy_attacks/mechaknight/mechaknight_heavy_attack")
+        CommonActions.CardAttack(this, play.Target)
+            .WithHitFx(null,"res://Cloud/sfx/cloud_hit.wav")
             .BeforeDamage(async delegate
                 { NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(nBigSlashVfx);
-                    NBigSlashImpactVfx.Create(nCreature.GetBottomOfHitbox(), 180f, new Color("#80dbff"));}
+                    NBigSlashImpactVfx.Create(nCreature.GetBottomOfHitbox(), 180f, new Color("#80dbff"));
+                }
             )
             .Execute(choiceContext);
+        cloud.DoScreenShake(ShakeStrength.Strong, ShakeDuration.Normal);
         await Task.Delay((int)(0.63f * 1000f));
         if (ownerCreature != null && cloud != null)
         {

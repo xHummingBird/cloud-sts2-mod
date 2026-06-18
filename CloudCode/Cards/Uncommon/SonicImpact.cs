@@ -43,7 +43,7 @@ public class SonicImpact() : CloudCard(2, CardType.Attack,
             }
         }
         AttackCommand attackCommand = await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).TargetingAllOpponents(base.CombatState)
-            .WithHitFx("vfx/vfx_attack_slash")
+            .WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav")
             .Execute(choiceContext);
         if (shouldTriggerFatal && attackCommand.Results.SelectMany((List<DamageResult> r) => r)
                 .Any((DamageResult r) => r.WasTargetKilled))

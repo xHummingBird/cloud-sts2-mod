@@ -17,23 +17,17 @@ public class ArmorBreakPower : CloudPower
     public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props,
         Creature? dealer, CardModel? cardSource)
     {
+        if (target != base.Owner)
+        {
+            return 1m;
+        }
+        
         if (!props.IsPoweredAttack())
         {
             return 1m;
         }
         
-        if (dealer == base.Owner)
-        {
-            return 1m;
-        }
-
-        if (target == Owner)
-        {
-            return (1m + amount / 100);
-        }
-
-        return 1m;
-        
+        return (1m + Amount / 100);
     }
 
     public override async Task AfterDamageReceived(
@@ -44,17 +38,18 @@ public class ArmorBreakPower : CloudPower
         Creature? dealer,
         CardModel? cardSource)
     {
-        // Guard clauses: fail fast
-        if (!CombatManager.Instance.IsInProgress)
-            return;
-
         if (target != base.Owner)
             return;
+        
+        if (!props.IsPoweredAttack())
+        {
+            return;
+        }
         
         if (result.UnblockedDamage <= 0)
             return;
         
-        if (dealer == null || !dealer.IsEnemy)
+        if (dealer == null)
             return;
 
         await PowerCmd.Remove(this);

@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Cloud.CloudCode.Powers;
 
@@ -24,7 +25,7 @@ public class CombatMomentumPower : CloudPower
             var ownerPlayer = base.Owner.Player;
             Flash();
             if (ownerPlayer != null)
-                await CardPileCmd.Draw(choiceContext, Amount, ownerPlayer);
+                await PowerCmd.Apply<StrengthPower>(choiceContext, ownerPlayer.Creature, Amount, ownerPlayer.Creature, null);
         }
     }
 

@@ -51,7 +51,6 @@ public class Cloud : PlaceholderCharacterModel
 	public override IEnumerable<CardModel> StartingDeck =>
 	[
 		ModelDb.Card<StrikeCloud>(),
-		ModelDb.Card<StrikeCloud>(),
 		ModelDb.Card<Braver>(),
 		ModelDb.Card<StrikeCloud>(),
 		ModelDb.Card<StrikeCloud>(),
@@ -62,15 +61,14 @@ public class Cloud : PlaceholderCharacterModel
 		ModelDb.Card<DefendCloud>(),
 		ModelDb.Card<DefendCloud>(),
 		ModelDb.Card<DefendCloud>(),
-		ModelDb.Card<DefendCloud>(),
 		ModelDb.Card<ModeShift>(),
 		
-		// for testing
-		ModelDb.Card<Blizzara>(),
-		ModelDb.Card<BlizzagaBurst>(),
-		ModelDb.Card<Blizzaga>(),
+		//testing
+		ModelDb.Card<Omnislash>(),
 		ModelDb.Card<Ascension>(),
-		ModelDb.Card<CrossSlashKai>()
+		ModelDb.Card<Climhazzard>(),
+		ModelDb.Card<CrossSlash>(),
+		ModelDb.Card<OmnislashVerFive>(),
 	];
 
 	public override IReadOnlyList<RelicModel> StartingRelics =>
@@ -116,7 +114,7 @@ public class Cloud : PlaceholderCharacterModel
 	public override string CustomCharacterSelectIconPath => "char_select_cloud.png".CharacterUiPath();
 	public override string CustomCharacterSelectLockedIconPath => "char_select_char_name_locked.png".CharacterUiPath();
 	public override string CustomMapMarkerPath => "map_marker_cloud.png".CharacterUiPath();
-	public override string CharacterSelectSfx => "res://Cloud/sfx/limit_max.wav";
+	public override string CharacterSelectSfx => "res://Cloud/sfx/sword_swing_heavy.wav";
 	public override string CharacterTransitionSfx => "res://Cloud/sounds/not_interested.wav";
 
 	public override string CustomCharacterSelectTransitionPath => "res://Cloud/images/transition/cloud_transition_mat.tres";
@@ -184,12 +182,23 @@ public class Cloud : PlaceholderCharacterModel
 
 		if (!animPlayer.HasAnimation(godotTrigger))
 			return (0f, Array.Empty<float>());
+		
+		bool shouldRestartIfAlreadyPlaying =
+			t == "attack" || t == "cast";
+		
+		
+		if (shouldRestartIfAlreadyPlaying && animPlayer.CurrentAnimation == godotTrigger)
+		{
+			animPlayer.Seek(0, true);
+		}
 
+		else
+		{
+			animPlayer.Play(godotTrigger);
+		}
+		
 		var anim = animPlayer.GetAnimation(godotTrigger);
 		float totalLength = (float)anim.Length;
-
-		animPlayer.Play(godotTrigger);
-		
 		
 		if (godotTrigger is not ("die" or "dead"))
 		{
@@ -198,8 +207,7 @@ public class Cloud : PlaceholderCharacterModel
 		}
 		
 		return (totalLength, Array.Empty<float>());
-	} // ✅ CLOSE PlayAnimation HERE
-	
+	}
 	
 	public void RefreshIdle(Creature creature)
 	{
@@ -432,28 +440,28 @@ public class Cloud : PlaceholderCharacterModel
 		}
 	}
 	
-	[HarmonyPatch(typeof(NFakeMerchant), "AfterRoomIsLoaded")]
-	public static class FakeMerchantLayeringPatch
-	{
-		[HarmonyPostfix]
-		public static void Postfix(NFakeMerchant __instance)
-		{
-			var container = AccessTools.Field(typeof(NFakeMerchant), "_characterContainer")
-				.GetValue(__instance) as Control;
-		
-			if (container != null)
-			{
-				container.ZIndex = -1; 
-			
-				var inventory = AccessTools.Field(typeof(NFakeMerchant), "_inventory")
-					.GetValue(__instance) as Control;
-				if (inventory != null)
-				{
-					inventory.ZIndex = 10;
-				}
-			}
-		}
-	}
+	// [HarmonyPatch(typeof(NFakeMerchant), "AfterRoomIsLoaded")]
+	// public static class FakeMerchantLayeringPatch
+	// {
+	// 	[HarmonyPostfix]
+	// 	public static void Postfix(NFakeMerchant __instance)
+	// 	{
+	// 		var container = AccessTools.Field(typeof(NFakeMerchant), "_characterContainer")
+	// 			.GetValue(__instance) as Control;
+	// 	
+	// 		if (container != null)
+	// 		{
+	// 			container.ZIndex = -1; 
+	// 		
+	// 			var inventory = AccessTools.Field(typeof(NFakeMerchant), "_inventory")
+	// 				.GetValue(__instance) as Control;
+	// 			if (inventory != null)
+	// 			{
+	// 				inventory.ZIndex = 10;
+	// 			}
+	// 		}
+	// 	}
+	// }
 	
    [HarmonyPatch(typeof(Hook), nameof(Hook.AfterDamageReceived))]
 	public static class CloudDamageAnimationPatch
@@ -461,6 +469,7 @@ public class Cloud : PlaceholderCharacterModel
 		[HarmonyPostfix]
 		public static void Postfix(Creature target, DamageResult result, ValueProp props, Creature? dealer)
 		{
+			bool playSound = true;
 			// Only Cloud
 			if (target.Player?.Character is not Cloud character)
 				return;
@@ -479,7 +488,7 @@ public class Cloud : PlaceholderCharacterModel
 			}
 			
 			// Only when HP damage actually happened
-			else if (result.UnblockedDamage > 0 && !target.IsDead)
+			else if (result.UnblockedDamage > 0 && !target.IsDead && playSound)
 			{
 				character.PlayAnimation(target, "block");
 				if (target.CurrentHp < 20)
@@ -494,6 +503,9 @@ public class Cloud : PlaceholderCharacterModel
 				{
 					AudioHelper.PlayRandomDamagedHigh(); // maps to "hurt" in your PlayAnimation mapping
 				}
+				playSound = false;
+				Task.Delay(200);
+				playSound = true;
 				if (!target.HasPower<PrimeModePower>())
 					character.PlayAnimation(target, "idle_operator");
 			}

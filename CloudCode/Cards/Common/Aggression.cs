@@ -16,8 +16,8 @@ public class Aggression() : CloudCard(1, CardType.Skill,
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => 
     [
-        new PowerVar<LimitBreakPower>(3m),
-        new PowerVar<VigorPower>(5m),
+        new PowerVar<LimitBreakPower>(4m),
+        new PowerVar<VigorPower>(4m),
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>

@@ -8,14 +8,16 @@ using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
+using MegaCrit.Sts2.Core.Nodes.Vfx.Utilities;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Cloud.CloudCode.Cards.Rare;
 
 public class Ruinga() : CloudCard(2, CardType.Attack,
-    CardRarity.Uncommon, TargetType.AnyEnemy), IATBCard, IMagicCard
+    CardRarity.Rare, TargetType.AllEnemies), IATBCard, IMagicCard
 {
     public int ATBCost => 2;
     protected override IEnumerable<DynamicVar> CanonicalVars => 
@@ -46,7 +48,7 @@ public class Ruinga() : CloudCard(2, CardType.Attack,
             if (duration > 0f)
                 await Task.Delay((int)(duration * 0.2f * 1000f));
         }
-        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).TargetingAllOpponents(base.CombatState)
+        DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).TargetingAllOpponents(base.CombatState)
             .BeforeDamage(async delegate
             {
                 var targets = base.CombatState.HittableEnemies;
@@ -61,15 +63,13 @@ public class Ruinga() : CloudCard(2, CardType.Attack,
                 }
             })
             .Execute(choiceContext);
-        if (play.Target != null)
-        {
+        NGame.Instance?.ScreenShake(ShakeStrength.Medium, ShakeDuration.Normal);
             if (Owner.Creature.IsPunisher())
             {
                 await PowerCmd.Apply<VulnerablePower>(choiceContext, base.CombatState.HittableEnemies, base.DynamicVars.Vulnerable.BaseValue,
                     base.Owner.Creature, this);
             }
             else await PowerCmd.Apply<WeakPower>(choiceContext, base.CombatState.HittableEnemies, base.DynamicVars.Weak.BaseValue, base.Owner.Creature, this);
-        }
     }
     protected override void OnUpgrade()
     {

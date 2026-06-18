@@ -31,6 +31,11 @@ public class RuneBlade() : CloudRelic
         if (base.Owner.Creature.HasPower<PunisherModePower>())
             return 1m;
         
+        if (cardSource is Odin)
+        {
+            return 1m;
+        }
+        
         decimal num = base.DynamicVars["DamageIncrease"].BaseValue;
         if (cardSource is IMagicCard)
             return num;

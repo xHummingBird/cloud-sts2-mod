@@ -55,10 +55,16 @@ public class UltimaWeapon() : CloudRelic
 
         if (card.Type == CardType.Attack || isMagic)
         {
-            SummonManager.GainSummon(player, isMagic ? 5 : 1);
+            SummonManager.GainSummon(player, isMagic ? 6 : 2);
         }
         
         await Owner.Creature.CheckLimitReady(
+            choiceContext,
+            Owner.Creature,
+            cardPlay.Card
+        );
+        
+        await Owner.Creature.CheckSummonReady(
             choiceContext,
             Owner.Creature,
             cardPlay.Card

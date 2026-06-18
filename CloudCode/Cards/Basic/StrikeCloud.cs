@@ -23,7 +23,6 @@ public class StrikeCloud() : CloudCard(1, CardType.Attack,
 
         if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
         {
-            
             AudioHelper.PlayRandomAttack();
             float duration = cloud.PlayAnimation(ownerCreature, "attack").total;
             if (duration > 0f)
@@ -32,7 +31,7 @@ public class StrikeCloud() : CloudCard(1, CardType.Attack,
             await Task.Delay((int)(0.14f * 1000f));
         }
         await CommonActions.CardAttack(this, play.Target)
-            .WithHitFx("vfx/vfx_attack_slash")
+            .WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav")
             .Execute(choiceContext);
     }
     

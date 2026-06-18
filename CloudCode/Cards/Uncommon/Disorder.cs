@@ -44,7 +44,7 @@ public class Disorder() : CloudCard(2, CardType.Attack,
         if (base.Owner.Creature.IsPunisher())
         {
             AttackCommand attackCommand = await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).WithHitCount(2).Targeting(play.Target)
-                .WithHitFx("vfx/vfx_attack_slash")
+                .WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav")
                 .Execute(choiceContext);
             if (shouldTriggerFatal && attackCommand.Results.SelectMany((List<DamageResult> r) => r)
                     .Any((DamageResult r) => r.WasTargetKilled))
@@ -56,7 +56,7 @@ public class Disorder() : CloudCard(2, CardType.Attack,
         }
         else if (!base.Owner.Creature.IsPunisher())
         {
-            CommonActions.CardAttack(this, play.Target).WithHitFx("vfx/vfx_attack_slash")
+            CommonActions.CardAttack(this, play.Target).WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav")
                 .Execute(choiceContext);
             await PowerCmd.Apply<FreeAttackPower>(choiceContext, base.Owner.Creature, 1m, base.Owner.Creature,
                     this);

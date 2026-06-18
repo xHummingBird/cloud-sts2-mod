@@ -34,7 +34,7 @@ public static class CloudExtensions
             await PowerCmd.Apply<PunisherModePower>(new ThrowingPlayerChoiceContext(), creature, 1, source, card);
         }
     }
-
+    
     public static async Task EnterPunisher(this Creature creature,
         decimal amount,
         Creature source,
@@ -54,8 +54,6 @@ public static class CloudExtensions
         }
     }
     
-    
-   
     public static async Task CheckLimitReady(
         this Creature creature,
         PlayerChoiceContext context,
@@ -101,5 +99,28 @@ public static class CloudExtensions
             );
         }
     }
+    
+    public static class CombatHelpers
+    {
+        private const string DefaultSfx = "res://Cloud/sfx/sword_swing_heavy.wav";
+        private const string DefaultVfx = "vfx/vfx_attack_slash";
 
+        public static async Task FakeHit(
+            Creature target,
+            string? sfxPath = null)
+        {
+            if (target == null) return;
+
+            SfxCmd.Play(sfxPath ?? DefaultSfx);
+            VfxCmd.PlayOnCreatureCenter(target, DefaultVfx);
+            SfxCmd.Play(target.Monster.TakeDamageSfx);
+            SfxCmd.Play("res://Cloud/sfx/cloud_hit.wav");
+            await CreatureCmd.TriggerAnim(target, "Hit", 0f);
+            
+            if (target.Monster?.HasHurtSfx == true)
+            {
+                SfxCmd.Play(target.Monster.HurtSfx);
+            }
+        }
+    }
 }

@@ -55,10 +55,16 @@ public class BusterSword() : CloudRelic
 
         if (card.Type == CardType.Attack || isMagic)
         {
-            SummonManager.GainSummon(player, isMagic ? 5 : 2);
+            SummonManager.GainSummon(player, isMagic ? 6 : 2);
         }
         
         await Owner.Creature.CheckLimitReady(
+            choiceContext,
+            Owner.Creature,
+            cardPlay.Card
+        );
+        
+        await Owner.Creature.CheckSummonReady(
             choiceContext,
             Owner.Creature,
             cardPlay.Card
@@ -75,10 +81,13 @@ public class BusterSword() : CloudRelic
         {
             ATBManager.Reset(Owner.Creature.Player);
         }
-        Flash();
+
         if (ATBManager.GetATB(Owner.Creature.Player) == 0)
+        {
+            Flash();
             ATBManager.GainATBDirect(Owner.Creature.Player, 1);
-        // ATBManager.ResetGainThisTurn(Owner);
+        }
+        
         SfxCmd.Play("event:/sfx/ui/relic_activate_general");
         if (base.Owner.HasPower<SedatePower>())
             LimitManager.GainLimit(Owner, 1);

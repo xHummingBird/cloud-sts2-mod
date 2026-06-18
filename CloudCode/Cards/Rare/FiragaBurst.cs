@@ -10,8 +10,10 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
+using MegaCrit.Sts2.Core.Nodes.Vfx.Utilities;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Cloud.CloudCode.Cards.Rare;
@@ -48,7 +50,7 @@ public class FiragaBurst() : CloudCard(2, CardType.Attack,
                 SfxCmd.Play("event:/sfx/characters/attack_fire");
             })
             .Execute(choiceContext);
-        
+        NGame.Instance.ScreenShake(ShakeStrength.Strong, ShakeDuration.Normal);
         bool shouldTriggerFatal = play.Target.Powers.All((PowerModel p) => p.ShouldOwnerDeathTriggerFatal());
         if (shouldTriggerFatal && attackCommand.Results.SelectMany((List<DamageResult> r) => r)
                 .Any((DamageResult r) => r.WasTargetKilled))

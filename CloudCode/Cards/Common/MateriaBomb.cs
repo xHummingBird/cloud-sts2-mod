@@ -22,7 +22,7 @@ public class MateriaBomb() : CloudCard(0, CardType.Attack,
     public int ATBCost => 1;
     
     protected override bool ShouldGlowGoldInternal => IsPlayable;
-    protected override bool IsPlayable => HasMagicCardInHand();
+    protected override bool IsPlayable => HasMagicCardInHand() && ATBCost <= ATBManager.GetATB(base.Owner);
     
     private bool HasMagicCardInHand()
     {

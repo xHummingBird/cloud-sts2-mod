@@ -9,8 +9,10 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
+using MegaCrit.Sts2.Core.Nodes.Vfx.Utilities;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Cloud.CloudCode.Cards.Uncommon;
@@ -45,10 +47,24 @@ public class Blizzaga() : CloudCard(2, CardType.Attack,
                     "ice_1"
                     );
             }
-            await Task.Delay((int)(0.4f * 1000f));
+            await Task.Delay((int)(0.20f * 1000f));
         }
         await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).TargetingAllOpponents(base.CombatState)
+            .WithHitFx(null, "res://Cloud/sfx/ice.wav")
+            .BeforeDamage(async delegate
+            {
+                var targets = base.CombatState.HittableEnemies;
+                foreach (var target in targets)
+                {
+                    var vfx = NGroundFireVfx.Create(target, VfxColor.Blue);
+                    if (vfx != null)
+                    {
+                        NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(vfx);
+                    }
+                }
+            })
             .Execute(choiceContext);
+        NGame.Instance.ScreenShake(ShakeStrength.Medium, ShakeDuration.Normal);
         await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, play);
     }
 

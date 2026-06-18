@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Nodes.Vfx.Utilities;
 using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
 
@@ -14,8 +15,7 @@ public class Ascension() : CloudCard(0, CardType.Attack,
     CardRarity.Ancient, TargetType.AnyEnemy), ILimitCard
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(5m, ValueProp.Move),
-        new RepeatVar(6),
+        new DamageVar(40m, ValueProp.Move),
     ];
     
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
@@ -28,7 +28,6 @@ public class Ascension() : CloudCard(0, CardType.Attack,
         CardPlay play)
     {
         var ownerCreature = Owner?.Creature;
-        decimal clampDamage = DynamicVars.Damage.PreviewValue;
         if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
         {
             SfxCmd.Play("res://Cloud/sounds/limit_break.wav");
@@ -60,22 +59,11 @@ public class Ascension() : CloudCard(0, CardType.Attack,
 
                     if (delay > 0f)
                         await Task.Delay((int)(delay * 1000f));
-
-                    // ✅ Cloud voice (random)
-
-                    // ✅ Sword SFX
-                    
-                    SfxCmd.Play("res://Cloud/sfx/sword_swing.wav");
-                    bool clamp = clampDamage >= (play.Target.CurrentHp + play.Target.Block);
-                    if (clamp) 
-                        play.Target.SetCurrentHpInternal(clampDamage + 1);
-                    CommonActions.CardAttack(this, play.Target)
-                        .WithHitFx("vfx/vfx_attack_slash")
-                        .Execute(choiceContext);
+                    CloudExtensions.CombatHelpers.FakeHit(play.Target, "res://Cloud/sfx/sword_swing.wav");
                 }
-
-                // ✅ Charge phase
+                
                 {
+                    cloud.DoScreenShake(ShakeStrength.Medium, ShakeDuration.Normal);
                     float delay = chargeTime - previousTime;
                     previousTime = chargeTime;
 
@@ -83,28 +71,23 @@ public class Ascension() : CloudCard(0, CardType.Attack,
                         await Task.Delay((int)(delay * 1000f));
 
                     SfxCmd.Play("res://Cloud/sounds/owarida.wav");
-                    // your planned voice line fits perfectly here
-                    // SfxCmd.Play("res://Cloud/voice/omnislash_charge.wav");
                 }
-
-                // ✅ Final hit
+                
                 {
                     float delay = finalHitTime - previousTime;
 
                     if (delay > 0f)
                         await Task.Delay((int)(delay * 1000f));
-
-                    // ✅ Final hit voice (optional but feels good)
-                     // or dedicated final voice
-                    // ✅ Final hit SFX
                     SfxCmd.Play("res://Cloud/sfx/sword_swing_heavy.wav");
 
-                    DamageCmd.Attack(base.DynamicVars.Damage.BaseValue*2).FromCard(this).Targeting(play.Target)
-                        .WithHitFx("vfx/vfx_attack_slash") // swap for bigger VFX later
+                    DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this)
+                        .Targeting(play.Target)
+                        .WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav")
                         .Execute(choiceContext);
+                    cloud.DoScreenShake(ShakeStrength.Strong, ShakeDuration.Normal);
                     await Task.Delay((int)(1.5f * 1000f));
-                    await cloud.Retreat(ownerCreature);
                     CinematicAttack.End(RunManager.Instance.NetService.NetId);
+                    await cloud.Retreat(ownerCreature);
                 }
 
             }

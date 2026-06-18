@@ -39,6 +39,7 @@ public class Ifrit() : CloudCard(0, CardType.Attack,
     {
         CinematicAttack.Start(RunManager.Instance.NetService.NetId);
         var ownerCreature = Owner?.Creature;
+        PowerCmd.Remove<SummonPower>(base.Owner.Creature);
         if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
         {
             float duration = cloud.PlayAnimation(ownerCreature, "ifrit").total;
@@ -53,7 +54,6 @@ public class Ifrit() : CloudCard(0, CardType.Attack,
             NLargeMagicMissileVfx nLargeMagicMissileVfx = NLargeMagicMissileVfx.Create(nCreature.GetBottomOfHitbox(), new Color(Colors.Red));
             NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(nLargeMagicMissileVfx);
             await Cmd.Wait(nLargeMagicMissileVfx.WaitTime);
-            NGame.Instance.ScreenShake(ShakeStrength.Medium, ShakeDuration.Short);
         }
         DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_blunt", null, "blunt_attack.mp3")
@@ -61,6 +61,7 @@ public class Ifrit() : CloudCard(0, CardType.Attack,
             {
                 NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NGroundFireVfx.Create(cardPlay.Target));
                 SfxCmd.Play("event:/sfx/characters/attack_fire");
+                NGame.Instance.ScreenShake(ShakeStrength.Strong, ShakeDuration.Normal);
             })
             .Execute(choiceContext);
         PowerCmd.Apply<MagicResistDownPower>(choiceContext, cardPlay.Target, base.DynamicVars["MagicResistDownPower"].BaseValue, base.Owner.Creature, this);
@@ -69,6 +70,6 @@ public class Ifrit() : CloudCard(0, CardType.Attack,
     }
     protected override void OnUpgrade()
     {
-        
+        DynamicVars.Damage.UpgradeValueBy(5);
     }
 }

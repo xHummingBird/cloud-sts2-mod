@@ -7,8 +7,10 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
+using MegaCrit.Sts2.Core.Nodes.Vfx.Utilities;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Cloud.CloudCode.Cards.Rare;
@@ -47,7 +49,7 @@ public class BladeBeam() : CloudCard(2, CardType.Attack,
             .BeforeDamage(async delegate
             {
                 var targets = base.CombatState.HittableEnemies;
-
+                NGame.Instance.ScreenShake(ShakeStrength.Medium, ShakeDuration.Normal);
                 foreach (var target in targets)
                 {
                     var vfx = NGroundFireVfx.Create(target, VfxColor.Blue);

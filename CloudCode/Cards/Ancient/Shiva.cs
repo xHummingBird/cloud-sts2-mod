@@ -5,8 +5,13 @@ using Cloud.CloudCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Nodes;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
+using MegaCrit.Sts2.Core.Nodes.Vfx;
+using MegaCrit.Sts2.Core.Nodes.Vfx.Utilities;
 using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
 
@@ -16,7 +21,7 @@ public class Shiva() : CloudCard(0, CardType.Attack,
     CardRarity.Ancient, TargetType.AllEnemies), ISummonCard
 {
     protected override bool ShouldGlowGoldInternal => IsPlayable;
-    // protected override bool IsPlayable => base.Owner.HasPower<SummonPower>();
+    protected override bool IsPlayable => base.Owner.HasPower<SummonPower>();
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DamageVar(17m, ValueProp.Move),
         new PowerVar<FrozenShieldPower>(3m)
@@ -31,6 +36,7 @@ public class Shiva() : CloudCard(0, CardType.Attack,
     {
         CinematicAttack.Start(RunManager.Instance.NetService.NetId);
         var ownerCreature = Owner?.Creature;
+        PowerCmd.Remove<SummonPower>(base.Owner.Creature);
         if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
         {
             float duration = cloud.PlayAnimation(ownerCreature, "shiva").total;
@@ -46,13 +52,29 @@ public class Shiva() : CloudCard(0, CardType.Attack,
                     "diamond_dust"
                 );
             }
-            await Task.Delay((int)(1.2f * 1000f));
+            await Task.Delay((int)(0.2333f * 1000f));
+            SfxCmd.Play("res://Cloud/sfx/ice.wav");
+            await Task.Delay((int)(0.7f * 1000f));
+            SfxCmd.Play("res://Cloud/sfx/ice_2.wav");
         }
         DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).TargetingAllOpponents(base.CombatState)
+            .BeforeDamage(async delegate
+            {
+                var targets = base.CombatState.HittableEnemies;
+                NGame.Instance.ScreenShake(ShakeStrength.TooMuch, ShakeDuration.Normal);
+                foreach (var target in targets)
+                {
+                    var vfx = NGroundFireVfx.Create(target, VfxColor.Blue);
+                    if (vfx != null)
+                    {
+                        NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(vfx);
+                    }
+                }
+            })
             .Execute(choiceContext);
-        PowerCmd.Apply<FrozenShieldPower>(choiceContext, base.Owner.Creature, base.DynamicVars["FrozenShieldPower"].BaseValue, base.Owner.Creature, this);
-        await Task.Delay((int)(1.0f * 1000f));
+        await Task.Delay((int)(1.1f * 1000f));
         CinematicAttack.End(RunManager.Instance.NetService.NetId);
+        await PowerCmd.Apply<FrozenShieldPower>(choiceContext, base.Owner.Creature, base.DynamicVars["FrozenShieldPower"].BaseValue, base.Owner.Creature, this);
     }
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>

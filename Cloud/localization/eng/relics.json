@@ -1,9 +1,9 @@
 {
-  "CLOUD-BUSTER_SWORD.description": "At the start of your turn, gain 5 Limit and 1 ATB.",
+  "CLOUD-BUSTER_SWORD.description": "At the start of your turn, gain 3 [gold]Limit[/gold] and 1 [gold]ATB[/gold] if you have no [gold]ATB[/gold].",
   "CLOUD-BUSTER_SWORD.flavor": "Embrace your dreams...",
   "CLOUD-BUSTER_SWORD.title": "Buster Sword",
 
-  "CLOUD-ULTIMA_WEAPON.description": "At the start of your turn, gain 7 Limit and 1 ATB. Upgrade Limit Break.",
+  "CLOUD-ULTIMA_WEAPON.description": "At the start of your turn, gain 5 [gold]Limit[/gold] and 1 [gold]ATB[/gold] if you have no [gold]ATB[/gold]. Upgrade [gold]Limit Break[/gold].",
   "CLOUD-ULTIMA_WEAPON.flavor": "",
   "CLOUD-ULTIMA_WEAPON.title": "Ultima Weapon",
 
@@ -21,5 +21,9 @@
 
   "CLOUD-BAHAMUT_MATERIA.description": "You can now summon [gold]Bahamut[/gold]. Gain 20 [gold]Summon[/gold] at the start of combat.",
   "CLOUD-BAHAMUT_MATERIA.flavor": "",
-  "CLOUD-BAHAMUT_MATERIA.title": "Bahamut Materia"
+  "CLOUD-BAHAMUT_MATERIA.title": "Bahamut Materia",
+
+  "CLOUD-ULTIMA_MATERIA.description": "Obtain [gold]Ultima[/gold]. Gain 5 [gold]Summon[/gold] at the start of your turn.",
+  "CLOUD-ULTIMA_MATERIA.flavor": "",
+  "CLOUD-ULTIMA_MATERIA.title": "Ultima Materia"
 }

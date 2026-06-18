@@ -19,9 +19,9 @@ namespace Cloud.CloudCode.Cards.Ancient;
 public class LimitBreak() : CloudCard(1, CardType.Skill,
     CardRarity.Ancient, TargetType.AnyEnemy), IATBCard, ILimitCard
 {
-    protected override bool ShouldGlowGoldInternal => IsPlayable;
-    protected override bool IsPlayable => base.Owner.HasPower<LimitBreakPower>();
     public int ATBCost => 3;
+    protected override bool ShouldGlowGoldInternal => IsPlayable;
+    protected override bool IsPlayable => base.Owner.HasPower<LimitBreakPower>() && ATBCost <= ATBManager.GetATB(base.Owner);
     protected override IEnumerable<DynamicVar> CanonicalVars => [
     ];
     

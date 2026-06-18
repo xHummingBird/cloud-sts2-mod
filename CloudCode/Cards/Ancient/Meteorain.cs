@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.Nodes.Vfx.Utilities;
@@ -75,7 +76,7 @@ public class Meteorain() : CloudCard(0, CardType.Attack,
             .BeforeDamage(async delegate
             {
                 var targets = base.CombatState.HittableEnemies;
-
+                NGame.Instance.ScreenShake(ShakeStrength.Strong, ShakeDuration.Normal);
                 foreach (var target in targets)
                 {
                     var vfx = NGroundFireVfx.Create(target, VfxColor.Red);
@@ -87,9 +88,9 @@ public class Meteorain() : CloudCard(0, CardType.Attack,
                 }
             })
             .Execute(choiceContext);
+        CinematicAttack.End(RunManager.Instance.NetService.NetId);
         await PowerCmd.Apply<WeakPower>(choiceContext, base.CombatState.HittableEnemies, base.DynamicVars.Weak.BaseValue, base.Owner.Creature, this);
         await PowerCmd.Apply<VulnerablePower>(choiceContext, base.CombatState.HittableEnemies, base.DynamicVars.Vulnerable.BaseValue, base.Owner.Creature, this);
-        CinematicAttack.End(RunManager.Instance.NetService.NetId);
     }
     protected override void OnUpgrade()
     {

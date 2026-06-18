@@ -4,9 +4,11 @@ using Cloud.CloudCode.Mechanics.ATB;
 using Godot;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
@@ -50,14 +52,11 @@ public class Zantetsuken() : CloudCard(2, CardType.Attack,
             {
                 await Task.Delay((int)(0.8f * 1000f));
                 cloud.DashPast(ownerCreature, play.Target, null, 0.01f, 300f);
-                NGame.Instance.ScreenShake(ShakeStrength.TooMuch, ShakeDuration.Short);
+                NGame.Instance.ScreenShake(ShakeStrength.Medium, ShakeDuration.Short);
                 DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).Targeting(play.Target)
+                    .WithHitFx(null, "res://Cloud/sfx/cloud_hit.wav")
                     .Execute(choiceContext);
                 await Task.Delay((int)(0.6 * 1000f));
-                if (play.Target != null) {
-                    if (play.Target.CurrentHp * 100 <= play.Target.MaxHp * threshold)
-                        await CreatureCmd.Kill(play.Target);
-                }
                 await cloud.Retreat(ownerCreature);
             }
             CinematicAttack.End(RunManager.Instance.NetService.NetId);
@@ -66,9 +65,11 @@ public class Zantetsuken() : CloudCard(2, CardType.Attack,
         {
             await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).Targeting(play.Target)
                 .Execute(choiceContext);
+        }
+        if (play.Target != null)
+        {
             if (play.Target.CurrentHp * 100 <= play.Target.MaxHp * threshold)
-                DamageCmd.Attack(play.Target.CurrentHp).FromCard(this).Targeting(play.Target)
-                    .Execute(choiceContext);
+                await DoomPower.DoomKill(new List<Creature> { play.Target });
         }
     }
     

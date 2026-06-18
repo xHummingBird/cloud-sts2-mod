@@ -35,7 +35,7 @@ public class SpinningSlash() : CloudCard(1, CardType.Attack,
         }
 
         await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).TargetingAllOpponents(base.CombatState)
-            .WithHitFx("vfx/vfx_attack_slash")
+            .WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav")
             .Execute(choiceContext);
         await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, play);
     }
