@@ -30,7 +30,9 @@ public class Ruinga() : CloudCard(2, CardType.Attack,
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<WeakPower>(),
-        HoverTipFactory.FromPower<VulnerablePower>()
+        HoverTipFactory.FromPower<VulnerablePower>(),
+        CloudStaticHoverTip.Magic,
+        
     ];
 
     protected override async Task OnPlay(

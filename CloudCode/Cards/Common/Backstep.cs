@@ -1,18 +1,25 @@
 ﻿using BaseLib.Utils;
 using Cloud.CloudCode.Extensions;
 using Cloud.CloudCode.Mechanics.ATB;
+using Cloud.CloudCode.Mechanics.Stance;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Cloud.CloudCode.Cards.Common;
 
 public class Backstep () : CloudCard(1, CardType.Skill,
-    CardRarity.Common, TargetType.Self)
+    CardRarity.Common, TargetType.Self), IOperatorCard
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new BlockVar(5, ValueProp.Move)
+    ];
+    
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
+        CloudStaticHoverTip.Operator
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)

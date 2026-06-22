@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://bn3lknulqn8q8"]
+
+[ext_resource type="Texture2D" uid="uid://dp0f1tm80voj8" path="res://Cloud/images/card_icons/summon_bahamut.png" id="1_35f2k"]
+
+[node name="BahamutDisplay" type="Control"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -64.0
+offset_right = 64.0
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("1_35f2k")
+expand_mode = 1
+stretch_mode = 5

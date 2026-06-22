@@ -2,6 +2,7 @@
 using Cloud.CloudCode.Extensions;
 using Cloud.CloudCode.Mechanics;
 using Cloud.CloudCode.Mechanics.ATB;
+using Cloud.CloudCode.Mechanics.Stance;
 using Cloud.CloudCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -14,7 +15,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Cloud.CloudCode.Cards.Rare;
 
 public class CrossSlash() : CloudCard(2, CardType.Attack,
-    CardRarity.Rare, TargetType.AnyEnemy), IATBCard
+    CardRarity.Rare, TargetType.AnyEnemy), IATBCard, IOperatorCard
 {
     public int ATBCost => 2;
     protected override IEnumerable<DynamicVar> CanonicalVars => [

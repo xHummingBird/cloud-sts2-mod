@@ -1,5 +1,6 @@
 ﻿using Cloud.CloudCode.Cards;
 using Cloud.CloudCode.Extensions;
+using Cloud.CloudCode.Mechanics.Stance;
 using Cloud.CloudCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -12,7 +13,7 @@ namespace Cloud.CloudCode.Cards.Uncommon;
 
 public class Counterstance() : CloudCard(2,
     CardType.Skill, CardRarity.Uncommon,
-    TargetType.Self)
+    TargetType.Self), IPunisherCard
 {
     public int ATBCost => 1;
     protected override IEnumerable<DynamicVar> CanonicalVars => 
@@ -24,7 +25,8 @@ public class Counterstance() : CloudCard(2,
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromPower<CounterStancePower>()
+        HoverTipFactory.FromPower<CounterStancePower>(),
+        CloudStaticHoverTip.Punisher
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

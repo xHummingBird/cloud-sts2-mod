@@ -1,0 +1,93 @@
+{
+"CLOUD-PUNISHER_MODE_POWER.description": "物理ダメージが25%増加し、受けるダメージも25%増加する。敵からダメージを受けるとモードが切り替わる。",
+"CLOUD-PUNISHER_MODE_POWER.smartDescription": "物理ダメージが25%増加し、受けるダメージも25%増加する。敵からダメージを受けるとモードが切り替わる。",
+"CLOUD-PUNISHER_MODE_POWER.title": "ブレイブモード",
+
+"CLOUD-COUNTER_STANCE_POWER.description": "1ターンの間、防いだダメージを反射する。",
+"CLOUD-COUNTER_STANCE_POWER.smartDescription": "1ターンの間、防いだダメージを反射する。",
+"CLOUD-COUNTER_STANCE_POWER.title": "反撃の構え",
+
+"CLOUD-LIMIT_BREAK_POWER.description": "[gold]リミットゲージ[/gold]が[blue]100[/blue]に達すると[gold]リミットブレイク[/gold]を使用できる。",
+"CLOUD-LIMIT_BREAK_POWER.smartDescription": "リミットゲージ最大。リミットブレイクを使用できる。",
+"CLOUD-LIMIT_BREAK_POWER.title": "リミット",
+
+"CLOUD-PASSING_THE_TORCH_POWER.description": "各ターン開始時に1エナジーを得る。",
+"CLOUD-PASSING_THE_TORCH_POWER.smartDescription": "各ターン開始時に1エナジーを得る。",
+"CLOUD-PASSING_THE_TORCH_POWER.title": "誇りの継承",
+
+"CLOUD-CROSS_SLASH_POWER.description": "与ダメージを減少させる。",
+"CLOUD-CROSS_SLASH_POWER.smartDescription": "与ダメージを減少させる。",
+"CLOUD-CROSS_SLASH_POWER.title": "凶斬り",
+
+"CLOUD-PRIME_MODE_POWER.description": "[gold]ブレイブモード[/gold]中のダメージが[gold]25%[/gold]増加する。\n[gold]アサルトモード[/gold]中の[gold]魔法[/gold]ダメージが25%増加する。\nダメージを受けてもモードが切り替わらなくなる。",
+"CLOUD-PRIME_MODE_POWER.smartDescription": "[gold]アサルトモード[/gold]：魔法ダメージ増加。\n[gold]ブレイブモード[/gold]：ダメージ増加効果が強化され、被弾で解除されなくなる。",
+"CLOUD-PRIME_MODE_POWER.title": "真ブレイブ解放",
+
+"CLOUD-HASTE_POWER.description": "ターン開始時に1ATBを得て、追加でカードを1枚引く。",
+"CLOUD-HASTE_POWER.smartDescription": "ターン開始時に1ATBを得て、追加でカードを1枚引く。",
+"CLOUD-HASTE_POWER.title": "ヘイスト",
+
+"CLOUD-REPRIEVE_POWER.description": "戦闘不能になるダメージを受けた時、一度だけ最大HPの30%で復活する。",
+"CLOUD-REPRIEVE_POWER.smartDescription": "戦闘不能になるダメージを受けた時、一度だけ最大HPの30%で復活する。",
+"CLOUD-REPRIEVE_POWER.title": "ラストリーヴ",
+
+"CLOUD-MAGIC_DAMAGE_UP_POWER.description": "[gold]魔法[/gold]の与ダメージが増加する。",
+"CLOUD-MAGIC_DAMAGE_UP_POWER.smartDescription": "[gold]魔法[/gold]の与ダメージが増加する。",
+"CLOUD-MAGIC_DAMAGE_UP_POWER.title": "魔力アップ",
+
+"CLOUD-SOLDIERS_PRIDE_POWER.description": "前のターンにダメージを受けていなかった場合、ターン開始時に現在のモードに応じて活力またはブロックを得る。",
+"CLOUD-SOLDIERS_PRIDE_POWER.smartDescription": "前のターンにダメージを受けていなかった場合、ターン開始時に現在のモードに応じて活力またはブロックを得る。",
+"CLOUD-SOLDIERS_PRIDE_POWER.title": "ソルジャーの誇り",
+
+"CLOUD-FURY_POWER.description": "受けるダメージが[blue]20%[/blue]増加する。ターン毎および攻撃使用時に得るリミットゲージが3増加する。[gold]かなしい[/gold]を解除する。",
+"CLOUD-FURY_POWER.smartDescription": "受けるダメージが増加する。ターン毎および攻撃使用時に得るリミットゲージが3増加する。",
+"CLOUD-FURY_POWER.title": "いかり",
+
+"CLOUD-SEDATE_POWER.description": "受けるダメージが[blue]20%[/blue]減少する。ターン毎および攻撃使用時に得るリミットゲージが2減少する。[gold]いかり[/gold]を解除する。",
+"CLOUD-SEDATE_POWER.smartDescription": "受けるダメージが20%減少する。ターン毎および攻撃使用時に得るリミットゲージが2減少する。",
+"CLOUD-SEDATE_POWER.title": "かなしい",
+
+"CLOUD-ARMOR_BREAK_POWER.description": "受けるダメージが増加する。",
+"CLOUD-ARMOR_BREAK_POWER.smartDescription": "受けるダメージが増加する。",
+"CLOUD-ARMOR_BREAK_POWER.title": "アーマーブレイク",
+
+"CLOUD-COMBAT_MOMENTUM_POWER.description": "自分のターン中、最初に[blue]ブレイブモード[/blue]へ切り替えた時、[gold]筋力[/gold]を得る。",
+"CLOUD-COMBAT_MOMENTUM_POWER.smartDescription": "自分のターン中、最初に[blue]ブレイブモード[/blue]へ切り替えた時、[gold]筋力[/gold]を得る。",
+"CLOUD-COMBAT_MOMENTUM_POWER.title": "戦闘の勢い",
+
+"CLOUD-ATB_NEXT_TURN_POWER.description": "次のターン開始時にATBを得る。",
+"CLOUD-ATB_NEXT_TURN_POWER.smartDescription": "次のターン開始時にATBを得る。",
+"CLOUD-ATB_NEXT_TURN_POWER.title": "ATBチャージ",
+
+"CLOUD-MAGIC_SHIELD_POWER.description": "このターン中、[gold]魔法[/gold]を使用するたびにブロックを得る。",
+"CLOUD-MAGIC_SHIELD_POWER.smartDescription": "このターン中、[gold]魔法[/gold]を使用するたびにブロックを得る。",
+"CLOUD-MAGIC_SHIELD_POWER.title": "マジカルシールド",
+
+"CLOUD-W_MAGIC_POWER.description": "各ターン最初に使用する魔法カードを追加でもう一度発動する。",
+"CLOUD-W_MAGIC_POWER.smartDescription": "各ターン最初に使用する魔法カードを追加でもう一度発動する。",
+"CLOUD-W_MAGIC_POWER.title": "Ｗまほう",
+
+"CLOUD-SUMMON_UP_POWER.description": "毎ターン、および攻撃や[gold]魔法[/gold]カードによって得る[gold]サモン[/gold]が2倍になる。",
+"CLOUD-SUMMON_UP_POWER.smartDescription": "毎ターン、および攻撃や[gold]魔法[/gold]カードによって得る[gold]サモン[/gold]が2倍になる。",
+"CLOUD-SUMMON_UP_POWER.title": "サモンアップ",
+
+"CLOUD-SUMMON_POWER.description": "強力な[gold]召喚獣[/gold]を呼び出して戦闘を支援させる。",
+"CLOUD-SUMMON_POWER.smartDescription": "強力な[gold]召喚獣[/gold]を呼び出して戦闘を支援させる。",
+"CLOUD-SUMMON_POWER.title": "サモン",
+
+"CLOUD-MAGIC_RESIST_DOWN_POWER.description": "[gold]魔法[/gold]ダメージを50%多く受ける。",
+"CLOUD-MAGIC_RESIST_DOWN_POWER.smartDescription": "[gold]魔法[/gold]ダメージを50%多く受ける。",
+"CLOUD-MAGIC_RESIST_DOWN_POWER.title": "魔防ダウン",
+
+"CLOUD-FROZEN_SHIELD_POWER.description": "毎ターン10[gold]ブロック[/gold]を得る。",
+"CLOUD-FROZEN_SHIELD_POWER.smartDescription": "毎ターン10[gold]ブロック[/gold]を得る。",
+"CLOUD-FROZEN_SHIELD_POWER.title": "アイスシールド",
+
+"CLOUD-MEGAFLARE_POWER.description": "[blue]3[/blue]ターン溜めた後、すべての敵に[gold]60[/gold]ダメージを与える。",
+"CLOUD-MEGAFLARE_POWER.smartDescription": "[blue]3[/blue]ターン溜めた後、すべての敵に[gold]60[/gold]ダメージを与える。",
+"CLOUD-MEGAFLARE_POWER.title": "メガフレア",
+
+"CLOUD-JUDGMENT_BOLT_POWER.description": "ターン開始時にランダムな敵へ7ダメージを与える。",
+"CLOUD-JUDGMENT_BOLT_POWER.smartDescription": "ターン開始時にランダムな敵へ7ダメージを与える。",
+"CLOUD-JUDGMENT_BOLT_POWER.title": "裁きの雷"
+}

@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
@@ -19,6 +20,10 @@ public class Firaga() : CloudCard(2, CardType.Attack,
     CardRarity.Uncommon, TargetType.AnyEnemy), IATBCard, IMagicCard
 {
     public int ATBCost => 1;
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
+        CloudStaticHoverTip.Magic
+    ];
     protected override IEnumerable<DynamicVar> CanonicalVars => 
     [
         new DamageVar(9m, ValueProp.Move),

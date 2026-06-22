@@ -1,6 +1,7 @@
 ﻿using Cloud.CloudCode.Extensions;
 using Cloud.CloudCode.Mechanics;
 using Cloud.CloudCode.Mechanics.ATB;
+using Cloud.CloudCode.Mechanics.Stance;
 using Cloud.CloudCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -12,19 +13,22 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace Cloud.CloudCode.Cards.Uncommon;
 
 public class ChangeTheTempo() : CloudCard(1, CardType.Skill,
-    CardRarity.Uncommon, TargetType.AnyEnemy), IATBCard
+    CardRarity.Uncommon, TargetType.AnyEnemy), IATBCard, IStanceCard
 {
     public int ATBCost => 1;
     protected override IEnumerable<DynamicVar> CanonicalVars => 
     [
         new PowerVar<PunisherModePower>(1m),
         new PowerVar<VulnerablePower>(2m),
-        new PowerVar<WeakPower>(2m)
+        new PowerVar<WeakPower>(2m),
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromPower<PunisherModePower>()
+        HoverTipFactory.FromPower<PunisherModePower>(),
+        HoverTipFactory.FromPower<VulnerablePower>(),
+        HoverTipFactory.FromPower<WeakPower>(),
+        CloudStaticHoverTip.Stance,
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

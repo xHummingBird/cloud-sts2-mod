@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbpkjjipwv5xa"
-path="res://.godot/imported/advanced_summoning.png-1eb285322d01442611d096ba056b35c4.ctex"
+uid="uid://bo6g2g4nlbt5y"
+path="res://.godot/imported/limit_meteorain.png-e48fbf8fd699d55555774c0e2a74a7d3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Cloud/images/card_portraits/big/advanced_summoning.png"
-dest_files=["res://.godot/imported/advanced_summoning.png-1eb285322d01442611d096ba056b35c4.ctex"]
+source_file="res://Cloud/images/card_icons/limit_meteorain.png"
+dest_files=["res://.godot/imported/limit_meteorain.png-e48fbf8fd699d55555774c0e2a74a7d3.ctex"]
 
 [params]
 

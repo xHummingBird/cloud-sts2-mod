@@ -1,4 +1,6 @@
-﻿using Cloud.CloudCode.Extensions;
+﻿using BaseLib.Utils;
+using Cloud.CloudCode.Cards.Ancient;
+using Cloud.CloudCode.Extensions;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -23,7 +25,7 @@ public class MegaflarePower : CloudPower
 
     public override PowerStackType StackType => PowerStackType.Counter;
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(60m, ValueProp.Move)
+        new DamageVar(70m, ValueProp.Move)
     ];
 
     public override async Task AfterPlayerTurnStartLate(PlayerChoiceContext playerChoiceContext, Player player)

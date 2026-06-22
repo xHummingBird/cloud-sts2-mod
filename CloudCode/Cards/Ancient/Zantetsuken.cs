@@ -25,7 +25,7 @@ public class Zantetsuken() : CloudCard(2, CardType.Attack,
     public int ATBCost => 2;
     
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(22, ValueProp.Move),
+        new DamageVar(25, ValueProp.Move),
         new DynamicVar("hpPercent", 10)
     ];
     

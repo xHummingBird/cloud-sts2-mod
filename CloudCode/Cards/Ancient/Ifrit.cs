@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Combat;
@@ -25,13 +26,16 @@ public class Ifrit() : CloudCard(0, CardType.Attack,
     protected override bool IsPlayable => base.Owner.HasPower<SummonPower>();
     protected override IEnumerable<DynamicVar> CanonicalVars => 
     [
-        new DamageVar(30m, ValueProp.Move),
+        new DamageVar(35m, ValueProp.Move),
         new PowerVar<MagicResistDownPower>(3)
     ];
     
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
+        CloudStaticHoverTip.Magic
+    ];
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
     [
-        CardKeyword.Retain,
         CardKeyword.Exhaust
     ];
     
@@ -70,6 +74,6 @@ public class Ifrit() : CloudCard(0, CardType.Attack,
     }
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(5);
+        DynamicVars.Damage.UpgradeValueBy(10);
     }
 }

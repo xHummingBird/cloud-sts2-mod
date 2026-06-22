@@ -1,19 +1,26 @@
 ﻿using BaseLib.Utils;
 using Cloud.CloudCode.Extensions;
+using Cloud.CloudCode.Mechanics.Stance;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Cloud.CloudCode.Cards.Uncommon;
 
 public class RelentlessStrike() : CloudCard(1, CardType.Attack,
-    CardRarity.Uncommon, TargetType.AnyEnemy)
+    CardRarity.Uncommon, TargetType.AnyEnemy), IPunisherCard
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DamageVar(8, ValueProp.Move),
         new CardsVar(1)
+    ];
+    
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
+        CloudStaticHoverTip.Punisher
     ];
     
     protected override async Task OnPlay(

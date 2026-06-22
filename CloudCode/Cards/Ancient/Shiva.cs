@@ -20,16 +20,20 @@ namespace Cloud.CloudCode.Cards.Ancient;
 public class Shiva() : CloudCard(0, CardType.Attack,
     CardRarity.Ancient, TargetType.AllEnemies), ISummonCard
 {
-    protected override bool ShouldGlowGoldInternal => IsPlayable;
-    protected override bool IsPlayable => base.Owner.HasPower<SummonPower>();
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(17m, ValueProp.Move),
+        new DamageVar(25m, ValueProp.Move),
         new PowerVar<FrozenShieldPower>(3m)
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
+        CloudStaticHoverTip.Magic,
         HoverTipFactory.FromPower<FrozenShieldPower>()
+    ];
+    
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+    [
+        CardKeyword.Exhaust
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -76,10 +80,9 @@ public class Shiva() : CloudCard(0, CardType.Attack,
         CinematicAttack.End(RunManager.Instance.NetService.NetId);
         await PowerCmd.Apply<FrozenShieldPower>(choiceContext, base.Owner.Creature, base.DynamicVars["FrozenShieldPower"].BaseValue, base.Owner.Creature, this);
     }
-
-    public override IEnumerable<CardKeyword> CanonicalKeywords =>
-    [
-        CardKeyword.Retain,
-        CardKeyword.Exhaust
-    ];
+    
+    protected override void OnUpgrade()
+    {
+        DynamicVars.Damage.UpgradeValueBy(10);
+    }
 }

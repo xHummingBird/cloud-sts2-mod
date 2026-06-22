@@ -71,6 +71,6 @@ public class FatedShowdown() : CloudCard(3, CardType.Power,
     protected override void OnUpgrade()
     {
         DynamicVars.Strength.UpgradeValueBy(1m);
-        DynamicVars.Dexterity.UpgradeValueBy(1m);
+        DynamicVars["PlatingPower"].UpgradeValueBy(1m);
     }
 }

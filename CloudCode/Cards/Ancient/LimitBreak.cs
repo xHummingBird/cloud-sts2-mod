@@ -5,6 +5,7 @@ using Cloud.CloudCode.Mechanics;
 using Cloud.CloudCode.Mechanics.ATB;
 using Cloud.CloudCode.Mechanics.Limit;
 using Cloud.CloudCode.Powers;
+using Cloud.CloudCode.Relics;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -16,7 +17,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Cloud.CloudCode.Cards.Ancient;
 
-public class LimitBreak() : CloudCard(1, CardType.Skill,
+public class LimitBreak() : CloudCard(0, CardType.Skill,
     CardRarity.Ancient, TargetType.AnyEnemy), IATBCard, ILimitCard
 {
     public int ATBCost => 3;
@@ -31,37 +32,16 @@ public class LimitBreak() : CloudCard(1, CardType.Skill,
         CardKeyword.Exhaust
     ];
     
-    
-    protected override IEnumerable<IHoverTip> ExtraHoverTips
-    {
-        get
-        {
-            if (IsUpgraded)
-            {
-                return new IHoverTip[]
-                {
-                    HoverTipFactory.FromCard<CrossSlashKai>(true),
-                    HoverTipFactory.FromCard<Meteorain>(true),
-                    HoverTipFactory.FromCard<Omnislash>()
-                };
-            }
-
-            return new IHoverTip[]
-            {
-                HoverTipFactory.FromCard<CrossSlashKai>(),
-                HoverTipFactory.FromCard<Meteorain>(),
-                HoverTipFactory.FromCard<Ascension>()
-            };
-        }
-    }
-
-
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
         var cross = CombatState.CreateCard<CrossSlashKai>(base.Owner);
         var meteor = CombatState.CreateCard<Meteorain>(base.Owner);
+        var ascension = CombatState.CreateCard<Ascension>(base.Owner);
+        var omnislash = CombatState.CreateCard<Omnislash>(base.Owner);
+        
+        UltimaWeapon? ultimaWeapon = base.Owner?.GetRelic<UltimaWeapon>();
         
         List<CardModel> cards;
         
@@ -69,12 +49,14 @@ public class LimitBreak() : CloudCard(1, CardType.Skill,
         {
             CardCmd.Upgrade(cross);
             CardCmd.Upgrade(meteor);
+            CardCmd.Upgrade(ascension);
+            CardCmd.Upgrade(omnislash);
 
             cards = new()
             {
                 cross,
                 meteor,
-                CombatState.CreateCard<Omnislash>(base.Owner)
+                ascension
             };
         }
 
@@ -84,8 +66,13 @@ public class LimitBreak() : CloudCard(1, CardType.Skill,
             {
                 cross,
                 meteor,
-                CombatState.CreateCard<Ascension>(base.Owner)
+                ascension
             };
+        }
+
+        if (ultimaWeapon != null)
+        {
+            cards.Add(omnislash);
         }
         
         CardModel cardModel = await CardSelectCmd.FromChooseACardScreen(choiceContext, cards.ToList(), base.Owner, canSkip: false);

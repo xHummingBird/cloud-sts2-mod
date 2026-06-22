@@ -1,6 +1,7 @@
 ﻿using BaseLib.Utils;
 using Cloud.CloudCode.Extensions;
 using Cloud.CloudCode.Mechanics.Limit;
+using Cloud.CloudCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -16,7 +17,8 @@ public class Ascension() : CloudCard(0, CardType.Attack,
     CardRarity.Ancient, TargetType.AnyEnemy), ILimitCard
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(40m, ValueProp.Move),
+        new DamageVar(42m, ValueProp.Move),
+        new PowerVar<ArmorBreakPower>(80m),
     ];
     
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
@@ -91,6 +93,9 @@ public class Ascension() : CloudCard(0, CardType.Attack,
                     // cam?.EndCinematic();
                     CinematicAttack.End(RunManager.Instance.NetService.NetId);
                     await cloud.Retreat(ownerCreature);
+                    await PowerCmd.Apply<ArmorBreakPower>(choiceContext, play.Target,
+                        base.DynamicVars["ArmorBreakPower"].BaseValue,
+                        base.Owner.Creature, this);
                 }
 
             }
@@ -102,6 +107,9 @@ public class Ascension() : CloudCard(0, CardType.Attack,
                 await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue*2).FromCard(this).Targeting(play.Target)
                     .WithHitFx("vfx/vfx_attack_slash") // swap for bigger VFX later
                     .Execute(choiceContext);
+                await PowerCmd.Apply<ArmorBreakPower>(choiceContext, play.Target,
+                    base.DynamicVars["ArmorBreakPower"].BaseValue,
+                    base.Owner.Creature, this);
             }
         }
         else
@@ -112,13 +120,15 @@ public class Ascension() : CloudCard(0, CardType.Attack,
             await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue*2).FromCard(this).Targeting(play.Target)
                 .WithHitFx("vfx/vfx_attack_slash") // swap for bigger VFX later
                 .Execute(choiceContext);
+            await PowerCmd.Apply<ArmorBreakPower>(choiceContext, play.Target,
+                base.DynamicVars["ArmorBreakPower"].BaseValue,
+                base.Owner.Creature, this);
         }
-        
-        
     }
     
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(1);
+        base.DynamicVars["ArmorBreakPower"].UpgradeValueBy(20);
+        DynamicVars.Damage.UpgradeValueBy(10);
     }
 }

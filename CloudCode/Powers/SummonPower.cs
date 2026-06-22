@@ -1,5 +1,6 @@
 ﻿using Cloud.CloudCode.Cards.Ancient;
 using Cloud.CloudCode.Relics;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -15,60 +16,41 @@ public class SummonPower : CloudPower
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Single;
     
-    protected override IEnumerable<IHoverTip> ExtraHoverTips
-    {
-        get
-        {
-            var tips = new List<IHoverTip>();
-
-            // === Default summons ===
-            tips.Add(HoverTipFactory.FromCard<Ifrit>());
-            tips.Add(HoverTipFactory.FromCard<Shiva>());
-            tips.Add(HoverTipFactory.FromCard<Ramuh>());
-
-            // === Check materia ===
-            bool hasOdin = base.Owner.Player?.GetRelic<OdinMateria>() != null;
-            bool hasBahamut = base.Owner.Player?.GetRelic<BahamutMateria>() != null;
-
-            if (hasOdin)
-            {
-                tips.Add(HoverTipFactory.FromCard<Odin>());
-            }
-
-            if (hasBahamut)
-            {
-                tips.Add(HoverTipFactory.FromCard<Bahamut>());
-            }
-            return tips;
-        }
-    }
-
     public override async Task AfterApplied(Creature? applier, CardModel? cardSource)
     {
-        SfxCmd.Play("res://Cloud/sounds/summon_choose.wav");
-        
-        List<CardModel> cards = new();
-
-        bool hasOdin = base.Owner.Player?.GetRelic<OdinMateria>() != null;
-        bool hasBahamut = base.Owner.Player?.GetRelic<BahamutMateria>() != null;
-        
-        cards.Add(CombatState.CreateCard<Ifrit>(base.Owner.Player));
-        cards.Add(CombatState.CreateCard<Shiva>(base.Owner.Player));
-        cards.Add(CombatState.CreateCard<Ramuh>(base.Owner.Player));
-
-        if (hasOdin)
+        CardModel card = CombatState.CreateCard<SummonCard>(base.Owner.Player);
+        if (base.Owner.HasPower<SummonUpPower>())
         {
-            cards.Add(CombatState.CreateCard<Odin>(base.Owner.Player));
+            CardCmd.Upgrade(card);
         }
-
-        if (hasBahamut)
-        {
-            cards.Add(CombatState.CreateCard<Bahamut>(base.Owner.Player));
-        }
-        
-        CardModel? cardModel = await CardSelectCmd.FromChooseACardScreen(new ThrowingPlayerChoiceContext(), cards.ToList(), base.Owner.Player, canSkip: false);
-        await CardPileCmd.AddGeneratedCardToCombat(cardModel, PileType.Hand, base.Owner.Player);
-
+        await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, base.Owner.Player);
         Flash();
+    }
+    public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants,
+        ICombatState combatState)
+    {
+        if (side != base.Owner.Side)
+            return;
+
+        if (base.Owner.HasPower<MegaflarePower>())
+            return;
+
+        var player = Owner.Player;
+        var playerState = player.PlayerCombatState;
+
+        if (playerState == null)
+            return;
+        
+        if (playerState.AllCards
+            .OfType<SummonCard>()
+            .Any(c => c.Pile?.Type == PileType.Hand))
+        {
+            return;
+        }
+
+        var cards = playerState.AllCards
+            .OfType<SummonCard>()
+            .Where(c => c.Pile == null || c.Pile.Type != PileType.Hand);
+        await CardPileCmd.Add(cards, PileType.Hand);
     }
 }

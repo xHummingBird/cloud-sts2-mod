@@ -25,6 +25,9 @@ public class RuneBlade() : CloudRelic
     public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props,
         Creature? dealer, CardModel? cardSource)
     {
+        if (dealer != base.Owner.Creature)
+            return 1m;
+        
         if (!props.IsPoweredAttack())
             return 1m;
         
@@ -39,6 +42,11 @@ public class RuneBlade() : CloudRelic
         decimal num = base.DynamicVars["DamageIncrease"].BaseValue;
         if (cardSource is IMagicCard)
             return num;
+        
+        if (cardSource is Odin)
+        {
+            return 1m;
+        }
         
         if (cardSource is ISummonCard)
             return num;

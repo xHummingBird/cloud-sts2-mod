@@ -49,14 +49,12 @@ public class Climhazzard() : CloudCard(2, CardType.Attack,
                     .Execute(choiceContext);
                 SfxCmd.Play("res://Cloud/sfx/cloud_hit.wav");
                 cloud.DoScreenShake(ShakeStrength.Medium, ShakeDuration.Normal);
-                if (play.Target != null)
-                {
-                    await Task.Delay((int)(0.70f * 1000f));
-                    await PowerCmd.Apply<ArmorBreakPower>(choiceContext, play.Target,
-                        base.DynamicVars["ArmorBreakPower"].BaseValue,
-                        base.Owner.Creature, this);
-                }
+                
+                await Task.Delay((int)(0.70f * 1000f));
                 await cloud.Retreat(ownerCreature);
+                await PowerCmd.Apply<ArmorBreakPower>(choiceContext, play.Target,
+                    base.DynamicVars["ArmorBreakPower"].BaseValue,
+                    base.Owner.Creature, this);
             }
         }
         else
@@ -64,8 +62,7 @@ public class Climhazzard() : CloudCard(2, CardType.Attack,
             await CommonActions.CardAttack(this, play.Target)
                 .WithHitFx("vfx/vfx_attack_slash")
                 .Execute(choiceContext);
-            if (play.Target != null)
-                await PowerCmd.Apply<ArmorBreakPower>(choiceContext, play.Target,
+            await PowerCmd.Apply<ArmorBreakPower>(choiceContext, play.Target,
                     base.DynamicVars["ArmorBreakPower"].BaseValue,
                     base.Owner.Creature, this);
         }

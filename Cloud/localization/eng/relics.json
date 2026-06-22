@@ -1,9 +1,9 @@
 {
-  "CLOUD-BUSTER_SWORD.description": "At the start of your turn, gain 3 [gold]Limit[/gold] and 1 [gold]ATB[/gold] if you have no [gold]ATB[/gold].",
+  "CLOUD-BUSTER_SWORD.description": "At the start of your turn, gain 3 [gold]Limit[/gold] and [gold]Summon[/gold]. Gain 1 [gold]ATB[/gold] if you have no [gold]ATB[/gold].",
   "CLOUD-BUSTER_SWORD.flavor": "Embrace your dreams...",
   "CLOUD-BUSTER_SWORD.title": "Buster Sword",
 
-  "CLOUD-ULTIMA_WEAPON.description": "At the start of your turn, gain 5 [gold]Limit[/gold] and 1 [gold]ATB[/gold] if you have no [gold]ATB[/gold]. Upgrade [gold]Limit Break[/gold].",
+  "CLOUD-ULTIMA_WEAPON.description": "At the start of your turn, gain 5 [gold]Limit[/gold] and [gold]Summon[/gold]. Gain 1 [gold]ATB[/gold] if you have no [gold]ATB[/gold]. Add [gold]Omnislash[/gold] to [gold]Limit Break[/gold].",
   "CLOUD-ULTIMA_WEAPON.flavor": "",
   "CLOUD-ULTIMA_WEAPON.title": "Ultima Weapon",
 
@@ -15,7 +15,7 @@
   "CLOUD-ODIN_MATERIA.flavor": "",
   "CLOUD-ODIN_MATERIA.title": "Odin Materia",
 
-  "CLOUD-RUNE_BLADE.description": "Increase [gold]Magic[/gold] damage by [blue]20%[/gold] while in [gold]Operator Mode[/gold].",
+  "CLOUD-RUNE_BLADE.description": "Increase [gold]Magic[/gold] damage by [blue]20%[/blue] while in [gold]Operator Mode[/gold].",
   "CLOUD-RUNE_BLADE.flavor": "",
   "CLOUD-RUNE_BLADE.title": "Rune Blade",
 

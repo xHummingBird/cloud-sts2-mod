@@ -1,4 +1,5 @@
-﻿using Cloud.CloudCode.Mechanics.Summon;
+﻿using BaseLib.Extensions;
+using Cloud.CloudCode.Mechanics.Summon;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -6,6 +7,7 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Cloud.CloudCode.Powers;
@@ -18,10 +20,30 @@ public class PunisherModePower : CloudPower
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DynamicVar("DamageIncrease", 1.2m),
-        new DynamicVar("PrimeDamageIncrease", 1.4m)
+        new DynamicVar("DamageIncrease", 1.25m),
+        new DynamicVar("PrimeDamageIncrease", 1.5m)
     ];
 
+
+    public override async Task AfterApplied(Creature? applier, CardModel? cardSource)
+    {
+        var creature = base.Owner?.Player?.Creature;
+        
+        if (creature.Player?.Character is Character.Cloud character)
+        {
+            character.RefreshIdle(creature);
+        }
+    }
+
+    public override async Task AfterRemoved(Creature oldOwner)
+    {
+        var creature = oldOwner.Player?.Creature;
+        if (creature.Player?.Character is Character.Cloud character)
+        {
+            character.RefreshIdle(creature);
+        }
+    }
+    
     public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props,
         Creature? dealer, CardModel? cardSource)
     {

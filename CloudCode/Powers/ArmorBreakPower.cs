@@ -27,7 +27,7 @@ public class ArmorBreakPower : CloudPower
             return 1m;
         }
         
-        return (1m + Amount / 100);
+        return (1m + (Amount / 100m));
     }
 
     public override async Task AfterDamageReceived(

@@ -92,9 +92,12 @@ public static class ATBCardUi
             // Ensure BBCode is on (in case you forgot in the scene)
             label.BbcodeEnabled = true;
             
+            bool isHoverTip = model.Owner == null || !(CombatManager.Instance?.IsInProgress ?? false);
+            
             bool inCombat = CombatManager.Instance?.IsInProgress ?? false;
             
             bool hasEnoughATB = !model.IsMutable 
+                                || isHoverTip
                                 || !inCombat
                                 || ATBManager.GetATB(model.Owner) >= atbCard.ATBCost;
             
@@ -118,10 +121,6 @@ public static class ATBCardUi
     }
 }
 
-//////////////////////////////////////////////////////////////
-// PATCH 1: Subscribe once per NCard instance (pool-safe)
-//////////////////////////////////////////////////////////////
-
 [HarmonyPatch(typeof(NCard), nameof(NCard._Ready))]
 public static class ATBCardPatch_Ready
 {
@@ -138,10 +137,6 @@ public static class ATBCardPatch_Ready
     }
 }
 
-//////////////////////////////////////////////////////////////
-// PATCH 2: Refresh whenever visuals update (hand/preview changes)
-//////////////////////////////////////////////////////////////
-
 [HarmonyPatch(typeof(NCard), nameof(NCard.UpdateVisuals))]
 public static class ATBCardPatch_UpdateVisuals
 {
@@ -151,7 +146,6 @@ public static class ATBCardPatch_UpdateVisuals
     }
 }
 
-
 [HarmonyPatch(typeof(CardModel), nameof(CardModel.SpendResources))]
 public static class CardModel_SpendResources_ATB
 {
@@ -159,7 +153,7 @@ public static class CardModel_SpendResources_ATB
     {
         if (__instance is not IATBCard atbCard)
             return;
-
+        
         if (!__instance.IsMutable)
             return;
 

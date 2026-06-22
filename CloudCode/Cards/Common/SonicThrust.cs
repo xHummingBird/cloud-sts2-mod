@@ -1,5 +1,6 @@
 ﻿using BaseLib.Utils;
 using Cloud.CloudCode.Extensions;
+using Cloud.CloudCode.Mechanics.Stance;
 using Cloud.CloudCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -12,7 +13,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Cloud.CloudCode.Cards.Common;
 
 public class SonicThrust() : CloudCard(1, CardType.Attack,
-    CardRarity.Common, TargetType.AnyEnemy)
+    CardRarity.Common, TargetType.AnyEnemy), IPunisherCard
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DamageVar(6, ValueProp.Move),
@@ -46,6 +47,7 @@ public class SonicThrust() : CloudCard(1, CardType.Attack,
         {
             await PlayerCmd.GainEnergy(base.DynamicVars.Energy.IntValue, base.Owner);
         }
+        else await base.Owner.Creature.EnterPunisher(1, base.Owner.Creature, this);
         await Task.Delay((int)(0.2f * 1000f));
     }
     

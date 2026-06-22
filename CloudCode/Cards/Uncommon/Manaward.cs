@@ -4,6 +4,7 @@ using Cloud.CloudCode.Mechanics.Summon;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 
@@ -13,6 +14,10 @@ public class Manaward() : CloudCard(1, CardType.Skill,
     CardRarity.Uncommon, TargetType.Self), IATBCard, IMagicCard
 {
     public int ATBCost => 1;
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
+        CloudStaticHoverTip.Magic
+    ];
     
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new BlockVar(10m, ValueProp.Move),

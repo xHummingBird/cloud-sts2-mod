@@ -2,6 +2,7 @@
 using Cloud.CloudCode.Extensions;
 using Cloud.CloudCode.Mechanics;
 using Cloud.CloudCode.Mechanics.ATB;
+using Cloud.CloudCode.Mechanics.Stance;
 using Cloud.CloudCode.Powers;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
@@ -10,6 +11,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes.Combat;
@@ -21,12 +23,18 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Cloud.CloudCode.Cards.Basic;
 
 public class Braver() : CloudCard(1, CardType.Attack,
-    CardRarity.Basic, TargetType.AnyEnemy), IATBCard
+    CardRarity.Basic, TargetType.AnyEnemy), IATBCard, IOperatorCard
 {
     public int ATBCost => 2;
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DamageVar(10, ValueProp.Move),
         new PowerVar<VulnerablePower>(1)
+    ];
+    
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
+        CloudStaticHoverTip.Operator,
+        HoverTipFactory.FromPower<VulnerablePower>()
     ];
 
     protected override async Task OnPlay(

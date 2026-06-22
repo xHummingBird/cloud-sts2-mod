@@ -33,7 +33,7 @@ public class OmnislashVerFive() : CloudCard(2, CardType.Attack,
     public int ATBCost => 2;
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new CalculationBaseVar(25m),
-        new ExtraDamageVar(13m),
+        new ExtraDamageVar(20m),
         new CalculatedDamageVar(ValueProp.Move)
             .WithMultiplier((card, _) =>
                 LimitManager.GetLimit(card.Owner) >= 50 ? 1 : 0)

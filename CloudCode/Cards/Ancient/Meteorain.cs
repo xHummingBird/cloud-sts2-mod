@@ -22,7 +22,7 @@ public class Meteorain() : CloudCard(0, CardType.Attack,
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => 
     [
-        new DamageVar(25m, ValueProp.Move),
+        new DamageVar(30m, ValueProp.Move),
         new PowerVar<WeakPower>(2m),
         new PowerVar<VulnerablePower>(2m)
     ];
@@ -36,7 +36,6 @@ public class Meteorain() : CloudCard(0, CardType.Attack,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-
         var ownerCreature = Owner?.Creature;
         CinematicAttack.Start(RunManager.Instance.NetService.NetId);
         if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
@@ -96,6 +95,6 @@ public class Meteorain() : CloudCard(0, CardType.Attack,
     {
         DynamicVars.Vulnerable.UpgradeValueBy(1m);
         DynamicVars.Weak.UpgradeValueBy(1m);
-        DynamicVars.Damage.UpgradeValueBy(5m);
+        DynamicVars.Damage.UpgradeValueBy(8m);
     }
 }

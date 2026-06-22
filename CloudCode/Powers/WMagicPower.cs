@@ -13,23 +13,29 @@ public class WMagicPower : CloudPower
 
     public override PowerStackType StackType => PowerStackType.Counter;
 
+    
     public override int ModifyCardPlayCount(CardModel card, Creature? target, int playCount)
     {
         if (card.Owner.Creature != base.Owner)
-        {
             return playCount;
-        }
-        
+
         if (card is not IMagicCard)
             return playCount;
-        
-        int num = CombatManager.Instance.History.CardPlaysStarted.Count((CardPlayStartedEntry e) => e.Actor == base.Owner && e.CardPlay.IsFirstInSeries && e.HappenedThisTurn(base.CombatState));
-        if (num >= base.Amount)
-        {
+
+        int numMagicPlayedThisTurn = CombatManager.Instance.History.CardPlaysStarted.Count(
+            e =>
+                e.Actor == base.Owner &&
+                e.CardPlay.IsFirstInSeries &&
+                e.HappenedThisTurn(base.CombatState) &&
+                e.CardPlay.Card is IMagicCard
+        );
+
+        if (numMagicPlayedThisTurn >= base.Amount)
             return playCount;
-        }
+
         return playCount + 1;
     }
+
 
     public override Task AfterModifyingCardPlayCount(CardModel card)
     {

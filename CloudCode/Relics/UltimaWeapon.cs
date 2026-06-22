@@ -96,6 +96,15 @@ public class UltimaWeapon() : CloudRelic
             Owner.Creature,
             null
         );
+        
+        if (base.Owner.HasPower<SummonUpPower>())
+            SummonManager.GainSummon(Owner, 10);
+        else SummonManager.GainSummon(Owner, 5);
+        await Owner.Creature.CheckSummonReady(
+            null,
+            Owner.Creature,
+            null
+        );
     }
     public override async Task AfterDamageReceived(PlayerChoiceContext choiceContext, Creature target, DamageResult result, ValueProp props, Creature? dealer, CardModel? cardSource)
     {

@@ -2,6 +2,7 @@
 using Cloud.CloudCode.Extensions;
 using Cloud.CloudCode.Mechanics;
 using Cloud.CloudCode.Mechanics.ATB;
+using Cloud.CloudCode.Mechanics.Stance;
 using Cloud.CloudCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -12,7 +13,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 namespace Cloud.CloudCode.Cards.Basic;
 
 public class ModeShift() : CloudCard(0, CardType.Skill,
-    CardRarity.Basic, TargetType.Self)
+    CardRarity.Basic, TargetType.Self), IStanceCard
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => 
         [
@@ -21,6 +22,7 @@ public class ModeShift() : CloudCard(0, CardType.Skill,
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
+        CloudStaticHoverTip.Stance,
         HoverTipFactory.FromPower<PunisherModePower>()
     ];
 
@@ -49,10 +51,6 @@ public class ModeShift() : CloudCard(0, CardType.Skill,
         else
         {
             await PowerCmd.Remove<PunisherModePower>(base.Owner.Creature);
-            if (Owner?.Character is Character.Cloud cloud)
-            {
-                cloud.RefreshIdle(ownerCreature);
-            }
         }
     }
 

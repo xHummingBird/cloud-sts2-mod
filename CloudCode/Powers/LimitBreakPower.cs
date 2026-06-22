@@ -22,8 +22,7 @@ public class LimitBreakPower : CloudPower
     {
         SfxCmd.Play("res://Cloud/sounds/limit_break_2.wav");
         CardModel card = CombatState.CreateCard<LimitBreak>(base.Owner.Player);
-        UltimaWeapon? ultimaWeapon = base.Owner.Player?.GetRelic<UltimaWeapon>();
-        if (ultimaWeapon != null)
+        if (base.Owner.HasPower<FuryPower>())
         {
             CardCmd.Upgrade(card);
         }

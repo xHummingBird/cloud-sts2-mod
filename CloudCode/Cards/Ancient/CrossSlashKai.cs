@@ -19,7 +19,7 @@ public class CrossSlashKai() : CloudCard(0, CardType.Attack,
     CardRarity.Ancient, TargetType.AnyEnemy), ILimitCard
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(30, ValueProp.Move),
+        new DamageVar(37, ValueProp.Move),
         new PowerVar<CrossSlashPower>(80),
         new RepeatVar(3)
     ];
@@ -93,6 +93,6 @@ public class CrossSlashKai() : CloudCard(0, CardType.Attack,
     protected override void OnUpgrade()
     {
         DynamicVars["CrossSlashPower"].UpgradeValueBy(20);
-        DynamicVars.Damage.UpgradeValueBy(6);
+        DynamicVars.Damage.UpgradeValueBy(8);
     }
 }

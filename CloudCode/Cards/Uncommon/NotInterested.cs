@@ -17,7 +17,6 @@ public class NotInterested() : CloudCard(1, CardType.Skill,
     [
         HoverTipFactory.FromPower<WeakPower>(),
         HoverTipFactory.FromPower<VulnerablePower>()
-        
     ];
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new BlockVar(7, ValueProp.Move),

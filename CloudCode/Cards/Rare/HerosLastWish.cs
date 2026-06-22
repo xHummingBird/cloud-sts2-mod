@@ -56,6 +56,8 @@ public class HerosLastWish() : CloudCard(0, CardType.Skill,
     }
     protected override void OnUpgrade()
     {
-        RemoveKeyword(CardKeyword.Exhaust);
+        DynamicVars.Energy.UpgradeValueBy(1);
+        DynamicVars["LimitBreakPower"].UpgradeValueBy(5);
+        DynamicVars["SummonPower"].UpgradeValueBy(5);
     }
 }

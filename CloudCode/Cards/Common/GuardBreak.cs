@@ -1,5 +1,6 @@
 ﻿using BaseLib.Utils;
 using Cloud.CloudCode.Extensions;
+using Cloud.CloudCode.Mechanics.Stance;
 using Cloud.CloudCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -9,11 +10,13 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 
-namespace Cloud.CloudCode.Cards.Basic;
+namespace Cloud.CloudCode.Cards.Common;
 
 public class GuardBreak() : CloudCard(1, CardType.Attack,
-    CardRarity.Common, TargetType.AnyEnemy)
+    CardRarity.Common, TargetType.AnyEnemy), IPunisherCard
 {
+    
+    
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DamageVar(8, ValueProp.Move),
         new PowerVar<VulnerablePower>(1),
@@ -23,7 +26,9 @@ public class GuardBreak() : CloudCard(1, CardType.Attack,
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<PunisherModePower>(),
-        HoverTipFactory.FromPower<VulnerablePower>()
+        HoverTipFactory.FromPower<VulnerablePower>(),
+        CloudStaticHoverTip.Punisher,
+        
     ];
 
     protected override async Task OnPlay(

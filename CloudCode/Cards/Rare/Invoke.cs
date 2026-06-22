@@ -26,17 +26,10 @@ public class Invoke() : CloudCard(2, CardType.Power,
     
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        SummonManager.GainSummon(Owner, DynamicVars["SummonPower"].IntValue);
-        await Owner.Creature.CheckSummonReady(
-            choiceContext,
-            Owner.Creature,
-            null
-        );
         await PowerCmd.Apply<SummonUpPower>(choiceContext, base.Owner.Creature, DynamicVars["SummonUpPower"].BaseValue, base.Owner.Creature, this);
     }
     protected override void OnUpgrade()
     {
-        DynamicVars["SummonPower"].UpgradeValueBy(5m);
+        AddKeyword(CardKeyword.Innate);
     }
-    
 }

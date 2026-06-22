@@ -18,7 +18,6 @@ public class GotYourBack() : CloudCard(2, CardType.Skill,
     ];
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
     {
-        
         LimitManager.GainLimit(Owner, DynamicVars["LimitBreakPower"].IntValue);
         await Owner.Creature.CheckLimitReady(
             choiceContext,
@@ -28,7 +27,6 @@ public class GotYourBack() : CloudCard(2, CardType.Skill,
 
         AudioHelper.PlayRandomDefend();
         await CommonActions.CardBlock(this, play);
-        
     }
     protected override void OnUpgrade()
     {

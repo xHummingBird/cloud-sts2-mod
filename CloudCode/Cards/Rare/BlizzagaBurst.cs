@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
@@ -24,6 +25,11 @@ public class BlizzagaBurst() : CloudCard(2, CardType.Attack,
     [
         new DamageVar(15m, ValueProp.Move),
         new BlockVar(10, ValueProp.Move)
+    ];
+    
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
+        CloudStaticHoverTip.Magic,
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)

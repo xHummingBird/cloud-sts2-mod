@@ -14,7 +14,7 @@ public class SedatePower : CloudPower
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DynamicVar("DamageDecrease", 0.9m),
+        new DynamicVar("DamageDecrease", 0.8m),
     ];
 
     public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props,

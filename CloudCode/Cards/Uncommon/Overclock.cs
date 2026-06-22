@@ -7,7 +7,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace Cloud.CloudCode.Cards.Uncommon;
 
-public class Overclock() : CloudCard(1, CardType.Power,
+public class Overclock() : CloudCard(1, CardType.Skill,
     CardRarity.Uncommon, TargetType.Self), IATBCard
 {
     public int ATBCost => 1;

@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
@@ -26,6 +27,11 @@ public class Blizzaga() : CloudCard(2, CardType.Attack,
         new DamageVar(12m, ValueProp.Move),
         new BlockVar(8, ValueProp.Move)
     ];
+    
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
+        CloudStaticHoverTip.Magic,
+    ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
     {
@@ -39,14 +45,14 @@ public class Blizzaga() : CloudCard(2, CardType.Attack,
             // Optional: delay to sync hit roughly mid animation
             var targets = base.CombatState.HittableEnemies;
             if (duration > 0f)
-            foreach (var target in targets)
-            {
-                cloud.PlayVfxOnTarget(
-                    target,
-                    "res://Cloud/scenes/ice_vfx.tscn",
-                    "ice_1"
+                foreach (var target in targets)
+                {
+                    cloud.PlayVfxOnTarget(
+                        target,
+                        "res://Cloud/scenes/ice_vfx.tscn",
+                        "ice_1"
                     );
-            }
+                }
             await Task.Delay((int)(0.20f * 1000f));
         }
         await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).TargetingAllOpponents(base.CombatState)

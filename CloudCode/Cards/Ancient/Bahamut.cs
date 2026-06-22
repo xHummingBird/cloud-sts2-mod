@@ -15,12 +15,11 @@ CardRarity.Ancient, TargetType.AnyEnemy), ISummonCard
     protected override bool ShouldGlowGoldInternal => IsPlayable;
     protected override bool IsPlayable => base.Owner.HasPower<SummonPower>();
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new PowerVar<MegaflarePower>(1)
+        new PowerVar<MegaflarePower>(3)
     ];
     
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
     [
-        CardKeyword.Retain,
         CardKeyword.Exhaust
     ];
     
@@ -32,11 +31,12 @@ CardRarity.Ancient, TargetType.AnyEnemy), ISummonCard
             SfxCmd.Play("res://Cloud/sounds/kakugohaiina.wav");
         }
 
-        PowerCmd.Apply<MegaflarePower>(choiceContext, base.Owner.Creature, base.DynamicVars["MegaflarePower"].BaseValue,
+        decimal Megaflare = 4m - base.DynamicVars["MegaflarePower"].BaseValue;
+        PowerCmd.Apply<MegaflarePower>(choiceContext, base.Owner.Creature, Megaflare,
             base.Owner.Creature, this);
     }
     protected override void OnUpgrade()
     {
-        DynamicVars["MegaflarePower"].UpgradeValueBy(1m);
+        DynamicVars["MegaflarePower"].UpgradeValueBy(-1m);
     }
 }

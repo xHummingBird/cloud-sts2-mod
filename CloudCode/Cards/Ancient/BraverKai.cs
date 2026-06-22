@@ -4,6 +4,7 @@ using Cloud.CloudCode.Extensions;
 using Cloud.CloudCode.Mechanics;
 using Cloud.CloudCode.Mechanics.ATB;
 using Cloud.CloudCode.Mechanics.Limit;
+using Cloud.CloudCode.Mechanics.Stance;
 using Cloud.CloudCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -22,7 +23,7 @@ using Color = Godot.Color;
 namespace Cloud.CloudCode.Cards.Ancient;
 
 public class BraverKai() : CloudCard(1, CardType.Attack,
-    CardRarity.Ancient, TargetType.AnyEnemy), IATBCard
+    CardRarity.Ancient, TargetType.AnyEnemy), IATBCard, IOperatorCard
 {
     public int ATBCost => 1;
     protected override IEnumerable<DynamicVar> CanonicalVars => [

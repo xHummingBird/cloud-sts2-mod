@@ -55,7 +55,7 @@ public class BusterSword() : CloudRelic
 
         if (card.Type == CardType.Attack || isMagic)
         {
-            SummonManager.GainSummon(player, isMagic ? 6 : 2);
+            SummonManager.GainSummon(player, isMagic ? 6 : 3);
         }
         
         await Owner.Creature.CheckLimitReady(
@@ -99,6 +99,15 @@ public class BusterSword() : CloudRelic
             Owner.Creature,
             null
         );
+        
+        if (base.Owner.HasPower<SummonUpPower>())
+            SummonManager.GainSummon(Owner, 6);
+        else SummonManager.GainSummon(Owner, 3);
+        await Owner.Creature.CheckSummonReady(
+            null,
+            Owner.Creature,
+            null
+            );
     }
     public override async Task AfterDamageReceived(PlayerChoiceContext choiceContext, Creature target, DamageResult result, ValueProp props, Creature? dealer, CardModel? cardSource)
     {

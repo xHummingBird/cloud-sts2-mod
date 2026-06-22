@@ -12,7 +12,6 @@ public class ATBManager
     public class ATBData
     {
         public int Value;
-        public int GainThisTurn;
         
         public int BaseMaxATB = 3;
         public int BonusMaxATB = 0;
@@ -35,13 +34,6 @@ public class ATBManager
         }
         return data;
     }
-    
-    // public static void ResetGainThisTurn(Player player)
-    // {
-    //     var data = GetData(player);
-    //     data.GainThisTurn = 0;
-    // }
-
     
     public static int GetMaxATB(Player player)
     {
@@ -89,18 +81,9 @@ public class ATBManager
     {
         var data = GetData(player);
 
-        int max = GetMaxATB(player);; // your soft cap
+        int max = GetMaxATB(player);;
         int current = data.Value;
-
-        // ✅ limit: max gain per turn from attacks = max ATB
-        //int remainingThisTurn = max - data.GainThisTurn;
-        // if (remainingThisTurn <= 0)
-            // return;
-
-        // int allowed = Math.Min(amount, remainingThisTurn);
-
-        // ✅ also don't exceed soft cap from this source
-        // int final = Math.Min(current + allowed, max);
+        
         int final = Math.Min(current + amount, max);
 
         int actualGain = final - current;
@@ -132,11 +115,9 @@ public class ATBManager
         SetATB(player, 0);
         
         var data = GetData(player);
-// Reset core values
-        data.Value = 0;
-        data.GainThisTurn = 0;
 
-        // ✅ Reset max ATB (important)
+        data.Value = 0;
+        
         data.BaseMaxATB = 3;
         data.BonusMaxATB = 0;
 

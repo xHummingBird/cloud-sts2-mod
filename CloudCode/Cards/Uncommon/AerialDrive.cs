@@ -5,6 +5,7 @@ using Cloud.CloudCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 
@@ -17,6 +18,11 @@ public class AerialDrive() : CloudCard(2, CardType.Attack,
         new DamageVar(7, ValueProp.Move),
         new RepeatVar(2),
         new PowerVar<LimitBreakPower>(5)
+    ];
+    
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
+        HoverTipFactory.FromPower<LimitBreakPower>(),
     ];
 
     protected override async Task OnPlay(

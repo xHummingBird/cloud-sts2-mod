@@ -1,18 +1,24 @@
 ﻿using BaseLib.Utils;
 using Cloud.CloudCode.Extensions;
 using Cloud.CloudCode.Mechanics.ATB;
+using Cloud.CloudCode.Mechanics.Stance;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Cloud.CloudCode.Cards.Common;
 
 public class TacticalRetreat() : CloudCard(2, CardType.Skill,
-    CardRarity.Common, TargetType.Self), IATBCard
+    CardRarity.Common, TargetType.Self), IATBCard, IOperatorCard
 {
     public int ATBCost => 1;
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
+        CloudStaticHoverTip.Operator,
+    ];
     
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new BlockVar(12, ValueProp.Move),

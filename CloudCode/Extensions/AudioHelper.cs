@@ -27,7 +27,7 @@ public static class AudioHelper
     
     private static readonly string[] magicSfx =
     {
-        "res://Cloud/sounds/kurae",
+        "res://Cloud/sounds/kurae.wav",
         "res://Cloud/sounds/murata.wav",
         "res://Cloud/sounds/generic_magic_1.wav",
         "res://Cloud/sounds/generic_magic_2.wav",

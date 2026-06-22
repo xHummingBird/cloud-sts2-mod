@@ -1,4 +1,6 @@
 ﻿using BaseLib.Utils;
+using Cloud.CloudCode.Extensions;
+using Cloud.CloudCode.Mechanics.Stance;
 using Cloud.CloudCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -12,7 +14,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Cloud.CloudCode.Cards.Uncommon;
 
 public class TripleSlash() : CloudCard(2, CardType.Attack,
-    CardRarity.Uncommon, TargetType.RandomEnemy)
+    CardRarity.Uncommon, TargetType.RandomEnemy), IStanceCard
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new CalculationBaseVar(4m),
@@ -60,6 +62,7 @@ public class TripleSlash() : CloudCard(2, CardType.Attack,
         }
         if (base.Owner.Creature.HasPower<PunisherModePower>())
             await CardPileCmd.Draw(choiceContext, base.DynamicVars.Cards.BaseValue, base.Owner);
+        await ownerCreature.TogglePunisher(1, ownerCreature, this);
     }
     
     protected override void OnUpgrade()

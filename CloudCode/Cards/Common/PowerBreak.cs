@@ -1,5 +1,6 @@
 ﻿using BaseLib.Utils;
 using Cloud.CloudCode.Extensions;
+using Cloud.CloudCode.Mechanics.Stance;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -11,7 +12,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Cloud.CloudCode.Cards.Common;
 
 public class PowerBreak() : CloudCard(1, CardType.Attack,
-        CardRarity.Common, TargetType.AnyEnemy)
+        CardRarity.Common, TargetType.AnyEnemy), IOperatorCard
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DamageVar(8, ValueProp.Move),
@@ -20,7 +21,9 @@ public class PowerBreak() : CloudCard(1, CardType.Attack,
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromPower<WeakPower>()
+        HoverTipFactory.FromPower<WeakPower>(),
+        CloudStaticHoverTip.Operator,
+        
     ];
 
     protected override async Task OnPlay(

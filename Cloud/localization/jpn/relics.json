@@ -1,0 +1,29 @@
+{
+"CLOUD-BUSTER_SWORD.description": "ターン開始時、[gold]リミットゲージ[/gold]が3増加し、3[gold]サモン[/gold]を得る。[gold]ATB[/gold]が0の場合、1[gold]ATB[/gold]を得る。",
+"CLOUD-BUSTER_SWORD.flavor": "夢を抱きしめろ。",
+"CLOUD-BUSTER_SWORD.title": "バスターソード",
+
+"CLOUD-ULTIMA_WEAPON.description": "ターン開始時、[gold]リミットゲージ[/gold]が5増加し、5[gold]サモン[/gold]を得る。[gold]ATB[/gold]が0の場合、1[gold]ATB[/gold]を得る。[gold]リミットブレイク[/gold]に[gold]超究武神覇斬[/gold]を追加する。",
+"CLOUD-ULTIMA_WEAPON.flavor": "",
+"CLOUD-ULTIMA_WEAPON.title": "アルテマウェポン",
+
+"CLOUD-FUSION_SWORD.description": "[gold]超究武神覇斬ver.5[/gold]を獲得する。戦闘開始時に3[gold]ATB[/gold]を得る。",
+"CLOUD-FUSION_SWORD.flavor": "",
+"CLOUD-FUSION_SWORD.title": "合体剣",
+
+"CLOUD-ODIN_MATERIA.description": "[gold]斬鉄剣[/gold]を獲得する。[gold]オーディン[/gold]を召喚できるようになる。戦闘開始時に[gold]ブレイブモード[/gold]になる。",
+"CLOUD-ODIN_MATERIA.flavor": "",
+"CLOUD-ODIN_MATERIA.title": "オーディンマテリア",
+
+"CLOUD-RUNE_BLADE.description": "[gold]アサルトモード[/gold]中、[gold]魔法[/gold]の与ダメージが[blue]20%[/blue]増加する。",
+"CLOUD-RUNE_BLADE.flavor": "",
+"CLOUD-RUNE_BLADE.title": "ルーンブレイド",
+
+"CLOUD-BAHAMUT_MATERIA.description": "[gold]バハムート[/gold]を召喚できるようになる。戦闘開始時に20[gold]サモン[/gold]を得る。",
+"CLOUD-BAHAMUT_MATERIA.flavor": "",
+"CLOUD-BAHAMUT_MATERIA.title": "バハムートマテリア",
+
+"CLOUD-ULTIMA_MATERIA.description": "[gold]アルテマ[/gold]を獲得する。ターン開始時に5[gold]サモン[/gold]を得る。",
+"CLOUD-ULTIMA_MATERIA.flavor": "",
+"CLOUD-ULTIMA_MATERIA.title": "アルテママテリア"
+}
