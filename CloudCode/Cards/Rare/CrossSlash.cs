@@ -10,12 +10,13 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Vfx.Utilities;
+using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Cloud.CloudCode.Cards.Rare;
 
 public class CrossSlash() : CloudCard(2, CardType.Attack,
-    CardRarity.Rare, TargetType.AnyEnemy), IATBCard, IOperatorCard
+    CardRarity.Rare, TargetType.AnyEnemy), IATBCard
 {
     public int ATBCost => 2;
     protected override IEnumerable<DynamicVar> CanonicalVars => [
@@ -28,7 +29,7 @@ public class CrossSlash() : CloudCard(2, CardType.Attack,
         CardPlay play)
     {
         var ownerCreature = Owner?.Creature;
-
+        CenterCardCinematic.Start(RunManager.Instance.NetService.NetId);   
         if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
         {
             await cloud.DashTo(ownerCreature, play.Target, distance: 550f);
@@ -72,6 +73,7 @@ public class CrossSlash() : CloudCard(2, CardType.Attack,
                 base.DynamicVars["CrossSlashPower"].BaseValue,
                 base.Owner.Creature, this);
         }
+        CenterCardCinematic.End(RunManager.Instance.NetService.NetId);
     }
     
     protected override void OnUpgrade()

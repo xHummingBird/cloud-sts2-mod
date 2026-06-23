@@ -77,26 +77,26 @@
   "CLOUD-LIMIT_BREAK.description": "[gold]リミットブレイク[/gold]を発動する。",
   "CLOUD-LIMIT_BREAK.title": "リミットブレイク",
 
-  "CLOUD-OMNISLASH.description": "{Damage:diff()}ダメージを与える。",
-  "CLOUD-OMNISLASH.title": "超究武神覇斬",
+"CLOUD-OMNISLASH.description": "{Damage:diff()}ダメージを与える。",
+"CLOUD-OMNISLASH.title": "超究武神覇斬",
 
-  "CLOUD-CROSS_SLASH.description": "{Damage:diff()}ダメージを与える。\n敵の与ダメージを1ターンの間[blue]{CrossSlashPower:diff()}%[/blue]減少させる。",
-  "CLOUD-CROSS_SLASH.title": "凶斬り",
+"CLOUD-CROSS_SLASH.description": "{Damage:diff()}ダメージを与える。\n敵の与ダメージを1ターンの間[blue]{CrossSlashPower:diff()}%[/blue]減少させる。",
+"CLOUD-CROSS_SLASH.title": "凶斬り",
 
-  "CLOUD-AERIAL_DRIVE.description": "{Damage:diff()}ダメージを{Repeat:diff()}回与える。\n[gold]リミットゲージ[/gold]が{LimitBreakPower:diff()}増加する。",
-  "CLOUD-AERIAL_DRIVE.title": "エアリアルドライブ",
+"CLOUD-AERIAL_DRIVE.description": "{Damage:diff()}ダメージを{Repeat:diff()}回与える。\n[gold]リミットゲージ[/gold]が{LimitBreakPower:diff()}増加する。",
+"CLOUD-AERIAL_DRIVE.title": "エアリアルドライブ",
 
-  "CLOUD-CROSS_SLASH_KAI.description": "{Damage:diff()}ダメージを与える。\n敵の与ダメージを1ターンの間[blue]{CrossSlashPower:diff()}%[/blue]減少させる。",
-  "CLOUD-CROSS_SLASH_KAI.title": "凶斬り改",
+"CLOUD-CROSS_SLASH_KAI.description": "{Damage:diff()}ダメージを与える。\n敵の与ダメージを1ターンの間[blue]{CrossSlashPower:diff()}%[/blue]減少させる。",
+"CLOUD-CROSS_SLASH_KAI.title": "凶斬り改",
 
-  "CLOUD-PRIME_MODE.description": "[gold]真ブレイブ解放[/gold]状態になる。\nアサルトモードとブレイブモードを強化する。",
-  "CLOUD-PRIME_MODE.title": "真ブレイブ解放",
+"CLOUD-PRIME_MODE.description": "[gold]真ブレイブ解放[/gold]状態になる。\nアサルトモードとブレイブモードを強化する。",
+"CLOUD-PRIME_MODE.title": "真ブレイブ解放",
 
-  "CLOUD-PROTECT.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n次のターン開始時にも{Block:diff()}[gold]ブロック[/gold]を得る。",
-  "CLOUD-PROTECT.title": "プロテス",
+"CLOUD-PROTECT.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n次のターン開始時にも{Block:diff()}[gold]ブロック[/gold]を得る。",
+"CLOUD-PROTECT.title": "プロテス",
 
-  "CLOUD-HASTE.description": "{HastePower:diff()}ターンの間、ターン開始時に1[gold]ATB[/gold]を得て追加でカードを1枚引く。",
-  "CLOUD-HASTE.title": "ヘイスト",
+"CLOUD-HASTE.description": "{HastePower:diff()}ターンの間、ターン開始時に1[gold]ATB[/gold]を得て追加でカードを1枚引く。",
+"CLOUD-HASTE.title": "ヘイスト",
 
 "CLOUD-FINAL_STAND.description": "[gold]ラストリーヴ[/gold]を得る。",
 "CLOUD-FINAL_STAND.title": "ラストスタンド",
@@ -131,7 +131,7 @@
 "CLOUD-SOLDIERS_PRIDE.description": "ターン開始時、前のターンに敵からダメージを受けていなかった場合：\n[gold]アサルトモード[/gold]：{SoldiersPridePower:diff()}[gold]ブロック[/gold]を得る。\n[gold]ブレイブモード[/gold]：[gold]活力[/gold]{SoldiersPridePower:diff()}を得る。",
 "CLOUD-SOLDIERS_PRIDE.title": "ソルジャーの誇り",
 
-"CLOUD-SONIC_THRUST.description": "{Damage:diff()}ダメージを与える。\n[gold]ブレイブモード[/gold]：{Energy:energyIcons()}を得る。",
+"CLOUD-SONIC_THRUST.description": "{Damage:diff()}ダメージを与える。\n[gold]アサルトモード[/gold]：{Energy:energyIcons()}を得る。",
 "CLOUD-SONIC_THRUST.title": "ソニックスラスト",
 
 "CLOUD-RELENTLESS_STRIKE.description": "{Damage:diff()}ダメージを与える。\n[gold]アサルトモード[/gold]：カードを{Cards:diff()}枚引く。",
@@ -158,7 +158,7 @@
 "CLOUD-OMNISLASH_VER_FIVE.description": "{CalculatedDamage:diff()}ダメージを与える。\n[gold]リミットゲージ[/gold]が50以上ある場合、50消費して追加で20ダメージを与える。",
 "CLOUD-OMNISLASH_VER_FIVE.title": "超究武神覇斬ver.5",
 
-"CLOUD-DISORDER.description": "{Damage:diff()}ダメージを与える。\n[gold]オペレーターモード[/gold]：次のアタックのコストを0にする。\n[gold]ブレイブモード[/gold]：2回攻撃する。敵を倒した場合、{Block:diff()}[gold]ブロック[/gold]を得る。",
+"CLOUD-DISORDER.description": "{Damage:diff()}ダメージを与える。\n[gold]アサルトモード[/gold]：次のアタックのコストを0にする。\n[gold]ブレイブモード[/gold]：2回攻撃する。敵を倒した場合、{Block:diff()}[gold]ブロック[/gold]を得る。",
 "CLOUD-DISORDER.title": "ディスオーダー",
 
 "CLOUD-ASCENSION.description": "{Damage:diff()}ダメージを与える。\n次にその敵へ与える攻撃ダメージが[gold]{ArmorBreakPower:diff()}%[/gold]増加する。",
@@ -185,7 +185,7 @@
 "CLOUD-DEFLECT.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n敵1体に[gold]脱力[/gold]{WeakPower:diff()}を与える。",
 "CLOUD-DEFLECT.title": "受け流す",
 
-"CLOUD-NOT_INTERESTED.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n[gold]オペレーターモード[/gold]：[gold]脱力[/gold]{WeakPower:diff()}を与える。\n[gold]ブレイブモード[/gold]：[gold]弱体[/gold]{VulnerablePower:diff()}を与える。",
+"CLOUD-NOT_INTERESTED.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n[gold]アサルトモード[/gold]：[gold]脱力[/gold]{WeakPower:diff()}を与える。\n[gold]ブレイブモード[/gold]：[gold]弱体[/gold]{VulnerablePower:diff()}を与える。",
 "CLOUD-NOT_INTERESTED.title": "興味ないね",
 
 "CLOUD-AGGRESSION.description": "[gold]活力[/gold]{VigorPower:diff()}を得る。\n[gold]リミットゲージ[/gold]が{LimitBreakPower:diff()}増加する。",
@@ -245,7 +245,7 @@
 "CLOUD-OMNIBREAK.description": "{Damage:diff()}ダメージを与える。\n[gold]弱体[/gold]{VulnerablePower:diff()}と[gold]脱力[/gold]{WeakPower:diff()}を与える。",
 "CLOUD-OMNIBREAK.title": "フルブレイク",
 
-"CLOUD-SIPHON.description": "カードを1枚[gold]廃棄[/gold]する。\n{Block:diff()}[gold]ブロック[/gold]と[gold]サモン[/gold]を得る。",
+"CLOUD-SIPHON.description": "カードを1枚[gold]廃棄[/gold]する。\n{Block:diff()}[gold]ブロック[/gold]と[gold]サモン[/gold]{SummonPower:diff()}を得る。",
 "CLOUD-SIPHON.title": "アスピル",
 
 "CLOUD-INVOKE.description": "毎ターン、および攻撃や[gold]魔法[/gold]によって得る[gold]サモン[/gold]が2倍になる。\n[gold]サモン[/gold]を強化する。",
@@ -266,9 +266,9 @@
 "CLOUD-MATERIA_BOMB.description": "[gold]魔法[/gold]カードを1枚[gold]廃棄[/gold]する。\n{Damage:diff()}ダメージを与える。",
 "CLOUD-MATERIA_BOMB.title": "マテリアボム",
 
-"CLOUD-FATED_SHOWDOWN.description": "[gold]アサルトモード[/gold]：[gold]メッキ[/gold]{PlatingPower:diff()}を得る。\n[gold]ブレイブモード[/gold]：[gold]筋力[/gold]{StrengthPower:diff()}を得る。\n50[gold]リミット[/gold]を消費し、得る効果を2倍にする。",
+"CLOUD-FATED_SHOWDOWN.description": "[gold]アサルトモード[/gold]：[gold]プレート[/gold]{PlatingPower:diff()}を得る。\n[gold]ブレイブモード[/gold]：[gold]筋力[/gold]{StrengthPower:diff()}を得る。\n50[gold]リミット[/gold]を消費し、得る効果を2倍にする。",
 "CLOUD-FATED_SHOWDOWN.title": "最後の戦い",
 
-"CLOUD-SUMMON_CARD.description": "強力な[gold]召喚獣[/gold]を呼び出し、戦闘を支援させる。",
+"CLOUD-SUMMON_CARD.description": "[gold]召喚獣[/gold]を呼び出す。",
 "CLOUD-SUMMON_CARD.title": "サモン"
 }

@@ -41,7 +41,7 @@ public class Ifrit() : CloudCard(0, CardType.Attack,
     
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        CinematicAttack.Start(RunManager.Instance.NetService.NetId);
+        CenterCardCinematic.Start(RunManager.Instance.NetService.NetId);
         var ownerCreature = Owner?.Creature;
         PowerCmd.Remove<SummonPower>(base.Owner.Creature);
         if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
@@ -70,7 +70,7 @@ public class Ifrit() : CloudCard(0, CardType.Attack,
             .Execute(choiceContext);
         PowerCmd.Apply<MagicResistDownPower>(choiceContext, cardPlay.Target, base.DynamicVars["MagicResistDownPower"].BaseValue, base.Owner.Creature, this);
         await Task.Delay((int)(1.9f * 1000f));
-        CinematicAttack.End(RunManager.Instance.NetService.NetId);
+        CenterCardCinematic.End(RunManager.Instance.NetService.NetId);
     }
     protected override void OnUpgrade()
     {

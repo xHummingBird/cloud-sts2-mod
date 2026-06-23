@@ -38,7 +38,7 @@ public class Shiva() : CloudCard(0, CardType.Attack,
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        CinematicAttack.Start(RunManager.Instance.NetService.NetId);
+        CenterCardCinematic.Start(RunManager.Instance.NetService.NetId);
         var ownerCreature = Owner?.Creature;
         PowerCmd.Remove<SummonPower>(base.Owner.Creature);
         if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
@@ -77,7 +77,7 @@ public class Shiva() : CloudCard(0, CardType.Attack,
             })
             .Execute(choiceContext);
         await Task.Delay((int)(1.1f * 1000f));
-        CinematicAttack.End(RunManager.Instance.NetService.NetId);
+        CenterCardCinematic.End(RunManager.Instance.NetService.NetId);
         await PowerCmd.Apply<FrozenShieldPower>(choiceContext, base.Owner.Creature, base.DynamicVars["FrozenShieldPower"].BaseValue, base.Owner.Creature, this);
     }
     

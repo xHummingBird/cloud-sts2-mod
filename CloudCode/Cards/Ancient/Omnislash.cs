@@ -35,13 +35,14 @@ public class Omnislash() : CloudCard(0, CardType.Attack,
 
         if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
         {
+            CenterCardCinematic.Start(RunManager.Instance.NetService.NetId);
             SfxCmd.Play("res://Cloud/sounds/limit_break.wav");
             SfxCmd.Play("res://Cloud/sfx/limit_break_thunder.wav");
             cloud.PlayAnimation(ownerCreature, "limit_break_2");
             await Task.Delay((int)(1.0667f * 1000f));
             
             // cam?.StartCinematic(300f);
-            CinematicAttack.Start(RunManager.Instance.NetService.NetId);
+            
             await cloud.DashTo(ownerCreature, play.Target, distance: 500f);
             float duration = cloud.PlayAnimation(ownerCreature, "omnislash").total;
             if (duration > 0f)
@@ -102,7 +103,7 @@ public class Omnislash() : CloudCard(0, CardType.Attack,
                         .Execute(choiceContext);
                     await Task.Delay((int)(0.8f * 1000f));
                     // cam?.EndCinematic();
-                    CinematicAttack.End(RunManager.Instance.NetService.NetId);
+                    CenterCardCinematic.End(RunManager.Instance.NetService.NetId);
                     await cloud.Retreat(ownerCreature);
                 }
 

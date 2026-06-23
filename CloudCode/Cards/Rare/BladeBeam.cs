@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using Cloud.CloudCode.Extensions;
 using Cloud.CloudCode.Mechanics.ATB;
 using Godot;
 using MegaCrit.Sts2.Core.Commands;
@@ -12,6 +13,7 @@ using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.Nodes.Vfx.Utilities;
+using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Cloud.CloudCode.Cards.Rare;
@@ -37,7 +39,7 @@ public class BladeBeam() : CloudCard(2, CardType.Attack,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-
+        CenterCardCinematic.Start(RunManager.Instance.NetService.NetId);
         var ownerCreature = Owner?.Creature;
 
         if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
@@ -71,6 +73,7 @@ public class BladeBeam() : CloudCard(2, CardType.Attack,
         await PowerCmd.Apply<WeakPower>(choiceContext, base.CombatState.HittableEnemies, base.DynamicVars.Weak.BaseValue, base.Owner.Creature, this);
         await PowerCmd.Apply<VulnerablePower>(choiceContext, base.CombatState.HittableEnemies, base.DynamicVars.Vulnerable.BaseValue, base.Owner.Creature, this);
         await Task.Delay((int)(0.3f * 1000f));
+        CenterCardCinematic.End(RunManager.Instance.NetService.NetId);
     }
     protected override void OnUpgrade()
     {

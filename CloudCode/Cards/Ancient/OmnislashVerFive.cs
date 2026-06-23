@@ -70,7 +70,7 @@ public class OmnislashVerFive() : CloudCard(2, CardType.Attack,
                 DynamicVars.CalculatedDamage.PreviewValue >= (play.Target.CurrentHp + play.Target.Block);
 
             // cam?.StartCinematic(-300f);
-            CinematicAttack.Start(RunManager.Instance.NetService.NetId);
+            CenterCardCinematic.Start(RunManager.Instance.NetService.NetId);
             if (specialAnimation)
             {
                 SfxCmd.Play("res://Cloud/sounds/omnislashver5_start.wav");

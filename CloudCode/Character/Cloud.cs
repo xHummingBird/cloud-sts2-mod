@@ -69,7 +69,6 @@ public class Cloud : PlaceholderCharacterModel
 		ModelDb.Card<DefendCloud>(),
 		ModelDb.Card<DefendCloud>(),
 		ModelDb.Card<ModeShift>(),
-		ModelDb.Card<CombatMomentum>()
 	];
 
 	public override IReadOnlyList<RelicModel> StartingRelics =>
@@ -245,6 +244,8 @@ public class Cloud : PlaceholderCharacterModel
 		return creature.IsPunisher() ? "dash_punisher" : "dash_operator";
 	}
 
+	
+	
 	public async Task DashTo(
 		Creature player,
 		Creature target,
@@ -253,7 +254,6 @@ public class Cloud : PlaceholderCharacterModel
 		bool dashBehind = false,
 		string? overrideAnim = null)
 	{
-
 		var node = NCombatRoom.Instance?.GetCreatureNode(player);
 		var targetNode = NCombatRoom.Instance?.GetCreatureNode(target);
 		if (node == null || targetNode == null) return;
@@ -263,11 +263,15 @@ public class Cloud : PlaceholderCharacterModel
 
 		string anim = overrideAnim ?? ResolveDashAnimation(player);
 		PlayAnimation(player, anim);
+		
+		bool playerIsLeftOfTarget = node.GlobalPosition.X < targetNode.GlobalPosition.X;
+		
+		Vector2 offsetDir = playerIsLeftOfTarget ? Vector2.Left : Vector2.Right;
+		
+		if (dashBehind)
+			offsetDir = -offsetDir;
 
-		Vector2 dir = (player.Side == CombatSide.Player) ? Vector2.Left : Vector2.Right;
-		if (dashBehind) dir = -dir;
-
-		Vector2 targetPos = targetNode.GlobalPosition + dir * distance;
+		Vector2 targetPos = targetNode.GlobalPosition + offsetDir * distance;
 
 		var tween = node.CreateTween();
 		tween.TweenProperty(node, "global_position", targetPos, durationSeconds)
@@ -276,6 +280,8 @@ public class Cloud : PlaceholderCharacterModel
 
 		await node.ToSignal(tween, Tween.SignalName.Finished);
 	}
+
+
 
 
 	public async Task DashPast(

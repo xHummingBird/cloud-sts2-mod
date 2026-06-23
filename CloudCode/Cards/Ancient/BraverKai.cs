@@ -38,9 +38,10 @@ public class BraverKai() : CloudCard(1, CardType.Attack,
         var ownerCreature = Owner?.Creature;
         var cloud = Owner?.Character as Character.Cloud;
         
-        CinematicAttack.Start(RunManager.Instance.NetService.NetId);
+        CenterCardCinematic.Start(RunManager.Instance.NetService.NetId);
         if (ownerCreature != null && cloud != null)
         {
+            
             SfxCmd.Play("res://Cloud/sfx/energy_charge.wav");
             SfxCmd.Play("res://Cloud/sounds/owaraseru.wav");
             SfxCmd.Play("res://Cloud/sfx/limit_break_thunder.wav");
@@ -68,15 +69,13 @@ public class BraverKai() : CloudCard(1, CardType.Attack,
         await Task.Delay((int)(0.63f * 1000f));
         if (ownerCreature != null && cloud != null)
         {
-            // cam?.EndCinematic();
             await cloud.Retreat(ownerCreature);
         }
         if (!base.Owner.Creature.HasPower<PunisherModePower>())
             await PowerCmd.Apply<VulnerablePower>(choiceContext, play.Target, base.DynamicVars.Vulnerable.BaseValue,
                 base.Owner.Creature, this);
         else await base.Owner.Creature.ExitPunisher();
-        cloud?.RefreshIdle(ownerCreature);
-        CinematicAttack.End(RunManager.Instance.NetService.NetId);
+        CenterCardCinematic.End(RunManager.Instance.NetService.NetId);
     }
     
     protected override void OnUpgrade()

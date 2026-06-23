@@ -10793,7 +10793,7 @@ tracks/49/keys = {
 "times": PackedFloat32Array(1.9),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.3351032]
+"values": [0.5166175]
 }
 tracks/50/type = "value"
 tracks/50/imported = false
@@ -11066,10 +11066,46 @@ tracks/72/path = NodePath("Visuals/vfx:visible")
 tracks/72/interp = 1
 tracks/72/loop_wrap = true
 tracks/72/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.36666667, 0.4333334, 1.2333333, 1.9, 2.2666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false]
+}
+tracks/73/type = "value"
+tracks/73/imported = false
+tracks/73/enabled = true
+tracks/73/path = NodePath("Visuals/vfx:scale")
+tracks/73/interp = 1
+tracks/73/loop_wrap = true
+tracks/73/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/74/type = "value"
+tracks/74/imported = false
+tracks/74/enabled = true
+tracks/74/path = NodePath("Visuals/vfx:texture")
+tracks/74/interp = 1
+tracks/74/loop_wrap = true
+tracks/74/keys = {
+"times": PackedFloat32Array(0.16666667, 0.23333333, 0.3, 0.43333334, 0.5, 0.56666666, 0.6333333, 0.7, 0.76666665, 0.8333333, 0.9, 0.96666664, 1.0333333, 1.1, 1.1666666, 1.9, 2.0333333, 2.1666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [false]
+"values": [ExtResource("352_ufpnx"), ExtResource("353_k0d0b"), ExtResource("354_01pej"), ExtResource("355_v1a5u"), ExtResource("356_5f6c4"), ExtResource("357_u8m4c"), ExtResource("358_dlg7n"), ExtResource("359_unmko"), ExtResource("360_3g6ru"), ExtResource("361_5gt3r"), ExtResource("362_slgus"), ExtResource("360_3g6ru"), ExtResource("361_5gt3r"), ExtResource("362_slgus"), ExtResource("363_6bdyo"), ExtResource("364_xq0qi"), ExtResource("365_dfj2h"), ExtResource("366_nscjp")]
+}
+tracks/75/type = "value"
+tracks/75/imported = false
+tracks/75/enabled = true
+tracks/75/path = NodePath("Visuals/vfx:position")
+tracks/75/interp = 1
+tracks/75/loop_wrap = true
+tracks/75/keys = {
+"times": PackedFloat32Array(0.16666667, 1.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(626, -267), Vector2(647, -324)]
 }
 
 [sub_resource type="Animation" id="Animation_psuix"]

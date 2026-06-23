@@ -36,11 +36,10 @@ public class Zantetsuken() : CloudCard(2, CardType.Attack,
         var ownerCreature = Owner?.Creature;
         var cloud = Owner?.Character as Character.Cloud;
         decimal threshold = DynamicVars["hpPercent"].BaseValue;
-        
+        CenterCardCinematic.Start(RunManager.Instance.NetService.NetId);
         if (ownerCreature != null && cloud != null)
         {
             // cam?.StartCinematic(300f);
-            CinematicAttack.Start(RunManager.Instance.NetService.NetId);
             SfxCmd.Play("res://Cloud/sounds/zantetsuken.wav");
             await cloud.DashTo(ownerCreature, play.Target, distance: 300f);
             cloud.PlayVfxOnTarget(
@@ -61,7 +60,7 @@ public class Zantetsuken() : CloudCard(2, CardType.Attack,
                 await cloud.Retreat(ownerCreature);
                 // cam?.EndCinematic();
             }
-            CinematicAttack.End(RunManager.Instance.NetService.NetId);
+            
         }
         else
         {
@@ -72,6 +71,7 @@ public class Zantetsuken() : CloudCard(2, CardType.Attack,
         {
             await DoomPower.DoomKill(new List<Creature> { play.Target });
         }
+        CenterCardCinematic.End(RunManager.Instance.NetService.NetId);
     }
     
     protected override void OnUpgrade()

@@ -131,7 +131,7 @@
   "CLOUD-SOLDIERS_PRIDE.description": "At the start of your turn, if you did not take any damage from the enemy last turn: \n[gold]Operator[/gold]: Gain {SoldiersPridePower:diff()} [gold]Block[/gold]. \n[gold]Punisher[/gold]: Gain {SoldiersPridePower:diff()} [gold]Vigor[/gold].",
   "CLOUD-SOLDIERS_PRIDE.title": "SOLDIER's Pride",
 
-  "CLOUD-SONIC_THRUST.description": "Deal {Damage:diff()} damage. \n[gold]Punisher[/gold]: Gain {Energy:energyIcons()}.",
+  "CLOUD-SONIC_THRUST.description": "Deal {Damage:diff()} damage. \n[gold]Operator[/gold]: Gain {Energy:energyIcons()}.",
   "CLOUD-SONIC_THRUST.title": "Sonic Thrust",
 
   "CLOUD-RELENTLESS_STRIKE.description": "Deal {Damage:diff()} damage. \n[gold]Operator[/gold]: Draw {Cards:diff()} {Cards:plural:card|cards}.",
@@ -245,7 +245,7 @@
   "CLOUD-OMNIBREAK.description": "Deal {Damage:diff()} damage. \nApply {VulnerablePower:diff()} [gold]Vulnerable[/gold] and [gold]Weak[/gold].",
   "CLOUD-OMNIBREAK.title": "Omnibreak",
 
-  "CLOUD-SIPHON.description": "[gold]Exhaust[/gold] 1 card. \nGain {Block:diff()} [gold]Block[/gold] and [gold]Summon[/gold].",
+  "CLOUD-SIPHON.description": "[gold]Exhaust[/gold] 1 card. \nGain {Block:diff()} [gold]Block[/gold]. Gain {SummonPower:diff()} [gold]Summon[/gold].",
   "CLOUD-SIPHON.title": "Siphon",
 
   "CLOUD-INVOKE.description": "Double [gold]Summon[/gold] gain per turn, and from attacks and [gold]Magic[/gold]. \nUpgrades [gold]Summon[/gold].",

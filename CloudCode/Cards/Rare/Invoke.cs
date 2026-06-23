@@ -30,6 +30,6 @@ public class Invoke() : CloudCard(2, CardType.Power,
     }
     protected override void OnUpgrade()
     {
-        AddKeyword(CardKeyword.Innate);
+        AddKeyword(CardKeyword.Retain);
     }
 }

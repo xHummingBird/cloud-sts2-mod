@@ -37,7 +37,7 @@ public class Meteorain() : CloudCard(0, CardType.Attack,
         CardPlay play)
     {
         var ownerCreature = Owner?.Creature;
-        CinematicAttack.Start(RunManager.Instance.NetService.NetId);
+        CenterCardCinematic.Start(RunManager.Instance.NetService.NetId);
         if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
         {
             // attack animation
@@ -87,7 +87,7 @@ public class Meteorain() : CloudCard(0, CardType.Attack,
                 }
             })
             .Execute(choiceContext);
-        CinematicAttack.End(RunManager.Instance.NetService.NetId);
+        CenterCardCinematic.End(RunManager.Instance.NetService.NetId);
         await PowerCmd.Apply<WeakPower>(choiceContext, base.CombatState.HittableEnemies, base.DynamicVars.Weak.BaseValue, base.Owner.Creature, this);
         await PowerCmd.Apply<VulnerablePower>(choiceContext, base.CombatState.HittableEnemies, base.DynamicVars.Vulnerable.BaseValue, base.Owner.Creature, this);
     }

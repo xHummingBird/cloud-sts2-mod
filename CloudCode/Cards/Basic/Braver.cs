@@ -18,6 +18,7 @@ using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.Nodes.Vfx.Utilities;
+using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Cloud.CloudCode.Cards.Basic;
@@ -43,9 +44,10 @@ public class Braver() : CloudCard(1, CardType.Attack,
     {
         var ownerCreature = Owner?.Creature;
         var cloud = Owner?.Character as Character.Cloud;
-        
+        CenterCardCinematic.Start(RunManager.Instance.NetService.NetId);
         if (ownerCreature != null && cloud != null)
         {
+            
             SfxCmd.Play("res://Cloud/sounds/owaraseru.wav");
             await cloud.DashTo(ownerCreature, play.Target, distance: 300f);
             float duration = cloud.PlayAnimation(ownerCreature, "braver_kai").total;
@@ -77,7 +79,7 @@ public class Braver() : CloudCard(1, CardType.Attack,
             await PowerCmd.Apply<VulnerablePower>(choiceContext, play.Target, base.DynamicVars.Vulnerable.BaseValue,
                 base.Owner.Creature, this);
         else await base.Owner.Creature.ExitPunisher();
-        cloud?.RefreshIdle(ownerCreature);
+        CenterCardCinematic.End(RunManager.Instance.NetService.NetId);
     }
     
     protected override void OnUpgrade()

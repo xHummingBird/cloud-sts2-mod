@@ -33,11 +33,11 @@ public class Ascension() : CloudCard(0, CardType.Attack,
         var ownerCreature = Owner?.Creature;
         if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
         {
+            CenterCardCinematic.Start(RunManager.Instance.NetService.NetId);
             SfxCmd.Play("res://Cloud/sounds/limit_break.wav");
             SfxCmd.Play("res://Cloud/sfx/limit_break_thunder.wav");
             cloud.PlayAnimation(ownerCreature, "limit_break_2");
             await Task.Delay((int)(1.0667f * 1000f));
-            CinematicAttack.Start(RunManager.Instance.NetService.NetId);
             // cam?.StartCinematic(300f);
             await cloud.DashTo(ownerCreature, play.Target, distance: 500f);
             float duration = cloud.PlayAnimation(ownerCreature, "ascension").total;
@@ -91,7 +91,7 @@ public class Ascension() : CloudCard(0, CardType.Attack,
                     cloud.DoScreenShake(ShakeStrength.Strong, ShakeDuration.Normal);
                     await Task.Delay((int)(1.5f * 1000f));
                     // cam?.EndCinematic();
-                    CinematicAttack.End(RunManager.Instance.NetService.NetId);
+                    CenterCardCinematic.End(RunManager.Instance.NetService.NetId);
                     await cloud.Retreat(ownerCreature);
                     await PowerCmd.Apply<ArmorBreakPower>(choiceContext, play.Target,
                         base.DynamicVars["ArmorBreakPower"].BaseValue,

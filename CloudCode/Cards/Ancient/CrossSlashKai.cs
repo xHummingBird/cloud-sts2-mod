@@ -36,6 +36,7 @@ public class CrossSlashKai() : CloudCard(0, CardType.Attack,
         var ownerCreature = Owner?.Creature;
         if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
         {
+            CenterCardCinematic.Start(RunManager.Instance.NetService.NetId);
             SfxCmd.Play("res://Cloud/sfx/energy_charge.wav");
             SfxCmd.Play("res://Cloud/sounds/limit_break.wav");
             SfxCmd.Play("res://Cloud/sfx/limit_break_thunder.wav");
@@ -43,8 +44,6 @@ public class CrossSlashKai() : CloudCard(0, CardType.Attack,
             if (duration > 0f)
             {
                 await Task.Delay((int)(duration * 1000f));
-                CinematicAttack.Start(RunManager.Instance.NetService.NetId);
-                
                 await cloud.DashTo(ownerCreature, play.Target, distance: 550f);
                 
                 cloud.PlayAnimation(ownerCreature, "cross_slash");
@@ -75,8 +74,9 @@ public class CrossSlashKai() : CloudCard(0, CardType.Attack,
 
                 await Task.Delay((int)(0.30f * 1000f));
                 // cam?.EndCinematic();
-                CinematicAttack.End(RunManager.Instance.NetService.NetId);
+                
                 await cloud.Retreat(ownerCreature);
+                CenterCardCinematic.End(RunManager.Instance.NetService.NetId);
             }
         }
         else

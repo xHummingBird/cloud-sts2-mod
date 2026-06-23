@@ -46,10 +46,10 @@ public class Odin() : CloudCard(0, CardType.Attack,
         var cloud = Owner?.Character as Character.Cloud;
         decimal threshold = DynamicVars["hpPercent"].BaseValue;
         
-        CinematicAttack.Start(RunManager.Instance.NetService.NetId);
         PowerCmd.Remove<SummonPower>(base.Owner.Creature);
         if (ownerCreature != null && cloud != null)
         {
+            CenterCardCinematic.Start(RunManager.Instance.NetService.NetId);
             SfxCmd.Play("res://Cloud/sounds/summon_odin.wav");
             cloud.PlayAnimation(ownerCreature, "cast_operator");
             cloud.PlayVfxOnTarget(
@@ -64,7 +64,7 @@ public class Odin() : CloudCard(0, CardType.Attack,
                     .Execute(choiceContext);
                 await Task.Delay((int)(1.55 * 1000f));
                 // cam?.EndCinematic();
-                CinematicAttack.End(RunManager.Instance.NetService.NetId);
+                CenterCardCinematic.End(RunManager.Instance.NetService.NetId);
         }
         else
         {

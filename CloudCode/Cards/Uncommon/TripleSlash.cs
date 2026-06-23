@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -24,6 +25,11 @@ public class TripleSlash() : CloudCard(2, CardType.Attack,
         new CalculatedDamageVar(ValueProp.Move)
         .WithMultiplier((CardModel _, Creature? dealer) =>
         dealer?.HasPower<PunisherModePower>() == true ? 0 : 1)
+    ];
+    
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
+        CloudStaticHoverTip.Stance
     ];
 
     protected override async Task OnPlay(

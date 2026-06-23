@@ -13,7 +13,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Cloud.CloudCode.Cards.Common;
 
 public class SonicThrust() : CloudCard(1, CardType.Attack,
-    CardRarity.Common, TargetType.AnyEnemy), IPunisherCard
+    CardRarity.Common, TargetType.AnyEnemy), IOperatorCard
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DamageVar(6, ValueProp.Move),
@@ -22,7 +22,7 @@ public class SonicThrust() : CloudCard(1, CardType.Attack,
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromPower<PunisherModePower>()
+        CloudStaticHoverTip.Operator,
     ];
 
     protected override async Task OnPlay(
@@ -43,11 +43,11 @@ public class SonicThrust() : CloudCard(1, CardType.Attack,
         await CommonActions.CardAttack(this, play.Target)
             .WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav")
             .Execute(choiceContext);
-        if (base.Owner.Creature.IsPunisher())
+        if (!base.Owner.Creature.IsPunisher())
         {
             await PlayerCmd.GainEnergy(base.DynamicVars.Energy.IntValue, base.Owner);
         }
-        else await base.Owner.Creature.EnterPunisher(1, base.Owner.Creature, this);
+        else await base.Owner.Creature.ExitPunisher();
         await Task.Delay((int)(0.2f * 1000f));
     }
     

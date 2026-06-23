@@ -33,7 +33,7 @@ public class Ramuh() : CloudCard(0, CardType.Attack,
     
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        CinematicAttack.Start(RunManager.Instance.NetService.NetId);
+        CenterCardCinematic.Start(RunManager.Instance.NetService.NetId);
         var ownerCreature = Owner?.Creature;
         PowerCmd.Remove<SummonPower>(base.Owner.Creature);
         if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
@@ -47,9 +47,9 @@ public class Ramuh() : CloudCard(0, CardType.Attack,
             .WithHitFx("vfx/vfx_attack_lightning", "event:/sfx/characters/defect/defect_lightning_passive")
             .Execute(choiceContext);
         await Task.Delay((int)(0.9f * 1000f));
-        CinematicAttack.End(RunManager.Instance.NetService.NetId);
         await PowerCmd.Apply<JudgmentBoltPower>(choiceContext, base.Owner.Creature, base.DynamicVars["JudgmentBoltPower"].BaseValue, base.Owner.Creature, this);
         await Task.Delay((int)(0.5f * 1000f));
+        CenterCardCinematic.End(RunManager.Instance.NetService.NetId);
     }
     
     protected override void OnUpgrade()
