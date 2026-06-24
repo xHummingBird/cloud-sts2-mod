@@ -429,8 +429,6 @@ public class Cloud : PlaceholderCharacterModel
 		[HarmonyPostfix]
 		public static void Postfix(Creature target, DamageResult result, ValueProp props, Creature? dealer)
 		{
-			bool playSound = true;
-
 			if (target.Player?.Character is not Cloud character)
 				return;
 
@@ -448,7 +446,7 @@ public class Cloud : PlaceholderCharacterModel
 			}
 
 
-			else if (result.UnblockedDamage > 0 && !target.IsDead && playSound)
+			else if (result.UnblockedDamage > 0 && !target.IsDead)
 			{
 				character.PlayAnimation(target, "block");
 				if (target.CurrentHp < 20)
@@ -463,10 +461,7 @@ public class Cloud : PlaceholderCharacterModel
 				{
 					AudioHelper.PlayRandomDamagedHigh();
 				}
-
-				playSound = false;
-				Task.Delay(200);
-				playSound = true;
+				
 				if (!target.HasPower<PrimeModePower>())
 					character.PlayAnimation(target, "idle_operator");
 			}

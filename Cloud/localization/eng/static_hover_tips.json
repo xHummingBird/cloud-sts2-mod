@@ -6,7 +6,7 @@
   "CLOUD_LIMIT.description": "Builds as you fight. \n\nGain 3 [gold]Limit[/gold] when attacking or blocking attacks. \nGain [gold]Limit[/gold] equal to damage taken. \n\nAt 100 [gold]Limit[/gold], powerful [gold]Limit Break[/gold] attacks become available. \n\nLimit is consumed when Limit Break is used.",
 
   "CLOUD_SUMMON.title": "Summon",
-  "CLOUD_SUMMON.description": "Builds as you fight. \n\nGain 2 Summon when attacking.\nGain 6 Summon when using [gold]Magic[/gold] cards.\n\nAt full Summon, choose an [gold]Esper[/gold] to call forth.\n\n[gold]Espers[/gold] deal high damage and grant powerful bonuses for 3 turns.\n\nSummon is consumed after use.",
+  "CLOUD_SUMMON.description": "Builds as you fight. \n\nGain 3 Summon when attacking.\nGain 6 Summon when using [gold]Magic[/gold] cards.\n\nAt full Summon, choose an [gold]Esper[/gold] to call forth.\n\n[gold]Espers[/gold] deal high damage and grant powerful bonuses for 3 turns.\n\nSummon is consumed after use.",
 
   "CLOUD_MAGIC.title": "Magic",
   "CLOUD_MAGIC.description": "This card deals [gold]Magic[/gold] damage and does not get bonus damage from [gold]Punisher Mode[/gold].",
