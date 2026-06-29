@@ -15,12 +15,15 @@ public class LargeSwordMastery() : CloudCard(1, CardType.Power,
     protected override IEnumerable<DynamicVar> CanonicalVars => 
     [
         new PowerVar<StrengthPower>(2m),
-        new PowerVar<DexterityPower>(2m)
+        new PowerVar<DexterityPower>(2m),
+        new PowerVar<GreatswordMasteryPower>(2m)
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromPower<PunisherModePower>()
+        HoverTipFactory.FromPower<StrengthPower>(),
+        HoverTipFactory.FromPower<DexterityPower>(),
+        HoverTipFactory.FromPower<GreatswordMasteryPower>()
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -28,16 +31,14 @@ public class LargeSwordMastery() : CloudCard(1, CardType.Power,
         var ownerCreature = Owner?.Creature;
         if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
             AudioHelper.PlayRandomDefend();
-        if (base.Owner.Creature.HasPower<PunisherModePower>())
-        {
-            await PowerCmd.Apply<StrengthPower>(choiceContext, base.Owner.Creature, base.DynamicVars.Strength.BaseValue, base.Owner.Creature, this);
-        }
-        else await PowerCmd.Apply<DexterityPower>(choiceContext, base.Owner.Creature, base.DynamicVars.Dexterity.BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<GreatswordMasteryPower>(choiceContext, base.Owner.Creature, base.DynamicVars["GreatswordMasteryPower"].BaseValue, base.Owner.Creature, this);
+       
     }
 
     protected override void OnUpgrade()
     {
         DynamicVars.Strength.UpgradeValueBy(1m);
         DynamicVars.Dexterity.UpgradeValueBy(1m);
+        DynamicVars["GreatswordMasteryPower"].UpgradeValueBy(1m);
     }
 }

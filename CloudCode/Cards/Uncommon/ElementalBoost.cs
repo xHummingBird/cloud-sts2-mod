@@ -13,10 +13,10 @@ namespace Cloud.CloudCode.Cards.Uncommon;
 public class ElementalBoost() : CloudCard(1, CardType.Power,
     CardRarity.Uncommon, TargetType.Self), IATBCard
 {
-    public int ATBCost => 2;
+    public int ATBCost => 1;
     protected override IEnumerable<DynamicVar> CanonicalVars => 
     [
-        new PowerVar<MagicDamageUpPower>(20m),
+        new PowerVar<MagicDamageUpPower>(30m),
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>

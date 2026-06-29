@@ -13,10 +13,11 @@ namespace Cloud.CloudCode.Cards.Uncommon;
 public class Haste() : CloudCard(1, CardType.Skill,
     CardRarity.Uncommon, TargetType.Self), IATBCard, IMagicCard
 {
-    public int ATBCost => 1;
+    public int ATBCost => 2;
     
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new PowerVar<HastePower>(3)
+        new PowerVar<HastePower>(3),
+        new EnergyVar(1)
     ];
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
@@ -36,7 +37,7 @@ public class Haste() : CloudCard(1, CardType.Skill,
             if (duration > 0f)
                 await Task.Delay((int)(duration * 0.2f * 1000f));
         }
-        PowerCmd.Apply<HastePower>(choiceContext, base.Owner.Creature, DynamicVars["HastePower"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<HastePower>(choiceContext, base.Owner.Creature, DynamicVars["HastePower"].BaseValue, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

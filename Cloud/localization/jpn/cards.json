@@ -95,7 +95,7 @@
 "CLOUD-PROTECT.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n次のターン開始時にも{Block:diff()}[gold]ブロック[/gold]を得る。",
 "CLOUD-PROTECT.title": "プロテス",
 
-"CLOUD-HASTE.description": "{HastePower:diff()}ターンの間、ターン開始時に1[gold]ATB[/gold]を得て追加でカードを1枚引く。",
+"CLOUD-HASTE.description": "{HastePower:diff()}ターンの間、ターン開始時に1[gold]ATB[/gold]と{Energy:energyIcons()}を得る。",
 "CLOUD-HASTE.title": "ヘイスト",
 
 "CLOUD-FINAL_STAND.description": "[gold]ラストリーヴ[/gold]を得る。",
@@ -140,7 +140,7 @@
 "CLOUD-CLIMHAZZARD.description": "{Damage:diff()}ダメージを与える。\n次にその敵へ与える攻撃ダメージが[gold]{ArmorBreakPower:diff()}%[/gold]増加する。",
 "CLOUD-CLIMHAZZARD.title": "クライムハザード",
 
-"CLOUD-COMBAT_MOMENTUM.description": "自分のターン中、最初に[blue]ブレイブモード[/blue]へ切り替えた時、[gold]筋力[/gold]1を得る。",
+"CLOUD-COMBAT_MOMENTUM.description": "自分のターン中、[blue]ブレイブモード[/blue]へ切り替えるたびに、[gold]筋力[/gold]1を得る。",
 "CLOUD-COMBAT_MOMENTUM.title": "戦闘の勢い",
 
 "CLOUD-OVERCLOCK.description": "{Energy:energyIcons()}を得る。",
@@ -158,7 +158,7 @@
 "CLOUD-OMNISLASH_VER_FIVE.description": "{CalculatedDamage:diff()}ダメージを与える。\n[gold]リミットゲージ[/gold]が50以上ある場合、50消費して追加で20ダメージを与える。",
 "CLOUD-OMNISLASH_VER_FIVE.title": "超究武神覇斬ver.5",
 
-"CLOUD-DISORDER.description": "{Damage:diff()}ダメージを与える。\n[gold]アサルトモード[/gold]：次のアタックのコストを0にする。\n[gold]ブレイブモード[/gold]：2回攻撃する。敵を倒した場合、{Block:diff()}[gold]ブロック[/gold]を得る。",
+"CLOUD-DISORDER.description": "{Damage:diff()}ダメージを与える。\n[gold]アサルトモード[/gold]：次のアタックのコストを0にする。\n[gold]ブレイブモード[/gold]：2回攻撃する。{Block:diff()}[gold]ブロック[/gold]を得る。",
 "CLOUD-DISORDER.title": "ディスオーダー",
 
 "CLOUD-ASCENSION.description": "{Damage:diff()}ダメージを与える。\n次にその敵へ与える攻撃ダメージが[gold]{ArmorBreakPower:diff()}%[/gold]増加する。",

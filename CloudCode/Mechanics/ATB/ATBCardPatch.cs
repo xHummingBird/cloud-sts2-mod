@@ -96,16 +96,35 @@ public static class ATBCardUi
             
             bool inCombat = CombatManager.Instance?.IsInProgress ?? false;
             
-            bool hasEnoughATB = !model.IsMutable 
-                                || isHoverTip
-                                || !inCombat
-                                || ATBManager.GetATB(model.Owner) >= atbCard.ATBCost;
+            int effectiveCost = ATBCostState.GetEffectiveATBCost(model);
+
+            bool hasEnoughATB =
+                !model.IsMutable
+                || isHoverTip
+                || !inCombat
+                || effectiveCost <= 0
+                || ATBManager.GetATB(model.Owner) >= effectiveCost;
+
             
-            var color = hasEnoughATB ? Colors.White : Colors.Red;
+            Color color;
+
+            if (effectiveCost <= 0)
+            {
+                color = Colors.Green;
+            }
+            else if (hasEnoughATB)
+            {
+                color = Colors.White;
+            }
+            else
+            {
+                color = Colors.Red;
+            }
+
             label.AddThemeColorOverride("default_color", color);
 
-            // Cost only (you can change this to "x/3" if you want)
-            label.Text = $"[center]{atbCard.ATBCost}[/center]";
+            label.Text = $"[center]{effectiveCost}[/center]";
+
         }
     }
 
@@ -146,24 +165,40 @@ public static class ATBCardPatch_UpdateVisuals
     }
 }
 
+
 [HarmonyPatch(typeof(CardModel), nameof(CardModel.SpendResources))]
 public static class CardModel_SpendResources_ATB
 {
-    public static void Postfix(CardModel __instance)
+    [HarmonyPostfix]
+    public static void Postfix(CardModel __instance, ref Task<(int, int)> __result)
     {
-        if (__instance is not IATBCard atbCard)
+        if (__instance is not IATBCard)
             return;
-        
+
         if (!__instance.IsMutable)
             return;
 
-        int cost = atbCard.ATBCost;
-        if (cost <= 0)
-            return;
+        __result = SpendATBAfterOriginal(__instance, __result);
+    }
 
-        ATBManager.SpendATB(__instance.Owner, cost);
+    private static async Task<(int, int)> SpendATBAfterOriginal(CardModel card, Task<(int, int)> originalTask)
+    {
+        var result = await originalTask;
+
+        int cost = ATBCostState.GetEffectiveATBCost(card);
+
+        if (cost > 0)
+        {
+            ATBManager.SpendATB(card.Owner, cost);
+        }
+
+        // This matches SetToFreeThisTurn / until-played behavior.
+        ATBCostState.ClearThisTurnOrUntilPlayed(card);
+
+        return result;
     }
 }
+
 
 
 

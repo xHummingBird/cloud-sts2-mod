@@ -18,11 +18,10 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Cloud.CloudCode.Cards.Ancient;
 
 public class LimitBreak() : CloudCard(0, CardType.Skill,
-    CardRarity.Ancient, TargetType.AnyEnemy), IATBCard, ILimitCard
+    CardRarity.Ancient, TargetType.AnyEnemy), ILimitCard
 {
-    public int ATBCost => 3;
     protected override bool ShouldGlowGoldInternal => IsPlayable;
-    protected override bool IsPlayable => base.Owner.HasPower<LimitBreakPower>() && ATBCost <= ATBManager.GetATB(base.Owner);
+    protected override bool IsPlayable => base.Owner.HasPower<LimitBreakPower>();
     protected override IEnumerable<DynamicVar> CanonicalVars => [
     ];
     

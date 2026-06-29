@@ -1,6 +1,6 @@
 {
-"CLOUD-PUNISHER_MODE_POWER.description": "物理ダメージが25%増加し、受けるダメージも25%増加する。敵からダメージを受けるとモードが切り替わる。",
-"CLOUD-PUNISHER_MODE_POWER.smartDescription": "物理ダメージが25%増加し、受けるダメージも25%増加する。敵からダメージを受けるとモードが切り替わる。",
+"CLOUD-PUNISHER_MODE_POWER.description": "物理ダメージが25%増加し、受けるダメージも10%増加する。敵からダメージを受けるとモードが切り替わる。",
+"CLOUD-PUNISHER_MODE_POWER.smartDescription": "物理ダメージが25%増加し、受けるダメージも10%増加する。敵からダメージを受けるとモードが切り替わる。",
 "CLOUD-PUNISHER_MODE_POWER.title": "ブレイブモード",
 
 "CLOUD-COUNTER_STANCE_POWER.description": "1ターンの間、防いだダメージを反射する。",
@@ -23,8 +23,8 @@
 "CLOUD-PRIME_MODE_POWER.smartDescription": "[gold]アサルトモード[/gold]：魔法ダメージ増加。\n[gold]ブレイブモード[/gold]：ダメージ増加効果が強化され、被弾で解除されなくなる。",
 "CLOUD-PRIME_MODE_POWER.title": "真ブレイブ解放",
 
-"CLOUD-HASTE_POWER.description": "ターン開始時に1ATBを得て、追加でカードを1枚引く。",
-"CLOUD-HASTE_POWER.smartDescription": "ターン開始時に1ATBを得て、追加でカードを1枚引く。",
+"CLOUD-HASTE_POWER.description": "ターン開始時に1ATBを得て、追加で{Energy:energyIcons()}を得る。",
+"CLOUD-HASTE_POWER.smartDescription": "ターン開始時に1ATBを得て、追加で{Energy:energyIcons()}を得る。",
 "CLOUD-HASTE_POWER.title": "ヘイスト",
 
 "CLOUD-REPRIEVE_POWER.description": "戦闘不能になるダメージを受けた時、一度だけ最大HPの30%で復活する。",
@@ -39,7 +39,7 @@
 "CLOUD-SOLDIERS_PRIDE_POWER.smartDescription": "前のターンにダメージを受けていなかった場合、ターン開始時に現在のモードに応じて活力またはブロックを得る。",
 "CLOUD-SOLDIERS_PRIDE_POWER.title": "ソルジャーの誇り",
 
-"CLOUD-FURY_POWER.description": "受けるダメージが[blue]20%[/blue]増加する。ターン毎および攻撃使用時に得るリミットゲージが3増加する。[gold]かなしい[/gold]を解除する。",
+"CLOUD-FURY_POWER.description": "受けるダメージが[blue]10%[/blue]増加する。ターン毎および攻撃使用時に得るリミットゲージが3増加する。[gold]かなしい[/gold]を解除する。",
 "CLOUD-FURY_POWER.smartDescription": "受けるダメージが増加する。ターン毎および攻撃使用時に得るリミットゲージが3増加する。",
 "CLOUD-FURY_POWER.title": "いかり",
 
@@ -89,5 +89,9 @@
 
 "CLOUD-JUDGMENT_BOLT_POWER.description": "ターン開始時にランダムな敵へ7ダメージを与える。",
 "CLOUD-JUDGMENT_BOLT_POWER.smartDescription": "ターン開始時にランダムな敵へ7ダメージを与える。",
-"CLOUD-JUDGMENT_BOLT_POWER.title": "裁きの雷"
+"CLOUD-JUDGMENT_BOLT_POWER.title": "裁きの雷",
+
+"CLOUD-GREATSWORD_MASTERY_POWER.description": "[gold]ブレイブモード[/gold]: [gold]筋力[/gold]を得る。[gold]アサルトモード[/gold]: [gold]敏捷性[/gold]を得る。",
+"CLOUD-GREATSWORD_MASTERY_POWER.smartDescription": "[gold]ブレイブモード[/gold]: [gold]筋力[/gold]を得る。[gold]アサルトモード[/gold]: [gold]敏捷性[/gold]を得る。",
+"CLOUD-GREATSWORD_MASTERY_POWER.title": "大剣の極意"
 }

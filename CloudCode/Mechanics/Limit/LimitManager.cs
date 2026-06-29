@@ -51,8 +51,18 @@ public static class LimitManager
         // ✅ Notify UI
         data.OnLimitChanged?.Invoke(value);
     }
+    
+    public static void HalfLimit(Player player)
+    {
+        var data = GetData(player);
+        int current = data.Value;
 
+        if (current <= 0)
+            return;
 
+        SetLimit(player, current / 2);
+    }
+    
     public static void GainLimit(Player player, int amount)
     {
         SetLimit(player, GetLimit(player) + amount);

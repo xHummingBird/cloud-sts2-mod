@@ -40,10 +40,10 @@ public class BusterSword() : CloudRelic
         bool isATB    = card is IATBCard;
         bool isMagic  = card is IMagicCard;
         bool isSummon = card is ISummonCard;
-
-        if (isLimit || isSummon) return;
-        if (card.Type == CardType.Attack && !isATB)
+        
+        if (!isATB)
             ATBManager.GainATBFromAttack(player, 1);
+        if (isLimit || isSummon) return;
         if (card.Type == CardType.Attack)
         {
             if (card.Owner.HasPower<FuryPower>())

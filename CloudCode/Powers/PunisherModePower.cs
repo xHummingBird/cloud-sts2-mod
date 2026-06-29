@@ -21,10 +21,10 @@ public class PunisherModePower : CloudPower
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DynamicVar("DamageIncrease", 1.25m),
-        new DynamicVar("PrimeDamageIncrease", 1.5m)
+        new DynamicVar("DamageTakenIncrease", 1.1m),
+        new DynamicVar("PrimeDamageIncrease", 1.5m),
     ];
-
-
+    
     public override async Task AfterApplied(Creature? applier, CardModel? cardSource)
     {
         var creature = base.Owner?.Player?.Creature;
@@ -33,11 +33,24 @@ public class PunisherModePower : CloudPower
         {
             character.RefreshIdle(creature);
         }
+        
+        if (applier.HasPower<CombatMomentumPower>())
+        {
+            await Task.Delay((int)(0.50f * 1000f));
+            decimal powerAmount = applier.GetPowerAmount<CombatMomentumPower>();
+            await PowerCmd.Apply<StrengthPower>(new ThrowingPlayerChoiceContext(), applier,
+                powerAmount, null, null);
+        }
     }
 
     public override async Task AfterRemoved(Creature oldOwner)
     {
         var creature = oldOwner.Player?.Creature;
+        
+        
+        if (creature?.IsDead == true)
+            return;
+
         if (creature.Player?.Character is Character.Cloud character)
         {
             character.RefreshIdle(creature);
@@ -58,6 +71,7 @@ public class PunisherModePower : CloudPower
         
         decimal num = base.DynamicVars["DamageIncrease"].BaseValue;
         decimal num2 = base.DynamicVars["PrimeDamageIncrease"].BaseValue;
+        decimal damageTaken =  base.DynamicVars["DamageTakenIncrease"].BaseValue;
         if (dealer == base.Owner)
         {
             if (dealer.HasPower<PrimeModePower>())
@@ -66,7 +80,7 @@ public class PunisherModePower : CloudPower
         }
 
         if (target == base.Owner)
-            return num;
+            return damageTaken;
 
         return 1m;
     }

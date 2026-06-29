@@ -3,10 +3,10 @@
 "CLOUD_ATB.description": "戦闘の勢いを表す。\n\n攻撃や効果によってATBを獲得する。\n攻撃によるATB獲得は最大ATBまでだが、その他の効果では上限を超えて獲得できる。\nATBを消費して強力なカードを使用する。\n\nATBが0の状態でターンを開始した場合、1ATBを得る。",
 
 "CLOUD_LIMIT.title": "リミット",
-"CLOUD_LIMIT.description": "戦闘中に蓄積される。\n\n攻撃時または攻撃を防いだ時に[gold]リミットゲージ[/gold]を3獲得する。\nダメージを受けた時、受けたダメージ量に応じて[gold]リミットゲージ[/gold]を獲得する。\n\n[gold]リミットゲージ[/gold]が100に達すると、強力な[gold]リミットブレイク[/gold]が使用可能になる。\n\nリミットブレイクを使用するとリミットゲージを消費する。",
+"CLOUD_LIMIT.description": "戦闘中に蓄積される。\n\n攻撃時または攻撃を防いだ時に[gold]リミットゲージ[/gold]を3獲得する。\nダメージを受けた時、受けたダメージ量に応じて[gold]リミットゲージ[/gold]を獲得する。\n\n[gold]リミットゲージ[/gold]が100に達すると、強力な[gold]リミットブレイク[/gold]が使用可能になる。\n戦闘終了後、[gold]リミットゲージ[/gold]の50%を引き継ぐ。 \n\nリミットブレイクを使用するとリミットゲージを消費する。",
   
 "CLOUD_SUMMON.title": "サモン",
-"CLOUD_SUMMON.description": "戦闘中に蓄積される。\n\n攻撃時に3[gold]サモン[/gold]を獲得する。\n[gold]魔法[/gold]カード使用時に6[gold]サモン[/gold]を獲得する。\n\nサモンが100に達すると、呼び出す[gold]召喚獣[/gold]を選択できる。\n\n[gold]召喚獣[/gold]は強力なダメージを与え、3ターンの間さまざまな恩恵をもたらす。\n\n召喚後、サモンは消費される。",
+"CLOUD_SUMMON.description": "戦闘中に蓄積される。\n\n攻撃時に3[gold]サモン[/gold]を獲得する。\n[gold]魔法[/gold]カード使用時に6[gold]サモン[/gold]を獲得する。\n\nサモンが100に達すると、呼び出す[gold]召喚獣[/gold]を選択できる。\n\n[gold]召喚獣[/gold]は強力なダメージを与え、3ターンの間さまざまな恩恵をもたらす。\n戦闘終了後、[gold]サモン[/gold]の50%を引き継ぐ。\n\n召喚後、サモンは消費される。",
 
 "CLOUD_MAGIC.title": "魔法",
 "CLOUD_MAGIC.description": "このカードは[gold]魔法[/gold]ダメージを与える。[gold]ブレイブモード[/gold]のダメージ増加効果は適用されない。",

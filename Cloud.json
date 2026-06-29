@@ -1,12 +1,12 @@
 {
   "id": "Cloud",
   "name": "Cloud",
-  "author": "Author",
+  "author": "HummingBird",
   "description": "Cloud Strife Playable Character Mod",
-  "version": "v0.9.0",
+  "version": "v0.9.7",
   "has_pck": true,
   "has_dll": true,
-  "min_game_version": "0.105.0",
-  "dependencies": [{"id": "BaseLib", "min_version": "v3.3.0"}],
+  "min_game_version": "0.107.0",
+  "dependencies": [{"id": "BaseLib", "min_version": "v3.3.2"}],
   "affects_gameplay": true
 }

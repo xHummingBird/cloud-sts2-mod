@@ -95,7 +95,7 @@
   "CLOUD-PROTECT.description": "Gain {Block:diff()} [gold]Block[/gold]. Next turn, gain {Block:diff()} [gold]Block[/gold].",
   "CLOUD-PROTECT.title": "Protect",
 
-  "CLOUD-HASTE.description": "Gain 1 [gold]ATB[/gold] and draw 1 additional card at the start of your turn for the next {HastePower:diff()} turns.",
+  "CLOUD-HASTE.description": "Gain 1 [gold]ATB[/gold] and gain {Energy:energyIcons()} at the start of your turn for the next {HastePower:diff()} turns.",
   "CLOUD-HASTE.title": "Haste",
 
   "CLOUD-FINAL_STAND.description": "Gain [gold]Reprieve[/gold].",
@@ -140,7 +140,7 @@
   "CLOUD-CLIMHAZZARD.description": "Deal {Damage:diff()} damage. \nThe next attack against that enemy deals [gold]{ArmorBreakPower:diff()}%[/gold] more damage.",
   "CLOUD-CLIMHAZZARD.title": "Climhazzard",
 
-  "CLOUD-COMBAT_MOMENTUM.description": "The first time you switch to [blue]Punisher Mode[/blue] on your turn, gain 1 [gold]Strength[/gold].",
+  "CLOUD-COMBAT_MOMENTUM.description": "When you switch to [blue]Punisher Mode[/blue] on your turn, gain 1 [gold]Strength[/gold].",
   "CLOUD-COMBAT_MOMENTUM.title": "Combat Momentum",
 
   "CLOUD-OVERCLOCK.description": "Gain {Energy:energyIcons()}.",
@@ -158,7 +158,7 @@
   "CLOUD-OMNISLASH_VER_FIVE.description": "Deal {CalculatedDamage:diff()} damage. \nIf you have 50 or more [gold]Limit[/gold], consume 50 [gold]Limit[/gold] and deal 20 additional damage.",
   "CLOUD-OMNISLASH_VER_FIVE.title": "Omnislash V5",
 
-  "CLOUD-DISORDER.description": "Deal {Damage:diff()} damage. \n[gold]Operator[/gold]: Next attack cost 0 {Energy:energyIcons()}. \n[gold]Punisher[/gold]: Hits twice. If fatal, gain {Block:diff()} [gold]Block[/gold].",
+  "CLOUD-DISORDER.description": "Deal {Damage:diff()} damage. \n[gold]Operator[/gold]: Next attack cost 0 {Energy:energyIcons()}. \n[gold]Punisher[/gold]: Hits twice. Gain {Block:diff()} [gold]Block[/gold].",
   "CLOUD-DISORDER.title": "Disorder",
 
   "CLOUD-ASCENSION.description": "Deal {Damage:diff()} damage. \nThe next attack against that enemy deals [gold]{ArmorBreakPower:diff()}%[/gold] more damage.",

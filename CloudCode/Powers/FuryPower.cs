@@ -14,7 +14,7 @@ public class FuryPower : CloudPower
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DynamicVar("DamageIncrease", 1.2m),
+        new DynamicVar("DamageIncrease", 1.1m),
     ];
 
     public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props,

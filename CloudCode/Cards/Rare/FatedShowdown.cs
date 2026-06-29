@@ -13,7 +13,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Cloud.CloudCode.Cards.Rare;
 
-public class FatedShowdown() : CloudCard(3, CardType.Power,
+public class FatedShowdown() : CloudCard(2, CardType.Power,
     CardRarity.Rare, TargetType.Self)
 {
     protected override bool ShouldGlowGoldInternal =>

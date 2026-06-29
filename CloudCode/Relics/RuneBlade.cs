@@ -19,7 +19,7 @@ public class RuneBlade() : CloudRelic
     
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DynamicVar("DamageIncrease", 1.2m),
+        new DynamicVar("DamageIncrease", 1.25m),
     ];
     
     public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props,

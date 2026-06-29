@@ -2,6 +2,7 @@
 using Cloud.CloudCode.Extensions;
 using Cloud.CloudCode.Mechanics.Stance;
 using Cloud.CloudCode.Powers;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -23,8 +24,8 @@ public class TripleSlash() : CloudCard(2, CardType.Attack,
         new ExtraDamageVar(2m),
         new CardsVar(1),
         new CalculatedDamageVar(ValueProp.Move)
-        .WithMultiplier((CardModel _, Creature? dealer) =>
-        dealer?.HasPower<PunisherModePower>() == true ? 0 : 1)
+        .WithMultiplier((CardModel card, Creature? _) =>
+            card.Owner.Creature.HasPower<PunisherModePower>() ? 0 : 1)
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -73,7 +74,8 @@ public class TripleSlash() : CloudCard(2, CardType.Attack,
     
     protected override void OnUpgrade()
     {
-        DynamicVars.ExtraDamage.UpgradeValueBy(2);
+        DynamicVars.CalculationBase.UpgradeValueBy(1);
+        DynamicVars.ExtraDamage.UpgradeValueBy(1);
         DynamicVars.Cards.UpgradeValueBy(1);
     }
 }

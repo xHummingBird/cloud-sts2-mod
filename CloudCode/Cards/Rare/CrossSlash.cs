@@ -7,6 +7,7 @@ using Cloud.CloudCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Vfx.Utilities;
@@ -16,12 +17,17 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Cloud.CloudCode.Cards.Rare;
 
 public class CrossSlash() : CloudCard(2, CardType.Attack,
-    CardRarity.Rare, TargetType.AnyEnemy), IATBCard
+    CardRarity.Rare, TargetType.AnyEnemy), IATBCard, IOperatorCard
 {
     public int ATBCost => 2;
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DamageVar(18, ValueProp.Move),
         new PowerVar<CrossSlashPower>(50),
+    ];
+    
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
+        CloudStaticHoverTip.Operator
     ];
 
     protected override async Task OnPlay(
@@ -74,6 +80,7 @@ public class CrossSlash() : CloudCard(2, CardType.Attack,
                 base.Owner.Creature, this);
         }
         CenterCardCinematic.End(RunManager.Instance.NetService.NetId);
+        await ownerCreature.ExitPunisher();
     }
     
     protected override void OnUpgrade()

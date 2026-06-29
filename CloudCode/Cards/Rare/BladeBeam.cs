@@ -1,6 +1,7 @@
 ﻿using BaseLib.Utils;
 using Cloud.CloudCode.Extensions;
 using Cloud.CloudCode.Mechanics.ATB;
+using Cloud.CloudCode.Mechanics.Stance;
 using Godot;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -19,7 +20,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Cloud.CloudCode.Cards.Rare;
 
 public class BladeBeam() : CloudCard(2, CardType.Attack,
-    CardRarity.Rare, TargetType.AllEnemies), IATBCard
+    CardRarity.Rare, TargetType.AllEnemies), IATBCard, IStanceCard
 {
     public int ATBCost => 2;
     protected override IEnumerable<DynamicVar> CanonicalVars => 
@@ -33,6 +34,7 @@ public class BladeBeam() : CloudCard(2, CardType.Attack,
     [
         HoverTipFactory.FromPower<VulnerablePower>(),
         HoverTipFactory.FromPower<WeakPower>(),
+        CloudStaticHoverTip.Stance
     ];
     
     protected override async Task OnPlay(
@@ -74,6 +76,7 @@ public class BladeBeam() : CloudCard(2, CardType.Attack,
         await PowerCmd.Apply<VulnerablePower>(choiceContext, base.CombatState.HittableEnemies, base.DynamicVars.Vulnerable.BaseValue, base.Owner.Creature, this);
         await Task.Delay((int)(0.3f * 1000f));
         CenterCardCinematic.End(RunManager.Instance.NetService.NetId);
+        await ownerCreature.TogglePunisher(1, base.Owner.Creature, this);
     }
     protected override void OnUpgrade()
     {

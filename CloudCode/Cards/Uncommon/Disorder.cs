@@ -18,10 +18,10 @@ namespace Cloud.CloudCode.Cards.Uncommon;
 public class Disorder() : CloudCard(2, CardType.Attack,
     CardRarity.Uncommon, TargetType.AnyEnemy), IATBCard, IStanceCard
 {
-    public int ATBCost => 2;
+    public int ATBCost => 1;
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DamageVar(10m, ValueProp.Move),
-        new BlockVar(10m, ValueProp.Move),
+        new BlockVar(5m, ValueProp.Move),
         new EnergyVar(1)
     ];
     
@@ -47,18 +47,13 @@ public class Disorder() : CloudCard(2, CardType.Attack,
                 await Task.Delay((int)(0.45f * 1000f));
             }
         }
-        bool shouldTriggerFatal = play.Target.Powers.All((PowerModel p) => p.ShouldOwnerDeathTriggerFatal());
         if (base.Owner.Creature.IsPunisher())
         {
-            AttackCommand attackCommand = await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).WithHitCount(2).Targeting(play.Target)
+           await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).WithHitCount(2).Targeting(play.Target)
                 .WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav")
                 .Execute(choiceContext);
-            if (shouldTriggerFatal && attackCommand.Results.SelectMany((List<DamageResult> r) => r)
-                    .Any((DamageResult r) => r.WasTargetKilled))
-            {
                 AudioHelper.PlayRandomDefend();
                 await CommonActions.CardBlock(this, play);
-            }
             await ownerCreature.ExitPunisher();
         }
         else if (!base.Owner.Creature.IsPunisher())

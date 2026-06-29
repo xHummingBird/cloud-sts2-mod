@@ -3,10 +3,10 @@
   "CLOUD_ATB.description": "Represents combat momentum.\n\nGain ATB from attacks and effects. \nAttack-based gain is limited by your Max ATB, but other effects may exceed this limit.\nSpend ATB to use powerful cards.\n\nYou gain 1 ATB at the start of your turn if you have 0 ATB.",
 
   "CLOUD_LIMIT.title": "Limit",
-  "CLOUD_LIMIT.description": "Builds as you fight. \n\nGain 3 [gold]Limit[/gold] when attacking or blocking attacks. \nGain [gold]Limit[/gold] equal to damage taken. \n\nAt 100 [gold]Limit[/gold], powerful [gold]Limit Break[/gold] attacks become available. \n\nLimit is consumed when Limit Break is used.",
+  "CLOUD_LIMIT.description": "Builds as you fight. \n\nGain 3 [gold]Limit[/gold] when attacking or blocking attacks. \nGain [gold]Limit[/gold] equal to damage taken. \n\nAt 100 [gold]Limit[/gold], powerful [gold]Limit Break[/gold] attacks become available. \nAfter combat, retain 50% of Limit \n\nLimit is consumed when Limit Break is used.",
 
   "CLOUD_SUMMON.title": "Summon",
-  "CLOUD_SUMMON.description": "Builds as you fight. \n\nGain 3 Summon when attacking.\nGain 6 Summon when using [gold]Magic[/gold] cards.\n\nAt full Summon, choose an [gold]Esper[/gold] to call forth.\n\n[gold]Espers[/gold] deal high damage and grant powerful bonuses for 3 turns.\n\nSummon is consumed after use.",
+  "CLOUD_SUMMON.description": "Builds as you fight. \n\nGain 3 Summon when attacking.\nGain 6 Summon when using [gold]Magic[/gold] cards.\n\nAt 100 Summon, choose an [gold]Esper[/gold] to call forth.\n\n[gold]Espers[/gold] deal high damage and grant powerful bonuses for 3 turns. \nAfter combat, retain 50% of Summon \n\nSummon is consumed after use.",
 
   "CLOUD_MAGIC.title": "Magic",
   "CLOUD_MAGIC.description": "This card deals [gold]Magic[/gold] damage and does not get bonus damage from [gold]Punisher Mode[/gold].",

@@ -1,6 +1,6 @@
 {
-  "CLOUD-PUNISHER_MODE_POWER.description": "Increase physical damage dealt and all damage taken by 25%. Switch stance when you take unblocked damage from an enemy.",
-  "CLOUD-PUNISHER_MODE_POWER.smartDescription": "Increase physical damage dealt and damage taken by 25%. Switch stance when you take unblocked damage from an enemy.",
+  "CLOUD-PUNISHER_MODE_POWER.description": "Increase physical damage dealt by 25% and all damage taken by 10%. Switch stance when you take unblocked damage from an enemy.",
+  "CLOUD-PUNISHER_MODE_POWER.smartDescription": "Increase physical damage dealt by 25% and damage taken by 10%. Switch stance when you take unblocked damage from an enemy.",
   "CLOUD-PUNISHER_MODE_POWER.title": "Punisher Mode",
 
   "CLOUD-COUNTER_STANCE_POWER.description": "Blocked damage is reflected to your attacker for 1 turn.",
@@ -20,11 +20,11 @@
   "CLOUD-CROSS_SLASH_POWER.title": "Cross Slash",
 
   "CLOUD-PRIME_MODE_POWER.description": "Increase physical damage dealt by [gold]25%[/gold] in Punisher Mode. \nIncrease [gold]Magic[/gold] damage by 25% in [gold]Operator[/gold] mode. \nTaking damage no longer changes stance.",
-  "CLOUD-PRIME_MODE_POWER.smartDescription": "[gold]Operator[/gold]: Increase [gold]Magic[/gold] damage. \n[gold]Punisher[/gold]: Increase damage boost and no longer removed when damaged.",
+  "CLOUD-PRIME_MODE_POWER.smartDescription": "[gold]Operator[/gold]: Increase [gold]Magic[/gold] damage. \n[gold]Punisher[/gold]: Increase damage boost and and no longer removed when damaged.",
   "CLOUD-PRIME_MODE_POWER.title": "Prime Mode",
 
-  "CLOUD-HASTE_POWER.description": "Gain 1 ATB and draw 1 additional card at the start of your turn.",
-  "CLOUD-HASTE_POWER.smartDescription": "Gain 1 ATB and draw 1 additional card at the start of your turn.",
+  "CLOUD-HASTE_POWER.description": "Gain 1 ATB and gain {Energy:energyIcons()} at the start of your turn.",
+  "CLOUD-HASTE_POWER.smartDescription": "Gain 1 ATB and gain {Energy:energyIcons()} at the start of your turn.",
   "CLOUD-HASTE_POWER.title": "Haste",
 
   "CLOUD-REPRIEVE_POWER.description": "When you would die, heal to 30% of your max HP instead (works once).",
@@ -39,7 +39,7 @@
   "CLOUD-SOLDIERS_PRIDE_POWER.smartDescription": "At the start of your turn, if you did not take any damage last turn, gain vigor or block based on your stance.",
   "CLOUD-SOLDIERS_PRIDE_POWER.title": "SOLDIER's Pride",
 
-  "CLOUD-FURY_POWER.description": "Increase damage taken by [blue]20%[/blue]. Gain 3 additional limit per turn and from using attacks. Removes [gold]Sedate[/gold].",
+  "CLOUD-FURY_POWER.description": "Increase damage taken by [blue]10%[/blue]. Gain 3 additional limit per turn and from using attacks. Removes [gold]Sedate[/gold].",
   "CLOUD-FURY_POWER.smartDescription": "Increase damage taken. Gain 3 additional limit per turn and from using attacks.",
   "CLOUD-FURY_POWER.title": "Fury",
 
@@ -51,8 +51,8 @@
   "CLOUD-ARMOR_BREAK_POWER.smartDescription": "Amplify damage taken",
   "CLOUD-ARMOR_BREAK_POWER.title": "Armor Break",
 
-  "CLOUD-COMBAT_MOMENTUM_POWER.description": "The first time you switch to [gold]Punisher Mode[/gold] on your turn, gain [gold]Strength[/gold].",
-  "CLOUD-COMBAT_MOMENTUM_POWER.smartDescription": "The first time you switch to [gold]Punisher Mode[/gold] on your turn, gain [gold]Strength[/gold].",
+  "CLOUD-COMBAT_MOMENTUM_POWER.description": "When you switch to [gold]Punisher Mode[/gold] on your turn, gain [gold]Strength[/gold].",
+  "CLOUD-COMBAT_MOMENTUM_POWER.smartDescription": "When you switch to [gold]Punisher Mode[/gold] on your turn, gain [gold]Strength[/gold].",
   "CLOUD-COMBAT_MOMENTUM_POWER.title": "Combat Momentum",
 
   "CLOUD-ATB_NEXT_TURN_POWER.description": "Gain ATB at the start of next turn.",
@@ -89,5 +89,9 @@
 
   "CLOUD-JUDGMENT_BOLT_POWER.description": "Deal 7 damage to a random enemy at the start of your turn.",
   "CLOUD-JUDGMENT_BOLT_POWER.smartDescription": "Deal 7 damage to a random enemy at the start of your turn.",
-  "CLOUD-JUDGMENT_BOLT_POWER.title": "Judgment Bolt"
+  "CLOUD-JUDGMENT_BOLT_POWER.title": "Judgment Bolt",
+
+  "CLOUD-GREATSWORD_MASTERY_POWER.description": "[gold]Punisher[/gold]: Gain Strength. [gold]Operator[/gold]: Gain Dexterity.",
+  "CLOUD-GREATSWORD_MASTERY_POWER.smartDescription": "[gold]Punisher[/gold]: Gain Strength. [gold]Operator[/gold]: Gain Dexterity.",
+  "CLOUD-GREATSWORD_MASTERY_POWER.title": "Greatsword Mastery"
 }

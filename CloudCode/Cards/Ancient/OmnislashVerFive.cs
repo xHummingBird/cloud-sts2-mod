@@ -43,11 +43,6 @@ public class OmnislashVerFive() : CloudCard(2, CardType.Attack,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        if (LimitManager.GetLimit(base.Owner) >= 50)
-        {
-            LimitManager.SpendLimit(base.Owner,50);
-        }
-
         if (base.Owner.HasPower<LimitBreakPower>())
         {
             foreach (var card in GetLimitBreakCards().ToList())
@@ -152,6 +147,7 @@ public class OmnislashVerFive() : CloudCard(2, CardType.Attack,
                         await cloud.Retreat(ownerCreature);
                         CinematicAttack.End(RunManager.Instance.NetService.NetId);
                     }
+                    
                 }
 
             }
@@ -167,6 +163,10 @@ public class OmnislashVerFive() : CloudCard(2, CardType.Attack,
             await DamageCmd.Attack(base.DynamicVars.CalculatedDamage).FromCard(this).Targeting(play.Target)
                 .WithHitFx("vfx/vfx_attack_slash")
                 .Execute(choiceContext);
+        }
+        if (LimitManager.GetLimit(base.Owner) >= 50)
+        {
+            LimitManager.SpendLimit(base.Owner,50);
         }
     }
     

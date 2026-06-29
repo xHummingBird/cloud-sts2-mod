@@ -46,10 +46,21 @@ public static class SummonManager
             return;
 
         data.Value = value;
-
-        // ✅ Notify UI
+        
         data.OnSummonChanged?.Invoke(value);
     }
+    
+    public static void HalfSummon(Player player)
+    {
+        var data = GetData(player);
+        int current = data.Value;
+
+        if (current <= 0)
+            return;
+
+        SetSummon(player, current / 2);
+    }
+
 
     public static void GainSummon(Player player, int amount)
     {

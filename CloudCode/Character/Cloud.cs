@@ -119,6 +119,7 @@ public class Cloud : PlaceholderCharacterModel
 
 	public override NCreatureVisuals? CreateCustomVisuals()
 	{
+		CloudAssets.EnsurePreloaded();
 		return NodeFactory<NCreatureVisuals>.CreateFromScene(CustomVisualScenePath);
 	}
 
@@ -393,8 +394,8 @@ public class Cloud : PlaceholderCharacterModel
 
 				ATBManager.SetATB(creature.Player, 0);
 				ATBManager.Reset(creature.Player);
-				LimitManager.SetLimit(creature.Player, 0);
-				SummonManager.SetSummon(creature.Player, 0);
+				LimitManager.HalfLimit(creature.Player);
+				SummonManager.HalfSummon(creature.Player);
 
 				if (animPlayer == null)
 					continue;
@@ -461,9 +462,6 @@ public class Cloud : PlaceholderCharacterModel
 				{
 					AudioHelper.PlayRandomDamagedHigh();
 				}
-				
-				if (!target.HasPower<PrimeModePower>())
-					character.PlayAnimation(target, "idle_operator");
 			}
 		}
 	}

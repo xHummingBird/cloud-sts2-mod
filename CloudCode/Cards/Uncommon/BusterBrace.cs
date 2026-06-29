@@ -24,7 +24,7 @@ public class BusterBrace() : CloudCard(1, CardType.Skill,
         AudioHelper.PlayRandomDefend();
         await CommonActions.CardBlock(this, play);
         var ownerCreature = Owner?.Creature;
-        ownerCreature.TogglePunisher(1, ownerCreature, this);
+        await ownerCreature.TogglePunisher(1, ownerCreature, this);
         if (Owner?.Character is Character.Cloud cloud)
         {
             cloud.RefreshIdle(Owner.Creature);
