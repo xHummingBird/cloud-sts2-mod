@@ -72,14 +72,19 @@ public class SummonCard() : CloudCard(0, CardType.Skill,
             cards.Add(bahamut);
         
         CardModel cardModel = await CardSelectCmd.FromChooseACardScreen(choiceContext, cards.ToList(), base.Owner, canSkip: false);
-        SummonManager.SetSummon(base.Owner, 0);
-        PowerCmd.Remove<SummonPower>(base.Owner.Creature);
+
         if (cardModel is Shiva shivaCard || cardModel is Ramuh ramuhCard)
+        {
+            SummonManager.SetSummon(base.Owner, 0);
+            await PowerCmd.Remove<SummonPower>(base.Owner.Creature);
             await CardCmd.AutoPlay(choiceContext, cardModel, null);
-        
+        }
         else  if (cardModel is Ifrit ifritCard || cardModel is Odin odinCard)
+        {
+            SummonManager.SetSummon(base.Owner, 0);
+            await PowerCmd.Remove<SummonPower>(base.Owner.Creature);
             await CardCmd.AutoPlay(choiceContext, cardModel, play.Target);
-        
+        }
         else if (cardModel is Bahamut bahamutCard)
             await CardCmd.AutoPlay(choiceContext, cardModel, base.Owner.Creature);
     }

@@ -24,7 +24,8 @@ public class BahamutMateria() : CloudRelic
         if (combatState.RoundNumber <= 1)
         {
             SummonManager.GainSummon(Owner.Creature.Player, 20);
+            Flash();
         }
-        Flash();
+        
     }
 }

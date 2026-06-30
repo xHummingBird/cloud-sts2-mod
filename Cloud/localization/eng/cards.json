@@ -252,7 +252,7 @@
   "CLOUD-INVOKE.title": "Invoke",
 
   "CLOUD-HEROS_LAST_WISH.description": "Gain {Energy:energyIcons()}. \nGain 1 [gold]ATB[/gold]. \nGain {SummonPower:diff()} [gold]Summon[/gold] and [gold]Limit[/gold].",
-  "CLOUD-HEROS_LAST_WISH.title": "Hero's Last Wish",
+  "CLOUD-HEROS_LAST_WISH.title": "Last Wish",
 
   "CLOUD-FORGOTTEN_IDENTITY.description": "Gain [gold]Sedate[/gold].",
   "CLOUD-FORGOTTEN_IDENTITY.title": "Forgotten Identity",

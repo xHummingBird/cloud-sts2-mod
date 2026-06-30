@@ -67,9 +67,10 @@ public class Zantetsuken() : CloudCard(2, CardType.Attack,
             await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).Targeting(play.Target)
                 .Execute(choiceContext);
         }
-        if (play.Target.CurrentHp * 100 <= play.Target.MaxHp * threshold)
+        if (play.Target.CurrentHp * 100 <= play.Target.MaxHp * threshold && play.Target.CurrentHp > 0)
         {
             await DoomPower.DoomKill(new List<Creature> { play.Target });
+            return;
         }
         CenterCardCinematic.End(RunManager.Instance.NetService.NetId);
     }

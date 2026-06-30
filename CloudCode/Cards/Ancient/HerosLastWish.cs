@@ -9,10 +9,10 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
-namespace Cloud.CloudCode.Cards.Rare;
+namespace Cloud.CloudCode.Cards.Ancient;
 
 public class HerosLastWish() : CloudCard(0, CardType.Skill,
-    CardRarity.Rare, TargetType.Self)
+    CardRarity.Ancient, TargetType.Self)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
     [
@@ -28,8 +28,8 @@ public class HerosLastWish() : CloudCard(0, CardType.Skill,
     protected override IEnumerable<DynamicVar> CanonicalVars => 
     [
         new EnergyVar(1),
-        new PowerVar<LimitBreakPower>(15),
-        new PowerVar<SummonPower>(15)
+        new PowerVar<LimitBreakPower>(20),
+        new PowerVar<SummonPower>(20)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

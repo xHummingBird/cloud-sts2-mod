@@ -2,6 +2,7 @@
 using Cloud.CloudCode.Cards.Basic;
 using Cloud.CloudCode.Relics;
 using HarmonyLib;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Relics;
 
@@ -29,3 +30,22 @@ internal static class CloudArchaicToothTranscendencePatch
         __result[ModelDb.Card<Braver>().Id] = ModelDb.Card<BraverKai>();
     }
 }
+
+
+[HarmonyPatch(typeof(DustyTome), nameof(DustyTome.AfterObtained))]
+public static class DustyTomePatch
+{
+    [HarmonyPrefix]
+    public static void Prefix(DustyTome __instance)
+    {
+        if (__instance.Owner?.Character is not Character.Cloud)
+            return;
+
+        if (__instance.AncientCard == null)
+        {
+            __instance.AncientCard = ModelDb.Card<HerosLastWish>().Id;
+        }
+    }
+}
+
+

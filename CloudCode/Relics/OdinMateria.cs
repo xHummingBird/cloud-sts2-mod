@@ -36,9 +36,10 @@ public class OdinMateria() : CloudRelic
             return;
         if (combatState.RoundNumber <= 1)
         {
-            await PowerCmd.Apply<PunisherModePower>(new ThrowingPlayerChoiceContext(), base.Owner.Creature, 1m, null,
+            await PowerCmd.Apply<PunisherModePower>(new ThrowingPlayerChoiceContext(), base.Owner.Creature, 1m, base.Owner.Creature,
                 null);
+            Flash();
         }
-        Flash();
+        
     }
 }

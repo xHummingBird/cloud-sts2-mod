@@ -55,6 +55,7 @@ public class Firaga() : CloudCard(2, CardType.Attack,
             .Execute(choiceContext);
         await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).TargetingAllOpponents(base.CombatState)
             .WithHitVfxSpawnedAtBase()
+            .WithHitFx("vfx/vfx_attack_blunt", null, "blunt_attack.mp3")
             .BeforeDamage(async delegate
             {
                 var targets = base.CombatState.HittableEnemies;

@@ -46,7 +46,7 @@ public class ModeShift() : CloudCard(0, CardType.Skill,
                     await Task.Delay((int)(duration * 1000f));
                 cloud.PlayAnimation(ownerCreature, idleAnim);
             }
-            PowerCmd.Apply<PunisherModePower>(choiceContext, base.Owner.Creature, base.DynamicVars["PunisherModePower"].BaseValue, base.Owner.Creature, this);
+            await PowerCmd.Apply<PunisherModePower>(choiceContext, base.Owner.Creature, base.DynamicVars["PunisherModePower"].BaseValue, base.Owner.Creature, this);
         }
         else
         {

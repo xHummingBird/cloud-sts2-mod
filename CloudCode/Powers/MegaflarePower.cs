@@ -1,6 +1,7 @@
 ﻿using BaseLib.Utils;
 using Cloud.CloudCode.Cards.Ancient;
 using Cloud.CloudCode.Extensions;
+using Cloud.CloudCode.Mechanics.Summon;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -40,8 +41,10 @@ public class MegaflarePower : CloudPower
         
         if (Amount >= 3)
         {
+            SummonManager.SetSummon(base.Owner.Player, 0);
+            await PowerCmd.Remove<SummonPower>(base.Owner);
             var ownerCreature = Owner.Player?.Creature;
-            CinematicAttack.Start(RunManager.Instance.NetService.NetId);
+            CenterCardCinematic.Start(RunManager.Instance.NetService.NetId);  
             if (ownerCreature != null && Owner.Player?.Character is Character.Cloud cloud)
             {
                 // attack animation
@@ -70,8 +73,9 @@ public class MegaflarePower : CloudPower
                 NLargeMagicMissileVfx? vfx = NLargeMagicMissileVfx.Create(center, new Color(Colors.Purple));
                 NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(vfx);
                 await Cmd.Wait(vfx.WaitTime);
-                var targets = base.CombatState.HittableEnemies;
+                
                 NGame.Instance.ScreenShake(ShakeStrength.Strong, ShakeDuration.Normal);
+                var targets = base.CombatState.HittableEnemies;
                 foreach (var target in targets)
                 {
                     var vfx2 = NGroundFireVfx.Create(target, VfxColor.Purple);
@@ -79,13 +83,18 @@ public class MegaflarePower : CloudPower
                     {
                         NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(vfx2);
                         SfxCmd.Play("event:/sfx/characters/attack_fire");
+                        SfxCmd.Play("blunt_attack.mp3");
+                        VfxCmd.PlayOnCreatureCenter(
+                            target,
+                            VfxCmd.bluntPath
+                        );
+
                     }
                 }
-                await CreatureCmd.Damage(playerChoiceContext, targets, DynamicVars.Damage.BaseValue, ValueProp.Unpowered, base.Owner);
+                await CreatureCmd.Damage(playerChoiceContext, targets, DynamicVars.Damage.BaseValue, ValueProp.Move, base.Owner);
                 await PowerCmd.Remove<MegaflarePower>(base.Owner);
-                await PowerCmd.Remove<SummonPower>(base.Owner);
                 await Task.Delay((int)(1.8f * 1000f));
-                CinematicAttack.End(RunManager.Instance.NetService.NetId);
+                CenterCardCinematic.End(RunManager.Instance.NetService.NetId);
             }
         }
     }
