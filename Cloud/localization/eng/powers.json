@@ -83,8 +83,8 @@
   "CLOUD-FROZEN_SHIELD_POWER.smartDescription": "Gain 10 [gold]Block[/gold] per turn.",
   "CLOUD-FROZEN_SHIELD_POWER.title": "Frozen Shield",
 
-  "CLOUD-MEGAFLARE_POWER.description": "After charging for [blue]3[/blue] turns, deal [gold]60[/gold] damage to ALL enemies.",
-  "CLOUD-MEGAFLARE_POWER.smartDescription": "After charging for [blue]3[/blue] turns, deal [gold]60[/gold] damage to ALL enemies.",
+  "CLOUD-MEGAFLARE_POWER.description": "After charging for [blue]3[/blue] turns, deal [gold]99[/gold] damage to ALL enemies.",
+  "CLOUD-MEGAFLARE_POWER.smartDescription": "After charging for [blue]3[/blue] turns, deal [gold]99[/gold] damage to ALL enemies.",
   "CLOUD-MEGAFLARE_POWER.title": "Megaflare",
 
   "CLOUD-JUDGMENT_BOLT_POWER.description": "Deal 7 damage to a random enemy at the start of your turn.",

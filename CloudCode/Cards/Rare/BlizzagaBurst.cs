@@ -23,7 +23,7 @@ public class BlizzagaBurst() : CloudCard(2, CardType.Attack,
     public int ATBCost => 2;
     protected override IEnumerable<DynamicVar> CanonicalVars => 
     [
-        new DamageVar(15m, ValueProp.Move),
+        new DamageVar(17m, ValueProp.Move),
         new BlockVar(10, ValueProp.Move)
     ];
     

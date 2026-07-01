@@ -19,7 +19,7 @@ public class Omnislash() : CloudCard(0, CardType.Attack,
     CardRarity.Ancient, TargetType.AnyEnemy), ILimitCard
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(65m, ValueProp.Move),
+        new DamageVar(70m, ValueProp.Move),
     ];
     
     public override IEnumerable<CardKeyword> CanonicalKeywords =>

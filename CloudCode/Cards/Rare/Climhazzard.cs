@@ -19,7 +19,7 @@ public class Climhazzard() : CloudCard(2, CardType.Attack,
 {
     public int ATBCost => 2;
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(21, ValueProp.Move),
+        new DamageVar(24, ValueProp.Move),
         new PowerVar<ArmorBreakPower>(50m),
     ];
     
@@ -80,6 +80,7 @@ public class Climhazzard() : CloudCard(2, CardType.Attack,
     
     protected override void OnUpgrade()
     {
+        DynamicVars.Damage.UpgradeValueBy(4m);
         base.DynamicVars["ArmorBreakPower"].UpgradeValueBy(20);
     }
 }

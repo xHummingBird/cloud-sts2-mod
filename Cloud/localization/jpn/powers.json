@@ -83,8 +83,8 @@
 "CLOUD-FROZEN_SHIELD_POWER.smartDescription": "毎ターン10[gold]ブロック[/gold]を得る。",
 "CLOUD-FROZEN_SHIELD_POWER.title": "アイスシールド",
 
-"CLOUD-MEGAFLARE_POWER.description": "[blue]3[/blue]ターン溜めた後、すべての敵に[gold]60[/gold]ダメージを与える。",
-"CLOUD-MEGAFLARE_POWER.smartDescription": "[blue]3[/blue]ターン溜めた後、すべての敵に[gold]60[/gold]ダメージを与える。",
+"CLOUD-MEGAFLARE_POWER.description": "[blue]3[/blue]ターン溜めた後、すべての敵に[gold]99[/gold]ダメージを与える。",
+"CLOUD-MEGAFLARE_POWER.smartDescription": "[blue]3[/blue]ターン溜めた後、すべての敵に[gold]99[/gold]ダメージを与える。",
 "CLOUD-MEGAFLARE_POWER.title": "メガフレア",
 
 "CLOUD-JUDGMENT_BOLT_POWER.description": "ターン開始時にランダムな敵へ7ダメージを与える。",

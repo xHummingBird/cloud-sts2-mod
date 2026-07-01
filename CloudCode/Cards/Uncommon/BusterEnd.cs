@@ -39,9 +39,9 @@ public class BusterEnd() : CloudCard(3, CardType.Attack,
                 await Task.Delay((int)(0.45f * 1000f));
             }
         }
-        CommonActions.CardAttack(this, play.Target).WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav")
-            .Execute(choiceContext);
         NGame.Instance.ScreenShake(ShakeStrength.Medium, ShakeDuration.Normal);
+        await CommonActions.CardAttack(this, play.Target).WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav")
+            .Execute(choiceContext);
         await Task.Delay((int)(0.567f * 1000f));
     }
     

@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+﻿using BaseLib.Extensions;
+using BaseLib.Utils;
 using Cloud.CloudCode.Extensions;
 using Cloud.CloudCode.Mechanics.Stance;
 using Cloud.CloudCode.Powers;
@@ -37,6 +38,7 @@ public class TripleSlash() : CloudCard(2, CardType.Attack,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
+        decimal finalDamage = base.DynamicVars.CalculatedDamage.PreviewValue;
         var ownerCreature = Owner?.Creature;
 
         if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
@@ -51,12 +53,12 @@ public class TripleSlash() : CloudCard(2, CardType.Attack,
                     .Execute(choiceContext);
                 await Task.Delay((int)(0.333f * 1000f));
                 SfxCmd.Play("res://Cloud/sfx/sword_swing.wav");
-                DamageCmd.Attack(base.DynamicVars.CalculatedDamage).FromCard(this).TargetingRandomOpponents(base.CombatState).WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav")
+                DamageCmd.Attack(finalDamage).FromCard(this).TargetingRandomOpponents(base.CombatState).WithValueProp(ValueProp.Unpowered).WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav")
                     .Execute(choiceContext);
                 await Task.Delay((int)(0.6f * 1000f));
                 SfxCmd.Play("res://Cloud/sfx/sword_swing.wav");
                 SfxCmd.Play("res://Cloud/sounds/heavy_attack (2).wav");
-                await DamageCmd.Attack(base.DynamicVars.CalculatedDamage).FromCard(this).TargetingRandomOpponents(base.CombatState).WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav")
+                await DamageCmd.Attack(finalDamage).FromCard(this).TargetingRandomOpponents(base.CombatState).WithValueProp(ValueProp.Unpowered).WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav")
                     .Execute(choiceContext);
                 await Task.Delay((int)(0.4f * 1000f));
             }

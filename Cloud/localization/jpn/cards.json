@@ -227,7 +227,7 @@
 "CLOUD-IFRIT.description": "{Damage:diff()}[gold]魔法[/gold]ダメージを与える。\n3ターンの間、その敵が受ける[gold]魔法[/gold]ダメージが[blue]50%[/blue]増加する。",
 "CLOUD-IFRIT.title": "イフリート",
 
-"CLOUD-BAHAMUT.description": "{MegaflarePower:diff()}ターン後、すべての敵に70ダメージを与える。",
+"CLOUD-BAHAMUT.description": "{MegaflarePower:diff()}ターン後、すべての敵に99ダメージを与える。",
 "CLOUD-BAHAMUT.title": "バハムート",
 
 "CLOUD-ODIN.description": "{Damage:diff()}ダメージを与え、[gold]弱体[/gold]3を与える。\nHPが[gold]{hpPercent:diff()}%[/gold]以下の敵を即死させる。",

@@ -40,7 +40,7 @@ public class Shiva() : CloudCard(0, CardType.Attack,
     {
         CenterCardCinematic.Start(RunManager.Instance.NetService.NetId);
         var ownerCreature = Owner?.Creature;
-        PowerCmd.Remove<SummonPower>(base.Owner.Creature);
+        await PowerCmd.Remove<SummonPower>(base.Owner.Creature);
         if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
         {
             float duration = cloud.PlayAnimation(ownerCreature, "shiva").total;

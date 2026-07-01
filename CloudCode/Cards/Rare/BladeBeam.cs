@@ -25,7 +25,7 @@ public class BladeBeam() : CloudCard(2, CardType.Attack,
     public int ATBCost => 2;
     protected override IEnumerable<DynamicVar> CanonicalVars => 
     [
-        new DamageVar(15m, ValueProp.Move),
+        new DamageVar(18m, ValueProp.Move),
         new PowerVar<WeakPower>(1m),
         new PowerVar<VulnerablePower>(1m)
     ];
@@ -82,6 +82,6 @@ public class BladeBeam() : CloudCard(2, CardType.Attack,
     {
         DynamicVars.Vulnerable.UpgradeValueBy(1m);
         DynamicVars.Weak.UpgradeValueBy(1m);
-        DynamicVars.Damage.UpgradeValueBy(5m);
+        DynamicVars.Damage.UpgradeValueBy(4m);
     }
 }

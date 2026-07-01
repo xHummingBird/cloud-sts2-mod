@@ -18,7 +18,7 @@ public class ThundagaBurst() : CloudCard(2, CardType.Attack,
     public int ATBCost => 2;
     protected override IEnumerable<DynamicVar> CanonicalVars => 
     [
-        new DamageVar(7m, ValueProp.Move),
+        new DamageVar(8m, ValueProp.Move),
         new RepeatVar(3)
     ];
     

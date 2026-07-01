@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+﻿using BaseLib.Extensions;
+using BaseLib.Utils;
 using Cloud.CloudCode.Extensions;
 using Cloud.CloudCode.Mechanics.Limit;
 using Cloud.CloudCode.Powers;
@@ -29,6 +30,7 @@ public class AerialDrive() : CloudCard(2, CardType.Attack,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
+        decimal finalDamage = base.DynamicVars.Damage.PreviewValue;
         var ownerCreature = Owner?.Creature;
 
         if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
@@ -44,8 +46,10 @@ public class AerialDrive() : CloudCard(2, CardType.Attack,
                 
                 await Task.Delay((int)(0.49f * 1000f));
                 SfxCmd.Play("res://Cloud/sfx/sword_swing.wav");
-                await CommonActions.CardAttack(this, play.Target).WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav")
-                    .Execute(choiceContext);
+                
+                await DamageCmd.Attack(finalDamage).FromCard(this).Targeting(play.Target).WithValueProp(ValueProp.Unpowered)
+                        .WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav")
+                        .Execute(choiceContext);
                 await Task.Delay((int)(0.81f * 1000f));
             }
         }

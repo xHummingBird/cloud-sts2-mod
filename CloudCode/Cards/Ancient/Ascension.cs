@@ -17,7 +17,7 @@ public class Ascension() : CloudCard(0, CardType.Attack,
     CardRarity.Ancient, TargetType.AnyEnemy), ILimitCard
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(42m, ValueProp.Move),
+        new DamageVar(38m, ValueProp.Move),
         new PowerVar<ArmorBreakPower>(80m),
     ];
     
@@ -129,6 +129,6 @@ public class Ascension() : CloudCard(0, CardType.Attack,
     protected override void OnUpgrade()
     {
         base.DynamicVars["ArmorBreakPower"].UpgradeValueBy(20);
-        DynamicVars.Damage.UpgradeValueBy(10);
+        DynamicVars.Damage.UpgradeValueBy(7);
     }
 }

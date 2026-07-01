@@ -26,7 +26,7 @@ public class MegaflarePower : CloudPower
 
     public override PowerStackType StackType => PowerStackType.Counter;
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(70m, ValueProp.Move)
+        new DamageVar(99m, ValueProp.Move)
     ];
 
     public override async Task AfterPlayerTurnStartLate(PlayerChoiceContext playerChoiceContext, Player player)

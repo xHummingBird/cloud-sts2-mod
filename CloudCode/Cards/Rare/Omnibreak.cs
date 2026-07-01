@@ -1,5 +1,6 @@
 ﻿using BaseLib.Utils;
 using Cloud.CloudCode.Extensions;
+using Cloud.CloudCode.Mechanics.Stance;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -10,11 +11,11 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Cloud.CloudCode.Cards.Rare;
 
-public class Omnibreak() : CloudCard(0, CardType.Attack,
-    CardRarity.Rare, TargetType.AnyEnemy)
+public class Omnibreak() : CloudCard(1, CardType.Attack,
+    CardRarity.Rare, TargetType.AnyEnemy), IStanceCard
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(6, ValueProp.Move),
+        new DamageVar(10, ValueProp.Move),
         new PowerVar<WeakPower>(1),
         new PowerVar<VulnerablePower>(1)
     ];
@@ -48,6 +49,7 @@ public class Omnibreak() : CloudCard(0, CardType.Attack,
             base.Owner.Creature, this);
         await PowerCmd.Apply<VulnerablePower>(choiceContext, play.Target, base.DynamicVars.Vulnerable.BaseValue,
             base.Owner.Creature, this);
+        await ownerCreature.TogglePunisher(1, ownerCreature, this);
     }
     
     protected override void OnUpgrade()

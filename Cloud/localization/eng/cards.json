@@ -227,7 +227,7 @@
   "CLOUD-IFRIT.description": "Deal {Damage:diff()} [gold]Magic[/gold] damage. \nThe enemy takes [blue]50%[/blue] more [gold]Magic[/gold] damage for 3 turns.",
   "CLOUD-IFRIT.title": "Ifrit",
 
-  "CLOUD-BAHAMUT.description": "After {MegaflarePower:diff()} turns, deal 70 damage to ALL enemies.",
+  "CLOUD-BAHAMUT.description": "After {MegaflarePower:diff()} turns, deal 99 damage to ALL enemies.",
   "CLOUD-BAHAMUT.title": "Bahamut",
 
   "CLOUD-ODIN.description": "Deal {Damage:diff()} damage and apply 3 [gold]Vulnerable[/gold]. \nKill the enemy if it has [gold]{hpPercent:diff()}%[/gold] HP or less.",

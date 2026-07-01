@@ -25,10 +25,6 @@ public class BusterBrace() : CloudCard(1, CardType.Skill,
         await CommonActions.CardBlock(this, play);
         var ownerCreature = Owner?.Creature;
         await ownerCreature.TogglePunisher(1, ownerCreature, this);
-        if (Owner?.Character is Character.Cloud cloud)
-        {
-            cloud.RefreshIdle(Owner.Creature);
-        }
     }
 
     protected override void OnUpgrade()

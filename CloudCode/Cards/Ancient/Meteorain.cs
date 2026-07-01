@@ -22,7 +22,7 @@ public class Meteorain() : CloudCard(0, CardType.Attack,
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => 
     [
-        new DamageVar(30m, ValueProp.Move),
+        new DamageVar(27m, ValueProp.Move),
         new PowerVar<WeakPower>(2m),
         new PowerVar<VulnerablePower>(2m)
     ];

@@ -24,7 +24,7 @@ public class FiragaBurst() : CloudCard(2, CardType.Attack,
     public int ATBCost => 2;
     protected override IEnumerable<DynamicVar> CanonicalVars => 
     [
-        new DamageVar(22m, ValueProp.Move),
+        new DamageVar(25m, ValueProp.Move),
     ];
 
     protected override async Task OnPlay(

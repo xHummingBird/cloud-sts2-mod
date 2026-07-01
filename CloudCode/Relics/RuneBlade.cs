@@ -43,11 +43,6 @@ public class RuneBlade() : CloudRelic
         if (cardSource is IMagicCard)
             return num;
         
-        if (cardSource is Odin)
-        {
-            return 1m;
-        }
-        
         if (cardSource is ISummonCard)
             return num;
         

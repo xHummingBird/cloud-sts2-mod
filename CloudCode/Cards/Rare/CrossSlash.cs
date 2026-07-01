@@ -21,7 +21,7 @@ public class CrossSlash() : CloudCard(2, CardType.Attack,
 {
     public int ATBCost => 2;
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(18, ValueProp.Move),
+        new DamageVar(20, ValueProp.Move),
         new PowerVar<CrossSlashPower>(50),
     ];
     
@@ -85,7 +85,7 @@ public class CrossSlash() : CloudCard(2, CardType.Attack,
     
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(1m);
+        DynamicVars.Damage.UpgradeValueBy(4m);
         base.DynamicVars["CrossSlashPower"].UpgradeValueBy(20);
     }
 }
