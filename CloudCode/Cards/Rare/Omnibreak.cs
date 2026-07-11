@@ -23,7 +23,8 @@ public class Omnibreak() : CloudCard(1, CardType.Attack,
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<WeakPower>(),
-        HoverTipFactory.FromPower<VulnerablePower>()
+        HoverTipFactory.FromPower<VulnerablePower>(),
+        CloudStaticHoverTip.Stance
     ];
 
     protected override async Task OnPlay(
@@ -54,7 +55,7 @@ public class Omnibreak() : CloudCard(1, CardType.Attack,
     
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(2);
+        DynamicVars.Damage.UpgradeValueBy(3);
         AddKeyword(CardKeyword.Innate);
     }
 }

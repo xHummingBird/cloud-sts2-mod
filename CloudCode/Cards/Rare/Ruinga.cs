@@ -37,7 +37,7 @@ public class Ruinga() : CloudCard(2, CardType.Attack,
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay? play)
     {
         var ownerCreature = Owner?.Creature;
 
@@ -50,7 +50,7 @@ public class Ruinga() : CloudCard(2, CardType.Attack,
             if (duration > 0f)
                 await Task.Delay((int)(duration * 0.2f * 1000f));
         }
-        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).TargetingAllOpponents(base.CombatState)
+        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this, play).TargetingAllOpponents(base.CombatState)
             .BeforeDamage(async delegate
             {
                 var targets = base.CombatState.HittableEnemies;

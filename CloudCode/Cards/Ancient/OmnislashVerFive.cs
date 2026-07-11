@@ -41,7 +41,7 @@ public class OmnislashVerFive() : CloudCard(2, CardType.Attack,
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay? play)
     {
         if (base.Owner.HasPower<LimitBreakPower>())
         {
@@ -121,7 +121,7 @@ public class OmnislashVerFive() : CloudCard(2, CardType.Attack,
                     SfxCmd.Play("res://Cloud/sfx/omnislash_finalhit.wav");
                     if (specialAnimation)
                     {
-                        DamageCmd.Attack(DynamicVars.CalculatedDamage).FromCard(this).Targeting(play.Target)
+                        DamageCmd.Attack(DynamicVars.CalculatedDamage).FromCard(this, play).Targeting(play.Target)
                             .WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav") // swap for bigger VFX later
                             .Execute(choiceContext);
                         cloud.DoScreenShake(ShakeStrength.Strong, ShakeDuration.Normal);
@@ -136,7 +136,7 @@ public class OmnislashVerFive() : CloudCard(2, CardType.Attack,
                     }
                     else
                     {
-                        DamageCmd.Attack(base.DynamicVars.CalculatedDamage).FromCard(this).Targeting(play.Target)
+                        DamageCmd.Attack(base.DynamicVars.CalculatedDamage).FromCard(this, play).Targeting(play.Target)
                             .WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav") // swap for bigger VFX later
                             .Execute(choiceContext);
                         cloud.DoScreenShake(ShakeStrength.Strong, ShakeDuration.Normal);
@@ -153,14 +153,14 @@ public class OmnislashVerFive() : CloudCard(2, CardType.Attack,
             }
             else
             {
-                await DamageCmd.Attack(base.DynamicVars.CalculatedDamage).FromCard(this).Targeting(play.Target)
+                await DamageCmd.Attack(base.DynamicVars.CalculatedDamage).FromCard(this, play).Targeting(play.Target)
                     .WithHitFx("vfx/vfx_attack_slash")
                     .Execute(choiceContext);
             }
         }
         else
         {
-            await DamageCmd.Attack(base.DynamicVars.CalculatedDamage).FromCard(this).Targeting(play.Target)
+            await DamageCmd.Attack(base.DynamicVars.CalculatedDamage).FromCard(this, play).Targeting(play.Target)
                 .WithHitFx("vfx/vfx_attack_slash")
                 .Execute(choiceContext);
         }

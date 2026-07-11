@@ -92,8 +92,7 @@ public class Cloud : PlaceholderCharacterModel
 
 	public override CustomEnergyCounter? CustomEnergyCounter =>
 		new CustomEnergyCounter(EnergyCounterPaths, new Color(0.2f, 0.2f, 0.2f), new Color(1f, 1f, 1f));
-
-
+	
 	private string EnergyCounterPaths(int i)
 	{
 		return i switch
@@ -288,7 +287,7 @@ public class Cloud : PlaceholderCharacterModel
 	public async Task DashPast(
 		Creature player,
 		Creature target,
-		string attackAnim = null,
+		string? attackAnim = null,
 		float durationSeconds = 0.3f,
 		float behindDistance = 200f,
 		float overshoot = 0f)

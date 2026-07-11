@@ -32,7 +32,7 @@ public class BlizzagaBurst() : CloudCard(2, CardType.Attack,
         CloudStaticHoverTip.Magic,
     ];
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay? play)
     {
         var ownerCreature = Owner?.Creature;
         
@@ -58,7 +58,7 @@ public class BlizzagaBurst() : CloudCard(2, CardType.Attack,
                 }
             await Task.Delay((int)(0.20f * 1000f));
         }
-        AttackCommand attackCommand = await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).TargetingAllOpponents(base.CombatState)
+        AttackCommand attackCommand = await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this, play).TargetingAllOpponents(base.CombatState)
             .WithHitFx(null, "res://Cloud/sfx/ice.wav")
             .BeforeDamage(async delegate
             {

@@ -21,7 +21,7 @@ public class SonicImpact() : CloudCard(2, CardType.Attack,
     ];
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay? play)
     {
         var ownerCreature = Owner?.Creature;
         
@@ -42,7 +42,7 @@ public class SonicImpact() : CloudCard(2, CardType.Attack,
                 await Task.Delay((int)(0.300f * 1000f));
             }
         }
-        AttackCommand attackCommand = await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).TargetingAllOpponents(base.CombatState)
+        AttackCommand attackCommand = await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this, play).TargetingAllOpponents(base.CombatState)
             .WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav")
             .Execute(choiceContext);
         if (shouldTriggerFatal && attackCommand.Results.SelectMany((List<DamageResult> r) => r)

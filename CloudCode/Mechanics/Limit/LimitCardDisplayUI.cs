@@ -5,6 +5,7 @@ using Cloud.CloudCode.Cards.Ancient;
 using Cloud.CloudCode.Relics;
 using Godot;
 using HarmonyLib;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 
@@ -22,7 +23,6 @@ public static class LimitCardDisplayUI
 
     private static readonly Dictionary<string, PackedScene> Cache = new();
 
-    
     private static readonly IconConfig[] Icons =
     {
         new()
@@ -30,7 +30,7 @@ public static class LimitCardDisplayUI
             Name = "CrossSlash_UI",
             Scene = "res://Cloud/scenes/LimitCardDisplay_CrossSlash.tscn",
             Position = new Vector2(75f, -205f),
-            ShouldShow = m => true
+            ShouldShow = _ => true
         },
 
         new()
@@ -38,7 +38,7 @@ public static class LimitCardDisplayUI
             Name = "Meteor_UI",
             Scene = "res://Cloud/scenes/LimitCardDisplay_Meteorain.tscn",
             Position = new Vector2(75f, -165f),
-            ShouldShow = m => true
+            ShouldShow = _ => true
         },
 
         new()
@@ -46,7 +46,7 @@ public static class LimitCardDisplayUI
             Name = "Ascension_UI",
             Scene = "res://Cloud/scenes/LimitCardDisplay_Ascension.tscn",
             Position = new Vector2(75f, -125f),
-            ShouldShow = m => true
+            ShouldShow = _ => true
         },
 
         new()
@@ -54,13 +54,25 @@ public static class LimitCardDisplayUI
             Name = "Omnislash_UI",
             Scene = "res://Cloud/scenes/LimitCardDisplay_Omnislash.tscn",
             Position = new Vector2(75f, -85f),
-            ShouldShow = m => m.Owner?.GetRelic<UltimaWeapon>() != null
+
+            // IMPORTANT:
+            // Do NOT directly access m.Owner here.
+            // Compendium/card library cards are canonical and Owner throws.
+            ShouldShow = m =>
+            {
+                if (!TryGetOwner(m, out var owner) || owner == null)
+                    return false;
+
+                return owner.GetRelic<UltimaWeapon>() != null;
+            }
         }
     };
 
-
     public static void EnsureAndRefresh(NCard cardNode)
     {
+        if (cardNode == null)
+            return;
+
         var model = cardNode.Model;
         var body = cardNode.Body;
 
@@ -81,31 +93,51 @@ public static class LimitCardDisplayUI
 
     private static void EnsureSingleIcon(Control body, CardModel model, IconConfig config)
     {
+        if (body == null || model == null || config == null)
+            return;
+
         var node = body.GetNodeOrNull<Control>(config.Name);
 
-        if (!config.ShouldShow(model))
+        bool shouldShow;
+
+        try
+        {
+            shouldShow = config.ShouldShow(model);
+        }
+        catch (Exception ex)
+        {
+            GD.PushWarning($"[Cloud Limit Card UI] ShouldShow failed for {config.Name}: {ex}");
+            shouldShow = false;
+        }
+
+        if (!shouldShow)
         {
             if (node != null)
                 node.Visible = false;
+
             return;
         }
 
         if (node == null)
         {
             var scene = GetScene(config.Scene);
+
             if (scene == null)
+            {
+                GD.PushError($"[Cloud Limit Card UI] Failed to load {config.Scene}");
                 return;
+            }
 
             node = scene.Instantiate<Control>();
             node.Name = config.Name;
 
-            // ✅ VISUAL ONLY
+            // Visual only.
             node.MouseFilter = Control.MouseFilterEnum.Ignore;
 
             body.AddChild(node);
             body.MoveChild(node, body.GetChildCount() - 1);
 
-            node.ZIndex = 0; // ✅ same as ATB (safe)
+            node.ZIndex = 0;
         }
 
         node.Visible = true;
@@ -114,9 +146,13 @@ public static class LimitCardDisplayUI
 
     private static void HideAll(Control body)
     {
+        if (body == null)
+            return;
+
         foreach (var icon in Icons)
         {
             var node = body.GetNodeOrNull<Control>(icon.Name);
+
             if (node != null)
                 node.Visible = false;
         }
@@ -124,14 +160,44 @@ public static class LimitCardDisplayUI
 
     private static PackedScene? GetScene(string path)
     {
-        if (Cache.TryGetValue(path, out var s))
-            return s;
+        if (Cache.TryGetValue(path, out var cachedScene))
+            return cachedScene;
 
         var loaded = GD.Load<PackedScene>(path);
+
         if (loaded != null)
+        {
             Cache[path] = loaded;
+        }
+        else
+        {
+            GD.PushError($"[Cloud Limit Card UI] Could not load scene: {path}");
+        }
 
         return loaded;
+    }
+
+    private static bool TryGetOwner(CardModel model, out Player? owner)
+    {
+        owner = null;
+
+        if (model == null)
+            return false;
+
+        // Canonical / compendium models are not runtime cards.
+        // Accessing Owner on them throws CanonicalModelException.
+        if (!model.IsMutable)
+            return false;
+
+        try
+        {
+            owner = model.Owner;
+            return owner != null;
+        }
+        catch
+        {
+            return false;
+        }
     }
 }
 
@@ -140,16 +206,35 @@ public static class LimitDisplayUI_Ready
 {
     public static void Postfix(NCard __instance)
     {
+        if (__instance == null)
+            return;
+
         __instance.ModelChanged += _ =>
         {
             Callable.From(() =>
-                LimitCardDisplayUI.EnsureAndRefresh(__instance)
-            ).CallDeferred();
+            {
+                try
+                {
+                    LimitCardDisplayUI.EnsureAndRefresh(__instance);
+                }
+                catch (Exception ex)
+                {
+                    GD.PushWarning($"[Cloud Limit Card UI] Deferred refresh failed: {ex}");
+                }
+            }).CallDeferred();
         };
 
         Callable.From(() =>
-            LimitCardDisplayUI.EnsureAndRefresh(__instance)
-        ).CallDeferred();
+        {
+            try
+            {
+                LimitCardDisplayUI.EnsureAndRefresh(__instance);
+            }
+            catch (Exception ex)
+            {
+                GD.PushWarning($"[Cloud Limit Card UI] Initial refresh failed: {ex}");
+            }
+        }).CallDeferred();
     }
 }
 
@@ -158,7 +243,16 @@ public static class LimitDisplayUI_UpdateVisuals
 {
     public static void Postfix(NCard __instance)
     {
-        LimitCardDisplayUI.EnsureAndRefresh(__instance);
+        if (__instance == null)
+            return;
+
+        try
+        {
+            LimitCardDisplayUI.EnsureAndRefresh(__instance);
+        }
+        catch (Exception ex)
+        {
+            GD.PushWarning($"[Cloud Limit Card UI] UpdateVisuals refresh failed: {ex}");
+        }
     }
 }
-

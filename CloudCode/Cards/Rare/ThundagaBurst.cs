@@ -29,7 +29,7 @@ public class ThundagaBurst() : CloudCard(2, CardType.Attack,
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay? play)
     {
         var ownerCreature = Owner?.Creature;
        
@@ -43,7 +43,7 @@ public class ThundagaBurst() : CloudCard(2, CardType.Attack,
                 await Task.Delay((int)(0.2f * 1000f));
         }
         
-        AttackCommand attackCommand = await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).WithHitCount(base.DynamicVars.Repeat.IntValue).FromCard(this)
+        AttackCommand attackCommand = await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).WithHitCount(base.DynamicVars.Repeat.IntValue).FromCard(this, play)
             .TargetingRandomOpponents(base.CombatState)
             .WithHitFx("vfx/vfx_attack_lightning", "event:/sfx/characters/defect/defect_lightning_passive")
             .Execute(choiceContext);
@@ -58,7 +58,7 @@ public class ThundagaBurst() : CloudCard(2, CardType.Attack,
         
         if (killedSomething && shouldTriggerFatal)
         {
-            await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).WithHitCount(2).FromCard(this)
+            await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).WithHitCount(2).FromCard(this, play)
                 .TargetingRandomOpponents(base.CombatState)
                 .WithHitFx("vfx/vfx_attack_lightning", "event:/sfx/characters/defect/defect_lightning_passive")
                 .Execute(choiceContext);

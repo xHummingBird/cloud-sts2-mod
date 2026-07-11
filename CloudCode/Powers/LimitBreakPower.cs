@@ -26,6 +26,7 @@ public class LimitBreakPower : CloudPower
         {
             CardCmd.Upgrade(card);
         }
+        await Task.Delay((int)(0.50f * 1000f));
         await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, base.Owner.Player);
         Flash();
     }
@@ -40,15 +41,14 @@ public class LimitBreakPower : CloudPower
 
         if (playerState == null)
             return;
-
-// ✅ Do nothing if ANY LimitBreak already in hand
+        
         if (playerState.AllCards
             .OfType<LimitBreak>()
             .Any(c => c.Pile?.Type == PileType.Hand))
         {
             return;
         }
-// ✅ Otherwise: pull all LimitBreaks (from anywhere) into hand
+
         var cards = playerState.AllCards
             .OfType<LimitBreak>()
             .Where(c => c.Pile == null || c.Pile.Type != PileType.Hand);

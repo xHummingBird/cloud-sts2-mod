@@ -78,8 +78,6 @@ public static class LimitCardPatch
                 : HoverTipFactory.FromCard<Omnislash>(),
             model => model.Owner?.GetRelic<UltimaWeapon>() != null
         )
-
-
         
     };
 

@@ -35,7 +35,7 @@ public class MateriaBomb() : CloudCard(0, CardType.Attack,
         new DamageVar(8m, ValueProp.Move),
     ];
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay? cardPlay)
     {
         CardModel? cardModel =
             (await CardSelectCmd.FromHand(prefs: new CardSelectorPrefs(CardSelectorPrefs.ExhaustSelectionPrompt, 1),

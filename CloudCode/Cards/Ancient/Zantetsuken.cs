@@ -31,7 +31,7 @@ public class Zantetsuken() : CloudCard(2, CardType.Attack,
     
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay? play)
     {
         var ownerCreature = Owner?.Creature;
         var cloud = Owner?.Character as Character.Cloud;
@@ -52,8 +52,8 @@ public class Zantetsuken() : CloudCard(2, CardType.Attack,
             {
                 await Task.Delay((int)(0.8f * 1000f));
                 cloud.DashPast(ownerCreature, play.Target, null, 0.01f, 300f);
-                NGame.Instance.ScreenShake(ShakeStrength.Medium, ShakeDuration.Short);
-                DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).Targeting(play.Target)
+                NGame.Instance?.ScreenShake(ShakeStrength.Medium, ShakeDuration.Short);
+                await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this, play).Targeting(play.Target)
                     .WithHitFx(null, "res://Cloud/sfx/cloud_hit.wav")
                     .Execute(choiceContext);
                 await Task.Delay((int)(0.6 * 1000f));
@@ -64,7 +64,7 @@ public class Zantetsuken() : CloudCard(2, CardType.Attack,
         }
         else
         {
-            await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).Targeting(play.Target)
+            await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this, play).Targeting(play.Target)
                 .Execute(choiceContext);
         }
         if (play.Target.CurrentHp * 100 <= play.Target.MaxHp * threshold && play.Target.CurrentHp > 0)

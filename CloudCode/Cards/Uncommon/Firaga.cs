@@ -31,7 +31,7 @@ public class Firaga() : CloudCard(2, CardType.Attack,
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay? play)
     {
         var ownerCreature = Owner?.Creature;
 
@@ -53,7 +53,7 @@ public class Firaga() : CloudCard(2, CardType.Attack,
                 NGame.Instance.ScreenShake(ShakeStrength.Medium, ShakeDuration.Normal);
             })
             .Execute(choiceContext);
-        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).TargetingAllOpponents(base.CombatState)
+        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this, play).TargetingAllOpponents(base.CombatState)
             .WithHitVfxSpawnedAtBase()
             .WithHitFx("vfx/vfx_attack_blunt", null, "blunt_attack.mp3")
             .BeforeDamage(async delegate

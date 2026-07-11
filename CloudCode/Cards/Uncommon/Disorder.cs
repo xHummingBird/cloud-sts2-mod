@@ -32,7 +32,7 @@ public class Disorder() : CloudCard(2, CardType.Attack,
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay? play)
     {
         var ownerCreature = Owner?.Creature;
 
@@ -49,7 +49,7 @@ public class Disorder() : CloudCard(2, CardType.Attack,
         }
         if (base.Owner.Creature.IsPunisher())
         {
-           await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).WithHitCount(2).Targeting(play.Target)
+           await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this, play).WithHitCount(2).Targeting(play.Target)
                 .WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav")
                 .Execute(choiceContext);
                 AudioHelper.PlayRandomDefend();

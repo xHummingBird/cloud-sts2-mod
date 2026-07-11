@@ -16,8 +16,8 @@ public class Aggression() : CloudCard(1, CardType.Skill,
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => 
     [
-        new PowerVar<LimitBreakPower>(4m),
-        new PowerVar<VigorPower>(4m),
+        new PowerVar<LimitBreakPower>(5m),
+        new PowerVar<VigorPower>(5m),
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -29,11 +29,6 @@ public class Aggression() : CloudCard(1, CardType.Skill,
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         LimitManager.GainLimit(Owner, DynamicVars["LimitBreakPower"].IntValue);
-        await Owner.Creature.CheckLimitReady(
-            choiceContext,
-            Owner.Creature,
-            null
-        );
         AudioHelper.PlayRandomDefend();
         await PowerCmd.Apply<VigorPower>(choiceContext, base.Owner.Creature, base.DynamicVars["VigorPower"].BaseValue, base.Owner.Creature, this);
     }

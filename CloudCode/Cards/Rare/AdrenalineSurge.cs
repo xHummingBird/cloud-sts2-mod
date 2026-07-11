@@ -35,11 +35,6 @@ public class AdrenalineSurge() : CloudCard(2, CardType.Skill,
             finalAmount += 20;
         
         LimitManager.GainLimit(Owner, finalAmount);
-        await Owner.Creature.CheckLimitReady(
-            choiceContext,
-            Owner.Creature,
-            null);
-        
     }
     protected override void OnUpgrade()
     {

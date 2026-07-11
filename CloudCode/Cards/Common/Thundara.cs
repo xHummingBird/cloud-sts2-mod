@@ -30,7 +30,7 @@ public class Thundara() : CloudCard(1, CardType.Attack,
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay? play)
     {
         var ownerCreature = Owner?.Creature;
 
@@ -44,7 +44,7 @@ public class Thundara() : CloudCard(1, CardType.Attack,
                 await Task.Delay((int)(duration * 0.2f * 1000f));
         }
         
-        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).WithHitCount(base.DynamicVars.Repeat.IntValue).FromCard(this)
+        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).WithHitCount(base.DynamicVars.Repeat.IntValue).FromCard(this, play)
             .TargetingRandomOpponents(base.CombatState)
             .WithHitFx("vfx/vfx_attack_lightning", "event:/sfx/characters/defect/defect_lightning_passive")
             .Execute(choiceContext);

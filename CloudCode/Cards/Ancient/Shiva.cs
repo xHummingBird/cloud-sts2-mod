@@ -36,11 +36,10 @@ public class Shiva() : CloudCard(0, CardType.Attack,
         CardKeyword.Exhaust
     ];
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay? cardPlay)
     {
         CenterCardCinematic.Start(RunManager.Instance.NetService.NetId);
         var ownerCreature = Owner?.Creature;
-        await PowerCmd.Remove<SummonPower>(base.Owner.Creature);
         if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
         {
             float duration = cloud.PlayAnimation(ownerCreature, "shiva").total;
@@ -61,7 +60,7 @@ public class Shiva() : CloudCard(0, CardType.Attack,
             await Task.Delay((int)(0.7f * 1000f));
             SfxCmd.Play("res://Cloud/sfx/ice_2.wav");
         }
-        DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).TargetingAllOpponents(base.CombatState)
+        DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).TargetingAllOpponents(base.CombatState)
             .BeforeDamage(async delegate
             {
                 var targets = base.CombatState.HittableEnemies;

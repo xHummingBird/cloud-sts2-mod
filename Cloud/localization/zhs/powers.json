@@ -1,0 +1,97 @@
+{
+  "CLOUD-PUNISHER_MODE_POWER.description": "物理伤害提升25%，自身受到的所有伤害增加10%。受到未被格挡的敌方伤害时切换姿态。",
+  "CLOUD-PUNISHER_MODE_POWER.smartDescription": "物理伤害提升25%，受到的伤害增加10%。受到未被格挡的敌方伤害时切换姿态。",
+  "CLOUD-PUNISHER_MODE_POWER.title": "惩戒姿态",
+
+  "CLOUD-COUNTER_STANCE_POWER.description": "被格挡的伤害会反弹给攻击者，持续1回合。",
+  "CLOUD-COUNTER_STANCE_POWER.smartDescription": "被格挡的伤害会反弹给攻击者，持续1回合。",
+  "CLOUD-COUNTER_STANCE_POWER.title": "反击架势",
+
+  "CLOUD-LIMIT_BREAK_POWER.description": "极限值积攒至[blue]100[/blue]时解锁[gold]极限技[/gold]。",
+  "CLOUD-LIMIT_BREAK_POWER.smartDescription": "极限槽已满，可以释放极限技。",
+  "CLOUD-LIMIT_BREAK_POWER.title": "极限",
+
+  "CLOUD-PASSING_THE_TORCH_POWER.description": "每回合开始时获得1点能量。",
+  "CLOUD-PASSING_THE_TORCH_POWER.smartDescription": "每回合开始时获得1点能量。",
+  "CLOUD-PASSING_THE_TORCH_POWER.title": "能量增益",
+
+  "CLOUD-CROSS_SLASH_POWER.description": "造成的伤害降低。",
+  "CLOUD-CROSS_SLASH_POWER.smartDescription": "造成的伤害降低。",
+  "CLOUD-CROSS_SLASH_POWER.title": "交叉斩",
+
+  "CLOUD-PRIME_MODE_POWER.description": "处于惩戒姿态时，物理伤害提升[gold]25%[/gold]。\n处于[gold]猛攻姿态[/gold]时，[gold]魔法[/gold]伤害提升25%。\n受到伤害不再自动切换姿态。",
+  "CLOUD-PRIME_MODE_POWER.smartDescription": "[gold]猛攻姿态[/gold]：提升魔法伤害。\n[gold]惩戒姿态[/gold]：伤害增幅提高，受伤不再解除该加成。",
+  "CLOUD-PRIME_MODE_POWER.title": "巅峰形态",
+
+  "CLOUD-HASTE_POWER.description": "获得1格ATB，回合开始时获得{Energy:energyIcons()}点能量。",
+  "CLOUD-HASTE_POWER.smartDescription": "获得1格ATB，回合开始时获得{Energy:energyIcons()}点能量。",
+  "CLOUD-HASTE_POWER.title": "加速",
+
+  "CLOUD-REPRIEVE_POWER.description": "濒死时将生命值恢复至最大生命值的30%，仅生效一次。",
+  "CLOUD-REPRIEVE_POWER.smartDescription": "濒死时将生命值恢复至最大生命值的30%，仅生效一次。",
+  "CLOUD-REPRIEVE_POWER.title": "续命",
+
+  "CLOUD-MAGIC_DAMAGE_UP_POWER.description": "提升[gold]魔法[/gold]造成的伤害。",
+  "CLOUD-MAGIC_DAMAGE_UP_POWER.smartDescription": "提升[gold]魔法[/gold]造成的伤害。",
+  "CLOUD-MAGIC_DAMAGE_UP_POWER.title": "魔法增幅",
+
+  "CLOUD-SOLDIERS_PRIDE_POWER.description": "回合开始时，若上回合未受到任何伤害，根据当前姿态获得活力或格挡值。",
+  "CLOUD-SOLDIERS_PRIDE_POWER.smartDescription": "回合开始时，若上回合未受到任何伤害，根据当前姿态获得活力或格挡值。",
+  "CLOUD-SOLDIERS_PRIDE_POWER.title": "战士之傲",
+
+  "CLOUD-FURY_POWER.description": "受到的伤害提升[blue]10%[/blue]。每回合与使用攻击卡时额外获得3点极限值。移除[gold]沉静[/gold]效果。",
+  "CLOUD-FURY_POWER.smartDescription": "受到的伤害提升。每回合与使用攻击卡时额外获得3点极限值。",
+  "CLOUD-FURY_POWER.title": "狂怒",
+
+  "CLOUD-SEDATE_POWER.description": "受到的伤害降低[blue]20%[/blue]。每回合与使用攻击卡时获取的极限值减少2点。移除[gold]狂怒[/gold]效果。",
+  "CLOUD-SEDATE_POWER.smartDescription": "受到的伤害降低[blue]20%[/blue]。每回合与使用攻击卡时获取的极限值减少2点。",
+  "CLOUD-SEDATE_POWER.title": "沉静",
+
+  "CLOUD-ARMOR_BREAK_POWER.description": "目标受到的伤害提升。",
+  "CLOUD-ARMOR_BREAK_POWER.smartDescription": "目标受到的伤害提升",
+  "CLOUD-ARMOR_BREAK_POWER.title": "破甲",
+
+  "CLOUD-COMBAT_MOMENTUM_POWER.description": "自身回合切换至[gold]惩戒姿态[/gold]时，获得[gold]力量[/gold]。",
+  "CLOUD-COMBAT_MOMENTUM_POWER.smartDescription": "自身回合切换至[gold]惩戒姿态[/gold]时，获得[gold]力量[/gold]。",
+  "CLOUD-COMBAT_MOMENTUM_POWER.title": "战斗节奏",
+
+  "CLOUD-ATB_NEXT_TURN_POWER.description": "下回合开始时获得ATB。",
+  "CLOUD-ATB_NEXT_TURN_POWER.smartDescription": "下回合开始时获得ATB。",
+  "CLOUD-ATB_NEXT_TURN_POWER.title": "预存ATB",
+
+  "CLOUD-MAGIC_SHIELD_POWER.description": "本回合每释放一张[gold]魔法[/gold]卡牌，获得格挡值。",
+  "CLOUD-MAGIC_SHIELD_POWER.smartDescription": "本回合每释放一张[gold]魔法[/gold]卡牌，获得格挡值。",
+  "CLOUD-MAGIC_SHIELD_POWER.title": "魔法护盾",
+
+  "CLOUD-W_MAGIC_POWER.description": "每回合打出的第一张[gold]魔法[/gold]卡牌会额外释放一次。",
+  "CLOUD-W_MAGIC_POWER.smartDescription": "每回合打出的第{Amount:plural:[gold]魔法[/gold]卡牌会|[blue]{}[/blue] 张[gold]魔法[/gold]卡牌均会}额外释放一次。",
+  "CLOUD-W_MAGIC_POWER.title": "二连魔法",
+
+  "CLOUD-SUMMON_UP_POWER.description": "每回合、攻击与魔法卡牌获取的[gold]召唤[/gold]值翻倍。",
+  "CLOUD-SUMMON_UP_POWER.smartDescription": "每回合、攻击与魔法卡牌获取的[gold]召唤[/gold]值翻倍。",
+  "CLOUD-SUMMON_UP_POWER.title": "召唤增幅",
+
+  "CLOUD-SUMMON_POWER.description": "召唤强力[gold]召唤兽[/gold]协同作战。",
+  "CLOUD-SUMMON_POWER.smartDescription": "召唤强力[gold]召唤兽[/gold]协同作战。",
+  "CLOUD-SUMMON_POWER.title": "召唤",
+
+  "CLOUD-MAGIC_RESIST_DOWN_POWER.description": "受到的[gold]魔法[/gold]伤害提升[gold]50%[/gold]。",
+  "CLOUD-MAGIC_RESIST_DOWN_POWER.smartDescription": "受到的[gold]魔法[/gold]伤害提升[gold]50%[/gold]。",
+  "CLOUD-MAGIC_RESIST_DOWN_POWER.title": "魔法易伤",
+
+  "CLOUD-FROZEN_SHIELD_POWER.description": "每回合获得10点[gold]格挡值[/gold]。",
+  "CLOUD-FROZEN_SHIELD_POWER.smartDescription": "每回合获得10点[gold]格挡值[/gold]。",
+  "CLOUD-FROZEN_SHIELD_POWER.title": "寒冰屏障",
+
+  "CLOUD-MEGAFLARE_POWER.description": "蓄力[blue]3[/blue]回合后，对全体敌人造成[gold]99[/gold]点伤害。",
+  "CLOUD-MEGAFLARE_POWER.smartDescription": "蓄力[blue]3[/blue]回合后，对全体敌人造成[gold]99[/gold]点伤害。",
+  "CLOUD-MEGAFLARE_POWER.title": "巨焰",
+
+  "CLOUD-JUDGMENT_BOLT_POWER.description": "回合开始时对随机一名敌人造成7点伤害。",
+  "CLOUD-JUDGMENT_BOLT_POWER.smartDescription": "回合开始时对随机一名敌人造成7点伤害。",
+  "CLOUD-JUDGMENT_BOLT_POWER.title": "审判雷",
+
+  "CLOUD-GREATSWORD_MASTERY_POWER.description": "[gold]惩戒姿态[/gold]：获得力量。[gold]猛攻姿态[/gold]：获得灵巧。",
+  "CLOUD-GREATSWORD_MASTERY_POWER.smartDescription": "[gold]惩戒姿态[/gold]：获得力量。[gold]猛攻姿态[/gold]：获得灵巧。",
+  "CLOUD-GREATSWORD_MASTERY_POWER.title": "大剑精通"
+}

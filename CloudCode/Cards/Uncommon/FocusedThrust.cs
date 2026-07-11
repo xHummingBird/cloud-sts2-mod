@@ -22,9 +22,9 @@ public class FocusedThrust() : CloudCard(1, CardType.Attack,
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay? play)
     {
-        decimal bonusDamage = play.Target.CurrentHp * (DynamicVars["percentHPDamage"].BaseValue)/100;
+        decimal bonusDamage;
         var ownerCreature = Owner?.Creature;
 
         if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
@@ -37,13 +37,14 @@ public class FocusedThrust() : CloudCard(1, CardType.Attack,
                 await Task.Delay((int)(0.1f * 1000f));
                 SfxCmd.Play("res://Cloud/sfx/sword_swing.wav");
                 await Task.Delay((int)(0.1f * 1000f));
-                DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).Targeting(play.Target).WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav")
+                await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this, play).Targeting(play.Target).WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav")
                     .Execute(choiceContext);
                 await Task.Delay((int)(0.45f * 1000f));
                 SfxCmd.Play("res://Cloud/sounds/heavy_attack (2).wav");
                 SfxCmd.Play("res://Cloud/sfx/sword_swing.wav");
                 await Task.Delay((int)(0.12f * 1000f));
-                DamageCmd.Attack(bonusDamage).FromCard(this).Targeting(play.Target).WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav")
+                bonusDamage = play.Target.CurrentHp * (DynamicVars["percentHPDamage"].BaseValue)/100;
+                await DamageCmd.Attack(bonusDamage).FromCard(this, play).Targeting(play.Target).WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav")
                     .Execute(choiceContext);
                 await Task.Delay((int)(0.4f * 1000f));
                 await cloud.Retreat(ownerCreature);
@@ -51,9 +52,10 @@ public class FocusedThrust() : CloudCard(1, CardType.Attack,
         }
         else
         {
-            await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this)
+            await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this, play)
                 .Execute(choiceContext);
-            await DamageCmd.Attack(bonusDamage).FromCard(this).Targeting(play.Target).WithHitFx("vfx/vfx_attack_slash")
+            bonusDamage = play.Target.CurrentHp * (DynamicVars["percentHPDamage"].BaseValue)/100;
+            await DamageCmd.Attack(bonusDamage).FromCard(this, play).Targeting(play.Target).WithHitFx("vfx/vfx_attack_slash")
                 .Execute(choiceContext);
         }
         if (play.Target !=null)

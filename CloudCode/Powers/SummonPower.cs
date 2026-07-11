@@ -24,6 +24,7 @@ public class SummonPower : CloudPower
             CardCmd.Upgrade(card);
         }
         SfxCmd.Play("res://Cloud/sounds/summon_choose.wav");
+        await Task.Delay((int)(0.50f * 1000f));
         await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, base.Owner.Player);
         Flash();
     }

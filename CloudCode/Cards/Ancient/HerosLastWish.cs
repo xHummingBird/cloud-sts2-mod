@@ -39,17 +39,7 @@ public class HerosLastWish() : CloudCard(0, CardType.Skill,
         {
             SfxCmd.Play("res://Cloud/sounds/victory_2.wav");
             LimitManager.GainLimit(Owner, DynamicVars["LimitBreakPower"].IntValue);
-            await Owner.Creature.CheckLimitReady(
-                choiceContext,
-                Owner.Creature,
-                null
-            );
             SummonManager.GainSummon(Owner, DynamicVars["SummonPower"].IntValue);
-            await Owner.Creature.CheckSummonReady(
-                choiceContext,
-                Owner.Creature,
-                null
-            );
             ATBManager.GainATBDirect(ownerCreature.Player, 1);
         }
         await PlayerCmd.GainEnergy(base.DynamicVars.Energy.IntValue, base.Owner);

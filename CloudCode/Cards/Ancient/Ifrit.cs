@@ -39,11 +39,10 @@ public class Ifrit() : CloudCard(0, CardType.Attack,
         CardKeyword.Exhaust
     ];
     
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay? cardPlay)
     {
         CenterCardCinematic.Start(RunManager.Instance.NetService.NetId);
         var ownerCreature = Owner?.Creature;
-        PowerCmd.Remove<SummonPower>(base.Owner.Creature);
         if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
         {
             float duration = cloud.PlayAnimation(ownerCreature, "ifrit").total;
@@ -58,7 +57,7 @@ public class Ifrit() : CloudCard(0, CardType.Attack,
             NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(nLargeMagicMissileVfx);
             await Cmd.Wait(nLargeMagicMissileVfx.WaitTime);
         }
-        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
+        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_blunt", null, "blunt_attack.mp3")
             .BeforeDamage(async delegate
             {

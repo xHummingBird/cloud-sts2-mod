@@ -29,7 +29,7 @@ public class FiragaBurst() : CloudCard(2, CardType.Attack,
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay? play)
     {
         var ownerCreature = Owner?.Creature;
 
@@ -55,7 +55,7 @@ public class FiragaBurst() : CloudCard(2, CardType.Attack,
         if (shouldTriggerFatal && attackCommand.Results.SelectMany((List<DamageResult> r) => r)
                 .Any((DamageResult r) => r.WasTargetKilled))
         {
-            await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue / 2).FromCard(this)
+            await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue / 2).FromCard(this, play)
                 .TargetingAllOpponents(base.CombatState)
                 .WithHitVfxSpawnedAtBase()
                 .BeforeDamage(async delegate

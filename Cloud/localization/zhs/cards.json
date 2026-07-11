@@ -1,0 +1,274 @@
+{
+  "CLOUD-STRIKE_CLOUD.description": "造成{Damage:diff()}点伤害。",
+  "CLOUD-STRIKE_CLOUD.title": "猛击",
+
+  "CLOUD-MODE_SHIFT.description": "[gold]切换战斗姿态。[/gold]",
+  "CLOUD-MODE_SHIFT.title": "姿态切换",
+
+  "CLOUD-DEFEND_CLOUD.description": "获得{Block:diff()}点[gold]格挡值[/gold]。",
+  "CLOUD-DEFEND_CLOUD.title": "防御",
+
+  "CLOUD-COUNTERSTANCE.description": "获得{Block:diff()}点[gold]格挡值[/gold]。被格挡的伤害会反弹给攻击者，持续1回合。",
+  "CLOUD-COUNTERSTANCE.title": "反击架势",
+
+  "CLOUD-BLIZZARA.description": "造成{Damage:diff()}点伤害。\n获得{Block:diff()}点[gold]格挡值[/gold]。",
+  "CLOUD-BLIZZARA.title": "大冰冻",
+
+  "CLOUD-FIRA.description": "造成{Damage:diff()}点伤害。",
+  "CLOUD-FIRA.title": "大火",
+
+  "CLOUD-THUNDARA.description": "对随机敌人[gold]{Repeat:diff()}[/gold]次造成{Damage:diff()}点伤害。",
+  "CLOUD-THUNDARA.title": "大雷电",
+
+  "CLOUD-FIRE.description": "造成{Damage:diff()}点伤害。",
+  "CLOUD-FIRE.title": "火焰",
+
+  "CLOUD-BLIZZARD.description": "造成{Damage:diff()}点伤害。",
+  "CLOUD-BLIZZARD.title": "冰冻",
+
+  "CLOUD-THUNDER.description": "造成{Damage:diff()}点伤害。",
+  "CLOUD-THUNDER.title": "雷电",
+
+  "CLOUD-BRAVER.description": "造成{Damage:diff()}点伤害。\n[gold]猛攻姿态[/gold]: 施加{VulnerablePower:diff()}层[gold]易伤[/gold]。",
+  "CLOUD-BRAVER.title": "勇气",
+
+  "CLOUD-GUARD_BREAK.description": "造成{Damage:diff()}点伤害。\n[gold]惩戒姿态[/gold]: 施加{VulnerablePower:diff()}层[gold]易伤[/gold]。",
+  "CLOUD-GUARD_BREAK.title": "破防斩",
+
+  "CLOUD-POWER_BREAK.description": "造成{Damage:diff()}点伤害。\n[gold]猛攻姿态[/gold]: 施加{WeakPower:diff()}层[gold]虚弱[/gold]。",
+  "CLOUD-POWER_BREAK.title": "力衰斩",
+
+  "CLOUD-GUARD_STANCE.description": "获得{Block:diff()}点[gold]格挡值[/gold]。",
+  "CLOUD-GUARD_STANCE.title": "防御架势",
+
+  "CLOUD-LARGE_SWORD_MASTERY.description": "[gold]猛攻姿态[/gold]: 获得{DexterityPower:diff()}层[gold]灵巧[/gold]。\n[gold]惩戒姿态[/gold]: 获得{StrengthPower:diff()}层[gold]力量[/gold]。",
+  "CLOUD-LARGE_SWORD_MASTERY.title": "大剑精通",
+
+  "CLOUD-MAKO_MIGHT.description": "[gold]猛攻姿态[/gold]: 获得{VigorPower:diff()}层[gold]活力[/gold]。\n[gold]惩戒姿态[/gold]: 获得{Block:diff()}点[gold]格挡值[/gold]。",
+  "CLOUD-MAKO_MIGHT.title": "魔晄浸润",
+
+  "CLOUD-TRIPLE_SLASH.description": "对随机敌人造成{CalculatedDamage:diff()}点伤害，共{Repeat:diff()}次。\n[gold]猛攻姿态[/gold]: 额外造成{ExtraDamage:diff()}点伤害。\n[gold]惩戒姿态[/gold]: 抽取{Cards:diff()}张{Cards:plural:卡牌|卡牌}。",
+  "CLOUD-TRIPLE_SLASH.title": "三连斩",
+
+  "CLOUD-BRAVER_KAI.description": "造成{Damage:diff()}点伤害。\n[gold]猛攻姿态[/gold]: 施加{VulnerablePower:diff()}层[gold]易伤[/gold]。",
+  "CLOUD-BRAVER_KAI.title": "勇气·改",
+
+  "CLOUD-ASSAULT_CHARGE.description": "造成{Damage:diff()}点伤害。\n[gold]惩戒姿态[/gold]: 获得{Energy:energyIcons()}点能量。",
+  "CLOUD-ASSAULT_CHARGE.title": "突袭蓄力",
+
+  "CLOUD-QUICK_HIT.description": "造成{Damage:diff()}点伤害。\n[gold]猛攻姿态[/gold]: 获得1格[gold]ATB槽[/gold]。",
+  "CLOUD-QUICK_HIT.title": "迅斩",
+
+  "CLOUD-WIND_UP_SLASH.description": "造成{Damage:diff()}点伤害。\n获得{VigorPower:diff()}层[gold]活力[/gold]。\n[gold]惩戒姿态[/gold]: 额外再获得2层[gold]活力[/gold]。",
+  "CLOUD-WIND_UP_SLASH.title": "蓄力斩",
+
+  "CLOUD-SPINNING_SLASH.description": "对全体敌人造成{Damage:diff()}点伤害。\n获得{Block:diff()}点[gold]格挡值[/gold]。",
+  "CLOUD-SPINNING_SLASH.title": "旋身斩",
+
+  "CLOUD-CHANGE_THE_TEMPO.description": "[gold]猛攻姿态[/gold]: 施加{VulnerablePower:diff()}层[gold]易伤[/gold]。\n[gold]惩戒姿态[/gold]: 施加{WeakPower:diff()}层[gold]虚弱[/gold]。",
+  "CLOUD-CHANGE_THE_TEMPO.title": "节奏转换",
+
+  "CLOUD-PASSING_THE_TORCH.description": "每回合开始时获得{Energy:energyIcons()}点能量。",
+  "CLOUD-PASSING_THE_TORCH.title": "追逐梦想",
+
+  "CLOUD-GOT_YOUR_BACK.description": "获得{Block:diff()}点[gold]格挡值[/gold]。\n获得{LimitBreakPower:diff()}点[gold]极限槽[/gold]。",
+  "CLOUD-GOT_YOUR_BACK.title": "有我掩护你！",
+
+  "CLOUD-LIMIT_BREAK.description": "释放[gold]极限技[/gold]。",
+  "CLOUD-LIMIT_BREAK.title": "极限技",
+
+  "CLOUD-OMNISLASH.description": "造成{Damage:diff()}点伤害。",
+  "CLOUD-OMNISLASH.title": "超究武神霸斩",
+
+  "CLOUD-CROSS_SLASH.description": "造成{Damage:diff()}点伤害。\n该敌人接下来1回合造成的伤害降低[blue]{CrossSlashPower:diff()}%[/blue]。",
+  "CLOUD-CROSS_SLASH.title": "交叉斩",
+
+  "CLOUD-AERIAL_DRIVE.description": "造成{Damage:diff()}点伤害，共{Repeat:diff()}次。\n获得{LimitBreakPower:diff()}点[gold]极限槽[/gold]。",
+  "CLOUD-AERIAL_DRIVE.title": "空中突进",
+
+  "CLOUD-CROSS_SLASH_KAI.description": "造成{Damage:diff()}点伤害。\n该敌人接下来1回合造成的伤害降低[blue]{CrossSlashPower:diff()}%[/blue]。",
+  "CLOUD-CROSS_SLASH_KAI.title": "交叉斩·改",
+
+  "CLOUD-PRIME_MODE.description": "进入[gold]巅峰形态[/gold]。\n强化[gold]惩戒姿态[/gold]与[gold]猛攻姿态[/gold]效果。",
+  "CLOUD-PRIME_MODE.title": "巅峰形态",
+
+  "CLOUD-PROTECT.description": "获得{Block:diff()}点[gold]格挡值[/gold]。下回合再次获得{Block:diff()}点[gold]格挡值[/gold]。",
+  "CLOUD-PROTECT.title": "守护",
+
+  "CLOUD-HASTE.description": "获得1格[gold]ATB槽[/gold]，并在接下来{HastePower:diff()}个回合的回合开始时获得{Energy:energyIcons()}点能量。",
+  "CLOUD-HASTE.title": "加速",
+
+  "CLOUD-FINAL_STAND.description": "获得[gold]续命[/gold]效果。",
+  "CLOUD-FINAL_STAND.title": "绝境求生",
+
+  "CLOUD-SONIC_IMPACT.description": "对全体敌人造成{Damage:diff()}点伤害。\n若击杀目标，则获得{Energy:energyIcons()}点能量。",
+  "CLOUD-SONIC_IMPACT.title": "音速冲击",
+
+  "CLOUD-ELEMENTAL_BOOST.description": "[gold]魔法[/gold]造成的伤害提升[gold]{MagicDamageUpPower:diff()}%[/gold]。",
+  "CLOUD-ELEMENTAL_BOOST.title": "元素增幅",
+
+  "CLOUD-RUIN.description": "造成{Damage:diff()}点伤害。\n[gold]猛攻姿态[/gold]: 施加{WeakPower:diff()}层[gold]虚弱[/gold]。\n[gold]惩戒姿态[/gold]: 施加{VulnerablePower:diff()}层[gold]易伤[/gold]。",
+  "CLOUD-RUIN.title": "陨灭",
+
+  "CLOUD-RUINRA.description": "对全体敌人造成{Damage:diff()}点伤害。\n[gold]猛攻姿态[/gold]: 施加{WeakPower:diff()}层[gold]虚弱[/gold]。\n[gold]惩戒姿态[/gold]: 施加{VulnerablePower:diff()}层[gold]易伤[/gold]。",
+  "CLOUD-RUINRA.title": "陨灭连",
+
+  "CLOUD-RUINGA.description": "对全体敌人造成{Damage:diff()}点伤害。\n[gold]猛攻姿态[/gold]: 施加{WeakPower:diff()}层[gold]虚弱[/gold]。\n[gold]惩戒姿态[/gold]: 施加{VulnerablePower:diff()}层[gold]易伤[/gold]。",
+  "CLOUD-RUINGA.title": "陨灭众",
+
+  "CLOUD-MANAWARD.description": "获得{Block:diff()}点[gold]格挡值[/gold]。",
+  "CLOUD-MANAWARD.title": "魔盾",
+
+  "CLOUD-MANAWALL.description": "获得{Block:diff()}点[gold]格挡值[/gold]。下回合再次获得{Block:diff()}点[gold]格挡值[/gold]。",
+  "CLOUD-MANAWALL.title": "魔墙",
+
+  "CLOUD-BARRIER.description": "获得{Block:diff()}点[gold]格挡值[/gold]。",
+  "CLOUD-BARRIER.title": "屏障",
+
+  "CLOUD-QUICKDRAW.description": "抽取{Cards:diff()}张{Cards:plural:卡牌|卡牌}。\n[gold]猛攻姿态[/gold]: 若抽到技能或魔法卡牌，获得{Block:diff()}点[gold]格挡值[/gold]。\n[gold]惩戒姿态[/gold]: 若抽到攻击或增幅卡牌，获得{VigorPower:diff()}层[gold]活力[/gold]。",
+  "CLOUD-QUICKDRAW.title": "速抽",
+
+  "CLOUD-SOLDIERS_PRIDE.description": "回合开始时，若上回合未受到敌人伤害：\n[gold]猛攻姿态[/gold]: 获得{SoldiersPridePower:diff()}点[gold]格挡值[/gold]。\n[gold]惩戒姿态[/gold]: 获得{SoldiersPridePower:diff()}层[gold]活力[/gold]。",
+  "CLOUD-SOLDIERS_PRIDE.title": "战士之傲",
+
+  "CLOUD-SONIC_THRUST.description": "造成{Damage:diff()}点伤害。\n[gold]猛攻姿态[/gold]: 获得{Energy:energyIcons()}点能量。",
+  "CLOUD-SONIC_THRUST.title": "音速突刺",
+
+  "CLOUD-RELENTLESS_STRIKE.description": "造成{Damage:diff()}点伤害。\n[gold]猛攻姿态[/gold]: 抽取{Cards:diff()}张{Cards:plural:卡牌|卡牌}。",
+  "CLOUD-RELENTLESS_STRIKE.title": "连绵斩击",
+
+  "CLOUD-CLIMHAZZARD.description": "造成{Damage:diff()}点伤害。\n下次对该目标的攻击伤害提升[gold]{ArmorBreakPower:diff()}%[/gold]。",
+  "CLOUD-CLIMHAZZARD.title": "凶斩",
+
+  "CLOUD-COMBAT_MOMENTUM.description": "你的回合切换至[blue]惩戒姿态[/blue]时，获得1层[gold]力量[/gold]。",
+  "CLOUD-COMBAT_MOMENTUM.title": "战斗节奏",
+
+  "CLOUD-OVERCLOCK.description": "获得{Energy:energyIcons()}点能量。",
+  "CLOUD-OVERCLOCK.title": "超频",
+
+  "CLOUD-STEADFAST_BLOCK.description": "获得{Block:diff()}点[gold]格挡值[/gold]。\n下回合获得{Energy:diff()}格[gold]ATB槽[/gold]。",
+  "CLOUD-STEADFAST_BLOCK.title": "稳固格挡",
+
+  "CLOUD-TACTICAL_RETREAT.description": "获得{Block:diff()}点[gold]格挡值[/gold]。\n[gold]惩戒姿态[/gold]: 抽取{Cards:diff()}张{Cards:plural:卡牌|卡牌}。",
+  "CLOUD-TACTICAL_RETREAT.title": "战术后撤",
+
+  "CLOUD-METEORAIN.description": "对全体敌人造成{Damage:diff()}点伤害。\n施加{VulnerablePower:diff()}层[gold]易伤[/gold]与[gold]虚弱[/gold]。",
+  "CLOUD-METEORAIN.title": "陨石雨",
+
+  "CLOUD-OMNISLASH_VER_FIVE.description": "造成{CalculatedDamage:diff()}点伤害。\n若自身拥有50点及以上[gold]极限槽[/gold]，消耗50点极限槽，额外造成20点伤害。",
+  "CLOUD-OMNISLASH_VER_FIVE.title": "超究武神霸斩V5",
+
+  "CLOUD-DISORDER.description": "造成{Damage:diff()}点伤害。\n[gold]猛攻姿态[/gold]: 下次攻击消耗能量变为0{Energy:energyIcons()}。\n[gold]惩戒姿态[/gold]: 攻击命中两次，并获得{Block:diff()}点[gold]格挡值[/gold]。",
+  "CLOUD-DISORDER.title": "狂乱",
+
+  "CLOUD-ASCENSION.description": "造成{Damage:diff()}点伤害。\n下次对该目标的攻击伤害提升[gold]{ArmorBreakPower:diff()}%[/gold]。",
+  "CLOUD-ASCENSION.title": "升龙斩",
+
+  "CLOUD-FOCUSED_THRUST.description": "造成{Damage:diff()}点伤害并施加{VulnerablePower:diff()}层[gold]易伤[/gold]。\n额外造成等同于目标当前生命值[blue]{percentHPDamage:diff()}%[/blue]的伤害。",
+  "CLOUD-FOCUSED_THRUST.title": "穿心突刺",
+
+  "CLOUD-BLADE_BEAM.description": "对全体敌人造成{Damage:diff()}点伤害。\n施加{VulnerablePower:diff()}层[gold]易伤[/gold]与[gold]虚弱[/gold]。",
+  "CLOUD-BLADE_BEAM.title": "光束刃",
+
+  "CLOUD-FIRAGA.description": "对单体敌人造成{Damage:diff()}点伤害。\n再对全体敌人造成{Damage:diff()}点伤害。",
+  "CLOUD-FIRAGA.title": "烈焰",
+
+  "CLOUD-THUNDAGA.description": "对随机敌人[gold]{Repeat:diff()}[/gold]次造成{Damage:diff()}点伤害。",
+  "CLOUD-THUNDAGA.title": "雷霆",
+
+  "CLOUD-BLIZZAGA.description": "对全体敌人造成{Damage:diff()}点伤害。\n获得{Block:diff()}点[gold]格挡值[/gold]。",
+  "CLOUD-BLIZZAGA.title": "极冻",
+
+  "CLOUD-BUSTER_BRACE.description": "获得{Block:diff()}点[gold]格挡值[/gold]。",
+  "CLOUD-BUSTER_BRACE.title": "破坏者护具",
+
+  "CLOUD-DEFLECT.description": "获得{Block:diff()}点[gold]格挡值[/gold]。\n对一名敌人施加{WeakPower:diff()}层[gold]虚弱[/gold]。",
+  "CLOUD-DEFLECT.title": "卸力格挡",
+
+  "CLOUD-NOT_INTERESTED.description": "获得{Block:diff()}点[gold]格挡值[/gold]。\n[gold]猛攻姿态[/gold]: 施加{WeakPower:diff()}层[gold]虚弱[/gold]。\n[gold]惩戒姿态[/gold]: 施加{VulnerablePower:diff()}层[gold]易伤[/gold]。",
+  "CLOUD-NOT_INTERESTED.title": "置之不理",
+
+  "CLOUD-AGGRESSION.description": "获得{VigorPower:diff()}层[gold]活力[/gold]。\n获得{LimitBreakPower:diff()}点[gold]极限槽[/gold]。",
+  "CLOUD-AGGRESSION.title": "战意汹涌",
+
+  "CLOUD-JENOVA_CELLS.description": "获得[gold]狂怒[/gold]效果。\n强化[gold]极限技[/gold]。",
+  "CLOUD-JENOVA_CELLS.title": "杰诺瓦细胞",
+
+  "CLOUD-ADRENALINE_SURGE.description": "获得30点[gold]极限槽[/gold]。\n若自身带有[gold]狂怒[/gold]，额外再获得20点极限槽。",
+  "CLOUD-ADRENALINE_SURGE.title": "肾上腺素激增",
+
+  "CLOUD-BACKSTEP.description": "获得{Block:diff()}点[gold]格挡值[/gold]。\n[gold]惩戒姿态[/gold]: 获得1格[gold]ATB槽[/gold]。",
+  "CLOUD-BACKSTEP.title": "后跳闪避",
+
+  "CLOUD-BUSTER_END.description": "造成{Damage:diff()}点伤害。\n本回合每打出一张攻击卡，释放此技能消耗的能量减少1点{Energy:energyIcons()}。",
+  "CLOUD-BUSTER_END.title": "终末之刃",
+
+  "CLOUD-FIRAGA_BURST.description": "造成{Damage:diff()}点伤害。\n若[gold]击杀目标[/gold]，对全体敌人造成一半伤害。",
+  "CLOUD-FIRAGA_BURST.title": "烈焰爆发",
+
+  "CLOUD-MAGIC_SHIELD.description": "本回合每释放一张[gold]魔法[/gold]卡牌，获得{MagicShieldPower:diff()}点格挡值。",
+  "CLOUD-MAGIC_SHIELD.title": "魔法护盾",
+
+  "CLOUD-MATERIA_THEFT.description": "造成{Damage:diff()}点伤害。\n抽取{Cards:diff()}张{Cards:plural:卡牌|卡牌}，并弃置所有抽到的[gold]非魔法[/gold]卡牌。",
+  "CLOUD-MATERIA_THEFT.title": "魔石掠夺",
+
+  "CLOUD-ULTIMA.description": "对全体敌人造成{Damage:diff()}点伤害。",
+  "CLOUD-ULTIMA.title": "究极魔法",
+
+  "CLOUD-W_MAGIC.description": "每回合打出的第一张[gold]魔法[/gold]卡牌会额外释放一次。",
+  "CLOUD-W_MAGIC.title": "二连魔法",
+
+  "CLOUD-THUNDAGA_BURST.description": "对随机敌人[gold]{Repeat:diff()}[/gold]次造成{Damage:diff()}点伤害。\n若[gold]击杀目标[/gold]，额外追加2次攻击。",
+  "CLOUD-THUNDAGA_BURST.title": "雷霆爆发",
+
+  "CLOUD-BLIZZAGA_BURST.description": "对全体敌人造成{Damage:diff()}点伤害。\n获得{Block:diff()}点[gold]格挡值[/gold]。\n若[gold]击杀目标[/gold]，获得的格挡值翻倍。",
+  "CLOUD-BLIZZAGA_BURST.title": "极冻爆发",
+
+  "CLOUD-IFRIT.description": "造成{Damage:diff()}点[gold]魔法[/gold]伤害。\n该敌人接下来3回合受到的[gold]魔法[/gold]伤害提升[blue]50%[/blue]。",
+  "CLOUD-IFRIT.title": "伊弗利特",
+
+  "CLOUD-BAHAMUT.description": "等待{MegaflarePower:diff()}回合后，对全体敌人造成99点伤害。",
+  "CLOUD-BAHAMUT.title": "巴哈姆特",
+
+  "CLOUD-ODIN.description": "造成{Damage:diff()}点伤害并施加3层[gold]易伤[/gold]。\n若目标剩余生命值≤[gold]{hpPercent:diff()}%[/gold]，直接击杀该敌人。",
+  "CLOUD-ODIN.title": "奥丁",
+
+  "CLOUD-SHIVA.description": "对全体敌人造成{Damage:diff()}点[gold]魔法[/gold]伤害。\n接下来3个回合的回合开始时获得10点[gold]格挡值[/gold]。",
+  "CLOUD-SHIVA.title": "希瓦",
+
+  "CLOUD-ZANTETSUKEN.description": "造成{Damage:diff()}点伤害。\n若目标剩余生命值≤[gold]{hpPercent:diff()}%[/gold]，直接击杀该敌人。",
+  "CLOUD-ZANTETSUKEN.title": "斩铁剑",
+
+  "CLOUD-RAMUH.description": "对全体敌人造成{Damage:diff()}点[gold]魔法[/gold]伤害。\n接下来3个回合的回合开始时对随机敌人造成7点伤害。",
+  "CLOUD-RAMUH.title": "拉姆",
+
+  "CLOUD-OMNIBREAK.description": "造成{Damage:diff()}点伤害。\n施加{VulnerablePower:diff()}层[gold]易伤[/gold]与[gold]虚弱[/gold]。",
+  "CLOUD-OMNIBREAK.title": "全属性衰弱斩",
+
+  "CLOUD-SIPHON.description": "[gold]消耗弃置[/gold]1张卡牌。\n获得{Block:diff()}点[gold]格挡值[/gold]与{SummonPower:diff()}点[gold]召唤槽[/gold]。",
+  "CLOUD-SIPHON.title": "汲取",
+
+  "CLOUD-INVOKE.description": "每回合、每次攻击与魔法获得的[gold]召唤槽[/gold]翻倍。\n强化[gold]召唤[/gold]效果。",
+  "CLOUD-INVOKE.title": "召唤共鸣",
+
+  "CLOUD-HEROS_LAST_WISH.description": "获得{Energy:energyIcons()}点能量。\n获得1格[gold]ATB槽[/gold]。\n获得{SummonPower:diff()}点[gold]召唤槽[/gold]与[gold]极限槽[/gold]。",
+  "CLOUD-HEROS_LAST_WISH.title": "英雄遗愿",
+
+  "CLOUD-FORGOTTEN_IDENTITY.description": "获得[gold]沉静[/gold]效果。",
+  "CLOUD-FORGOTTEN_IDENTITY.title": "迷失本心",
+
+  "CLOUD-FALSE_SOLDIER.description": "获得{Block:diff()}点[gold]格挡值[/gold]。\n若自身拥有50点及以上[gold]极限槽[/gold]，本次获得格挡值翻倍，[gold]消耗全部极限槽[/gold]。",
+  "CLOUD-FALSE_SOLDIER.title": "伪战士",
+
+  "CLOUD-LAST_RESORT.description": "[gold]弃置所有手牌[/gold]。\n极限槽回满并获得3格[gold]ATB槽[/gold]。\n接下来2回合无法通过卡牌获取[gold]格挡值[/gold]。",
+  "CLOUD-LAST_RESORT.title": "孤注一掷",
+
+  "CLOUD-MATERIA_BOMB.description": "消耗弃置1张[gold]魔法[/gold]卡牌。\n造成{Damage:diff()}点伤害。",
+  "CLOUD-MATERIA_BOMB.title": "魔石爆弹",
+
+  "CLOUD-FATED_SHOWDOWN.description": "[gold]猛攻姿态[/gold]: 获得{PlatingPower:diff()}层[gold]镀层[/gold]。\n[gold]惩戒姿态[/gold]: 获得{StrengthPower:diff()}层[gold]力量[/gold]。\n消耗50点[gold]极限槽[/gold]，获得的增幅层数翻倍。",
+  "CLOUD-FATED_SHOWDOWN.title": "宿命对决",
+
+  "CLOUD-SUMMON_CARD.description": "召唤强力[gold]召唤兽[/gold]协同作战。",
+  "CLOUD-SUMMON_CARD.title": "召唤"
+}

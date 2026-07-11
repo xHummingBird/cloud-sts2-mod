@@ -28,7 +28,7 @@ public class AerialDrive() : CloudCard(2, CardType.Attack,
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay? play)
     {
         decimal finalDamage = base.DynamicVars.Damage.PreviewValue;
         var ownerCreature = Owner?.Creature;
@@ -47,7 +47,7 @@ public class AerialDrive() : CloudCard(2, CardType.Attack,
                 await Task.Delay((int)(0.49f * 1000f));
                 SfxCmd.Play("res://Cloud/sfx/sword_swing.wav");
                 
-                await DamageCmd.Attack(finalDamage).FromCard(this).Targeting(play.Target).WithValueProp(ValueProp.Unpowered)
+                await DamageCmd.Attack(finalDamage).FromCard(this, play).Targeting(play.Target).WithValueProp(ValueProp.Unpowered)
                         .WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav")
                         .Execute(choiceContext);
                 await Task.Delay((int)(0.81f * 1000f));
@@ -58,11 +58,6 @@ public class AerialDrive() : CloudCard(2, CardType.Attack,
             .Execute(choiceContext);
         
         LimitManager.GainLimit(Owner, DynamicVars["LimitBreakPower"].IntValue);
-        await Owner.Creature.CheckLimitReady(
-            choiceContext,
-            Owner.Creature,
-            null
-        );
     }
 
     protected override void OnUpgrade()

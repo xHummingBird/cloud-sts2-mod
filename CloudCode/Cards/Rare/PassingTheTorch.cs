@@ -6,7 +6,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace Cloud.CloudCode.Cards.Rare;
 
-public class PassingTheTorch() : CloudCard(3, CardType.Power,
+public class PassingTheTorch() : CloudCard(2, CardType.Power,
     CardRarity.Rare, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => 
@@ -27,6 +27,6 @@ public class PassingTheTorch() : CloudCard(3, CardType.Power,
 
     protected override void OnUpgrade()
     {
-        base.EnergyCost.UpgradeBy(-1);
+        AddKeyword(CardKeyword.Innate);
     }
 }

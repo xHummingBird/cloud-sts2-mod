@@ -18,12 +18,12 @@ public class CounterStancePower : CloudPower
     {
         if (target == base.Owner && result.BlockedDamage > 0 && props.IsPoweredAttack() && dealer != null)
         {
-            await CreatureCmd.Damage(choiceContext, dealer, result.BlockedDamage, ValueProp.Unpowered, base.Owner, null);
+            await CreatureCmd.Damage(choiceContext, dealer, result.BlockedDamage, ValueProp.Unpowered, base.Owner);
         }
     }
     public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
-        if (side == base.Owner.Side)
+        if (participants.Contains(base.Owner))
         {
             await PowerCmd.Remove(this);
         }

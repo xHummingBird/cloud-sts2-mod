@@ -19,7 +19,7 @@ public class SpinningSlash() : CloudCard(1, CardType.Attack,
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay? play)
     {
         var ownerCreature = Owner?.Creature;
 
@@ -34,7 +34,7 @@ public class SpinningSlash() : CloudCard(1, CardType.Attack,
             await Task.Delay((int)(0.07f * 1000f));
         }
 
-        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).TargetingAllOpponents(base.CombatState)
+        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this, play).TargetingAllOpponents(base.CombatState)
             .WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav")
             .Execute(choiceContext);
         await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, play);

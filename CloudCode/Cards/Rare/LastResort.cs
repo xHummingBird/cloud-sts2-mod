@@ -25,10 +25,11 @@ public class LastResort() : CloudCard (2, CardType.Skill, CardRarity.Rare, Targe
         }
         await PowerCmd.Apply<NoBlockPower>(choiceContext, base.Owner.Creature, 2, base.Owner.Creature, this);
         LimitManager.GainLimit(Owner, 100);
-        await Owner.Creature.CheckLimitReady(
-            choiceContext,
-            Owner.Creature,
-            null);
         ATBManager.GainATBDirect(base.Owner, 3);
+    }
+    
+    protected override void OnUpgrade()
+    {
+        AddKeyword(CardKeyword.Retain);
     }
 }

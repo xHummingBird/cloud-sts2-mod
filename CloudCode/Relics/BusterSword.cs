@@ -69,8 +69,6 @@ public class BusterSword() : CloudRelic
             Owner.Creature,
             cardPlay.Card
         );
-
-        return;
     }
     
     public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
@@ -131,10 +129,5 @@ public class BusterSword() : CloudRelic
             gain += result.UnblockedDamage;
         }
         LimitManager.GainLimit(Owner, gain);
-        await Owner.Creature.CheckLimitReady(
-            choiceContext,
-            Owner.Creature,
-            null
-        );
     }
 }

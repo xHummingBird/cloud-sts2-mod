@@ -29,7 +29,7 @@ public class Omnislash() : CloudCard(0, CardType.Attack,
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay? play)
     {
         var ownerCreature = Owner?.Creature;
 
@@ -98,7 +98,7 @@ public class Omnislash() : CloudCard(0, CardType.Attack,
                     
                     SfxCmd.Play("res://Cloud/sfx/omnislash_finalhit.wav");
                     cloud.DoScreenShake(ShakeStrength.Strong, ShakeDuration.Normal);
-                    DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).Targeting(play.Target)
+                    DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this, play).Targeting(play.Target)
                         .WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav") // swap for bigger VFX later
                         .Execute(choiceContext);
                     await Task.Delay((int)(0.8f * 1000f));

@@ -1,4 +1,7 @@
-﻿using Cloud.CloudCode.Extensions;
+﻿
+using System;
+using System.Linq;
+using Cloud.CloudCode.Extensions;
 using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
@@ -15,18 +18,16 @@ public partial class SummonDisplayOverlay : Control
     public static SummonDisplayOverlay? Instance { get; private set; }
 
     private Control? _summonDisplay;
-    private RichTextLabel _label;
-    private Player _player;
-    
+    private RichTextLabel? _label;
+    private Player? _player;
+    private IHoverTip? _hoverTip;
+
     private int _lastValue = -1;
     private Tween? _popTween;
     private bool _exiting;
 
     private const int SummonMax = 100;
     private static readonly Color SummonGainGreen = new Color(0.4f, 1f, 0.4f);
-    
-    private IHoverTip _hoverTip;
-
 
     public override void _Ready()
     {
@@ -35,18 +36,62 @@ public partial class SummonDisplayOverlay : Control
 
         MouseFilter = MouseFilterEnum.Pass;
 
-        // ✅ Defer setup (important for stability)
+        // Defer setup so NEnergyCounter/combat UI can finish entering tree.
         CallDeferred(nameof(Setup));
     }
 
-    private void Setup()
+    private async void Setup()
     {
         if (!IsInsideTree())
             return;
-        
+
+        // Wait for CombatManager / LocalContext / local player.
+        // This avoids the race condition from NEnergyCounter._Ready().
+        for (int i = 0; i < 60; i++)
+        {
+            if (_exiting || !IsInsideTree())
+                return;
+
+            var state = CombatManager.Instance?.DebugOnlyGetState();
+            var player = state?.Players.FirstOrDefault(p => LocalContext.IsMe(p));
+
+            if (player != null)
+            {
+                // Not Cloud? Delete the EMPTY overlay node.
+                // The visible SummonDisplay.tscn has not been created yet.
+                if (player.Character is not Character.Cloud)
+                {
+                    QueueFree();
+                    return;
+                }
+
+                _player = player;
+                break;
+            }
+
+            var tree = GetTree();
+            if (tree == null)
+                return;
+
+            await ToSignal(tree, SceneTree.SignalName.ProcessFrame);
+        }
+
+        if (_player == null)
+        {
+            QueueFree();
+            return;
+        }
+
+        if (_exiting || !IsInsideTree())
+            return;
+
         var scene = GD.Load<PackedScene>("res://Cloud/scenes/SummonDisplay.tscn");
         if (scene == null)
+        {
+            GD.PushError("[Cloud Summon] Failed to load res://Cloud/scenes/SummonDisplay.tscn");
+            QueueFree();
             return;
+        }
 
         _summonDisplay = scene.Instantiate<Control>();
         AddChild(_summonDisplay);
@@ -55,59 +100,66 @@ public partial class SummonDisplayOverlay : Control
         _summonDisplay.SetAnchorsPreset(LayoutPreset.BottomLeft);
         _summonDisplay.Position = new Vector2(100, 0);
         _summonDisplay.Visible = true;
-        
-        _label = _summonDisplay.GetNode<RichTextLabel>("%SummonLabel");
-        
+
+        _label = _summonDisplay.GetNodeOrNull<RichTextLabel>("%SummonLabel");
+
+        if (_label == null)
+        {
+            GD.PushError("[Cloud Summon] Could not find %SummonLabel in SummonDisplay.tscn");
+            QueueFree();
+            return;
+        }
+
         _label.TreeExiting += () =>
         {
             _popTween?.Kill();
             _popTween = null;
             _label = null;
         };
-        
+
         var font = GD.Load<Font>("res://themes/kreon_bold_shared.tres");
-        _label.AddThemeFontOverride("font", font);
+
+        if (font != null)
+        {
+            _label.AddThemeFontOverride("font", font);
+            _label.AddThemeFontOverride("normal_font", font);
+        }
+        else
+        {
+            GD.PushWarning("[Cloud Summon] Failed to load res://themes/kreon_bold_shared.tres");
+        }
+
         _label.AddThemeColorOverride("default_color", Colors.White);
-        
-        _label.AddThemeFontOverride(
-            "normal_font",
-            GD.Load<Font>("res://themes/kreon_bold_shared.tres")
-        );
         _label.Position += new Vector2(-5, -5);
         _label.AddThemeColorOverride("font_outline_color", new Color(0.2f, 0.2f, 0.2f));
         _label.AddThemeConstantOverride("outline_size", 12);
         _label.AddThemeFontSizeOverride("normal_font_size", 32);
-        
-        _hoverTip = CloudStaticHoverTip.Summon;
-        
-        _label.MouseFilter = MouseFilterEnum.Pass;
 
+        _hoverTip = CloudStaticHoverTip.Summon;
+
+        _label.MouseFilter = MouseFilterEnum.Pass;
         _label.Connect(SignalName.MouseEntered, Callable.From(OnHovered));
         _label.Connect(SignalName.MouseExited, Callable.From(OnUnhovered));
 
         MouseFilter = MouseFilterEnum.Pass;
         Connect(SignalName.MouseEntered, Callable.From(OnHovered));
         Connect(SignalName.MouseExited, Callable.From(OnUnhovered));
-        
-        // ✅ Hook player
-        var state = CombatManager.Instance.DebugOnlyGetState();
-        var player = state?.Players.FirstOrDefault(p => LocalContext.IsMe(p));
 
-        if (player != null)
-        {
-            SummonManager.GetDataForUI(player).OnSummonChanged += OnSummonChanged;
+        var data = SummonManager.GetDataForUI(_player);
+        data.OnSummonChanged += OnSummonChanged;
 
-            UpdateDisplay(SummonManager.GetSummon(player));
-        }
+        UpdateDisplay(SummonManager.GetSummon(_player));
     }
-    
-    
+
     private void PlayGainPop(bool stayGreenAfter)
     {
-        if (_exiting) return;
+        if (_exiting)
+            return;
 
         var label = _label;
-        if (label == null) return;
+
+        if (label == null)
+            return;
 
         if (!GodotObject.IsInstanceValid(label) || label.IsQueuedForDeletion())
             return;
@@ -137,12 +189,17 @@ public partial class SummonDisplayOverlay : Control
             .SetTrans(Tween.TransitionType.Quad)
             .SetEase(Tween.EaseType.Out);
     }
-    
-    
+
     private void OnHovered()
     {
+        if (_exiting)
+            return;
+
+        if (_hoverTip == null)
+            return;
+
         NHoverTipSet.Clear();
-        
+
         var tip = NHoverTipSet.CreateAndShow(this, _hoverTip);
         tip.GlobalPosition = GlobalPosition + new Vector2(-75f, -550f);
         tip.MouseFilter = MouseFilterEnum.Ignore;
@@ -153,20 +210,21 @@ public partial class SummonDisplayOverlay : Control
         NHoverTipSet.Remove(this);
     }
 
-
-
     private void OnSummonChanged(int value)
     {
         UpdateDisplay(value);
     }
 
-    
     private void UpdateDisplay(int value)
     {
-        if (_exiting) return;
+        if (_exiting)
+            return;
 
         var label = _label;
-        if (label == null) return;
+
+        if (label == null)
+            return;
+
         if (!GodotObject.IsInstanceValid(label) || label.IsQueuedForDeletion())
             return;
 
@@ -194,14 +252,13 @@ public partial class SummonDisplayOverlay : Control
         _lastValue = value;
     }
 
-
-    
     public override void _ExitTree()
     {
         _exiting = true;
 
         if (_popTween != null && GodotObject.IsInstanceValid(_popTween))
             _popTween.Kill();
+
         _popTween = null;
 
         if (_player != null)
@@ -210,9 +267,12 @@ public partial class SummonDisplayOverlay : Control
             data.OnSummonChanged -= OnSummonChanged;
         }
 
+        NHoverTipSet.Remove(this);
+
         _label = null;
         _summonDisplay = null;
         _player = null;
+        _hoverTip = null;
 
         if (Instance == this)
             Instance = null;
@@ -224,19 +284,15 @@ public static class SummonDisplayOverlayPatch
 {
     public static void Postfix(NEnergyCounter __instance)
     {
-        if (__instance.GetNodeOrNull("SummonDisplayOverlay") != null)
+        if (__instance == null)
             return;
 
-        var state = CombatManager.Instance?.DebugOnlyGetState();
-        if (state == null) return;
-        
-        var player = state.Players.FirstOrDefault(p => LocalContext.IsMe(p));
-       
-        if (player == null) return;
-        
-        if (!(player.Character is Character.Cloud character))
+        if (!GodotObject.IsInstanceValid(__instance) || __instance.IsQueuedForDeletion())
             return;
-        
+
+        if (__instance.GetNodeOrNull<SummonDisplayOverlay>("SummonDisplayOverlay") != null)
+            return;
+
         var overlay = new SummonDisplayOverlay
         {
             Name = "SummonDisplayOverlay"

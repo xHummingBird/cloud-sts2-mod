@@ -31,11 +31,10 @@ public class Ramuh() : CloudCard(0, CardType.Attack,
         CardKeyword.Exhaust
     ];
     
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay? cardPlay)
     {
         CenterCardCinematic.Start(RunManager.Instance.NetService.NetId);
         var ownerCreature = Owner?.Creature;
-        PowerCmd.Remove<SummonPower>(base.Owner.Creature);
         if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
         {
             float duration = cloud.PlayAnimation(ownerCreature, "ramuh").total;
@@ -43,7 +42,7 @@ public class Ramuh() : CloudCard(0, CardType.Attack,
             if (duration > 0f)
                 await Task.Delay((int)(1.2f * 1000f));
         }
-        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).TargetingAllOpponents(base.CombatState)
+        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).TargetingAllOpponents(base.CombatState)
             .WithHitFx("vfx/vfx_attack_lightning", "event:/sfx/characters/defect/defect_lightning_passive")
             .Execute(choiceContext);
         await Task.Delay((int)(0.9f * 1000f));

@@ -1,0 +1,16 @@
+{
+  "CLOUD_ATB.title": "ATB槽",
+  "CLOUD_ATB.description": "代表战斗节奏。\n\n通过攻击与各类效果获取ATB值。\n攻击获得的ATB存在上限，其他效果可突破该上限。\n消耗ATB释放强力卡牌。\n\n若回合开始时ATB为0，则自动获得1点ATB。",
+  "CLOUD_LIMIT.title": "极限槽",
+  "CLOUD_LIMIT.description": "随战斗积攒。\n\n进行攻击或格挡伤害时，获得3点[gold]极限[/gold]值。\n受到伤害时，获得等同于受伤数值的[gold]极限[/gold]值。\n\n积攒至100点[gold]极限[/gold]后，可释放强力[gold]极限技[/gold]。\n战斗结束后保留50%极限值\n\n释放极限技会清空全部极限值。",
+  "CLOUD_SUMMON.title": "召唤槽",
+  "CLOUD_SUMMON.description": "随战斗积攒。\n\n发动攻击获得3点召唤值。\n使用[gold]魔法[/gold]卡牌获得6点召唤值。\n\n积攒至100点召唤值后，可召唤一名[gold]召唤兽[/gold]。\n\n[gold]召唤兽[/gold]能造成高额伤害，并提供持续3回合的强力增益。\n战斗结束后保留50%召唤值\n\n召唤后清空全部召唤值。",
+  "CLOUD_MAGIC.title": "魔法",
+  "CLOUD_MAGIC.description": "该卡牌造成[gold]魔法[/gold]伤害，无法享受[gold]惩戒姿态[/gold]带来的伤害加成。",
+  "CLOUD_STANCE.title": "切换姿态",
+  "CLOUD_STANCE.description": "使用此卡后，在[gold]惩戒姿态[/gold]与[gold]猛攻姿态[/gold]之间切换。",
+  "CLOUD_PUNISHER.title": "惩戒姿态",
+  "CLOUD_PUNISHER.description": "使用此卡后切换为[gold]惩戒姿态[/gold]。",
+  "CLOUD_OPERATOR.title": "猛攻姿态",
+  "CLOUD_OPERATOR.description": "使用此卡后切换为[gold]猛攻姿态[/gold]。"
+}

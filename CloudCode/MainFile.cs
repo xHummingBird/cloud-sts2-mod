@@ -8,7 +8,7 @@ namespace Cloud.CloudCode;
 [ModInitializer(nameof(Initialize))]
 public partial class MainFile : Node
 {
-    public const string ModId = "Cloud"; //Used for resource filepath
+    public const string ModId = "Cloud";
     public const string ResPath = $"res://{ModId}";
 
     public static MegaCrit.Sts2.Core.Logging.Logger Logger { get; } =
@@ -19,6 +19,6 @@ public partial class MainFile : Node
         Harmony harmony = new(ModId);
         var assembly = Assembly.GetExecutingAssembly();
         Godot.Bridge.ScriptManagerBridge.LookupScriptsInAssembly(assembly);
-        harmony.PatchAll();
+        harmony.PatchAll(assembly);
     }
 }

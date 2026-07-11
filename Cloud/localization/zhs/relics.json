@@ -1,0 +1,29 @@
+{
+  "CLOUD-BUSTER_SWORD.description": "回合开始时，获得3点[gold]极限[/gold]与3点[gold]召唤[/gold]值。若当前无[gold]ATB槽[/gold]，额外获得1点[gold]ATB槽[/gold]。",
+  "CLOUD-BUSTER_SWORD.flavor": "去追逐你的梦想……",
+  "CLOUD-BUSTER_SWORD.title": "破坏剑",
+
+  "CLOUD-ULTIMA_WEAPON.description": "回合开始时，获得5点[gold]极限[/gold]与5点[gold]召唤[/gold]值。若当前无[gold]ATB槽[/gold]，额外获得1点[gold]ATB槽[/gold]。解锁[gold]超究武神霸斩[/gold]作为[gold]极限技[/gold]。",
+  "CLOUD-ULTIMA_WEAPON.flavor": "",
+  "CLOUD-ULTIMA_WEAPON.title": "究极武器",
+
+  "CLOUD-FUSION_SWORD.description": "解锁[gold]超究武神霸斩V5[/gold]。战斗开局拥有3点[gold]ATB槽[/gold]。",
+  "CLOUD-FUSION_SWORD.flavor": "",
+  "CLOUD-FUSION_SWORD.title": "融合剑",
+
+  "CLOUD-ODIN_MATERIA.description": "解锁[gold]斩铁剑[/gold]。可召唤[gold]奥丁[/gold]。战斗开局处于[gold]惩戒姿态[/gold]。",
+  "CLOUD-ODIN_MATERIA.flavor": "",
+  "CLOUD-ODIN_MATERIA.title": "奥丁魔石",
+
+  "CLOUD-RUNE_BLADE.description": "处于[gold]猛攻姿态[/gold]时，[gold]魔法[/gold]伤害提升[blue]25%[/blue]。",
+  "CLOUD-RUNE_BLADE.flavor": "",
+  "CLOUD-RUNE_BLADE.title": "符文剑",
+
+  "CLOUD-BAHAMUT_MATERIA.description": "可召唤[gold]巴哈姆特[/gold]。战斗开局获得20点[gold]召唤[/gold]值。",
+  "CLOUD-BAHAMUT_MATERIA.flavor": "",
+  "CLOUD-BAHAMUT_MATERIA.title": "巴哈姆特魔石",
+
+  "CLOUD-ULTIMA_MATERIA.description": "解锁[gold]究极魔法[/gold]。每回合开始获得5点[gold]召唤[/gold]值。",
+  "CLOUD-ULTIMA_MATERIA.flavor": "",
+  "CLOUD-ULTIMA_MATERIA.title": "究极魔石"
+}

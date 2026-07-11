@@ -6,6 +6,7 @@ using Cloud.CloudCode.Cards.Ancient;
 using Cloud.CloudCode.Relics;
 using Godot;
 using HarmonyLib;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 
@@ -58,18 +59,33 @@ public static class SummonCardDisplayUI
         new(
             "Odin_UI",
             "res://Cloud/scenes/SummonCardDisplay_Odin.tscn",
-            model => model.Owner?.GetRelic<OdinMateria>() != null
+            model =>
+            {
+                if (!TryGetOwner(model, out var owner) || owner == null)
+                    return false;
+
+                return owner.GetRelic<OdinMateria>() != null;
+            }
         ),
 
         new(
             "Bahamut_UI",
             "res://Cloud/scenes/SummonCardDisplay_Bahamut.tscn",
-            model => model.Owner?.GetRelic<BahamutMateria>() != null
+            model =>
+            {
+                if (!TryGetOwner(model, out var owner) || owner == null)
+                    return false;
+
+                return owner.GetRelic<BahamutMateria>() != null;
+            }
         )
     };
 
     public static void EnsureAndRefresh(NCard cardNode)
     {
+        if (cardNode == null)
+            return;
+
         var model = cardNode.Model;
         var body = cardNode.Body;
 
@@ -92,24 +108,52 @@ public static class SummonCardDisplayUI
         {
             var icon = visibleIcons[i];
             var position = BasePosition + new Vector2(0f, SlotSpacingY * i);
+
             EnsureSingleIcon(body, icon, position);
         }
     }
 
     private static List<IconConfig> GetVisibleIcons(CardModel model)
     {
-        return Icons.Where(icon => icon.ShouldShow(model)).ToList();
+        var result = new List<IconConfig>();
+
+        foreach (var icon in Icons)
+        {
+            bool shouldShow;
+
+            try
+            {
+                shouldShow = icon.ShouldShow(model);
+            }
+            catch (Exception ex)
+            {
+                GD.PushWarning($"[Cloud Summon Card UI] ShouldShow failed for {icon.Name}: {ex}");
+                shouldShow = false;
+            }
+
+            if (shouldShow)
+                result.Add(icon);
+        }
+
+        return result;
     }
 
     private static void EnsureSingleIcon(Control body, IconConfig config, Vector2 position)
     {
+        if (body == null || config == null)
+            return;
+
         var node = body.GetNodeOrNull<Control>(config.Name);
 
         if (node == null)
         {
             var scene = GetScene(config.Scene);
+
             if (scene == null)
+            {
+                GD.PushError($"[Cloud Summon Card UI] Failed to load {config.Scene}");
                 return;
+            }
 
             node = scene.Instantiate<Control>();
             node.Name = config.Name;
@@ -120,7 +164,7 @@ public static class SummonCardDisplayUI
             body.AddChild(node);
             body.MoveChild(node, body.GetChildCount() - 1);
 
-            // same safe z style as ATB / your other visual UI
+            // Same safe z style as ATB / Limit visual UI
             node.ZIndex = 0;
         }
 
@@ -130,9 +174,13 @@ public static class SummonCardDisplayUI
 
     private static void HideAll(Control body)
     {
+        if (body == null)
+            return;
+
         foreach (var icon in Icons)
         {
             var node = body.GetNodeOrNull<Control>(icon.Name);
+
             if (node != null)
                 node.Visible = false;
         }
@@ -140,14 +188,44 @@ public static class SummonCardDisplayUI
 
     private static PackedScene? GetScene(string path)
     {
-        if (Cache.TryGetValue(path, out var s))
-            return s;
+        if (Cache.TryGetValue(path, out var cachedScene))
+            return cachedScene;
 
         var loaded = GD.Load<PackedScene>(path);
+
         if (loaded != null)
+        {
             Cache[path] = loaded;
+        }
+        else
+        {
+            GD.PushError($"[Cloud Summon Card UI] Could not load scene: {path}");
+        }
 
         return loaded;
+    }
+
+    private static bool TryGetOwner(CardModel model, out Player? owner)
+    {
+        owner = null;
+
+        if (model == null)
+            return false;
+
+        // Compendium / card library cards are canonical.
+        // Accessing Owner on canonical models throws CanonicalModelException.
+        if (!model.IsMutable)
+            return false;
+
+        try
+        {
+            owner = model.Owner;
+            return owner != null;
+        }
+        catch
+        {
+            return false;
+        }
     }
 }
 
@@ -158,16 +236,35 @@ public static class SummonDisplayUI_Ready
 {
     public static void Postfix(NCard __instance)
     {
+        if (__instance == null)
+            return;
+
         __instance.ModelChanged += _ =>
         {
             Callable.From(() =>
-                SummonCardDisplayUI.EnsureAndRefresh(__instance)
-            ).CallDeferred();
+            {
+                try
+                {
+                    SummonCardDisplayUI.EnsureAndRefresh(__instance);
+                }
+                catch (Exception ex)
+                {
+                    GD.PushWarning($"[Cloud Summon Card UI] Deferred refresh failed: {ex}");
+                }
+            }).CallDeferred();
         };
 
         Callable.From(() =>
-            SummonCardDisplayUI.EnsureAndRefresh(__instance)
-        ).CallDeferred();
+        {
+            try
+            {
+                SummonCardDisplayUI.EnsureAndRefresh(__instance);
+            }
+            catch (Exception ex)
+            {
+                GD.PushWarning($"[Cloud Summon Card UI] Initial refresh failed: {ex}");
+            }
+        }).CallDeferred();
     }
 }
 
@@ -176,7 +273,17 @@ public static class SummonDisplayUI_UpdateVisuals
 {
     public static void Postfix(NCard __instance)
     {
-        SummonCardDisplayUI.EnsureAndRefresh(__instance);
+        if (__instance == null)
+            return;
+
+        try
+        {
+            SummonCardDisplayUI.EnsureAndRefresh(__instance);
+        }
+        catch (Exception ex)
+        {
+            GD.PushWarning($"[Cloud Summon Card UI] UpdateVisuals refresh failed: {ex}");
+        }
     }
 }
 

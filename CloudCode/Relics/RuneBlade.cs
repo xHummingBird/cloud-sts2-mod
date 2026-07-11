@@ -1,6 +1,7 @@
 ﻿using Cloud.CloudCode.Cards.Ancient;
 using Cloud.CloudCode.Mechanics.Summon;
 using Cloud.CloudCode.Powers;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -23,7 +24,7 @@ public class RuneBlade() : CloudRelic
     ];
     
     public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props,
-        Creature? dealer, CardModel? cardSource)
+        Creature? dealer, CardModel? cardSource, CardPlay? cardPlay)
     {
         if (dealer != base.Owner.Creature)
             return 1m;

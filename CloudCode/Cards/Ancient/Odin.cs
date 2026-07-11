@@ -40,13 +40,12 @@ public class Odin() : CloudCard(0, CardType.Attack,
     
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay? play)
     {
         var ownerCreature = Owner?.Creature;
         var cloud = Owner?.Character as Character.Cloud;
         decimal threshold = DynamicVars["hpPercent"].BaseValue;
         
-        PowerCmd.Remove<SummonPower>(base.Owner.Creature);
         if (ownerCreature != null && cloud != null)
         {
             CenterCardCinematic.Start(RunManager.Instance.NetService.NetId);
@@ -58,8 +57,8 @@ public class Odin() : CloudCard(0, CardType.Attack,
                 "odin_vfx"
             );
                 await Task.Delay((int)(1.25f * 1000f));
-                NGame.Instance.ScreenShake(ShakeStrength.Medium, ShakeDuration.Normal);
-                await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).Targeting(play.Target)
+                NGame.Instance?.ScreenShake(ShakeStrength.Medium, ShakeDuration.Normal);
+                await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this, play).Targeting(play.Target)
                     .WithHitFx(null, "res://Cloud/sfx/cloud_hit.wav")
                     .Execute(choiceContext);
                 await Task.Delay((int)(1.55 * 1000f));
@@ -68,7 +67,7 @@ public class Odin() : CloudCard(0, CardType.Attack,
         }
         else
         {
-            await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).Targeting(play.Target)
+            await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this, play).Targeting(play.Target)
                 .Execute(choiceContext);
         }
         

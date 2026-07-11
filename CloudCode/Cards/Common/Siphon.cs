@@ -35,11 +35,6 @@ public class Siphon() : CloudCard(1, CardType.Skill,
             await CardCmd.Exhaust(choiceContext, cardModel);
         }
         SummonManager.GainSummon(Owner, DynamicVars["SummonPower"].IntValue);
-        await Owner.Creature.CheckSummonReady(
-            choiceContext,
-            Owner.Creature,
-            null
-        );
         AudioHelper.PlayRandomDefend();
         await CommonActions.CardBlock(this, cardPlay);
     }

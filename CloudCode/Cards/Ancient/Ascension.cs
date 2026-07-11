@@ -28,7 +28,7 @@ public class Ascension() : CloudCard(0, CardType.Attack,
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay? play)
     {
         var ownerCreature = Owner?.Creature;
         if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
@@ -84,7 +84,7 @@ public class Ascension() : CloudCard(0, CardType.Attack,
                         await Task.Delay((int)(delay * 1000f));
                     SfxCmd.Play("res://Cloud/sfx/sword_swing_heavy.wav");
 
-                    DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this)
+                    DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this, play)
                         .Targeting(play.Target)
                         .WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav")
                         .Execute(choiceContext);
@@ -104,7 +104,7 @@ public class Ascension() : CloudCard(0, CardType.Attack,
                 await CommonActions.CardAttack(this, play.Target).WithHitCount(base.DynamicVars.Repeat.IntValue)
                     .WithHitFx("vfx/vfx_attack_slash")
                     .Execute(choiceContext);
-                await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue*2).FromCard(this).Targeting(play.Target)
+                await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue*2).FromCard(this, play).Targeting(play.Target)
                     .WithHitFx("vfx/vfx_attack_slash") // swap for bigger VFX later
                     .Execute(choiceContext);
                 await PowerCmd.Apply<ArmorBreakPower>(choiceContext, play.Target,
@@ -117,7 +117,7 @@ public class Ascension() : CloudCard(0, CardType.Attack,
             await CommonActions.CardAttack(this, play.Target).WithHitCount(base.DynamicVars.Repeat.IntValue)
                 .WithHitFx("vfx/vfx_attack_slash")
                 .Execute(choiceContext);
-            await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue*2).FromCard(this).Targeting(play.Target)
+            await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue*2).FromCard(this, play).Targeting(play.Target)
                 .WithHitFx("vfx/vfx_attack_slash") // swap for bigger VFX later
                 .Execute(choiceContext);
             await PowerCmd.Apply<ArmorBreakPower>(choiceContext, play.Target,
