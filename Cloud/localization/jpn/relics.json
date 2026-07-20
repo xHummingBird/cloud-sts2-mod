@@ -25,5 +25,13 @@
 
 "CLOUD-ULTIMA_MATERIA.description": "[gold]アルテマ[/gold]を獲得する。ターン開始時に5[gold]サモン[/gold]を得る。",
 "CLOUD-ULTIMA_MATERIA.flavor": "",
-"CLOUD-ULTIMA_MATERIA.title": "アルテママテリア"
+"CLOUD-ULTIMA_MATERIA.title": "アルテママテリア",
+
+  "CLOUD-CHAMPION_BELT.description": "[gold]リミットブレイク[/gold]を強化する。",
+  "CLOUD-CHAMPION_BELT.flavor": "",
+  "CLOUD-CHAMPION_BELT.title": "チャンピオンベルト",
+
+  "CLOUD-EVOKE_RING.description": "[gold]サモン[/gold]を強化する。",
+  "CLOUD-EVOKE_RING.flavor": "",
+  "CLOUD-EVOKE_RING.title": "エボカーリング"
 }

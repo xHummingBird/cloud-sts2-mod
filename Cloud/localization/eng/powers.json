@@ -43,7 +43,7 @@
   "CLOUD-FURY_POWER.smartDescription": "Increase damage taken. Gain 3 additional limit per turn and from using attacks.",
   "CLOUD-FURY_POWER.title": "Fury",
 
-  "CLOUD-SEDATE_POWER.description": "Decrease damage taken by [blue]20%[/blue]. Halve limit gain from taking damage. Draw 1 card at the start of your turn. Draw buff stacks. \nRemoves [gold]Fury[/gold]",
+  "CLOUD-SEDATE_POWER.description": "Decrease damage taken by [blue]20%[/blue]. Halve limit gain from taking damage. Draw 1 card at the start of your turn. \nRemoves [gold]Fury[/gold]",
   "CLOUD-SEDATE_POWER.smartDescription": "Decrease damage taken by [blue]20%[/blue]. Halve limit gain from taking damage. Draw {Amount} {Amount:plural:card|cards} at the start of your turn.",
   "CLOUD-SEDATE_POWER.title": "Sedate",
 

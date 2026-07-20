@@ -191,7 +191,7 @@
   "CLOUD-AGGRESSION.description": "Gain {VigorPower:diff()} [gold]Vigor[/gold]. \nGain {LimitBreakPower:diff()} [gold]Limit[/gold].",
   "CLOUD-AGGRESSION.title": "Aggression",
 
-  "CLOUD-JENOVA_CELLS.description": "Gain [gold]Fury[/gold]. \nUpgrades [gold]Limit Break[/gold].",
+  "CLOUD-JENOVA_CELLS.description": "Gain [gold]Fury[/gold].",
   "CLOUD-JENOVA_CELLS.title": "Jenova Cells",
 
   "CLOUD-ADRENALINE_SURGE.description": "Gain 30 [gold]Limit[/gold]. \nGain additional 20 [gold]Limit[/gold] if you have [gold]Fury[/gold].",

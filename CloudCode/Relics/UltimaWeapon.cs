@@ -11,10 +11,7 @@ public class UltimaWeapon : LimitRelicBase
 
     protected override int BaseTurnSummonGain => 5;
     protected override int SummonUpTurnSummonGain => 10;
-
-    // Your pasted UltimaWeapon had attack summon gain as 2.
-    // If that was intentional, keep this.
-    // If Ultima should be strictly better, change this to 3 or higher.
+    
     protected override int AttackSummonGain => 3;
 
     protected override int MagicSummonGain => 6;

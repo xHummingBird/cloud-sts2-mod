@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using Cloud.CloudCode.Extensions;
 using Cloud.CloudCode.Mechanics.ATB;
 using Cloud.CloudCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
@@ -24,7 +25,7 @@ public class FocusedThrust() : CloudCard(1, CardType.Attack,
         PlayerChoiceContext choiceContext,
         CardPlay? play)
     {
-        decimal bonusDamage;
+        decimal finalDamage;
         var ownerCreature = Owner?.Creature;
 
         if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
@@ -35,16 +36,14 @@ public class FocusedThrust() : CloudCard(1, CardType.Attack,
             if (duration > 0f)
             {
                 await Task.Delay((int)(0.1f * 1000f));
-                SfxCmd.Play("res://Cloud/sfx/sword_swing.wav");
                 await Task.Delay((int)(0.1f * 1000f));
-                await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this, play).Targeting(play.Target).WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav")
-                    .Execute(choiceContext);
+                CloudExtensions.CombatHelpers.FakeHit(play.Target);
                 await Task.Delay((int)(0.45f * 1000f));
                 SfxCmd.Play("res://Cloud/sounds/heavy_attack (2).wav");
                 SfxCmd.Play("res://Cloud/sfx/sword_swing.wav");
                 await Task.Delay((int)(0.12f * 1000f));
-                bonusDamage = play.Target.CurrentHp * (DynamicVars["percentHPDamage"].BaseValue)/100;
-                await DamageCmd.Attack(bonusDamage).FromCard(this, play).Targeting(play.Target).WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav")
+                finalDamage = (play.Target.CurrentHp * (DynamicVars["percentHPDamage"].BaseValue)/100) + DynamicVars.Damage.BaseValue;
+                await DamageCmd.Attack(finalDamage).FromCard(this, play).Targeting(play.Target).WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav")
                     .Execute(choiceContext);
                 await Task.Delay((int)(0.4f * 1000f));
                 await cloud.Retreat(ownerCreature);
@@ -54,8 +53,8 @@ public class FocusedThrust() : CloudCard(1, CardType.Attack,
         {
             await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this, play)
                 .Execute(choiceContext);
-            bonusDamage = play.Target.CurrentHp * (DynamicVars["percentHPDamage"].BaseValue)/100;
-            await DamageCmd.Attack(bonusDamage).FromCard(this, play).Targeting(play.Target).WithHitFx("vfx/vfx_attack_slash")
+            finalDamage = (play.Target.CurrentHp * (DynamicVars["percentHPDamage"].BaseValue)/100) + DynamicVars.Damage.BaseValue;
+            await DamageCmd.Attack(finalDamage).FromCard(this, play).Targeting(play.Target).WithHitFx("vfx/vfx_attack_slash")
                 .Execute(choiceContext);
         }
         if (play.Target !=null)

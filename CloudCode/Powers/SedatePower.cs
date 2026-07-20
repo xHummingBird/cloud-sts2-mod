@@ -1,5 +1,6 @@
 ﻿using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
@@ -17,6 +18,15 @@ public class SedatePower : CloudPower
     [
         new DynamicVar("DamageDecrease", 0.8m),
     ];
+    
+    public override decimal ModifyHandDraw(Player player, decimal count)
+    {
+        if (player != base.Owner.Player)
+        {
+            return count;
+        }
+        return count + (decimal)base.Amount;
+    }
 
     public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props,
         Creature? dealer, CardModel? cardSource, CardPlay? cardPlay)

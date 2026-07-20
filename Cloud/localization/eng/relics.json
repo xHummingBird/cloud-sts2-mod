@@ -27,7 +27,11 @@
   "CLOUD-ULTIMA_MATERIA.flavor": "",
   "CLOUD-ULTIMA_MATERIA.title": "Ultima Materia",
 
-  "CLOUD-CHAMPION_BELT.description": "Upgrade your [gold]Limit Break[/gold].",
+  "CLOUD-CHAMPION_BELT.description": "Upgrade [gold]Limit Break[/gold].",
   "CLOUD-CHAMPION_BELT.flavor": "",
-  "CLOUD-CHAMPION_BELT.title": "Champion Belt"
+  "CLOUD-CHAMPION_BELT.title": "Champion Belt",
+
+  "CLOUD-EVOKE_RING.description": "Upgrade [gold]Summon[/gold].",
+  "CLOUD-EVOKE_RING.flavor": "",
+  "CLOUD-EVOKE_RING.title": "Evoker's Ring"
 }

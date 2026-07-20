@@ -3,7 +3,7 @@
   "name": "Cloud",
   "author": "HummingBird",
   "description": "Cloud Strife Playable Character Mod",
-  "version": "v1.0.3",
+  "version": "v1.0.4",
   "has_pck": true,
   "has_dll": true,
   "min_game_version": "0.109.0",

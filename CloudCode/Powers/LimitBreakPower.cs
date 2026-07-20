@@ -22,7 +22,8 @@ public class LimitBreakPower : CloudPower
     {
         SfxCmd.Play("res://Cloud/sounds/limit_break_2.wav");
         CardModel card = CombatState.CreateCard<LimitBreak>(base.Owner.Player);
-        if (base.Owner.HasPower<FuryPower>())
+        ChampionBelt? championBelt = base.Owner?.Player.GetRelic<ChampionBelt>();
+        if (championBelt != null)
         {
             CardCmd.Upgrade(card);
         }

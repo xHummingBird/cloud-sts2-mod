@@ -191,7 +191,7 @@
 "CLOUD-AGGRESSION.description": "[gold]活力[/gold]{VigorPower:diff()}を得る。\n[gold]リミットゲージ[/gold]が{LimitBreakPower:diff()}増加する。",
 "CLOUD-AGGRESSION.title": "闘志",
 
-"CLOUD-JENOVA_CELLS.description": "[gold]いかり[/gold]を得る。\n[gold]リミットブレイク[/gold]を強化する。",
+"CLOUD-JENOVA_CELLS.description": "[gold]いかり[/gold]を得る。",
 "CLOUD-JENOVA_CELLS.title": "ジェノバ細胞",
 
 "CLOUD-ADRENALINE_SURGE.description": "[gold]リミットゲージ[/gold]が30増加する。\n[gold]いかり[/gold]状態なら追加で20増加する。",
@@ -248,7 +248,7 @@
 "CLOUD-SIPHON.description": "カードを1枚[gold]廃棄[/gold]する。\n{Block:diff()}[gold]ブロック[/gold]と[gold]サモン[/gold]{SummonPower:diff()}を得る。",
 "CLOUD-SIPHON.title": "アスピル",
 
-"CLOUD-INVOKE.description": "毎ターン、および攻撃や[gold]魔法[/gold]によって得る[gold]サモン[/gold]が2倍になる。\n[gold]サモン[/gold]を強化する。",
+"CLOUD-INVOKE.description": "毎ターン、および攻撃や[gold]魔法[/gold]によって得る[gold]サモン[/gold]が2倍になる。",
 "CLOUD-INVOKE.title": "召喚強化",
 
 "CLOUD-HEROS_LAST_WISH.description": "{Energy:energyIcons()}を得る。\n1[gold]ATB[/gold]を得る。\n[gold]サモン[/gold]{SummonPower:diff()}と[gold]リミットゲージ[/gold]{LimitBreakPower:diff()}を得る。",

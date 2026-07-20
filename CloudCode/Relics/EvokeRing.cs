@@ -4,12 +4,12 @@ using MegaCrit.Sts2.Core.HoverTips;
 
 namespace Cloud.CloudCode.Relics;
 
-public class ChampionBelt() : CloudRelic
+public class EvokeRing() : CloudRelic
 {
     public override RelicRarity Rarity => RelicRarity.Uncommon;
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromCard<LimitBreak>(true),
+        HoverTipFactory.FromCard<SummonCard>(true),
     ];
 }
