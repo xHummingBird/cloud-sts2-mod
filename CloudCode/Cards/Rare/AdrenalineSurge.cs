@@ -24,7 +24,6 @@ public class AdrenalineSurge() : CloudCard(2, CardType.Skill,
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromPower<FuryPower>(),
         HoverTipFactory.FromPower<LimitBreakPower>()
     ];
 

@@ -29,8 +29,6 @@ public class FuryPower : CloudPower
 
         if (target == base.Owner && dealer != null)
             return num;
-
         return 1m;
-        
     }
 }

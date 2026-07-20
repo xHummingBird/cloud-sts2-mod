@@ -14,7 +14,7 @@ public class Invoke() : CloudCard(2, CardType.Power,
     CardRarity.Rare, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new PowerVar<SummonPower>(15),
+        new PowerVar<SummonPower>(25),
         new PowerVar<SummonUpPower>(1)
     ];
     

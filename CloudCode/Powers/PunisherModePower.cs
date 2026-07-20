@@ -21,9 +21,9 @@ public class PunisherModePower : CloudPower
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DynamicVar("DamageIncrease", 1.25m),
+        new DynamicVar("DamageIncrease", 1.35m),
         new DynamicVar("DamageTakenIncrease", 1.1m),
-        new DynamicVar("PrimeDamageIncrease", 1.5m),
+        new DynamicVar("PrimeDamageIncrease", 1.6m),
     ];
     
     public override async Task AfterApplied(Creature? applier, CardModel? cardSource)

@@ -74,7 +74,7 @@
   "CLOUD-GOT_YOUR_BACK.description": "Gain {Block:diff()} [gold]Block[/gold]. \nGain {LimitBreakPower:diff()} [gold]Limit[/gold].",
   "CLOUD-GOT_YOUR_BACK.title": "I Got Your Back!",
   
-  "CLOUD-LIMIT_BREAK.description": "Perform [gold]Limit Break[/gold].",
+  "CLOUD-LIMIT_BREAK.description": "Perform {IfUpgraded:show:Upgraded|} [gold]Limit Break[/gold].",
   "CLOUD-LIMIT_BREAK.title": "Limit Break",
   
   "CLOUD-OMNISLASH.description": "Deal {Damage:diff()} damage.",
@@ -248,7 +248,7 @@
   "CLOUD-SIPHON.description": "[gold]Exhaust[/gold] 1 card. \nGain {Block:diff()} [gold]Block[/gold]. Gain {SummonPower:diff()} [gold]Summon[/gold].",
   "CLOUD-SIPHON.title": "Siphon",
 
-  "CLOUD-INVOKE.description": "Double [gold]Summon[/gold] gain per turn, and from attacks and [gold]Magic[/gold]. \nUpgrades [gold]Summon[/gold].",
+  "CLOUD-INVOKE.description": "Double [gold]Summon[/gold] gain per turn, and from attacks and [gold]Magic[/gold].",
   "CLOUD-INVOKE.title": "Invoke",
 
   "CLOUD-HEROS_LAST_WISH.description": "Gain {Energy:energyIcons()}. \nGain 1 [gold]ATB[/gold]. \nGain {SummonPower:diff()} [gold]Summon[/gold] and [gold]Limit[/gold].",

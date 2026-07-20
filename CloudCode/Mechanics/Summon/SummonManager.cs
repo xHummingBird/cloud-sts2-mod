@@ -1,29 +1,31 @@
-﻿using MegaCrit.Sts2.Core.Entities.Players;
+﻿using Cloud.CloudCode.Relics;
+using MegaCrit.Sts2.Core.Entities.Players;
 
 namespace Cloud.CloudCode.Mechanics.Summon;
-
 
 public static class SummonManager
 {
     public class SummonData
     {
-        public int Value;
         public Action<int>? OnSummonChanged;
     }
 
+    private const int MaxSummon = 100;
+
     private static readonly Dictionary<Player, SummonData> _data = new();
 
-    private const int MaxSummon = 100;
+    private static LimitRelicBase? GetRelic(Player player)
+    {
+        return player.Relics
+            .OfType<LimitRelicBase>()
+            .FirstOrDefault();
+    }
 
     private static SummonData GetData(Player player)
     {
         if (!_data.TryGetValue(player, out var data))
         {
-            data = new SummonData
-            {
-                Value = 0
-            };
-
+            data = new SummonData();
             _data[player] = data;
         }
 
@@ -32,35 +34,35 @@ public static class SummonManager
 
     public static int GetSummon(Player player)
     {
-        return GetData(player).Value;
+        return GetRelic(player)?.StoredSummon ?? 0;
     }
 
     public static void SetSummon(Player player, int value)
     {
-        var data = GetData(player);
+        var relic = GetRelic(player);
 
-        // ✅ Clamp between 0 and 100
-        value = Math.Max(0, Math.Min(value, MaxSummon));
-
-        if (data.Value == value)
+        if (relic == null)
             return;
 
-        data.Value = value;
-        
-        data.OnSummonChanged?.Invoke(value);
+        value = Math.Clamp(value, 0, MaxSummon);
+
+        if (relic.StoredSummon == value)
+            return;
+
+        relic.StoredSummon = value;
+
+        GetData(player).OnSummonChanged?.Invoke(value);
     }
-    
+
     public static void HalfSummon(Player player)
     {
-        var data = GetData(player);
-        int current = data.Value;
+        int current = GetSummon(player);
 
         if (current <= 0)
             return;
 
         SetSummon(player, current / 2);
     }
-
 
     public static void GainSummon(Player player, int amount)
     {

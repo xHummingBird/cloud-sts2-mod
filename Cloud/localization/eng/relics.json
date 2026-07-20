@@ -25,5 +25,9 @@
 
   "CLOUD-ULTIMA_MATERIA.description": "Obtain [gold]Ultima[/gold]. Gain 5 [gold]Summon[/gold] at the start of your turn.",
   "CLOUD-ULTIMA_MATERIA.flavor": "",
-  "CLOUD-ULTIMA_MATERIA.title": "Ultima Materia"
+  "CLOUD-ULTIMA_MATERIA.title": "Ultima Materia",
+
+  "CLOUD-CHAMPION_BELT.description": "Upgrade your [gold]Limit Break[/gold].",
+  "CLOUD-CHAMPION_BELT.flavor": "",
+  "CLOUD-CHAMPION_BELT.title": "Champion Belt"
 }

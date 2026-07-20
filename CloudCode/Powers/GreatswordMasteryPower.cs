@@ -16,11 +16,6 @@ public class GreatswordMasteryPower : CloudPower
 
     public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource, CardPlay? cardPlay)
     {
-        if (!base.Owner.HasPower<PunisherModePower>())
-        {
-            return 0m;
-        }
-        
         if (base.Owner != dealer)
         {
             return 0m;
@@ -29,7 +24,7 @@ public class GreatswordMasteryPower : CloudPower
         {
             return 0m;
         }
-        return base.Amount;
+        return 2m;
     }
     
     public override decimal ModifyBlockAdditive(Creature target, decimal block, ValueProp props, CardModel? cardSource, CardPlay? cardPlay)

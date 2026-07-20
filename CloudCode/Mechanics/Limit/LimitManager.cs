@@ -1,29 +1,31 @@
-﻿using MegaCrit.Sts2.Core.Entities.Players;
+﻿using Cloud.CloudCode.Relics;
+using MegaCrit.Sts2.Core.Entities.Players;
 
 namespace Cloud.CloudCode.Mechanics.Limit;
-
 
 public static class LimitManager
 {
     public class LimitData
     {
-        public int Value;
         public Action<int>? OnLimitChanged;
     }
 
+    private const int MaxLimit = 100;
+
     private static readonly Dictionary<Player, LimitData> _data = new();
 
-    private const int MaxLimit = 100;
+    private static LimitRelicBase? GetRelic(Player player)
+    {
+        return player.Relics
+            .OfType<LimitRelicBase>()
+            .FirstOrDefault();
+    }
 
     private static LimitData GetData(Player player)
     {
         if (!_data.TryGetValue(player, out var data))
         {
-            data = new LimitData
-            {
-                Value = 0
-            };
-
+            data = new LimitData();
             _data[player] = data;
         }
 
@@ -32,37 +34,36 @@ public static class LimitManager
 
     public static int GetLimit(Player player)
     {
-        return GetData(player).Value;
+        return GetRelic(player)?.StoredLimit ?? 0;
     }
 
     public static void SetLimit(Player player, int value)
     {
-        var data = GetData(player);
-        int oldValue = data.Value;
+        var relic = GetRelic(player);
 
-        // ✅ Clamp between 0 and 100
-        value = Math.Max(0, Math.Min(value, MaxLimit));
-
-        if (data.Value == value)
+        if (relic == null)
             return;
 
-        data.Value = value;
+        value = Math.Clamp(value, 0, MaxLimit);
 
-        // ✅ Notify UI
-        data.OnLimitChanged?.Invoke(value);
+        if (relic.StoredLimit == value)
+            return;
+
+        relic.StoredLimit = value;
+
+        GetData(player).OnLimitChanged?.Invoke(value);
     }
-    
+
     public static void HalfLimit(Player player)
     {
-        var data = GetData(player);
-        int current = data.Value;
+        int current = GetLimit(player);
 
         if (current <= 0)
             return;
 
         SetLimit(player, current / 2);
     }
-    
+
     public static void GainLimit(Player player, int amount)
     {
         SetLimit(player, GetLimit(player) + amount);

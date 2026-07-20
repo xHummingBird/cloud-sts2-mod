@@ -11,7 +11,7 @@ public class SedatePower : CloudPower
 {
     private const string _damageIncrease = "DamageDecrease";
     public override PowerType Type => PowerType.Buff;
-    public override PowerStackType StackType => PowerStackType.Single;
+    public override PowerStackType StackType => PowerStackType.Counter;
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

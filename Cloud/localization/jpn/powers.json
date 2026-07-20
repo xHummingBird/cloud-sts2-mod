@@ -1,6 +1,6 @@
 {
-"CLOUD-PUNISHER_MODE_POWER.description": "物理ダメージが25%増加し、受けるダメージも10%増加する。敵からダメージを受けるとモードが切り替わる。",
-"CLOUD-PUNISHER_MODE_POWER.smartDescription": "物理ダメージが25%増加し、受けるダメージも10%増加する。敵からダメージを受けるとモードが切り替わる。",
+"CLOUD-PUNISHER_MODE_POWER.description": "物理ダメージが35%増加し、受けるダメージも10%増加する。敵からダメージを受けるとモードが切り替わる。",
+"CLOUD-PUNISHER_MODE_POWER.smartDescription": "物理ダメージが35%増加し、受けるダメージも10%増加する。敵からダメージを受けるとモードが切り替わる。",
 "CLOUD-PUNISHER_MODE_POWER.title": "ブレイブモード",
 
 "CLOUD-COUNTER_STANCE_POWER.description": "1ターンの間、防いだダメージを反射する。",

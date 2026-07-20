@@ -1,6 +1,6 @@
 {
-  "CLOUD-PUNISHER_MODE_POWER.description": "物理伤害提升25%，自身受到的所有伤害增加10%。受到未被格挡的敌方伤害时切换姿态。",
-  "CLOUD-PUNISHER_MODE_POWER.smartDescription": "物理伤害提升25%，受到的伤害增加10%。受到未被格挡的敌方伤害时切换姿态。",
+  "CLOUD-PUNISHER_MODE_POWER.description": "物理伤害提升35%，自身受到的所有伤害增加10%。受到未被格挡的敌方伤害时切换姿态。",
+  "CLOUD-PUNISHER_MODE_POWER.smartDescription": "物理伤害提升35%，受到的伤害增加10%。受到未被格挡的敌方伤害时切换姿态。",
   "CLOUD-PUNISHER_MODE_POWER.title": "惩戒姿态",
 
   "CLOUD-COUNTER_STANCE_POWER.description": "被格挡的伤害会反弹给攻击者，持续1回合。",

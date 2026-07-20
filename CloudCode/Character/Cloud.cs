@@ -500,7 +500,7 @@ public class Cloud : PlaceholderCharacterModel
 
 			uint choiceId = RunManager.Instance.PlayerChoiceSynchronizer.ReserveChoiceId(player);
 
-			await context.SignalPlayerChoiceBegun(PlayerChoiceOptions.None);
+			await context.SignalPlayerChoiceBegun(player, PlayerChoiceOptions.None);
 
 			CardModel? result;
 			
