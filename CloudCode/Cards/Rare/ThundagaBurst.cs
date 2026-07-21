@@ -52,11 +52,7 @@ public class ThundagaBurst() : CloudCard(2, CardType.Attack,
             .SelectMany(r => r)
             .Any(r => r.WasTargetKilled);
         
-        bool shouldTriggerFatal = CombatState.Enemies
-            .Where(e => !e.IsDead)
-            .All(e => e.Powers.All(p => p.ShouldOwnerDeathTriggerFatal()));
-        
-        if (killedSomething && shouldTriggerFatal)
+        if (killedSomething)
         {
             await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).WithHitCount(2).FromCard(this, play)
                 .TargetingRandomOpponents(base.CombatState)

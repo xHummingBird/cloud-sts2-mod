@@ -35,12 +35,6 @@ public class BlizzagaBurst() : CloudCard(2, CardType.Attack,
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay? play)
     {
         var ownerCreature = Owner?.Creature;
-        
-        var enemies = CombatState.Enemies;
-        bool shouldTriggerFatal = enemies
-            .Where(e => !e.IsDead)
-            .All(enemy =>
-                enemy.Powers.All(p => p.ShouldOwnerDeathTriggerFatal()));
 
         if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
         {
@@ -75,7 +69,7 @@ public class BlizzagaBurst() : CloudCard(2, CardType.Attack,
             })
             .Execute(choiceContext);
         await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, play);
-        if (shouldTriggerFatal && attackCommand.Results.SelectMany((List<DamageResult> r) => r)
+        if (attackCommand.Results.SelectMany((List<DamageResult> r) => r)
                 .Any((DamageResult r) => r.WasTargetKilled))
         {
             await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, play);

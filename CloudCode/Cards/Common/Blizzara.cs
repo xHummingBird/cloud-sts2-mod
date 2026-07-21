@@ -17,12 +17,11 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Cloud.CloudCode.Cards.Common;
 
 public class Blizzara() : CloudCard(1, CardType.Attack,
-    CardRarity.Common, TargetType.AnyEnemy), IATBCard, IMagicCard
+    CardRarity.Common, TargetType.AnyEnemy), IMagicCard
 {
-    public int ATBCost => 1;
     protected override IEnumerable<DynamicVar> CanonicalVars => 
     [
-        new DamageVar(7m, ValueProp.Move),
+        new DamageVar(8m, ValueProp.Move),
         new BlockVar(5, ValueProp.Move)
     ];
     
@@ -61,7 +60,6 @@ public class Blizzara() : CloudCard(1, CardType.Attack,
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(2m);
         DynamicVars.Block.UpgradeValueBy(3m);
     }
 }

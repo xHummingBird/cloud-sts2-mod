@@ -9,26 +9,26 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.ValueProps;
 
-namespace Cloud.CloudCode.Cards.Basic;
+namespace Cloud.CloudCode.Cards.Common;
 
-public class Fire() : CloudCard(1, CardType.Attack,
-    CardRarity.Basic, TargetType.AnyEnemy), IMagicCard
+public class Thunder() : CloudCard(0, CardType.Attack,
+    CardRarity.Common, TargetType.AnyEnemy), IMagicCard
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => 
-        [
-            new DamageVar(6m, ValueProp.Move),
-        ];
+    [
+        new DamageVar(5m, ValueProp.Move),
+    ];
+    
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         CloudStaticHoverTip.Magic,
     ];
 
-     protected override async Task OnPlay(
+    protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
@@ -38,20 +38,17 @@ public class Fire() : CloudCard(1, CardType.Attack,
         {
             // attack animation
             float duration = cloud.PlayAnimation(ownerCreature, "cast").total;
-            AudioHelper.PlayRandomFire();
+            AudioHelper.PlayRandomThunder();
             // Optional: delay to sync hit roughly mid animation
             if (duration > 0f)
                 await Task.Delay((int)(duration * 0.2f * 1000f));
         }
+        
         await CommonActions.CardAttack(this, play.Target)
-            .BeforeDamage(async delegate
-            {
-                NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NGroundFireVfx.Create(play.Target));
-                SfxCmd.Play("event:/sfx/characters/attack_fire");
-            })
+            .WithHitFx("vfx/vfx_attack_lightning", "event:/sfx/characters/defect/defect_lightning_passive")
             .Execute(choiceContext);
+        
     }
-
     protected override void OnUpgrade()
     {
         DynamicVars.Damage.UpgradeValueBy(3m);

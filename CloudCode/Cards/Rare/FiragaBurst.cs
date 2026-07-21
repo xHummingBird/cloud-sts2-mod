@@ -51,8 +51,8 @@ public class FiragaBurst() : CloudCard(2, CardType.Attack,
             })
             .Execute(choiceContext);
         NGame.Instance.ScreenShake(ShakeStrength.Strong, ShakeDuration.Normal);
-        bool shouldTriggerFatal = play.Target.Powers.All((PowerModel p) => p.ShouldOwnerDeathTriggerFatal());
-        if (shouldTriggerFatal && attackCommand.Results.SelectMany((List<DamageResult> r) => r)
+       
+        if (attackCommand.Results.SelectMany((List<DamageResult> r) => r)
                 .Any((DamageResult r) => r.WasTargetKilled))
         {
             await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue / 2).FromCard(this, play)

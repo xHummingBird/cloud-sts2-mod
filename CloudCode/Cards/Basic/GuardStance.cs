@@ -7,10 +7,10 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 
-namespace Cloud.CloudCode.Cards.Common;
+namespace Cloud.CloudCode.Cards.Basic;
 
 public class GuardStance () : CloudCard(1, CardType.Skill,
-    CardRarity.Common, TargetType.Self), IOperatorCard
+    CardRarity.Basic, TargetType.Self), IOperatorCard
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new BlockVar(6, ValueProp.Move)

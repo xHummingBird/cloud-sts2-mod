@@ -25,12 +25,6 @@ public class SonicImpact() : CloudCard(2, CardType.Attack,
     {
         var ownerCreature = Owner?.Creature;
         
-        var enemies = CombatState.Enemies;
-        bool shouldTriggerFatal = enemies
-            .Where(e => !e.IsDead)
-            .All(enemy =>
-                enemy.Powers.All(p => p.ShouldOwnerDeathTriggerFatal()));
-
         if (ownerCreature != null && Owner?.Character is Character.Cloud cloud)
         {
             AudioHelper.PlayRandomAttack();
@@ -45,7 +39,7 @@ public class SonicImpact() : CloudCard(2, CardType.Attack,
         AttackCommand attackCommand = await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this, play).TargetingAllOpponents(base.CombatState)
             .WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav")
             .Execute(choiceContext);
-        if (shouldTriggerFatal && attackCommand.Results.SelectMany((List<DamageResult> r) => r)
+        if (attackCommand.Results.SelectMany((List<DamageResult> r) => r)
                 .Any((DamageResult r) => r.WasTargetKilled))
         {
             await PlayerCmd.GainEnergy(base.DynamicVars.Energy.IntValue, base.Owner);

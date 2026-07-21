@@ -41,7 +41,6 @@ using MegaCrit.Sts2.Core.Nodes.Vfx.Utilities;
 using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.Saves;
-using Thunder = Cloud.CloudCode.Cards.Basic.Thunder;
 
 namespace Cloud.CloudCode.Character;
 
@@ -61,9 +60,9 @@ public class Cloud : PlaceholderCharacterModel
 		ModelDb.Card<Braver>(),
 		ModelDb.Card<StrikeCloud>(),
 		ModelDb.Card<StrikeCloud>(),
-		ModelDb.Card<Fire>(),
-		ModelDb.Card<Blizzard>(),
-		ModelDb.Card<Thunder>(),
+		ModelDb.Card<StrikeCloud>(),
+		ModelDb.Card<GuardBreak>(),
+		ModelDb.Card<GuardStance>(),
 		ModelDb.Card<DefendCloud>(),
 		ModelDb.Card<DefendCloud>(),
 		ModelDb.Card<DefendCloud>(),

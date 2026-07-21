@@ -14,9 +14,8 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Cloud.CloudCode.Cards.Common;
 
 public class Thundara() : CloudCard(1, CardType.Attack,
-    CardRarity.Common, TargetType.RandomEnemy), IATBCard, IMagicCard
+    CardRarity.Common, TargetType.RandomEnemy), IMagicCard
 {
-    public int ATBCost => 1;
     protected override IEnumerable<DynamicVar> CanonicalVars => 
     [
         new DamageVar(6m, ValueProp.Move),

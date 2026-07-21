@@ -9,26 +9,28 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.ValueProps;
 
-namespace Cloud.CloudCode.Cards.Basic;
+namespace Cloud.CloudCode.Cards.Common;
 
-public class Blizzard() : CloudCard(1, CardType.Attack,
-    CardRarity.Basic, TargetType.AnyEnemy), IMagicCard
+public class Fire() : CloudCard(0, CardType.Attack,
+    CardRarity.Common, TargetType.AnyEnemy), IMagicCard
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => 
         [
-            new DamageVar(6m, ValueProp.Move),
+            new DamageVar(5m, ValueProp.Move),
         ];
-    
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         CloudStaticHoverTip.Magic,
     ];
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+     protected override async Task OnPlay(
+        PlayerChoiceContext choiceContext,
+        CardPlay play)
     {
         var ownerCreature = Owner?.Creature;
 
@@ -36,21 +38,16 @@ public class Blizzard() : CloudCard(1, CardType.Attack,
         {
             // attack animation
             float duration = cloud.PlayAnimation(ownerCreature, "cast").total;
-            AudioHelper.PlayRandomBlizzard();
+            AudioHelper.PlayRandomFire();
             // Optional: delay to sync hit roughly mid animation
             if (duration > 0f)
-                cloud.PlayVfxOnTarget(
-                    cardPlay.Target,
-                    "res://Cloud/scenes/ice_vfx.tscn",
-                    "ice_1"
-                );
-            await Task.Delay((int)(0.20f * 1000f));
+                await Task.Delay((int)(duration * 0.2f * 1000f));
         }
-        await CommonActions.CardAttack(this, cardPlay.Target)
-            .WithHitFx(null, "res://Cloud/sfx/ice.wav")
+        await CommonActions.CardAttack(this, play.Target)
             .BeforeDamage(async delegate
             {
-                NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NGroundFireVfx.Create(cardPlay.Target, VfxColor.Blue));
+                NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NGroundFireVfx.Create(play.Target));
+                SfxCmd.Play("event:/sfx/characters/attack_fire");
             })
             .Execute(choiceContext);
     }

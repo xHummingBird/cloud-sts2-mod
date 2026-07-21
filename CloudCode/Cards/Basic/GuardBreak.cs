@@ -10,15 +10,15 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 
-namespace Cloud.CloudCode.Cards.Common;
+namespace Cloud.CloudCode.Cards.Basic;
 
 public class GuardBreak() : CloudCard(1, CardType.Attack,
-    CardRarity.Common, TargetType.AnyEnemy), IPunisherCard
+    CardRarity.Basic, TargetType.AnyEnemy), IPunisherCard
 {
     
     
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(8, ValueProp.Move),
+        new DamageVar(7, ValueProp.Move),
         new PowerVar<VulnerablePower>(1),
         new PowerVar<PunisherModePower>(1m)
     ];

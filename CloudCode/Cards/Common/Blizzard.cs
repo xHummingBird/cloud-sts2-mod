@@ -13,24 +13,22 @@ using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.ValueProps;
 
-namespace Cloud.CloudCode.Cards.Basic;
+namespace Cloud.CloudCode.Cards.Common;
 
-public class Thunder() : CloudCard(1, CardType.Attack,
-    CardRarity.Basic, TargetType.AnyEnemy), IMagicCard
+public class Blizzard() : CloudCard(0, CardType.Attack,
+    CardRarity.Common, TargetType.AnyEnemy), IMagicCard
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => 
-    [
-        new DamageVar(6m, ValueProp.Move),
-    ];
+        [
+            new DamageVar(5m, ValueProp.Move),
+        ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         CloudStaticHoverTip.Magic,
     ];
 
-    protected override async Task OnPlay(
-        PlayerChoiceContext choiceContext,
-        CardPlay play)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var ownerCreature = Owner?.Creature;
 
@@ -38,16 +36,23 @@ public class Thunder() : CloudCard(1, CardType.Attack,
         {
             // attack animation
             float duration = cloud.PlayAnimation(ownerCreature, "cast").total;
-            AudioHelper.PlayRandomThunder();
+            AudioHelper.PlayRandomBlizzard();
             // Optional: delay to sync hit roughly mid animation
             if (duration > 0f)
-                await Task.Delay((int)(duration * 0.2f * 1000f));
+                cloud.PlayVfxOnTarget(
+                    cardPlay.Target,
+                    "res://Cloud/scenes/ice_vfx.tscn",
+                    "ice_1"
+                );
+            await Task.Delay((int)(0.20f * 1000f));
         }
-        
-        await CommonActions.CardAttack(this, play.Target)
-            .WithHitFx("vfx/vfx_attack_lightning", "event:/sfx/characters/defect/defect_lightning_passive")
+        await CommonActions.CardAttack(this, cardPlay.Target)
+            .WithHitFx(null, "res://Cloud/sfx/ice.wav")
+            .BeforeDamage(async delegate
+            {
+                NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NGroundFireVfx.Create(cardPlay.Target, VfxColor.Blue));
+            })
             .Execute(choiceContext);
-        
     }
 
     protected override void OnUpgrade()
