@@ -194,7 +194,7 @@
   "CLOUD-JENOVA_CELLS.description": "Gain [gold]Fury[/gold].",
   "CLOUD-JENOVA_CELLS.title": "Jenova Cells",
 
-  "CLOUD-ADRENALINE_SURGE.description": "Gain 30 [gold]Limit[/gold]. \nGain additional 20 [gold]Limit[/gold] if you have [gold]Fury[/gold].",
+  "CLOUD-ADRENALINE_SURGE.description": "Gain 30 [gold]Limit[/gold]. \nGain additional 20 [gold]Limit[/gold] if you have less than [gold]50%[/gold] HP.",
   "CLOUD-ADRENALINE_SURGE.title": "Adrenaline Surge",
 
   "CLOUD-BACKSTEP.description": "Gain {Block:diff()} [gold]Block[/gold]. \n[gold]Punisher[/gold]: Gain 1 [gold]ATB[/gold].",

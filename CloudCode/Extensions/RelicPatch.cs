@@ -40,11 +40,8 @@ public static class DustyTomePatch
     {
         if (__instance.Owner?.Character is not Character.Cloud)
             return;
-
-        if (__instance.AncientCard == null)
-        {
-            __instance.AncientCard = ModelDb.Card<HerosLastWish>().Id;
-        }
+        
+        __instance.AncientCard = ModelDb.Card<HerosLastWish>().Id;
     }
 }
 

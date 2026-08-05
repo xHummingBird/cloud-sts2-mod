@@ -12,6 +12,8 @@ namespace Cloud.CloudCode.Cards.Rare;
 public class AdrenalineSurge() : CloudCard(2, CardType.Skill,
     CardRarity.Rare, TargetType.Self)
 {
+    protected override bool ShouldGlowGoldInternal => base.Owner.Creature.CurrentHp * 2 < base.Owner.Creature.MaxHp;
+    
     protected override IEnumerable<DynamicVar> CanonicalVars => 
     [
         new PowerVar<LimitBreakPower>(30m)
@@ -30,7 +32,7 @@ public class AdrenalineSurge() : CloudCard(2, CardType.Skill,
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         int finalAmount = DynamicVars["LimitBreakPower"].IntValue;
-        if (Owner.Creature.HasPower<FuryPower>())
+        if (base.Owner.Creature.CurrentHp * 2 < base.Owner.Creature.MaxHp)
             finalAmount += 20;
         
         LimitManager.GainLimit(Owner, finalAmount);

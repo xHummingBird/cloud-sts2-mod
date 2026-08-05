@@ -24,7 +24,13 @@ public class GreatswordMasteryPower : CloudPower
         {
             return 0m;
         }
-        return 2m;
+        
+        if (!base.Owner.HasPower<PunisherModePower>())
+        {
+            return 0m;
+        }
+        
+        return base.Amount;
     }
     
     public override decimal ModifyBlockAdditive(Creature target, decimal block, ValueProp props, CardModel? cardSource, CardPlay? cardPlay)
