@@ -1,7 +1,11 @@
-﻿using Cloud.CloudCode.Mechanics.Limit;
+﻿using Cloud.CloudCode.Cards.Ancient;
+using Cloud.CloudCode.Mechanics.Limit;
 using Cloud.CloudCode.Mechanics.Summon;
 using Cloud.CloudCode.Powers;
+using Cloud.CloudCode.Relics;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -56,7 +60,7 @@ public static class CloudExtensions
     
     public static async Task CheckLimitReady(
         this Creature creature,
-        PlayerChoiceContext context,
+        PlayerChoiceContext? context,
         Creature source,
         CardModel? card)
     {
@@ -79,7 +83,7 @@ public static class CloudExtensions
     
     public static async Task CheckSummonReady(
         this Creature creature,
-        PlayerChoiceContext context,
+        PlayerChoiceContext? context,
         Creature source,
         CardModel? card)
     {
@@ -121,6 +125,105 @@ public static class CloudExtensions
             {
                 SfxCmd.Play(target.Monster.HurtSfx);
             }
+        }
+    }
+    
+    public static async Task AddLimitBreakToHand(Player player)
+    {
+        if (CombatManager.Instance.IsOverOrEnding)
+        {
+            return;
+        }
+
+        var playerState = player.PlayerCombatState;
+
+        // Already in hand, do nothing.
+        if (playerState.AllCards
+            .OfType<LimitBreak>()
+            .Any(c => c.Pile?.Type == PileType.Hand))
+        {
+            return;
+        }
+
+        // Find an existing Limit Break anywhere (draw/discard/exhaust/etc.)
+        var limitBreak = playerState.AllCards
+            .OfType<LimitBreak>()
+            .FirstOrDefault();
+
+        if (limitBreak != null)
+        {
+            ChampionBelt? championBelt = player.GetRelic<ChampionBelt>();
+            if (championBelt != null)
+            {
+                CardCmd.Upgrade(limitBreak);
+            }
+            await CardPileCmd.Add(limitBreak, PileType.Hand);
+        }
+        else
+        {
+            limitBreak = player.Creature.CombatState
+                .CreateCard<LimitBreak>(player);
+            
+            ChampionBelt? championBelt = player.GetRelic<ChampionBelt>();
+            if (championBelt != null)
+            {
+                CardCmd.Upgrade(limitBreak);
+            }
+
+            await CardPileCmd.AddGeneratedCardToCombat(
+                limitBreak,
+                PileType.Hand,
+                player);
+        }
+    }
+    
+    public static async Task AddSummonToHand(Player player)
+    {
+        if (CombatManager.Instance.IsOverOrEnding)
+        {
+            return;
+        }
+
+        if (player.Creature.HasPower<MegaflarePower>())
+            return;
+
+        var playerState = player.PlayerCombatState;
+
+        // Already in hand, do nothing.
+        if (playerState.AllCards
+            .OfType<SummonCard>()
+            .Any(c => c.Pile?.Type == PileType.Hand))
+        {
+            return;
+        }
+
+        // Find an existing Limit Break anywhere (draw/discard/exhaust/etc.)
+        var summonCard = playerState.AllCards
+            .OfType<SummonCard>()
+            .FirstOrDefault();
+
+        if (summonCard != null)
+        {
+            if (player.Creature.HasPower<SummonUpPower>())
+            {
+                CardCmd.Upgrade(summonCard);
+            }
+            await CardPileCmd.Add(summonCard, PileType.Hand);
+        }
+        else
+        {
+            summonCard = player.Creature.CombatState
+                .CreateCard<SummonCard>(player);
+            
+            if (player.Creature.HasPower<SummonUpPower>())
+            {
+                CardCmd.Upgrade(summonCard);
+            }
+
+            await CardPileCmd.AddGeneratedCardToCombat(
+                summonCard,
+                PileType.Hand,
+                player);
         }
     }
 }

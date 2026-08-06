@@ -21,38 +21,38 @@ public class LimitBreakPower : CloudPower
     public override async Task AfterApplied(Creature? applier, CardModel? cardSource)
     {
         SfxCmd.Play("res://Cloud/sounds/limit_break_2.wav");
-        CardModel card = CombatState.CreateCard<LimitBreak>(base.Owner.Player);
-        ChampionBelt? championBelt = base.Owner?.Player.GetRelic<ChampionBelt>();
-        if (championBelt != null)
-        {
-            CardCmd.Upgrade(card);
-        }
-        await Task.Delay((int)(0.50f * 1000f));
-        await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, base.Owner.Player);
+        // CardModel card = CombatState.CreateCard<LimitBreak>(base.Owner.Player);
+        // ChampionBelt? championBelt = base.Owner?.Player.GetRelic<ChampionBelt>();
+        // if (championBelt != null)
+        // {
+        //     CardCmd.Upgrade(card);
+        // }
+        // await Task.Delay((int)(0.50f * 1000f));
+        // await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, base.Owner.Player);
         Flash();
     }
-    public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants,
-        ICombatState combatState)
-    {
-        if (side != base.Owner.Side)
-            return;
-
-        var player = Owner.Player;
-        var playerState = player.PlayerCombatState;
-
-        if (playerState == null)
-            return;
-        
-        if (playerState.AllCards
-            .OfType<LimitBreak>()
-            .Any(c => c.Pile?.Type == PileType.Hand))
-        {
-            return;
-        }
-
-        var cards = playerState.AllCards
-            .OfType<LimitBreak>()
-            .Where(c => c.Pile == null || c.Pile.Type != PileType.Hand);
-            await CardPileCmd.Add(cards, PileType.Hand);
-    }
+    // public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants,
+    //     ICombatState combatState)
+    // {
+    //     if (side != base.Owner.Side)
+    //         return;
+    //
+    //     var player = Owner.Player;
+    //     var playerState = player.PlayerCombatState;
+    //
+    //     if (playerState == null)
+    //         return;
+    //     
+    //     if (playerState.AllCards
+    //         .OfType<LimitBreak>()
+    //         .Any(c => c.Pile?.Type == PileType.Hand))
+    //     {
+    //         return;
+    //     }
+    //
+    //     var cards = playerState.AllCards
+    //         .OfType<LimitBreak>()
+    //         .Where(c => c.Pile == null || c.Pile.Type != PileType.Hand);
+    //         await CardPileCmd.Add(cards, PileType.Hand);
+    // }
 }

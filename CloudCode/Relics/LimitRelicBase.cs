@@ -94,6 +94,20 @@ public abstract class LimitRelicBase : CloudRelic
         );
     }
 
+    public override async Task AfterCardPlayedLate(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    {
+        var card = cardPlay.Card;
+
+        if (card.Owner != Owner)
+            return;
+        
+        if (base.Owner.Creature.HasPower<LimitBreakPower>())
+            await CloudExtensions.AddLimitBreakToHand(base.Owner);
+
+        if (base.Owner.Creature.HasPower<SummonPower>() && !base.Owner.Creature.HasPower<MegaflarePower>())
+            await CloudExtensions.AddSummonToHand(base.Owner);
+    }
+
     public override async Task AfterSideTurnStart(
         CombatSide side,
         IReadOnlyList<Creature> participants,
@@ -116,20 +130,31 @@ public abstract class LimitRelicBase : CloudRelic
         SfxCmd.Play("event:/sfx/ui/relic_activate_general");
 
         LimitManager.GainLimit(Owner, GetTurnLimitGain());
-
+        SummonManager.GainSummon(Owner, GetTurnSummonGain());
+        
         await Owner.Creature.CheckLimitReady(
             null,
             Owner.Creature,
             null
         );
-
-        SummonManager.GainSummon(Owner, GetTurnSummonGain());
-
+        
         await Owner.Creature.CheckSummonReady(
             null,
             Owner.Creature,
             null
         );
+    }
+    
+    public override async Task AfterSideTurnStartLate(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
+    {
+        if (side != Owner.Creature.Side)
+            return;
+        
+        if (base.Owner.Creature.HasPower<LimitBreakPower>())
+            await CloudExtensions.AddLimitBreakToHand(base.Owner);
+        
+        if (base.Owner.Creature.HasPower<SummonPower>() && !base.Owner.Creature.HasPower<MegaflarePower>())
+            await CloudExtensions.AddSummonToHand(base.Owner);
     }
 
     public override async Task AfterDamageReceived(
@@ -168,11 +193,11 @@ public abstract class LimitRelicBase : CloudRelic
 
         LimitManager.GainLimit(Owner, gain);
 
-        await Owner.Creature.CheckLimitReady(
-            choiceContext,
-            Owner.Creature,
-            null
-        );
+        // await Owner.Creature.CheckLimitReady(
+        //     choiceContext,
+        //     Owner.Creature,
+        //     null
+        // );
     }
 
     protected virtual int GetAttackLimitGain(CardModel card)

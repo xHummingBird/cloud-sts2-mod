@@ -25,6 +25,12 @@ public class LimitBreak() : CloudCard(0, CardType.Skill,
     protected override IEnumerable<DynamicVar> CanonicalVars => [
     ];
     
+    private IEnumerable<CardModel> GetLimitBreakCards()
+    {
+        var pile = PileType.Hand.GetPile(base.Owner);
+        return pile.Cards.OfType<LimitBreak>();
+    }
+    
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
     [
         CardKeyword.Retain,
@@ -72,6 +78,11 @@ public class LimitBreak() : CloudCard(0, CardType.Skill,
         if (ultimaWeapon != null)
         {
             cards.Add(omnislash);
+        }
+        
+        foreach (var card in GetLimitBreakCards().ToList())
+        {
+            await CardCmd.Exhaust(choiceContext, card);
         }
         
         CardModel cardModel = await CardSelectCmd.FromChooseACardScreen(choiceContext, cards.ToList(), base.Owner, canSkip: false);
