@@ -27,7 +27,7 @@ public class BraverKai() : CloudCard(1, CardType.Attack,
 {
     public int ATBCost => 1;
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(15, ValueProp.Move),
+        new DamageVar(22, ValueProp.Move),
         new PowerVar<VulnerablePower>(2)
     ];
 
@@ -57,7 +57,7 @@ public class BraverKai() : CloudCard(1, CardType.Attack,
         }
         NCreature nCreature = NCombatRoom.Instance?.GetCreatureNode(play.Target);
         NBigSlashVfx nBigSlashVfx = NBigSlashVfx.Create(nCreature.GetBottomOfHitbox(), facingRight: true);
-        CommonActions.CardAttack(this, play.Target)
+        await CommonActions.CardAttack(this, play.Target)
             .WithHitFx(null,"res://Cloud/sfx/cloud_hit.wav")
             .BeforeDamage(async delegate
                 { NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(nBigSlashVfx);
@@ -65,7 +65,6 @@ public class BraverKai() : CloudCard(1, CardType.Attack,
                 }
             )
             .Execute(choiceContext);
-        cloud.DoScreenShake(ShakeStrength.Strong, ShakeDuration.Normal);
         await Task.Delay((int)(0.63f * 1000f));
         if (ownerCreature != null && cloud != null)
         {
@@ -80,7 +79,7 @@ public class BraverKai() : CloudCard(1, CardType.Attack,
     
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(5);
+        DynamicVars.Damage.UpgradeValueBy(8);
         DynamicVars.Vulnerable.UpgradeValueBy(1);
     }
 }

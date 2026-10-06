@@ -121,10 +121,9 @@ public class OmnislashVerFive() : CloudCard(2, CardType.Attack,
                     SfxCmd.Play("res://Cloud/sfx/omnislash_finalhit.wav");
                     if (specialAnimation)
                     {
-                        DamageCmd.Attack(DynamicVars.CalculatedDamage).FromCard(this, play).Targeting(play.Target)
+                        await DamageCmd.Attack(DynamicVars.CalculatedDamage).FromCard(this, play).Targeting(play.Target)
                             .WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav") // swap for bigger VFX later
                             .Execute(choiceContext);
-                        cloud.DoScreenShake(ShakeStrength.Strong, ShakeDuration.Normal);
                         await Task.Delay((int)(0.6f * 1000f));
                         CinematicAttack.End(RunManager.Instance.NetService.NetId);
                         if (!noOtherEnemies)
@@ -136,10 +135,9 @@ public class OmnislashVerFive() : CloudCard(2, CardType.Attack,
                     }
                     else
                     {
-                        DamageCmd.Attack(base.DynamicVars.CalculatedDamage).FromCard(this, play).Targeting(play.Target)
+                        await DamageCmd.Attack(base.DynamicVars.CalculatedDamage).FromCard(this, play).Targeting(play.Target)
                             .WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav") // swap for bigger VFX later
                             .Execute(choiceContext);
-                        cloud.DoScreenShake(ShakeStrength.Strong, ShakeDuration.Normal);
                         await Task.Delay((int)(0.2f * 1000f));
                         SfxCmd.Play("res://Cloud/sounds/warukuomouna.wav");
                         await Task.Delay((int)(1.03f * 1000f));

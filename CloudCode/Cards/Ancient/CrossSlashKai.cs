@@ -59,7 +59,7 @@ public class CrossSlashKai() : CloudCard(0, CardType.Attack,
                 await Task.Delay((int)(0.80f * 1000f));
                 SfxCmd.Play("res://Cloud/sfx/sword_swing_heavy.wav");
                 SfxCmd.Play("res://Cloud/sounds/ungawarukatana.wav");
-                CommonActions.CardAttack(this, play.Target)
+                await CommonActions.CardAttack(this, play.Target)
                     .WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav")
                     .Execute(choiceContext);
                 cloud.DoScreenShake(ShakeStrength.Strong, ShakeDuration.Normal);

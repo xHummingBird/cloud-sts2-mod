@@ -84,7 +84,7 @@ public class Ascension() : CloudCard(0, CardType.Attack,
                         await Task.Delay((int)(delay * 1000f));
                     SfxCmd.Play("res://Cloud/sfx/sword_swing_heavy.wav");
 
-                    DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this, play)
+                    await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this, play)
                         .Targeting(play.Target)
                         .WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav")
                         .Execute(choiceContext);

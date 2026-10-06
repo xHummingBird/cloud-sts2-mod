@@ -1,0 +1,16 @@
+{
+  "CLOUD_ATB.description": "Représente l'élan de combat.\n\nGagnez de l'ATB grâce aux attaques et aux effets. \nLe gain lié aux attaques est limité par votre ATB max, mais les autres effets peuvent dépasser cette limite.\nDépensez de l'ATB pour jouer de puissantes cartes.\n\nVous gagnez 1 ATB au début de votre tour si vous avez 0 ATB.",
+  "CLOUD_ATB.title": "ATB",
+  "CLOUD_LIMIT.description": "Se charge au combat. \n\nGagnez 3 [gold]Limite[/gold] en attaquant ou en bloquant des attaques. \nGagnez autant de [gold]Limite[/gold] que de dégâts subis. \n\nÀ 100 [gold]Limite[/gold], de puissants [gold]Éclatements de Limite[/gold] deviennent disponibles. \nAprès le combat, conservez 50% de la Limite. \n\nLa Limite est consommée quand un Éclatement de Limite est utilisé.",
+  "CLOUD_LIMIT.title": "Limite",
+  "CLOUD_MAGIC.description": "Cette carte inflige des dégâts de [gold]Magie[/gold] et ne bénéficie pas du bonus de dégâts du [gold]Mode Punisseur[/gold].",
+  "CLOUD_MAGIC.title": "Magie",
+  "CLOUD_OPERATOR.description": "Passez en [gold]Mode Opérateur[/gold] après avoir joué cette carte.",
+  "CLOUD_OPERATOR.title": "Mode Opérateur",
+  "CLOUD_PUNISHER.description": "Passez en [gold]Mode Punisseur[/gold] après avoir joué cette carte.",
+  "CLOUD_PUNISHER.title": "Mode Punisseur",
+  "CLOUD_STANCE.description": "Changez de posture entre [gold]Punisseur[/gold] et [gold]Mode Opérateur[/gold] après avoir joué cette carte.",
+  "CLOUD_STANCE.title": "Changer de posture",
+  "CLOUD_SUMMON.description": "Se charge au combat. \n\nGagnez 3 Invocation en attaquant.\nGagnez 6 Invocation en jouant des cartes de [gold]Magie[/gold].\n\nÀ 100 Invocation, choisissez un [gold]Esper[/gold] à invoquer. Les [gold]Espers[/gold] infligent de gros dégâts et accordent de puissants bonus pendant 3 tours. \nAprès le combat, conservez 50% de l'Invocation. \n\nL'Invocation est consommée après utilisation.",
+  "CLOUD_SUMMON.title": "Invocation"
+}

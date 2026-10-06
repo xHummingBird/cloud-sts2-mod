@@ -77,7 +77,7 @@ public class SummonCard() : CloudCard(0, CardType.Skill,
         {
             SummonManager.SetSummon(base.Owner, 0);
             await PowerCmd.Remove<SummonPower>(base.Owner.Creature);
-            await CardCmd.AutoPlay(choiceContext, cardModel, null);
+            await CardCmd.AutoPlay(choiceContext, cardModel, play.Target);
         }
         else  if (cardModel is Ifrit ifritCard || cardModel is Odin odinCard)
         {

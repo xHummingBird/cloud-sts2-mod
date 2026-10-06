@@ -88,10 +88,7 @@ public class LimitBreak() : CloudCard(0, CardType.Skill,
         CardModel cardModel = await CardSelectCmd.FromChooseACardScreen(choiceContext, cards.ToList(), base.Owner, canSkip: false);
         LimitManager.SetLimit(base.Owner, 0);
         await PowerCmd.Remove<LimitBreakPower>(base.Owner.Creature);
-        if (cardModel is Meteorain meteorain)
-            await CardCmd.AutoPlay(choiceContext, cardModel, null);
-        
-        else await CardCmd.AutoPlay(choiceContext, cardModel, play.Target);
+        await CardCmd.AutoPlay(choiceContext, cardModel, play.Target);
     }
 
     protected override void OnUpgrade()

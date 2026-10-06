@@ -40,7 +40,7 @@
   "CLOUD-SOLDIERS_PRIDE_POWER.title": "SOLDIER's Pride",
 
   "CLOUD-FURY_POWER.description": "Increase damage taken by [blue]10%[/blue]. Gain 3 additional limit per turn and from using attacks. \nRemoves [gold]Sedate[/gold].",
-  "CLOUD-FURY_POWER.smartDescription": "Increase damage taken. Gain 3 additional limit per turn and from using attacks.",
+  "CLOUD-FURY_POWER.smartDescription": "Increase damage taken by [blue]10%[/blue]. Gain 3 additional limit per turn and from using attacks.",
   "CLOUD-FURY_POWER.title": "Fury",
 
   "CLOUD-SEDATE_POWER.description": "Decrease damage taken by [blue]20%[/blue]. Halve limit gain from taking damage. Draw 1 card at the start of your turn. \nRemoves [gold]Fury[/gold]",

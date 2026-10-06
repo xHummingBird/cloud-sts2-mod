@@ -61,7 +61,7 @@ public class Braver() : CloudCard(1, CardType.Attack,
         NCreature nCreature = NCombatRoom.Instance?.GetCreatureNode(play.Target);
         NBigSlashVfx nBigSlashVfx = NBigSlashVfx.Create(nCreature.GetBottomOfHitbox(), facingRight: true);
         
-        CommonActions.CardAttack(this, play.Target)
+        await CommonActions.CardAttack(this, play.Target)
             .WithHitFx(null, "res://Cloud/sfx/cloud_hit.wav")
             .BeforeDamage(async delegate
                 { NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(nBigSlashVfx);

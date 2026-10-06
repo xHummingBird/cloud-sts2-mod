@@ -121,7 +121,7 @@ public class Cloud : PlaceholderCharacterModel
 		return NodeFactory<NCreatureVisuals>.CreateFromScene(CustomVisualScenePath);
 	}
 
-	public override CreatureAnimator? GenerateAnimator(MegaSprite controller) => null;
+	//public override CreatureAnimator? GenerateAnimator(MegaSprite controller) => null;
 
 	private string GetIdleAnimation(Creature creature)
 	{

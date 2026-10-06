@@ -13,7 +13,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Cloud.CloudCode.Cards.Common;
 
-public class WindUpSlash() : CloudCard(2, CardType.Attack,
+public class WindUpSlash() : CloudCard(1, CardType.Attack,
     CardRarity.Common, TargetType.AnyEnemy), IATBCard, IPunisherCard
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -21,9 +21,9 @@ public class WindUpSlash() : CloudCard(2, CardType.Attack,
         CloudStaticHoverTip.Punisher,
         HoverTipFactory.FromPower<VigorPower>(),
     ];
-    public int ATBCost => 1;
+    public int ATBCost => 2;
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(12m, ValueProp.Move),
+        new DamageVar(11m, ValueProp.Move),
         new PowerVar<VigorPower>(5m)
     ];
 
@@ -54,7 +54,7 @@ public class WindUpSlash() : CloudCard(2, CardType.Attack,
         {
             await PowerCmd.Apply<VigorPower>(choiceContext, base.Owner.Creature,
                 base.DynamicVars["VigorPower"].BaseValue, base.Owner.Creature, this);
-            ownerCreature.EnterPunisher(1, Owner.Creature, this);
+            await ownerCreature.EnterPunisher(1, Owner.Creature, this);
         }
     }
     

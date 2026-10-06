@@ -201,10 +201,10 @@ public static class CloudExtensions
         var summonCard = playerState.AllCards
             .OfType<SummonCard>()
             .FirstOrDefault();
-
+        EvokeRing? evokeRing = player.GetRelic<EvokeRing>();
         if (summonCard != null)
         {
-            if (player.Creature.HasPower<SummonUpPower>())
+            if (evokeRing != null)
             {
                 CardCmd.Upgrade(summonCard);
             }
@@ -215,7 +215,7 @@ public static class CloudExtensions
             summonCard = player.Creature.CombatState
                 .CreateCard<SummonCard>(player);
             
-            if (player.Creature.HasPower<SummonUpPower>())
+            if (evokeRing != null)
             {
                 CardCmd.Upgrade(summonCard);
             }

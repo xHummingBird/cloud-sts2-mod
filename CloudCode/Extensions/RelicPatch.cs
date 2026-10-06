@@ -31,6 +31,19 @@ internal static class CloudArchaicToothTranscendencePatch
     }
 }
 
+[HarmonyPatch(typeof(DustyTome), nameof(DustyTome.SetupForPlayer))]
+public static class DustyTomeSetupPatch
+{
+    [HarmonyPostfix]
+    public static void Postfix(DustyTome __instance, Player player)
+    {
+        if (player.Character is not Character.Cloud)
+            return;
+
+        __instance.AncientCard = ModelDb.Card<HerosLastWish>().Id;
+    }
+}
+
 
 [HarmonyPatch(typeof(DustyTome), nameof(DustyTome.AfterObtained))]
 public static class DustyTomePatch

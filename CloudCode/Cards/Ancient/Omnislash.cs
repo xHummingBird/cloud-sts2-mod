@@ -98,13 +98,14 @@ public class Omnislash() : CloudCard(0, CardType.Attack,
                     
                     SfxCmd.Play("res://Cloud/sfx/omnislash_finalhit.wav");
                     cloud.DoScreenShake(ShakeStrength.Strong, ShakeDuration.Normal);
-                    DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this, play).Targeting(play.Target)
+                    await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this, play).Targeting(play.Target)
                         .WithHitFx("vfx/vfx_attack_slash", "res://Cloud/sfx/cloud_hit.wav") // swap for bigger VFX later
                         .Execute(choiceContext);
                     await Task.Delay((int)(0.8f * 1000f));
                     // cam?.EndCinematic();
-                    CenterCardCinematic.End(RunManager.Instance.NetService.NetId);
                     await cloud.Retreat(ownerCreature);
+                    CenterCardCinematic.End(RunManager.Instance.NetService.NetId);
+                    
                 }
 
             }

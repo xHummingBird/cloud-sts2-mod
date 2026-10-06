@@ -60,7 +60,7 @@ public class Shiva() : CloudCard(0, CardType.Attack,
             await Task.Delay((int)(0.7f * 1000f));
             SfxCmd.Play("res://Cloud/sfx/ice_2.wav");
         }
-        DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).TargetingAllOpponents(base.CombatState)
+        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).TargetingAllOpponents(base.CombatState)
             .BeforeDamage(async delegate
             {
                 var targets = base.CombatState.HittableEnemies;
