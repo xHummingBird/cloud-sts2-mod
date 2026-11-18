@@ -17,7 +17,7 @@
   "CLOUD-FIRA.description": "造成{Damage:diff()}点伤害。",
   "CLOUD-FIRA.title": "大火",
 
-  "CLOUD-THUNDARA.description": "对随机敌人[gold]{Repeat:diff()}[/gold]次造成{Damage:diff()}点伤害。",
+  "CLOUD-THUNDARA.description": "对随机敌人[gold]{HitCount:diff()}[/gold]次造成{Damage:diff()}点伤害。",
   "CLOUD-THUNDARA.title": "大雷电",
 
   "CLOUD-FIRE.description": "造成{Damage:diff()}点伤害。",
@@ -47,7 +47,7 @@
   "CLOUD-MAKO_MIGHT.description": "[gold]猛攻姿态[/gold]: 获得{VigorPower:diff()}层[gold]活力[/gold]。\n[gold]惩戒姿态[/gold]: 获得{Block:diff()}点[gold]格挡值[/gold]。",
   "CLOUD-MAKO_MIGHT.title": "魔晄浸润",
 
-  "CLOUD-TRIPLE_SLASH.description": "对随机敌人造成{CalculatedDamage:diff()}点伤害，共{Repeat:diff()}次。\n[gold]猛攻姿态[/gold]: 额外造成{ExtraDamage:diff()}点伤害。\n[gold]惩戒姿态[/gold]: 抽取{Cards:diff()}张{Cards:plural:卡牌|卡牌}。",
+  "CLOUD-TRIPLE_SLASH.description": "对随机敌人造成{CalculatedDamage:diff()}点伤害，共{HitCount:diff()}次。\n[gold]猛攻姿态[/gold]: 额外造成{ExtraDamage:diff()}点伤害。\n[gold]惩戒姿态[/gold]: 抽取{Cards:diff()}张{Cards:plural:卡牌|卡牌}。",
   "CLOUD-TRIPLE_SLASH.title": "三连斩",
 
   "CLOUD-BRAVER_KAI.description": "造成{Damage:diff()}点伤害。\n[gold]猛攻姿态[/gold]: 施加{VulnerablePower:diff()}层[gold]易伤[/gold]。",
@@ -83,7 +83,7 @@
   "CLOUD-CROSS_SLASH.description": "造成{Damage:diff()}点伤害。\n该敌人接下来1回合造成的伤害降低[blue]{CrossSlashPower:diff()}%[/blue]。",
   "CLOUD-CROSS_SLASH.title": "交叉斩",
 
-  "CLOUD-AERIAL_DRIVE.description": "造成{Damage:diff()}点伤害，共{Repeat:diff()}次。\n获得{LimitBreakPower:diff()}点[gold]极限槽[/gold]。",
+  "CLOUD-AERIAL_DRIVE.description": "造成{Damage:diff()}点伤害，共{HitCount:diff()}次。\n获得{LimitBreakPower:diff()}点[gold]极限槽[/gold]。",
   "CLOUD-AERIAL_DRIVE.title": "空中突进",
 
   "CLOUD-CROSS_SLASH_KAI.description": "造成{Damage:diff()}点伤害。\n该敌人接下来1回合造成的伤害降低[blue]{CrossSlashPower:diff()}%[/blue]。",
@@ -173,7 +173,7 @@
   "CLOUD-FIRAGA.description": "对单体敌人造成{Damage:diff()}点伤害。\n再对全体敌人造成{Damage:diff()}点伤害。",
   "CLOUD-FIRAGA.title": "烈焰",
 
-  "CLOUD-THUNDAGA.description": "对随机敌人[gold]{Repeat:diff()}[/gold]次造成{Damage:diff()}点伤害。",
+  "CLOUD-THUNDAGA.description": "对随机敌人[gold]{HitCount:diff()}[/gold]次造成{Damage:diff()}点伤害。",
   "CLOUD-THUNDAGA.title": "雷霆",
 
   "CLOUD-BLIZZAGA.description": "对全体敌人造成{Damage:diff()}点伤害。\n获得{Block:diff()}点[gold]格挡值[/gold]。",
@@ -218,7 +218,7 @@
   "CLOUD-W_MAGIC.description": "每回合打出的第一张[gold]魔法[/gold]卡牌会额外释放一次。",
   "CLOUD-W_MAGIC.title": "二连魔法",
 
-  "CLOUD-THUNDAGA_BURST.description": "对随机敌人[gold]{Repeat:diff()}[/gold]次造成{Damage:diff()}点伤害。\n若[gold]击杀目标[/gold]，额外追加2次攻击。",
+  "CLOUD-THUNDAGA_BURST.description": "对随机敌人[gold]{HitCount:diff()}[/gold]次造成{Damage:diff()}点伤害。\n若[gold]击杀目标[/gold]，额外追加2次攻击。",
   "CLOUD-THUNDAGA_BURST.title": "雷霆爆发",
 
   "CLOUD-BLIZZAGA_BURST.description": "对全体敌人造成{Damage:diff()}点伤害。\n获得{Block:diff()}点[gold]格挡值[/gold]。\n若[gold]击杀目标[/gold]，获得的格挡值翻倍。",

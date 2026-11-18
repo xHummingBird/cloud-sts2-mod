@@ -21,7 +21,7 @@ public class TripleSlash() : CloudCard(2, CardType.Attack,
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new CalculationBaseVar(5m),
-        new RepeatVar(3),
+        new HitCountVar(3),
         new ExtraDamageVar(2m),
         new CardsVar(1),
         new CalculatedDamageVar(ValueProp.Move)
@@ -65,7 +65,7 @@ public class TripleSlash() : CloudCard(2, CardType.Attack,
         }
         else
         {
-            await CommonActions.CardAttack(this, play.Target).WithHitCount(base.DynamicVars.Repeat.IntValue)
+            await CommonActions.CardAttack(this, play.Target).WithHitCount(base.DynamicVars.HitCount.IntValue)
                 .WithHitFx("vfx/vfx_attack_slash")
                 .Execute(choiceContext);
         }

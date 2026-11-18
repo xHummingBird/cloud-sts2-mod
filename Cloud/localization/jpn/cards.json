@@ -17,7 +17,7 @@
   "CLOUD-FIRA.description": "{Damage:diff()}ダメージを与える。",
   "CLOUD-FIRA.title": "ファイラ",
 
-  "CLOUD-THUNDARA.description": "ランダムな敵に{Damage:diff()}ダメージを[gold]{Repeat:diff()}[/gold]回与える。",
+  "CLOUD-THUNDARA.description": "ランダムな敵に{Damage:diff()}ダメージを[gold]{HitCount:diff()}[/gold]回与える。",
   "CLOUD-THUNDARA.title": "サンダラ",
 
   "CLOUD-FIRE.description": "{Damage:diff()}ダメージを与える。",
@@ -47,7 +47,7 @@
   "CLOUD-MAKO_MIGHT.description": "[gold]アサルトモード[/gold]：[gold]活力[/gold]{VigorPower:diff()}を得る。\n[gold]ブレイブモード[/gold]：{Block:diff()}[gold]ブロック[/gold]を得る。",
   "CLOUD-MAKO_MIGHT.title": "魔晄の力",
 
-  "CLOUD-TRIPLE_SLASH.description": "ランダムな敵に{CalculatedDamage:diff()}ダメージを{Repeat:diff()}回与える。\n[gold]アサルトモード[/gold]：追加で{ExtraDamage:diff()}ダメージを与える。\n[gold]ブレイブモード[/gold]：カードを{Cards:diff()}枚引く。",
+  "CLOUD-TRIPLE_SLASH.description": "ランダムな敵に{CalculatedDamage:diff()}ダメージを{HitCount:diff()}回与える。\n[gold]アサルトモード[/gold]：追加で{ExtraDamage:diff()}ダメージを与える。\n[gold]ブレイブモード[/gold]：カードを{Cards:diff()}枚引く。",
   "CLOUD-TRIPLE_SLASH.title": "トリプルスラッシュ",
 
   "CLOUD-BRAVER_KAI.description": "{Damage:diff()}ダメージを与える。\n[gold]アサルトモード[/gold]：[gold]弱体[/gold]{VulnerablePower:diff()}を与える。",
@@ -83,7 +83,7 @@
 "CLOUD-CROSS_SLASH.description": "{Damage:diff()}ダメージを与える。\n敵の与ダメージを1ターンの間[blue]{CrossSlashPower:diff()}%[/blue]減少させる。",
 "CLOUD-CROSS_SLASH.title": "凶斬り",
 
-"CLOUD-AERIAL_DRIVE.description": "{Damage:diff()}ダメージを{Repeat:diff()}回与える。\n[gold]リミットゲージ[/gold]が{LimitBreakPower:diff()}増加する。",
+"CLOUD-AERIAL_DRIVE.description": "{Damage:diff()}ダメージを{HitCount:diff()}回与える。\n[gold]リミットゲージ[/gold]が{LimitBreakPower:diff()}増加する。",
 "CLOUD-AERIAL_DRIVE.title": "エアリアルドライブ",
 
 "CLOUD-CROSS_SLASH_KAI.description": "{Damage:diff()}ダメージを与える。\n敵の与ダメージを1ターンの間[blue]{CrossSlashPower:diff()}%[/blue]減少させる。",
@@ -173,7 +173,7 @@
 "CLOUD-FIRAGA.description": "敵1体に{Damage:diff()}ダメージを与える。\nさらにすべての敵に{Damage:diff()}ダメージを与える。",
 "CLOUD-FIRAGA.title": "ファイガ",
 
-"CLOUD-THUNDAGA.description": "ランダムな敵に{Damage:diff()}ダメージを[gold]{Repeat:diff()}[/gold]回与える。",
+"CLOUD-THUNDAGA.description": "ランダムな敵に{Damage:diff()}ダメージを[gold]{HitCount:diff()}[/gold]回与える。",
 "CLOUD-THUNDAGA.title": "サンダガ",
 
 "CLOUD-BLIZZAGA.description": "すべての敵に{Damage:diff()}ダメージを与える。\n{Block:diff()}[gold]ブロック[/gold]を得る。",
@@ -218,7 +218,7 @@
 "CLOUD-W_MAGIC.description": "各ターン最初に使用する[gold]魔法[/gold]カードをもう一度発動する。",
 "CLOUD-W_MAGIC.title": "Ｗまほう",
 
-"CLOUD-THUNDAGA_BURST.description": "ランダムな敵に{Damage:diff()}ダメージを[gold]{Repeat:diff()}[/gold]回与える。\n敵を倒した場合、さらに2回攻撃する。",
+"CLOUD-THUNDAGA_BURST.description": "ランダムな敵に{Damage:diff()}ダメージを[gold]{HitCount:diff()}[/gold]回与える。\n敵を倒した場合、さらに2回攻撃する。",
 "CLOUD-THUNDAGA_BURST.title": "バーストサンダガ",
 
 "CLOUD-BLIZZAGA_BURST.description": "すべての敵に{Damage:diff()}ダメージを与える。\n{Block:diff()}[gold]ブロック[/gold]を得る。\n敵を倒した場合、得る[gold]ブロック[/gold]が2倍になる。",

@@ -21,7 +21,7 @@ public class CrossSlashKai() : CloudCard(0, CardType.Attack,
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DamageVar(35, ValueProp.Move),
         new PowerVar<CrossSlashPower>(80),
-        new RepeatVar(3)
+        new HitCountVar(3)
     ];
     
     public override IEnumerable<CardKeyword> CanonicalKeywords =>

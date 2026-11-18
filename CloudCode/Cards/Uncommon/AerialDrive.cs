@@ -17,7 +17,7 @@ public class AerialDrive() : CloudCard(2, CardType.Attack,
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DamageVar(7, ValueProp.Move),
-        new RepeatVar(2),
+        new HitCountVar(2),
         new PowerVar<LimitBreakPower>(5)
     ];
     
@@ -54,7 +54,7 @@ public class AerialDrive() : CloudCard(2, CardType.Attack,
                 await Task.Delay((int)(0.81f * 1000f));
             }
         }
-        else await CommonActions.CardAttack(this, play.Target).WithHitCount(base.DynamicVars.Repeat.IntValue)
+        else await CommonActions.CardAttack(this, play.Target).WithHitCount(base.DynamicVars.HitCount.IntValue)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
         

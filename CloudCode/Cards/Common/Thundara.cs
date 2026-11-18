@@ -19,7 +19,7 @@ public class Thundara() : CloudCard(1, CardType.Attack,
     protected override IEnumerable<DynamicVar> CanonicalVars => 
     [
         new DamageVar(6m, ValueProp.Move),
-        new RepeatVar(2)
+        new HitCountVar(2)
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -43,7 +43,7 @@ public class Thundara() : CloudCard(1, CardType.Attack,
                 await Task.Delay((int)(duration * 0.2f * 1000f));
         }
         
-        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).WithHitCount(base.DynamicVars.Repeat.IntValue).FromCard(this, play)
+        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).WithHitCount(base.DynamicVars.HitCount.IntValue).FromCard(this, play)
             .TargetingRandomOpponents(base.CombatState)
             .WithHitFx("vfx/vfx_attack_lightning", "event:/sfx/characters/defect/defect_lightning_passive")
             .Execute(choiceContext);

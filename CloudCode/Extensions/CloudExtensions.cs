@@ -116,7 +116,7 @@ public static class CloudExtensions
             if (target == null) return;
 
             SfxCmd.Play(sfxPath ?? DefaultSfx);
-            VfxCmd.PlayOnCreatureCenter(target, DefaultVfx);
+            VfxCmd.PlayOnCreatureCenter(target, DefaultVfx, false);
             SfxCmd.Play(target.Monster.TakeDamageSfx);
             SfxCmd.Play("res://Cloud/sfx/cloud_hit.wav");
             await CreatureCmd.TriggerAnim(target, "Hit", 0f);

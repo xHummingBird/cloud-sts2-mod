@@ -17,7 +17,7 @@
   "CLOUD-FIRA.description": "Deal {Damage:diff()} damage.",
   "CLOUD-FIRA.title": "Fira",
 
-  "CLOUD-THUNDARA.description": "Deal {Damage:diff()} damage to random enemies [gold]{Repeat:diff()}[/gold] times.",
+  "CLOUD-THUNDARA.description": "Deal {Damage:diff()} damage to random enemies [gold]{HitCount:diff()}[/gold] times.",
   "CLOUD-THUNDARA.title": "Thundara",
 
   "CLOUD-FIRE.description": "Deal {Damage:diff()} damage.",
@@ -47,7 +47,7 @@
   "CLOUD-MAKO_MIGHT.description": "[gold]Operator:[/gold] Gain {VigorPower:diff()} [gold]Vigor[/gold]. \n[gold]Punisher[/gold]: Gain {Block:diff()} [gold]Block[/gold].",
   "CLOUD-MAKO_MIGHT.title": "Mako Exposure",
 
-  "CLOUD-TRIPLE_SLASH.description": "Deal {CalculatedDamage:diff()} damage {Repeat:diff()} times to random enemies. \n[gold]Operator[/gold]: Deal {ExtraDamage:diff()} additional damage. \n[gold]Punisher[/gold]: Draw {Cards:diff()} {Cards:plural:card|cards}.",
+  "CLOUD-TRIPLE_SLASH.description": "Deal {CalculatedDamage:diff()} damage {HitCount:diff()} times to random enemies. \n[gold]Operator[/gold]: Deal {ExtraDamage:diff()} additional damage. \n[gold]Punisher[/gold]: Draw {Cards:diff()} {Cards:plural:card|cards}.",
   "CLOUD-TRIPLE_SLASH.title": "Triple Slash",
 
   "CLOUD-BRAVER_KAI.description": "Deal {Damage:diff()} damage. \n[gold]Operator[/gold]: Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold].",
@@ -83,7 +83,7 @@
   "CLOUD-CROSS_SLASH.description": "Deal {Damage:diff()} damage. \nThe enemy deals [blue]{CrossSlashPower:diff()}%[/blue] less damage for 1 turn.",
   "CLOUD-CROSS_SLASH.title": "Cross Slash",
 
-  "CLOUD-AERIAL_DRIVE.description": "Deal {Damage:diff()} damage {Repeat:diff()} times. \nGain {LimitBreakPower:diff()} [gold]Limit[/gold].",
+  "CLOUD-AERIAL_DRIVE.description": "Deal {Damage:diff()} damage {HitCount:diff()} times. \nGain {LimitBreakPower:diff()} [gold]Limit[/gold].",
   "CLOUD-AERIAL_DRIVE.title": "Aerial Drive",
 
   "CLOUD-CROSS_SLASH_KAI.description": "Deal {Damage:diff()} damage. \nThe enemy deals [blue]{CrossSlashPower:diff()}%[/blue] less damage for 1 turn.",
@@ -173,7 +173,7 @@
   "CLOUD-FIRAGA.description": "Deal {Damage:diff()} damage to 1 enemy. \nDeal {Damage:diff()} damage to ALL enemies.",
   "CLOUD-FIRAGA.title": "Firaga",
 
-  "CLOUD-THUNDAGA.description": "Deal {Damage:diff()} damage to random enemies [gold]{Repeat:diff()}[/gold] times.",
+  "CLOUD-THUNDAGA.description": "Deal {Damage:diff()} damage to random enemies [gold]{HitCount:diff()}[/gold] times.",
   "CLOUD-THUNDAGA.title": "Thundaga",
 
   "CLOUD-BLIZZAGA.description": "Deal {Damage:diff()} damage to ALL enemies. \nGain {Block:diff()} [gold]Block[/gold].",
@@ -218,7 +218,7 @@
   "CLOUD-W_MAGIC.description": "The first [gold]Magic[/gold] card you play each turn is played an extra time.",
   "CLOUD-W_MAGIC.title": "W Magic",
 
-  "CLOUD-THUNDAGA_BURST.description": "Deal {Damage:diff()} damage to random enemies [gold]{Repeat:diff()}[/gold] times. \nIf [gold]Fatal[/gold], hit 2 additional times.",
+  "CLOUD-THUNDAGA_BURST.description": "Deal {Damage:diff()} damage to random enemies [gold]{HitCount:diff()}[/gold] times. \nIf [gold]Fatal[/gold], hit 2 additional times.",
   "CLOUD-THUNDAGA_BURST.title": "Thundaga Burst",
 
   "CLOUD-BLIZZAGA_BURST.description": "Deal {Damage:diff()} damage to ALL enemies. \nGain {Block:diff()} [gold]Block[/gold]. \nIf [gold]Fatal[/gold], double block gained.",
